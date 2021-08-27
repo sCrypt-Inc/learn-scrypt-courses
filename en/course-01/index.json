@@ -1,0 +1,31 @@
+{
+    "title": "Learn sCrypt",
+    "desc": "this is the first course for learning sCrypt",
+    "lessons": [
+        {
+            "title": "Let's start learning sCrypt",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "What is Bitcoin smart contract?"
+                },
+                {
+                    "num": 2,
+                    "title": "The first sCrypt contract",
+                    "scripts": [  
+                        {
+                            "name": "demo.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["You can name it Demo"]
+                        },
+                        {
+                            "name": "demo.scrypttest.js",
+                            "lang": "javascript"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
