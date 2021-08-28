@@ -1,0 +1,9 @@
+
+contract MyHelloWorld {
+
+    public function unlock(int x) {
+
+        //TODO: check if x == 42
+        
+    }
+}

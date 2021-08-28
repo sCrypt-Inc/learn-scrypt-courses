@@ -1,0 +1,9 @@
+
+contract MyHelloWorld {
+
+    public function unlock(int x) {
+
+        PubKey mypublickey = PubKey(b'03f4a8ec3e44903ea28c00113b351af3baeec5662e5e2453c19188fbcad00fb1cf');
+        
+    }
+}

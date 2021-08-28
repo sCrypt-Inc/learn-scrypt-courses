@@ -1,0 +1,10 @@
+
+contract MyHelloWorld {
+
+    public function unlock(int x) {
+
+        //TODO: declare mypublickey here
+        
+
+    }
+}
