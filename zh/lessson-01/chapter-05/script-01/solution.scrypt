@@ -1,0 +1,7 @@
+
+contract Rectangle {
+
+    int width;
+    int height;
+    static int ANGLE = 90;
+}
