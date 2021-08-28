@@ -1,0 +1,12 @@
+
+contract MyHelloWorld {
+
+    int x;
+
+    //add getX(): int here
+    
+    public function unlock(int x) {
+        
+        require(this.getX() == x);
+    }
+}
