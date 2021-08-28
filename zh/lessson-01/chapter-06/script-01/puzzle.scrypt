@@ -1,0 +1,9 @@
+
+contract MyHelloWorld {
+
+    Sha256 messagehash;
+    
+    //add constructor here
+    
+    
+}

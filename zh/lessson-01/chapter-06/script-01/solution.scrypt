@@ -1,0 +1,12 @@
+
+contract MyHelloWorld {
+
+    Sha256 messagehash;
+    
+    //add constructor here
+
+    constructor(Sha256 messagehash) {
+        this.messagehash = messagehash;
+    }
+    
+}
