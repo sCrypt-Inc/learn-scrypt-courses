@@ -1,0 +1,20 @@
+
+contract MyHelloWorld {
+    public function unlock(int x, bool ok) {
+        require(x == 666 && ok);
+    }
+}
+
+//launch.json
+
+{
+    "type": "scrypt",
+    "request": "launch",
+    "name": "Debug MyHelloWorld",
+    "program": "${workspaceFolder}/contracts/demo.scrypt",
+    "constructorArgs": [],
+    "pubFunc": "unlock",
+    "pubFuncArgs": [
+        666, true
+    ]
+}

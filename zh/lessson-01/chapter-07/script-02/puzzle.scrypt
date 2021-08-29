@@ -3,7 +3,7 @@ contract MyHelloWorld {
 
     int x;
 
-    //add getX(): int here
+    //TODO: add getX(): int here
     
     public function unlock(int x) {
         

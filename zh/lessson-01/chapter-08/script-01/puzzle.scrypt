@@ -1,0 +1,21 @@
+
+contract MyHelloWorld {
+    public function unlock(int x, bool ok) {
+        require(x == 666 && ok);
+    }
+}
+
+//launch.json
+
+{
+    "type": "scrypt",
+    "request": "launch",
+    "name": "Debug MyHelloWorld",
+    "program": "${workspaceFolder}/contracts/demo.scrypt",
+    "constructorArgs": [],
+    "pubFunc": "unlock",
+    //TODO: 为以上合约配置解锁参数，使得公共函数 unlock 能够被成功调用
+    "pubFuncArgs": [
+
+    ]
+}

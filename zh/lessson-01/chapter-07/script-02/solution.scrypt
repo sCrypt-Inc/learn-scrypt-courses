@@ -3,8 +3,6 @@ contract MyHelloWorld {
 
     int x;
 
-    //add getX(): int here
-
     function getX() : int {
         return this.x;
     }

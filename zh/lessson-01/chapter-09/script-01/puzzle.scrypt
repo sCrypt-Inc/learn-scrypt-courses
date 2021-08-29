@@ -1,0 +1,22 @@
+
+library Util {
+    static const int DataLen = 1;
+    static const int StateLen = 3;
+
+    static function toLEUnsigned(int n, int l): bytes {
+        bytes m = num2bin(n, l + 1);
+        return m[0 : len(m) - 1];
+    }
+}
+
+
+contract MyHelloWorld {
+
+
+    public function unlock(int x) {
+        //TODO: call toLEUnsigned
+ 
+ 
+        require(b == b'10');
+    }
+}

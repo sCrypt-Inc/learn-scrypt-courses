@@ -1,8 +1,6 @@
 
 contract MyHelloWorld {
 
-
-    //add unlock(int x) here
     
     public function unlock(int x) {
         
