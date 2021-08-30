@@ -8,7 +8,6 @@ contract Test {
     constructor(int x) {
         this._x = x;
     }
-    
 
     public function unlock(int x) {
         
@@ -17,10 +16,23 @@ contract Test {
 }
 ```
 
-合约代码被编译成一个 **ASM** 模板， 合约的构造函数参数是 **ASM** 模板中的变量。模板中的变量以 `$` 开头，以上合约将被编译成如下 **ASM** 模板：
+
+使用 `new` 关键字实例化一个合约。
 
 
-> OP_NOP OP_0 `$x` OP_0 OP_PICK OP_2 OP_ROLL OP_DROP OP_1 OP_ROLL OP_DROP OP_NOP OP_1 OP_NIP OP_NIP
+```solidity
+contract Foo {
+    int x;
+}
+
+contract Test {
+
+    public function unlock(int x) {
+        Foo foo = new Foo(x);
+        require(true);
+    }
+}
+```
 
 
 ## 实战演习
