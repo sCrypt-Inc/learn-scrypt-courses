@@ -1,0 +1,10 @@
+contract MyHelloWorld {
+
+    public function unlock(int x) {
+        bytes b = b'00112233445566778899';
+
+        //TODO: slice b from index 3, length 5
+        bytes sub = 
+
+    }
+}
