@@ -1,0 +1,21 @@
+
+
+struct Point {
+  int x;
+  int y;
+}
+
+struct Line {
+  Point start;
+  Point end;
+}
+
+
+contract MyHelloWorld {
+
+    public function unlock(Line line) {
+        // TODO: assign x of start of line;
+        
+        require(true);
+    }
+}
