@@ -1,0 +1,10 @@
+
+//TODO: import util.scrypt here
+
+contract MyHelloWorld {
+
+    public function unlock(int x) {
+        bytes b = Util.toLEUnsigned(16, 1);
+        require(b == b'10');
+    }
+}
