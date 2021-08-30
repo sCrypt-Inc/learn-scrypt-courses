@@ -1,0 +1,16 @@
+library Lib {
+
+    static function sum(static const int x) : int {
+        int sum = 0;
+        loop (x) : i {
+          sum += i;
+        }
+        return sum;
+    }
+}
+
+contract Test {
+    public function unlock(int r) {
+        require(Lib.sum(3) == r);
+    }
+}
