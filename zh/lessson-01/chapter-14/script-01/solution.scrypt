@@ -1,0 +1,14 @@
+
+contract MyHelloWorld {
+
+  public function unlock(int[3][4] matrix) {
+
+    loop (3) : i {
+      loop (4) : j {
+        require(matrix[i][j] == 0);
+      }
+    }
+    
+    require(true);
+  }
+}
