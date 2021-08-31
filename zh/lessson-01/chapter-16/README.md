@@ -18,7 +18,7 @@ contract OP_PUSH_TX {
 }
 ```
 
-由于原象包含交易的相关数据，这样就能通过访问原象中的各个字段来访问当前交易中的一些相关数据，比如当前交易的 `nLocktime`。
+由于原象包含交易的相关数据，这样就能通过访问原象中的各个字段来访问当前交易的上下文，比如当前交易的 `nLocktime`。
 
 ```solidity
 static function nLocktimeRaw(SigHashPreimage preimage) : bytes {
