@@ -1,14 +1,50 @@
-# 第四章: require 声明
+# 第四章: static 属性和 const 变量
 
-**require 声明** 包含 `require` 关键字和一个布尔表达式：
+## static 属性
 
-```javascript
-   require(a > 0);
+带有 `static` 关键字修饰的属性是 `static` 属性，声明 `static` 属性时必须初始化。在该合约的函数中可以通过合约名加属性名字（中间加点）来访问。如：
+
+
+```solidity
+contract Test {
+    static int x = 12;
+    public function unlock(int y) {
+        Test.x = y;
+        int z = Test.x + y;
+    }
+}
 ```
 
-该声明会检查布尔表达式是否为真。sCrypt 公有函数的最后一个语句必须是 **require 声明** ，合约的每个公有函数至少有一个 **require 声明** 。当且仅当所有**require 声明** 都检查通过，合约才能被成功解锁。
+## const 变量
+
+`const` 关键字可以修饰局部变量，属性，函数参数，声明为 `const` 的变量一旦初始化就不能更改。如： 
+
+```solidity
+contract Test {
+    const int x;
+
+    constructor(int x) {
+        this.x = x; // good
+    }
+
+    public function equal(const int y) {
+        y = 1; // <-- error
+
+        const int a = 36;
+        a = 11; // <-- error
+
+    }
+}
+```
 
 ## 实战演习
 
+为 `TicTacToe` 合约添加以下 `static` 属性，并用 `const` 修饰
 
-添加 **require 声明** 检查解锁参数是否为 `42`
+1. 添加 `TURNLEN`，类型为 `int`，值为 `1`。表示合约存储轮流
+状态的字节长度
+2. 添加 `BOARDLEN`，类型为 `int`，值为 `9`。表示合约存储存储
+状态的字节长度，井字棋游戏一共公有9个棋盘位置
+3. 添加 `EMPTY`，类型为 `bytes`，值为 `00`。表示该棋盘位置还未落子
+4. 添加 `ALICE`，类型为 `bytes`，值为 `01`。表示该棋盘位置被玩家 `alice` 落子
+4. 添加 `BOB`，类型为 `bytes`，值为 `02`。表示该棋盘位置被玩家 `bob` 落子
