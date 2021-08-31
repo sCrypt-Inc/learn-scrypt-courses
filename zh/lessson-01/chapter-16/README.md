@@ -17,6 +17,7 @@ contract OP_PUSH_TX {
     }
 }
 ```
+## 访问交易上下文
 
 由于原象包含交易的相关数据，这样就能通过访问原象中的各个字段来访问当前交易的上下文，比如当前交易的 `nLocktime`。
 
@@ -26,9 +27,13 @@ static function nLocktimeRaw(SigHashPreimage preimage) : bytes {
     return preimage[l - 8 : l - 4];
 }
 ```
+## 约束
 
+从交易原象只能访问到交易上下文中所有输出脚本的哈希，即 `hashOutputs`，因此需要在合约中生成新的输出脚本，然后比较该输出脚本的哈希与`hashOutputs` 是否一致，从而达到约束
 
 ## 实战演习
 
 1. 检查解锁参数 `sighashPreimage` 是否当前交易的原象。
+
+2. 为合约添加约束
 

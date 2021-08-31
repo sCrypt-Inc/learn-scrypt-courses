@@ -1,0 +1,11 @@
+import "util.scrypt";
+contract Counter {
+	public function increment(SigHashPreimage txPreimage, int amount) {
+        require(Tx.checkPreimage(txPreimage));
+        //TODO: 1. Parsing state from txPreimage
+
+        //TODO: 2. Calculate new state
+
+        //TODO: 3. Add constraints
+    }
+}

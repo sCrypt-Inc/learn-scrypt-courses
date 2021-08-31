@@ -1,16 +1,5 @@
-contract CheckLockTimeVerify {
-    int matureTime;
-
-    public function spend(SigHashPreimage sighashPreimage) {
-        
+contract MyHelloWorld {
+    public function unlock(SigHashPreimage sighashPreimage) {
         require(Tx.checkPreimage(sighashPreimage));
-
-        int len = len(sighashPreimage);
-        int nLocktime = this.fromLEUnsigned(sighashPreimage[len - 8 : len - 4]);
-        require(nLocktime >= this.matureTime);
-    }
-
-    function fromLEUnsigned(bytes b) : int {
-        return unpack(b + b'00');
     }
 }
