@@ -1,7 +1,5 @@
 # 第一章: 课程概述
 
-通过此课程，您将学会如何使用 sCrypt 构建一个比特币上的井字棋DApp.
+sCrypt 是一种用于实现比特币智能合约的面向对象的高级语言。此课程为 sCrypt 初学者设计。通过此课程，学习 sCrypt 语言的基础知识。
 
-在开始这个课程之前，您可以先试玩一下该游戏：
-
-[![井字棋](https://img.youtube.com/vi/_7otVKxSGH8/0.jpg)](https://www.youtube.com/watch?v=_7otVKxSGH8&feature=youtu.be)
+Solidity 是静态类型的，支持库和复杂的用户定义类型等功能。
