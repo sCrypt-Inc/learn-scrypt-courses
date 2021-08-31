@@ -1,9 +1,4 @@
-
-contract MyHelloWorld {
-
-    public function unlock(int x) {
-
-        int myint = 16;
-
-    }
+contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
 }

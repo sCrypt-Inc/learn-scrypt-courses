@@ -1,9 +1,3 @@
-
-contract MyHelloWorld {
-
-    public function unlock(int x) {
-
-        //TODO: declare myint here
-        
-    }
+contract TicTacToe {
+    // TODO: add alice, bob here
 }
