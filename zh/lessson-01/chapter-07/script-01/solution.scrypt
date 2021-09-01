@@ -1,13 +1,13 @@
 
 library Util {
-    
-    static function setElemAt(bytes board, int index, bytes value) : bytes {
-       
-    }
 
     static function getElemAt(bytes board, int index) : bytes {
   
-    }  
+    } 
+
+    static function setElemAt(bytes board, int index, bytes value) : bytes {
+       
+    } 
 }
 
 

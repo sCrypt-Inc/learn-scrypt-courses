@@ -1,58 +1,21 @@
-# 第八章: 调用合约公有函数
+# 第十一章: bytes 切片
 
 
-1. 通过 [scryptlib SDK](https://github.com/sCrypt-Inc/scryptlib) 调用
+bytes 表示一个可变长度的字节数组，可以对其进行切片操作。如：
 
-单元测试中通过scryptlib SDK调用合约公有函数，来验证合约能否按照预期执行。
+```solidity
 
-```javascript
-
-describe('Test sCrypt contract Demo In Javascript', () => {
-  let demo, result
-
-  before(() => {
-    const Demo = buildContractClass(compileContract('demo.scrypt'));
-    demo = new Demo(7, 4);
-  });
-
-  it('should return true', () => {
-    result = demo.add(7 + 4).verify()
-    expect(result.success, result.error).to.be.true
-    result = demo.sub(7 - 4).verify()
-    expect(result.success, result.error).to.be.true
-  });
-});
-
+bytes b = b'414136d08c5ed2bf3ba048afe6dcaebafeffffffffffffffffffffffffffffff00';
+bytes leftb = b[0:10]; 
+bytes sub = b[10:20];
 ```
+冒号 `:` 左边表示切片开始的索引，右边表示切片结束时的索引，如果数组切片是从索引 `0` 开始或者直到字节数组结束，可以忽略不写。如：
 
-2. 通过调试器调用公有函数
-
-调试器通过配置 *launch.json* 来调用合约的公有函数
-
-```json
-{
-    "type": "scrypt",
-    "request": "launch",
-    "name": "Debug Demo",
-    "program": "${workspaceFolder}/contracts/demo.scrypt",
-    "constructorArgs": [
-    12,
-    30
-    ],
-    "pubFunc": "add",
-    "pubFuncArgs": [
-    42
-    ]
-}
+```solidity
+bytes leftb = b[:10]; 
+bytes rightb = b[10:]; 
 ```
-
-3. 通过sCrypt IDE 的图形化界面调用合约的公有函数
-
- IDE 提供一个通用的 GUI 交互界面，只需简单的填写相关参数，就能一键部署合约，点击按钮就能调用合约的公共函数。
-
-![](https://scrypt-ide.readthedocs.io/zh_CN/latest/_images/call_demo.gif)
 
 ## 实战演习
 
-1. 调用 `MyHelloWorld` 合约的公有函数 `unlock(int x)`
-
+1. 棋盘是有9个字节的数组，每一个字节代表棋盘上某个位置的状态，参照 `getElemAt`，实现 `setElemAt`。
