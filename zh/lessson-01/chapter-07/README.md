@@ -1,60 +1,27 @@
-# 第七章: 公共函数和非公共函数 
+# 第七章: library 库
 
-## 公共函数 （public function）
 
-公共函数是外部调用合约的接口。函数体中包含的主要逻辑代码可视为锁定脚本；函数参数可视为对应的解锁脚本。矿工实际上就是校验这对组合的执行结果。
+库与合约基本相同，只是它不包含任何公有函数，因此它不能被独立部署和调用。它通常用于对相关常量和 `static` 函数进行分组。
 
-公共函数的特殊性有以下几点：
-
-1. 没有明确的返回类型声明和函数结尾的 `return` 语句，其隐形返回 `true`
-2. 公共函数的最后一个语句必须是 **require 声明**
-3. 只有当函数结束，所有运行中遇到的 require() 均通过，脚本校验才算通过；其他情况均视为脚本校验失败，从而会导致交易失败。
 
 ```solidity
-contract Test {
-    public function equal(int y) {
-        require(this.valueOf(y) == this.x);
+library Util {
+    static const int DataLen = 1;
+    static const int StateLen = 3;
+
+    static function toLEUnsigned(int n, int l): bytes {
+        bytes m = num2bin(n, l + 1);
+        return m[0 : len(m) - 1];
     }
-    ...
-}
-```
-
-## 非公共函数 （function）
-
-非公共函数可以看做是合约的私有函数，主要目的是封装内部逻辑及代码重用。定义时需要使用冒号 `:` 来说明返回值的类型，如：
-
-```solidity
-
-contract Test {
-    function valueOf(int x) : int {
-        return x;
-    }
-    ...
 }
 
 ```
 
-调用公共函数需要先实例化合约。
-
-## 静态函数 （static function）
-
-和普痛面向对象语言的静态函数类似， 需要增加 `static` 关键字修饰。静态函数可以使用合约名称直接调用。
-
-```solidity
-
-contract Test {
-    static function valueOf(int x) : int {
-        return x;
-    }
-
-    public function unlock(int r) {
-        require(Test.valueOf(r) == r);
-    }
-}
-
-```
+库可以和合约定义在同一个文件。
 
 ## 实战演习
 
-1. 为 `MyHelloWorld` 合约公共函数 `unlock(int x)`
-2. 为 `MyHelloWorld` 合约非公共函数 `getX(): int`
+建立一个 `Util` 库，包含两个操作棋盘的函数
+
+1. 根据索引访问棋盘状态，函数名 `getElemAt`，有两个参数： `bytes board` 和 `int index`，返回类型 `bytes`;
+1. 根据索引修改棋盘状态，函数名 `setElemAt`，有三个参数： `bytes board` ， `int index`， 和 `bytes value`，返回类型 `bytes`;

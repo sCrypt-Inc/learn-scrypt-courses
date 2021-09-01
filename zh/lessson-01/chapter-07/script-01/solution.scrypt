@@ -1,9 +1,39 @@
 
-contract MyHelloWorld {
+library Util {
+    
+    static function setElemAt(bytes board, int index, bytes value) : bytes {
+       
+    }
+
+    static function getElemAt(bytes board, int index) : bytes {
+  
+    }  
+}
+
+
+contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
+    
+    static const int TURNLEN = 1;
+    static const int BOARDLEN = 9;
+    static const bytes EMPTY = b'00';
+    static const bytes ALICE = b'01';
+    static const bytes BOB = b'02';
 
     
-    public function unlock(int x) {
-        
-        require(true);
+    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
+
+        require(n >= 0 && n < BOARDLEN);
+    }
+
+
+    function won(bytes board, bytes play) : bool {
+
+    }
+
+
+    function full(bytes board) : bool {
+
     }
 }
