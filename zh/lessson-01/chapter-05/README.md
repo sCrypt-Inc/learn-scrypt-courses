@@ -1,46 +1,46 @@
-# 第五章: 成员属性和静态属性
+# 第五章: 公共函数和非公共函数 
 
+sCrypt 语言的函数使用 `function` 关键字声明。
 
-## 成员属性
+## 公共函数 （public function）
 
-每个合约可以拥有若干个成员属性变量（即一般面向对象语言中的成员变量），在该合约的函数中可以通过 `this` 关键字访问。如：
-
-```solidity
-contract Test {
-    int x;
-    bool y;
-    bytes z;
-    
-    public function unlock(int r) {
-
-        require(this.x == r);
-
-    }
-}
-```
-
-声明成员属性时无需初始化。
-
-
-## 静态属性
-
-带有 `static` 关键字修饰的属性是静态属性，声明静态属性时必须初始化。在该合约的函数中可以通过合约名加属性名字（中间加点）来访问。如：
+公共函数使用 `public` 修饰符修饰函数，是外部调用合约的接口。公共函数没有明确的返回类型声明和函数结尾的 `return` 语句，隐形返回 `bool` 类型，返回值为 `true`
 
 
 ```solidity
 contract Test {
-    static int x = 12;
+    public function unlock(int y) {
 
-    public function unlock(int r) {
-        require(Test.x == r);
+
     }
+    ...
 }
 ```
 
-> 属性和静态属性必须是基本数据类型，或者结构体和数组。
+## 非公共函数 （function）
+
+非公共函数可以看做是合约的私有函数，主要目的是封装内部逻辑及代码重用。定义时需要使用冒号 `:` 来说明返回值的类型，如：
+
+```solidity
+
+contract Test {
+    function valueOf(int x) : int {
+        return x;
+    }
+    ...
+}
+
+```
+
 
 ## 实战演习
 
+`TicTacToe` 合约中有 3 个函数：
 
-1. 为右边合约添加成员属性 `width` 和 `height`。
-2. 为右边合约添加静态属性 `ANGLE` 并初始化为 `90` 。
+`move` 爱丽丝（Alice）和鲍勃（Bob）各自将 X 个比特币锁定在包含上述合同的一个 UTXO 中。 接下来，他们通过调用公共函数 move() 交替玩游戏
+`won` 检查是否有玩家已经赢得比赛，他将能取走所有合约锁定的赌注
+`full` 如果棋盘，没人赢得比赛，则两个人平分赌注
+
+1. 将 `move` 改为公共函数
+
+2. 为 `won` 和 `full` 是非公共函数，为他们添加返回类型 `bool`
