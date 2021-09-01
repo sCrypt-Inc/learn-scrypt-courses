@@ -1,24 +1,32 @@
-# 第十三章: 结构体
+# 第十三章: 通过原象访问交易上下文
 
-结构体的成员可以是基本类型，数组，也可以是结构体，与 `C` 语言的结构体类似。
+## 访问交易上下文
 
-## 定义结构体
+通过 **OP_PUSH_TX** 确保原象是当前交易的原象。由于原象包含交易的相关数据，这样就能通过访问原象中的各个字段来访问当前交易的上下文，比如访问当前交易的 `nLocktime`。
 
-```
-struct Point {
-  int x;
-  int y;
+```solidity
+static function nLocktimeRaw(SigHashPreimage txPreimage) : bytes {
+    int l = len(txPreimage);
+    return txPreimage[l - 8 : l - 4];
 }
 
-struct Line {
-  // nested struct
-  Point start;
-  Point end;
-}
 ```
 
-结构体需要定义在合约的外部。
+访问被当前交易调用的合约原始字节 `scriptCode`
+
+```solidity
+static function scriptCode(SigHashPreimage txPreimage) : bytes {
+    return Util.readVarint(txPreimage[104 : ]);
+}
+
+```
+
+
+
+
+
 
 ## 实战演习
 
-将结构体 `line` 的 `start`成员的 `x` 成员修改为 10。
+1. 使用通过原象读取到被当前交易调用的合约原始字节 `scriptCode`
+

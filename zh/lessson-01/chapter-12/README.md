@@ -1,4 +1,4 @@
-# 第十六章: OP_PUSH_TX
+# 第十二章: OP_PUSH_TX
 
 ## 交易原象 (SighashPreimage)
 
