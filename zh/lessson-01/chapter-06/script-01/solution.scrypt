@@ -1,12 +1,26 @@
-
-contract MyHelloWorld {
-
-    Sha256 messagehash;
+contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
     
-    //add constructor here
+    static const int TURNLEN = 1;
+    static const int BOARDLEN = 9;
+    static const bytes EMPTY = b'00';
+    static const bytes ALICE = b'01';
+    static const bytes BOB = b'02';
 
-    constructor(Sha256 messagehash) {
-        this.messagehash = messagehash;
+    
+    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
+
+        require(n >= 0 && n < BOARDLEN);
     }
-    
+
+
+    function won(bytes board, bytes play) : bool {
+
+    }
+
+
+    function full(bytes board) : bool {
+
+    }
 }

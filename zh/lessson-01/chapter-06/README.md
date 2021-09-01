@@ -1,42 +1,14 @@
-# 第六章: 构造函数
+# 第四章: require 声明
 
-每个合约至多有 1 个构造函数（如果没有会由编译器自动生成一个），一般用于初始化属性变量。如：
+**require 声明** 包含 `require` 关键字和一个布尔表达式：
 
-```solidity
-contract Test {
-    int _x;
-    constructor(int x) {
-        this._x = x;
-    }
-
-    public function unlock(int x) {
-        
-        require(true);
-    }
-}
+```javascript
+   require(a > 0);
 ```
 
-
-使用 `new` 关键字实例化一个合约。
-
-
-```solidity
-contract Foo {
-    int x;
-}
-
-contract Test {
-
-    public function unlock(int x) {
-        Foo foo = new Foo(x);
-        require(true);
-    }
-}
-```
-
+该声明会检查布尔表达式是否为真。sCrypt 公有函数的最后一个语句必须是 **require 声明** ，合约的每个公有函数至少有一个 **require 声明** 。当且仅当所有**require 声明** 都检查通过，合约才能被成功解锁。
 
 ## 实战演习
+函数参数 `n` 代表此次在棋盘上落子的位置。
 
-为 `MyHelloWorld` 合约添加构造函数。
-
-
+为公共函数 `move` 添加 **require 声明**，要求函数参数 `n` 必须大于等于 `0`， 且小于合约的 `static` 属性 `BOARDLEN`
