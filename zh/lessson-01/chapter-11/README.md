@@ -1,20 +1,13 @@
-# 第十一章: bytes 切片
+# 第十一章: # CTC 编译时常量
 
+编译时常量 (CTC) 是可以在编译时计算的值的变量，使用 `static const` 进行修饰。
+有几种情况只允许使用CTC编译时常量。
 
-bytes 表示一个可变长度的字节数组，可以对于进行切片操作。如：
-
-```solidity
-
-bytes b = b'414136d08c5ed2bf3ba048afe6dcaebafeffffffffffffffffffffffffffffff00';
-bytes leftb = b[0:10]; 
-bytes sub = b[10:20];
-```
-如果数组切片是从索引 `0` 开始，可以忽略不写。如：
-
-```solidity
-bytes leftb = b[:10]; 
-```
+1. loop 循环限制
+2. 数组长度
+3. 使用索引运算符写入数组元素
+4. 声明为 `static const` 的函数参数
 
 ## 实战演习
 
-1. 取字节数组 `b` 的切片， 从索引 `3`开始，长度是 `5`。
+1. `full` 函数的 `loop` 限制使用数字 `9`，请将其修改成合约的 `BOARDLEN` 属性。它是一个编译时常量。
