@@ -1,22 +1,36 @@
-# 第九章: library 库
+# 第九章: 数组
 
 
-库与合约基本相同，只是它不包含任何公有函数，因此它不能被独立部署和调用。它通常用于对相关常量和静态函数进行分组。
 
+数组是一组类型相同的值列表。
 
-```solidity
-library Util {
-    static const int DataLen = 1;
-    static const int StateLen = 3;
+1. 数组元素使用逗号分割。数组大小必须是大于 `0` 的整数
 
-    static function toLEUnsigned(int n, int l): bytes {
-        bytes m = num2bin(n, l + 1);
-        return m[0 : len(m) - 1];
-    }
-}
+    ```solidity
+    bool[3] b = [false, false && true || false, true || (1 > 2)];
+    ```
 
-```
+2. 声明时省略数组维度
+
+    ```solidity
+    int[][] f = [[11, 12, 13], [21, 22, 23]];    
+    ```
+
 
 ## 实战演习
 
-1. 调用 `Util` 库的公共函数 `toLEUnsigned(16, 1)`
+对于井字棋游戏，是否有玩家赢得比赛的规则是有三个棋子连成一条直线，我们把所有可能的连成一条线的情况列举出来：
+
+```
+0, 1, 2
+3, 4, 5
+6, 7, 8
+0, 3, 6
+1, 4, 7
+2, 5, 8
+0, 4, 8
+2, 4, 6
+```
+
+
+用一个二维数组 `int[8][3] lines` 保存以上所有赢得比赛的状态。 在 `win` 函数中添加该数组。
