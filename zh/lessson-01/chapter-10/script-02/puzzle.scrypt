@@ -44,11 +44,10 @@ contract TicTacToe {
         bool anyLine = false;
         loop (8) : i {
             bool line = true;
-            
             loop (3) : j {
                 line = line && Util.getElemAt(board, lines[i][j]) == play;
             }
-
+            
             anyLine = anyLine || line;
         }
 
@@ -57,6 +56,9 @@ contract TicTacToe {
 
 
     function full(bytes board) : bool {
+        bool full = true;
+        //TODO: add loop to check if full
 
+        return full;
     }
 }
