@@ -1,5 +1,0 @@
-contract MyHelloWorld {
-    public function unlock(SigHashPreimage sighashPreimage) {
-        //TODO: Check sighashPreimage
-    }
-}

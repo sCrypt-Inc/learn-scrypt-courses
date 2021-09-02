@@ -1,9 +1,0 @@
-import "util.scrypt";
-contract MyHelloWorld {
-    public function unlock(SigHashPreimage sighashPreimage, int amount) {
-        require(Tx.checkPreimage(sighashPreimage));
-        bytes scriptCode = Util.scriptCode(sighashPreimage);
-        bytes output = Util.buildOutput(scriptCode, amount);
-        //TODO:  Add constraints 
-    }
-}
