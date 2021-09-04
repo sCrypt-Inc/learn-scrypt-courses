@@ -31,4 +31,7 @@ yarn add scryptlib
 
 ## 实战演习
 
-我们为你建立了一个空文件 —— tictactoe.scrypttest.js。通过 **nodejs**  的 `require` 来引入 `scryptlib`。
+
+首先我们使用 [create-react-app](https://github.com/facebook/create-react-app) 创建一个前端项目。
+
+在  App.js。通过 **nodejs**  的 `import` 来引入 `scryptlib`。
