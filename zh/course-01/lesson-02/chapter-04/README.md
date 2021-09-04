@@ -4,10 +4,9 @@
 
 ## 钱包接口
 
-在 ` ` 中，我们定义了需要用到的钱包接口：
+在 [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/wallet.ts) 中，我们定义了需要用到的钱包接口：
 
 ```typescript
-
 export abstract class wallet {
 
   network: NetWork;
@@ -17,17 +16,17 @@ export abstract class wallet {
   }
 
   //Dapp use this api to connect to the wallet.
-  abstract requestAccount(name: string, permissions: string[]): Promise<Account>;
+  abstract requestAccount(name: string, permissions: string[]): Promise<any>;
 
   //get wallet balance
   abstract getbalance(): Promise<number>;
 
   //sign raw transaction, returns unlockscript of the p2pkh input if success
-  abstract signRawTransaction(tx: Tx, inputIndex: number, sigHashType: SignType
+  abstract signRawTransaction(rawtx: string, inputIndex: number, sigHashType: SignType, addr: string
   ): Promise<string>;
 
   //get signature for special input
-  abstract getSignature(tx: Tx, inputIndex: number, sigHashType: SignType
+  abstract getSignature(rawtx: string, inputIndex: number, sigHashType: SignType, addr: string
   ): Promise<string>;
 
   //send raw transaction, returns transaction hash if success
@@ -53,7 +52,7 @@ export abstract class wallet {
 
 ## DotWallet
 
-[DotWallet](https://www.ddpurse.com) 钱包实现了该钱包接口接口。具体实现你可以查看 [DotWallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/dotwallet/src/web3/dotwallet.ts)
+[DotWallet](https://www.ddpurse.com) 钱包实现了该钱包接口接口。具体实现你可以查看 [DotWallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/dotwallet.ts)
 
 首先我们需要登录 **DotWallet** 钱包，我们使用该钱包提供的登录接口登录：
 
