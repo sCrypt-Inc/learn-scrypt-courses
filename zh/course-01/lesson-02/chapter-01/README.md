@@ -1,6 +1,9 @@
 # 第一章: scryptlib
 
-完成上一节课以后，我们的井字棋 DApp 的 sCrypt 合约部分就完成了。现在我们来做一个基本的网页好让你的用户能玩它。 要做到这一点，我们将使用 sCrypt 官方发布的 JavaScript 库 —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
+完成上一节课以后，我们的井字棋 DApp 的 sCrypt 合约部分就完成了。
+需要注意的是这个 APP 界面将使用 JavaScript 来写，并不是 Solidity。因为我们的课程专注于比特币 / sCrypt，我们就暂时假定你已经会用HTML, JavaScript(包括 ES6 promises)，以及 React 编写写网站了。因此我们不会花时间来介绍这些技术的基础知识。
+
+DApp 需要在前端页面与合约进行交互。 要做到这一点，我们将使用 sCrypt 官方发布的 JavaScript 库 —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
 
 
 scryptlib 用于集成以 sCrypt 语言编写的 Bitcoin SV 智能合约的 Javascript/TypeScript SDK。
