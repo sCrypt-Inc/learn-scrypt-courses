@@ -39,7 +39,7 @@ static function nLocktimeRaw(SigHashPreimage txPreimage) : bytes {
 
 ```
 
-访问被当前交易调用的合约锁定脚步 `scriptCode`
+访问被当前交易调用的合约锁定脚本 `scriptCode`
 
 ```solidity
 static function scriptCode(SigHashPreimage txPreimage) : bytes {
@@ -56,5 +56,5 @@ static function scriptCode(SigHashPreimage txPreimage) : bytes {
 
 1. 检查 `move` 方法的最后一个参数 `txPreimage` 是否当前交易的原象。
 
-2. 使用通过原象读取到被当前交易调用的合约锁定脚步 `scriptCode`
+2. 使用通过原象读取到被当前交易调用的合约锁定脚本 `scriptCode`
 

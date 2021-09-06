@@ -4,8 +4,30 @@ The raw bytes of a stateful contract are divided into data and code. The data pa
 
 ![](https://img-blog.csdnimg.cn/20200712230128735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVkb21oZXJv,size_16,color_FFFFFF,t_70#pic_center)
 
-In order to manage the state, it requires that the code part of the contract cannot be changed (that is, the contract rules cannot be changed), and the change of the data (state) part must comply with the state transition rules specified in the code part.
+In order to manage the state, it requires that the code part of the contract cannot be changed (that is, the contract rules cannot be changed), and the change of the data (state) part must comply with the state transition rules specified in the code part. Below is a simple counter contract. Its state is stored in the last byte of the locking script.
 
+
+```solidity
+import "util.scrypt";
+
+contract Counter {
+    public function increment(SigHashPreimage txPreimage, int amount) {
+        require(Tx.checkPreimage(txPreimage));
+
+        bytes scriptCode = Util.scriptCode(txPreimage);
+        int scriptLen = len(scriptCode);
+
+        // state (i.e., counter value) is at the end
+        int counter = unpack(scriptCode[scriptLen - Util.DataLen :]);
+        // increment counter
+        bytes scriptCode_ = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter + 1, Util.DataLen);
+        bytes output = Util.buildOutput(scriptCode_, amount);
+        // ensure output is expected: amount is same with specified
+        // also output script is the same with scriptCode except counter incremented
+        require(hash256(output) == Util.hashOutputs(txPreimage));
+    }
+}
+```
 
 ## Update State
 
