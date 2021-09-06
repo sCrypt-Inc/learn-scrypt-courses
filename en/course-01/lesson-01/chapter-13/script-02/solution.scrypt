@@ -65,6 +65,11 @@ library Util {
     static function scriptCode(SigHashPreimage preimage) : bytes {
         return Util.readVarint(preimage[104 : ]);
     }
+    
+    static function hashOutputs(SigHashPreimage preimage) : bytes {
+        int l = len(preimage);
+        return preimage[l - 40 : l - 8];
+    }
 
     static function buildPublicKeyHashScript(Ripemd160 pubKeyHash) : bytes {
         return OpCode.OP_DUP + OpCode.OP_HASH160 + pack(Util.PubKeyHashLen)
@@ -110,8 +115,8 @@ contract TicTacToe {
         PubKey player = turn == 0 ? this.alice : this.bob;
         require(checkSig(sig, player));
 
-        //TODO: update state: next turn & next board
-
+        board = Util.setElemAt(board, n, play);
+        turn = 1 - turn;
 
         bytes outputs = b'';
         if (this.won(board, play)) {
@@ -133,7 +138,7 @@ contract TicTacToe {
             outputs = output;
         }
 
-        //TODO: Constraint output here
+        require(hash256(outputs) == Util.hashOutputs(txPreimage));
     }
 
 
