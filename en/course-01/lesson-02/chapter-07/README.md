@@ -8,7 +8,6 @@ Through these two lessons, we will show you the core content of smart contract d
 2. Now the **UTXO** of the contract is managed on the front-end page, and put it in the back-end management
 3. Access more wallets
 4. Increase the grid, such as 5X5
-5. Use other contract rules to implement, such as `nSequence`
 
 
 Looking forward to you building a surprising dApp
