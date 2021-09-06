@@ -1,9 +1,9 @@
 # Chapter 1: scryptlib
 
-After completing the previous lesson, the sCrypt contract part of our Tic-Tac-Toe DApp is completed.
+After completing the previous lesson, the sCrypt contract part of our Tic-Tac-Toe dApp is completed.
 It should be noted that this APP interface will be written in JavaScript, not sCrypt. We assume that you already have the basic knowledge of front-end development, so we won't take the time to introduce the basics of these technologies.
 
-DApp needs to interact with the contract on the front-end page. To do this, we will use the official JavaScript library released by sCrypt —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
+dApp needs to interact with the contract on the front-end page. To do this, we will use the official JavaScript library released by sCrypt —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
 
 
 scryptlib is used to integrate the Javascript/TypeScript SDK of the Bitcoin SV smart contract written in the sCrypt language.

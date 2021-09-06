@@ -15,7 +15,7 @@ export abstract class wallet {
     this.network = network;
   }
 
-  //Dapp use this api to connect to the wallet.
+  //dApp use this api to connect to the wallet.
   abstract requestAccount(name: string, permissions: string[]): Promise<any>;
 
   //get wallet balance
