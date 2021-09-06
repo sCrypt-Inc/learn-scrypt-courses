@@ -1,6 +1,6 @@
 # Chapter 11: CTC Compile Time Constants
 
-Compile-time constant (CTC) is a variable whose value can be calculated at compile time and is decorated with `static const`. Usually used to modify the properties of the contract.
+A compile time constant (CTC) is a value that can be computed at compile time. It is decorated with `static const`. Usually used to modify the properties of the contract.
 
 In some cases, only CTC compile-time constants are allowed. For example, the maximum number of  `loop` statement must be a compile-time constant.
 
