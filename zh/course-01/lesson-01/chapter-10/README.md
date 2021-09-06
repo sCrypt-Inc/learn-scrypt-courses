@@ -3,15 +3,7 @@
 sCrypt 使用 `loop` 关键字定义循环。语法如下：
 
 ```
-loop (maxLoopCount) {
-    loopBody
-}
-```
-
-或者
-
-```solidity
-loop (maxLoopCount) : i {
+loop (maxLoopCount) [: i] {
     loopBody
 }
 ```

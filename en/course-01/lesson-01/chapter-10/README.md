@@ -3,15 +3,7 @@
 sCrypt uses the `loop` keyword to define loops. The syntax is as follows:
 
 ```
-loop (maxLoopCount) {
-    loopBody
-}
-```
-
-或者
-
-```solidity
-loop (maxLoopCount) : i {
+loop (maxLoopCount) [: i] {
     loopBody
 }
 ```
