@@ -1,6 +1,19 @@
-# 第五章: 公共函数和非公共函数 
+# 第五章: 函数和公共函数
 
-sCrypt 语言的函数使用 `function` 关键字声明。
+## 函数 （function）
+
+sCrypt 语言的函数使用 `function` 关键字声明。函数主要作用是封装合约内部逻辑及代码重用。定义时需要使用冒号 `:` 来说明返回值的类型，如：
+
+```solidity
+
+contract Test {
+    function valueOf(int x) : int {
+        return x;
+    }
+    ...
+}
+
+```
 
 ## 公共函数 （public function）
 
@@ -17,21 +30,6 @@ contract Test {
 }
 ```
 
-## 非公共函数 （function）
-
-非公共函数可以看做是合约的私有函数，主要目的是封装内部逻辑及代码重用。定义时需要使用冒号 `:` 来说明返回值的类型，如：
-
-```solidity
-
-contract Test {
-    function valueOf(int x) : int {
-        return x;
-    }
-    ...
-}
-
-```
-
 
 ## 实战演习
 
@@ -41,6 +39,6 @@ contract Test {
 `won` 检查是否有玩家已经赢得比赛，他将能取走所有合约锁定的赌注
 `full` 检查棋盘所有格子是否都有棋子了，如果没人赢得比赛，则两个人平分赌注
 
-1. 将 `move` 改为公共函数
+1. 为 `won` 和 `full` 函数添加返回类型 `bool`
+2. 将 `move` 改为公共函数
 
-2. 为 `won` 和 `full` 是非公共函数，为他们添加返回类型 `bool`

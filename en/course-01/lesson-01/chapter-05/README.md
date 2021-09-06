@@ -1,6 +1,21 @@
 # Chapter 5: Public and non-public functions 
 
-The functions of the sCrypt language are declared using the `function` keyword.
+
+## Function
+
+The functions of the sCrypt language are declared using the `function` keyword. The main function of the function is to encapsulate the internal logic of the contract and code reuse. When defining, you need to use a colon `:` to indicate the type of return value, such as:
+
+```solidity
+
+contract Test {
+    function valueOf(int x) : int {
+        return x;
+    }
+    ...
+}
+
+```
+
 
 ## Public Function
 
@@ -17,22 +32,6 @@ contract Test {
 }
 ```
 
-## Non-public Function
-
-Non-public Function can be regarded as a private function of the contract, the main purpose is to encapsulate internal logic and code reuse. When defining, you need to use a colon `:` to indicate the type of the return value, such as:
-
-```solidity
-
-contract Test {
-    function valueOf(int x) : int {
-        return x;
-    }
-    ...
-}
-
-```
-
-
 ## Put it to the Test
 
 There are 3 functions in the `TicTacToe` contract:
@@ -41,6 +40,6 @@ There are 3 functions in the `TicTacToe` contract:
 `won`: Checks if any player has won the game, he will be able to take away all the bets locked in the contract
 `full`: Checks whether there are pieces in all the squares of the board, if no one wins the game, the two people divide the bet equally
 
-1. Change `move` to a public function
+1. Add return type `bool` for `won` and `full` function
 
-2. Since `won` and `full` are non-public functions, add the return type `bool` to them
+2. Change `move` to a public function
