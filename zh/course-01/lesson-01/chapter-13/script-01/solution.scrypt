@@ -64,6 +64,15 @@ contract TicTacToe {
 		
         int turn = unpack(scriptCode[boardStart - TURNLEN : boardStart]);
         bytes board = scriptCode[boardStart : ];
+
+        require(Util.getElemAt(board, n) == EMPTY);
+
+        bytes play = turn == 0 ? ALICE : BOB;
+        PubKey player = turn == 0 ? this.alice : this.bob;
+        require(checkSig(sig, player));
+        
+        board = Util.setElemAt(board, n, play);
+        turn = 1 - turn;
     }
 
 
