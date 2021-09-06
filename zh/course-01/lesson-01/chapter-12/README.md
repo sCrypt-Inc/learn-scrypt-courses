@@ -10,7 +10,7 @@
 
 **OP_PUSH_TX** 可以用来验证原象是否是当前交易的原象。
 
-sCrypt 实现了 **OP_PUSH_TX** 算法，并把它封装成标准合约函数 `Tx.checkPreimage`，用于校验传入参数是否为当前交易的原象。通常我们在方法的第一个语句做这个检查。
+sCrypt 实现了 **OP_PUSH_TX** 算法，并把它封装成标准合约函数 `Tx.checkPreimage`，用于校验传入参数是否为当前交易的原象。
 
 ```solidity
 contract OP_PUSH_TX {

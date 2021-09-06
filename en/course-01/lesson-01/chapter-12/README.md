@@ -10,7 +10,7 @@ The preimage of the transaction is not the complete current transaction data, bu
 
 **OP_PUSH_TX** can be used to verify whether the SighashPreimage is the preimage of the current transaction.
 
-sCrypt implements the **OP_PUSH_TX** algorithm and encapsulates it into the standard contract function `Tx.checkPreimage`, which is used to verify whether the incoming parameters are the preimage of the current transaction. Usually we do this check in the first statement of the function.
+sCrypt implements the **OP_PUSH_TX** algorithm and encapsulates it into the standard contract function `Tx.checkPreimage`, which is used to verify whether the incoming parameters are the preimage of the current transaction.
 
 ```solidity
 contract OP_PUSH_TX {
