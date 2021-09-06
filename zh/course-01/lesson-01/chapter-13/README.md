@@ -12,7 +12,7 @@ static function nLocktimeRaw(SigHashPreimage txPreimage) : bytes {
 
 ```
 
-访问被当前交易调用的合约原始字节 `scriptCode`
+访问被当前交易调用的合约锁定脚步 `scriptCode`
 
 ```solidity
 static function scriptCode(SigHashPreimage txPreimage) : bytes {
@@ -28,5 +28,5 @@ static function scriptCode(SigHashPreimage txPreimage) : bytes {
 
 ## 实战演习
 
-1. 使用通过原象读取到被当前交易调用的合约原始字节 `scriptCode`
+1. 使用通过原象读取到被当前交易调用的合约锁定脚步 `scriptCode`
 

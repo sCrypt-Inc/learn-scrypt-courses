@@ -3,7 +3,7 @@
 
 ## Update State
 
-We have parsed the current two states of the contract from the original bytes of the contract: `turn` and `board`. Next we need to update these two states.
+We have parsed the current two states of the contract from the locking script of the contract: `turn` and `board`. Next we need to update these two states.
 
 ```solidity
 board = Util.setElemAt(board, n, play);
@@ -11,7 +11,7 @@ turn = 1 - turn;
 ```
 
 
-Usually, after updating the state, you need to do some business logic processing based on the new state of the contract. In the `TicTacToe` contract, we check the new state to determine whether someone has won the game or the board is full, then the `TicTacToe` contract ends. Otherwise, the `TicTacToe` contract continues to run. Through the following code, we spliced the new state with the code part to get the original bytes of the contract containing the new state, and construct a transaction with a output containing the contract.
+Usually, after updating the state, you need to do some business logic processing based on the new state of the contract. In the `TicTacToe` contract, we check the new state to determine whether someone has won the game or the board is full, then the `TicTacToe` contract ends. Otherwise, the `TicTacToe` contract continues to run. Through the following code, we spliced the new state with the code part to get the locking script of the contract containing the new state, and construct a transaction with a output containing the contract.
 
 ```solidity
 bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;

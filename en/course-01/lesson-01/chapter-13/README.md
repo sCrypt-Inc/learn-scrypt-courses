@@ -12,7 +12,7 @@ static function nLocktimeRaw(SigHashPreimage txPreimage) : bytes {
 
 ```
 
-Access the original byte `scriptCode` of the contract called by the current transaction
+Access to the locking script of the contract called by the current transaction
 
 ```solidity
 static function scriptCode(SigHashPreimage txPreimage) : bytes {
