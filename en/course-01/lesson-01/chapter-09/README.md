@@ -8,12 +8,21 @@ loop (maxLoopCount) [: i] {
 }
 ```
 
-`maxLoopCount` must be a constant known at compile time. The loop is realized by repeating the loop body `maxLoopCount` times. `i` is an induction variable, which indicates the number of cycles. For example, the following loop:
+`maxLoopCount` must be a constant known at compile time. The loop is realized by repeating the loop body `maxLoopCount` times. `maxLoopCount` must be a compile-time constant [CTC](https://scryptdoc.readthedocs.io/en/latest/ctc.html). `i` is an induction variable, which indicates the number of cycles. For example, the following loop:
 
 
 ```solidity
-loop (10) {
-    x = x * 2;
+contract Loop {
+    
+    static const int N = 10;
+    
+    public function unlock(int x) {
+    
+        loop (N) {
+            x = x * 2;
+        }
+        require(x > 100);
+    }
 }
 ```
 

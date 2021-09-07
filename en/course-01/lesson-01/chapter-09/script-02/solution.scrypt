@@ -58,7 +58,7 @@ contract TicTacToe {
     function full(bytes board) : bool {
         bool full = true;
 
-        loop (9) : i {
+        loop (BOARDLEN) : i {
             full = full && Util.getElemAt(board, i) != TicTacToe.EMPTY;
         }
 
