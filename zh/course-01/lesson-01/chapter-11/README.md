@@ -1,60 +1,65 @@
-# 第十一章: 检查原象与访问交易上下文
+# 第十一章: 合约状态
 
-## 比特币签名验证
+有状态合约的锁定脚本分为数据和代码。数据部分就是状态。代码部分则包含了状态转换规则，也就是合约的业务逻辑。
 
-`OP_CHECKSIG` 是比特币签名专门用来验证 [ECDSA 签名](https://en.wikipedia.org/wiki/Elliptic_Curve_Digital_Signature_Algorithm) 的操作码。理论上讲，它包括两个步骤：
+![](https://img-blog.csdnimg.cn/20200712230128735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVkb21oZXJv,size_16,color_FFFFFF,t_70#pic_center)
 
-1. 根据当前交易计算出一个哈希值。
-2. 对这个哈希值进行签名校验。
-
-## 原象 (SighashPreimage)
-
-交易原象并不是完整的当前交易数据，而是由完整的当前交易生成的原象。比特币的签名实际上是对交易的原象的哈希做签名。
-
-[原象格式](https://github.com/bitcoin-sv/bitcoin-sv/blob/master/doc/abc/replay-protected-sighash.md#digest-algorithm)规定如下：
-
-![](https://img-blog.csdnimg.cn/20200712222718698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVkb21oZXJv,size_16,color_FFFFFF,t_70#pic_center)
-
-## 检查原象
-sCrypt 实现了 [OP_PUSH_TX](https://blog.csdn.net/freedomhero/article/details/107306604?spm=1001.2014.3001.5501) 算法，并把它封装成标准合约函数 `Tx.checkPreimage`，用于校验传入参数是否为当前交易的原象。
+为了管理状态，从而要求合约的代码部分不能变（即合约规则不能变），数据（状态）部分的变化则必须符合代码部分规定的状态转换规则。下面是一个简单的计数器合约。它的状态存储在锁定脚本的最后一个字节。
 
 ```solidity
-contract OP_PUSH_TX {
-    public function unlock(SigHashPreimage preimage) { 
-        require(Tx.checkPreimage(preimage));
+import "util.scrypt";
+
+contract Counter {
+    public function increment(SigHashPreimage txPreimage, int amount) {
+        require(Tx.checkPreimage(txPreimage));
+
+        bytes scriptCode = Util.scriptCode(txPreimage);
+        int scriptLen = len(scriptCode);
+
+        // state (i.e., counter value) is at the end
+        int counter = unpack(scriptCode[scriptLen - Util.DataLen :]);
+        // increment counter
+        bytes scriptCode_ = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter + 1, Util.DataLen);
+        bytes output = Util.buildOutput(scriptCode_, amount);
+        // ensure output is expected: amount is same with specified
+        // also output script is the same with scriptCode except counter incremented
+        require(hash256(output) == Util.hashOutputs(txPreimage));
     }
 }
 ```
 
 
-## 访问交易上下文
-
-通过 `Tx.checkPreimage` 确保原象是当前交易的原象。由于原象包含交易的相关数据，这样就能通过访问原象中的各个字段来访问当前交易的上下文，比如访问当前交易的 `nLocktime`。
+## 更新状态
+我们已经从合约的锁定脚本中解析出来合约当前的两个状态：`turn` 和 `board`。接下来我们需要更新这两个状态。
 
 ```solidity
-static function nLocktimeRaw(SigHashPreimage txPreimage) : bytes {
-    int l = len(txPreimage);
-    return txPreimage[l - 8 : l - 4];
-}
-
+board = Util.setElemAt(board, n, play);
+turn = 1 - turn;
 ```
 
-访问被当前交易调用的合约锁定脚本 `scriptCode`
+
+通常，更新完状态后，需要根据合约的新状态做一些业务逻辑的处理。在 `TicTacToe` 合约中，我们通过检查新状态，判断是否有人赢得比赛，或者棋盘已经满了, 则 `TicTacToe` 合约运行结束。否则 `TicTacToe` 合约继续运行。通过以下代码，我们将新状态与代码部分拼接起来，得到包含新状态的合约锁定脚本，并构建一个包含该合约的交易输出。
 
 ```solidity
-static function scriptCode(SigHashPreimage txPreimage) : bytes {
-    return Util.readVarint(txPreimage[104 : ]);
-}
+bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;
+bytes output = Util.buildOutput(scriptCode_, amount);
+```
+  
+## 约束
+通过更新状态我们已经生成了带新状态的 `TicTacToe` 合约。接下来我们需要要求当前交易的输出必须包含这个新合约。那么如何确保交易的输出包含此合约呢？
 
+由于从交易原象访问到交易上下文中所有输出脚本的哈希，即 `hashOutputs`，那么，如果该哈希值与我们在合约中构建的所有输出的哈希值一致，那我们就能确信交易的输出与我们在合约中构建的交易输出是一致，自然就包含了此合约。
+
+通过以下代码约束了交易的输出：
+
+```solidity
+require(hash256(outputs) == Util.hashOutputs(txPreimage));
 ```
 
 
 ## 实战演习
 
-`TicTacToe` 合约是一个带状态的合约。通过交易不断地调用公共方法 `move`，触发合约的执行，从而更新状态。
-因此必须使用 **OP_PUSH_TX** 技术来维护合约的状态。
+我们已经读取了 `TicTacToe` 的锁定脚本，现在我们从锁定脚本的数据部分解析出合约的两个状态并更新：
 
-1. 检查 `move` 方法的最后一个参数 `txPreimage` 是否当前交易的原象。
-
-2. 使用通过原象读取到被当前交易调用的合约锁定脚本 `scriptCode`
-
+1. 状态 `turn`，合约数据部分第一个字节。数据类型 `int`。表示当前轮到谁下棋，状态 `board`，合约数据部分第二个字节开始，共9个字节。数据类型 `bytes`。表示棋盘状态。
+2. 约束交易的输出包含  `TicTacToe` 合约。

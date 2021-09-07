@@ -1,11 +1,43 @@
 library Util {
 
+    static function fromLEUnsigned(bytes b) : int {
+        return unpack(b + b'00');
+    }
+
+    static function readVarint(bytes b) : bytes {
+        int l = 0;
+        bytes ret = b'';
+        bytes header = b[0 : 1];
+
+        if (header == b'fd') {
+            l = Util.fromLEUnsigned(b[1 : 3]);
+            ret = b[3 : 3 + l];
+        }
+        else if (header == b'fe') {
+            l = Util.fromLEUnsigned(b[1 : 5]);
+            ret = b[5 : 5 + l];
+        }
+        else if (header == b'ff') {
+            l = Util.fromLEUnsigned(b[1 : 9]);
+            ret = b[9 : 9 + l];
+        } else {
+            l = Util.fromLEUnsigned(b[0 : 1]);
+            ret = b[1 : 1 + l];
+        }
+
+        return ret;
+    }
+
     static function getElemAt(bytes board, int index) : bytes {
         return board[index : index + 1];
     } 
 
     static function setElemAt(bytes board, int index, bytes value) : bytes {
         return board[ : index] + value + board[index + 1 : ];
+    }
+
+    static function scriptCode(SigHashPreimage preimage) : bytes {
+        return Util.readVarint(preimage[104 : ]);
     }
 }
 
@@ -23,9 +55,14 @@ contract TicTacToe {
     
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
-        //TODO: Check txPreimage
-
+        require(Tx.checkPreimage(txPreimage));
         require(n >= 0 && n < BOARDLEN);
+
+        bytes scriptCode = Util.scriptCode(txPreimage);
+        int scriptLen = len(scriptCode);
+		int boardStart = scriptLen - BOARDLEN;
+		
+        //TODO: paring state from scriptCode: turn (1 byte) + board (9 bytes)
     }
 
 

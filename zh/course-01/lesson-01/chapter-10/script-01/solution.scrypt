@@ -1,4 +1,3 @@
-
 library Util {
 
     static function getElemAt(bytes board, int index) : bytes {
@@ -24,6 +23,7 @@ contract TicTacToe {
     
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
+        require(Tx.checkPreimage(txPreimage));
         require(n >= 0 && n < BOARDLEN);
     }
 
