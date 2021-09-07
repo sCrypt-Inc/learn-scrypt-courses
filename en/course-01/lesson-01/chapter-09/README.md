@@ -1,35 +1,40 @@
-# Chapter 9: Array
+# Chapter 9: Loop
 
-
-
-An array is a list of values of the same type.
-
-1. Array elements are separated by commas. The array size must be an integer greater than `0`
-
-    ```solidity
-    bool[3] b = [false, false && true || false, true || (1 > 2)];
-    ```
-
-2. Omit array dimensions when declaring
-
-    ```solidity
-    int[][] f = [[11, 12, 13], [21, 22, 23]];    
-    ```
-
-
-##  Put it to the Test
-
-For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all the possible connections in a line:
+sCrypt uses the `loop` keyword to define loops. The syntax is as follows:
 
 ```
-0, 1, 2
-3, 4, 5
-6, 7, 8
-0, 3, 6
-1, 4, 7
-2, 5, 8
-0, 4, 8
-2, 4, 6
+loop (maxLoopCount) [: i] {
+    loopBody
+}
 ```
 
-Use a two-dimensional array `int[8][3] lines` to save all the above winning states. Add this array in the `win` function.
+`maxLoopCount` must be a constant known at compile time. The loop is realized by repeating the loop body `maxLoopCount` times. `i` is an induction variable, which indicates the number of cycles. For example, the following loop:
+
+
+```solidity
+loop (10) {
+    x = x * 2;
+}
+```
+
+It is equivalent to the following expanded form:
+
+```solidity
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+x = x * 2;
+```
+
+## Put it to the Test
+
+1. In the previous chapter, we stored all possible winning lines in the array `lines`, now we use the `loop` to loop through all the lines, to check if the player has connected pieces on the board. If there is then he wins the game.
+
+2. In the `full` function, traverse all the grids of the board and check whether each grid is not empty.
+

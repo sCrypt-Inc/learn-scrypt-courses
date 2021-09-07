@@ -6,8 +6,8 @@ library Util {
     } 
 
     static function setElemAt(bytes board, int index, bytes value) : bytes {
-       //TODO: implement setElemAt
-    } 
+        return board[ : index] + value + board[index + 1 : ];
+    }
 }
 
 
@@ -29,7 +29,8 @@ contract TicTacToe {
 
 
     function won(bytes board, bytes play) : bool {
-
+        //TODO: add int[8][3] lines here
+        
     }
 
 

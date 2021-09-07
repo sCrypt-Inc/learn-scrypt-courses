@@ -1,22 +1,35 @@
-# Chapter 8: bytes slice
+# Chapter 8: Array
 
 
-bytes represents a variable-length byte array, which can be sliced. like:
 
-```solidity
+An array is a list of values of the same type.
 
-bytes b = b'414136d08c5ed2bf3ba048afe6dcaebafeffffffffffffffffffffffffffffff00';
-bytes leftb = b[0:10]; 
-bytes sub = b[10:20];
+1. Array elements are separated by commas. The array size must be an integer greater than `0`
+
+    ```solidity
+    bool[3] b = [false, false && true || false, true || (1 > 2)];
+    ```
+
+2. Omit array dimensions when declaring
+
+    ```solidity
+    int[][] f = [[11, 12, 13], [21, 22, 23]];    
+    ```
+
+
+##  Put it to the Test
+
+For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all the possible connections in a line:
+
+```
+0, 1, 2
+3, 4, 5
+6, 7, 8
+0, 3, 6
+1, 4, 7
+2, 5, 8
+0, 4, 8
+2, 4, 6
 ```
 
-The left side of the colon `:` indicates the index at the beginning of the slice, and the right side indicates the index at the end of the slice. If the array slice starts at index `0` or until the end of the byte array, it can be ignored. like:
-
-```solidity
-bytes leftb = b[:10]; 
-bytes rightb = b[10:]; 
-```
-
-## Put it to the Test
-
-1. The board is an array of 9 bytes, and each byte represents the state of a certain position on the chessboard. Refer to `getElemAt` to implement `setElemAt`.
+Use a two-dimensional array `int[8][3] lines` to save all the above winning states. Add this array in the `win` function.

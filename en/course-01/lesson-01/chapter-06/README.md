@@ -1,15 +1,28 @@
-# Chapter 6: Require Statement
+# Chapter 6: library
 
-The **require statement** contains the `require` keyword and a boolean expression:
 
-```javascript
-   require(a > 0);
+The library is basically the same as the contract, except that it does not contain any public functions, so it cannot be deployed and called independently. It is usually used to group related constants and `static` functions.
+
+
+```solidity
+library Util {
+    static const int DataLen = 1;
+    static const int StateLen = 3;
+
+    static function toLEUnsigned(int n, int l): bytes {
+        bytes m = num2bin(n, l + 1);
+        return m[0 : len(m) - 1];
+    }
+}
+
 ```
 
-This statement checks whether the Boolean expression is true. When certain conditions are not met, an error is thrown and execution is stopped. This is similar to the `require` of the `solidity` language. The last statement of the sCrypt public function must be a **require statement**, and each public function of the contract has at least one **require statement**. If and only if all **require statements** are checked, the contract can be successfully unlocked.
+The library can be defined in the same file as the contract.
 
 ## Put it to the Test
 
-The parameter `n` of the `move` function represents the position of the move on the board.
+Build a `Util` library, containing two functions to manipulate the board
 
-Add a **require statement** to the public function `move`, requiring that the function parameter `n` must be greater than or equal to `0` and less than the contract's `static` property `BOARDLEN`
+1. Access the board state according to the index, the function name `getElemAt`, has two parameters: `bytes board` and `int index`, the return type is `bytes`;
+
+2. Modify the state of the board according to the index. The function name is `setElemAt`, which has three parameters: `bytes board`, `int index`, and `bytes value`, and the return type is `bytes`;

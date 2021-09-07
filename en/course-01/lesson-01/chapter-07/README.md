@@ -1,28 +1,22 @@
-# Chapter 7: library
+# Chapter 7: bytes slice
 
 
-The library is basically the same as the contract, except that it does not contain any public functions, so it cannot be deployed and called independently. It is usually used to group related constants and `static` functions.
-
+bytes represents a variable-length byte array, which can be sliced. like:
 
 ```solidity
-library Util {
-    static const int DataLen = 1;
-    static const int StateLen = 3;
 
-    static function toLEUnsigned(int n, int l): bytes {
-        bytes m = num2bin(n, l + 1);
-        return m[0 : len(m) - 1];
-    }
-}
-
+bytes b = b'414136d08c5ed2bf3ba048afe6dcaebafeffffffffffffffffffffffffffffff00';
+bytes leftb = b[0:10]; 
+bytes sub = b[10:20];
 ```
 
-The library can be defined in the same file as the contract.
+The left side of the colon `:` indicates the index at the beginning of the slice, and the right side indicates the index at the end of the slice. If the array slice starts at index `0` or until the end of the byte array, it can be ignored. like:
+
+```solidity
+bytes leftb = b[:10]; 
+bytes rightb = b[10:]; 
+```
 
 ## Put it to the Test
 
-Build a `Util` library, containing two functions to manipulate the board
-
-1. Access the board state according to the index, the function name `getElemAt`, has two parameters: `bytes board` and `int index`, the return type is `bytes`;
-
-2. Modify the state of the board according to the index. The function name is `setElemAt`, which has three parameters: `bytes board`, `int index`, and `bytes value`, and the return type is `bytes`;
+1. The board is an array of 9 bytes, and each byte represents the state of a certain position on the chessboard. Refer to `getElemAt` to implement `setElemAt`.

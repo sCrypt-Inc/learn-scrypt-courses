@@ -1,3 +1,16 @@
+
+library Util {
+
+    static function getElemAt(bytes board, int index) : bytes {
+  
+    } 
+
+    static function setElemAt(bytes board, int index, bytes value) : bytes {
+       
+    } 
+}
+
+
 contract TicTacToe {
     PubKey alice;
     PubKey bob;
