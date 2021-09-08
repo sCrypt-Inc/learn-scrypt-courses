@@ -10,7 +10,7 @@ We will build in two steps:
 2. Add a frontend integrating the contract
 
 
-## Put it to the Test
+## Put it to the test
 
 Before starting this course, you can try the game [Go to Play](https://scrypt.io/tic-tac-toe)
 

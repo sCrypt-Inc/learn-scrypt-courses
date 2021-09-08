@@ -31,7 +31,7 @@ contract Test {
 }
 ```
 
-## Put it to the Test
+## Put it to the test
 
 The Tic-Tac-Toe game contract supports two players. The contract needs to save the addresses of the two players. After the contract runs, the contract automatically sends the locked bitcoin to the winner. [1]
 

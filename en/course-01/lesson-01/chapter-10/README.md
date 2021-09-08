@@ -51,7 +51,7 @@ static function scriptCode(SigHashPreimage txPreimage) : bytes {
 ```
 
 
-## Put it to the Test
+## Put it to the test
 
 The `TicTacToe` contract is a stateful contract. The public function `move` is continuously called through the transaction to trigger the execution of the contract, thereby updating the state.
 Therefore, **OP_PUSH_TX** technology must be used to maintain the state of the contract.

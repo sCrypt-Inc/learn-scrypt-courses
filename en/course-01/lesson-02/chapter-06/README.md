@@ -142,7 +142,7 @@ The next step is to broadcast the transaction containing the contract with the n
 ```
 
 
-##  Put it to the Test
+##  Put it to the test
 
 Before sending the transaction calling the contract to the blockchain network, we can usually verify locally whether the transaction we constructed is valid now. This can use the `verify` method provided by `scryptlib`.
 

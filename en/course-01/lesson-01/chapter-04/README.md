@@ -37,7 +37,7 @@ contract Test {
 }
 ```
 
-## Put it to the Test
+## Put it to the test
 
 Add the following `static` properties to the `TicTacToe` contract and decorate it with `const`.
 

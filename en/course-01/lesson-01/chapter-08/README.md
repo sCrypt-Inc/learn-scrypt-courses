@@ -17,7 +17,7 @@ An array is a list of values of the same type.
     ```
 
 
-##  Put it to the Test
+##  Put it to the test
 
 For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all the possible connections in a line:
 

@@ -59,7 +59,7 @@ require(hash256(outputs) == Util.hashOutputs(txPreimage));
 ```
 
 
-## Put it to the Test
+## Put it to the test
 
 We have read the locking script of `TicTacToe`, and now we parse the two states of the contract from the data part of locking script and update them:
 

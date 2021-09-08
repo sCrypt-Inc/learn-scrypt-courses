@@ -29,7 +29,7 @@ npm install scryptlib
 yarn add scryptlib
 ```
 
-## Put it to the Test
+## Put it to the test
 
 
 First we use [create-react-app](https://github.com/facebook/create-react-app) to create a front-end project.

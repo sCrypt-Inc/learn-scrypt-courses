@@ -17,6 +17,6 @@ bytes leftb = b[:10];
 bytes rightb = b[10:]; 
 ```
 
-## Put it to the Test
+## Put it to the test
 
 1. The board is an array of 9 bytes, and each byte represents the state of a certain position on the chessboard. Refer to `getElemAt` to implement `setElemAt`.

@@ -34,7 +34,7 @@ We have obtained the contract class `TictactoeContractClass` by loading the cont
 
 ```
 
-## Put it to the Test
+## Put it to the test
 
 1. Import `PubKey` type
 2. Paste the code for instantiating the contract into `fetchContract`.

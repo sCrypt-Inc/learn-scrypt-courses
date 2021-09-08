@@ -14,7 +14,7 @@ contract HelloWorld {
 
 ```
 
-# Put it to the Test
+# Put it to the test
 
 Before writing the TicTacToe contract, we first create an empty contract `TicTacToe` in the editor on the right.
 

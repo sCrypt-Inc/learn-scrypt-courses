@@ -71,7 +71,7 @@ After signing and setting the corresponding unlocking script, the next step is t
   }
 ```
 
-##  Put it to the Test
+##  Put it to the test
 
 1. The transaction contains two output scripts: one is the contract output, and the other is the change output. We have added the change output, please add an output that includes the contract.
 

@@ -19,7 +19,7 @@ library Util {
 
 The library can be defined in the same file as the contract.
 
-## Put it to the Test
+## Put it to the test
 
 Build a `Util` library, containing two functions to manipulate the board
 

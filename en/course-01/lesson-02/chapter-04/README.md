@@ -65,6 +65,6 @@ First, we need to log in to the **DotWallet** wallet, we use the login interface
 After the login is successful, we can use the various wallet interfaces above.
 
 
-## Put it to the Test
+## Put it to the test
 
 1. Use the `getbalance` interface to get the wallet balance and display it.

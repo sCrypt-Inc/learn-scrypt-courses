@@ -97,6 +97,6 @@ In the `web3.ts` file, we wrote `loadContract` to load the contract description 
 ```
 
 
-## Put it to the Test
+## Put it to the test
 
 In the `fetchContract` function, call `loadContract` to load the contract description file.

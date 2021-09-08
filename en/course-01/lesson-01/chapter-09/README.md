@@ -41,7 +41,7 @@ x = x * 2;
 x = x * 2;
 ```
 
-## Put it to the Test
+## Put it to the test
 
 1. In the previous chapter, we stored all possible winning lines in the array `lines`, now we use the `loop` to loop through all the lines, to check if the player has connected pieces on the board. If there is then he wins the game.
 

@@ -40,7 +40,7 @@ contract Test {
 }
 ```
 
-## Put it to the Test
+## Put it to the test
 
 There are 3 functions in the `TicTacToe` contract:
 
