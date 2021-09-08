@@ -2,9 +2,9 @@
 
 sCrypt 是比特币智能合约的高级开发语言。
 
-一份sCrypt合约就是比特币应用的基本模块。 所有的变量和函数都属于一份合约。 它是你所有应用的起点。
+一份sCrypt合约就是比特币dApp的基本模块。 所有的变量和函数都属于一份合约。 它是你所有dApp的起点。
 
-sCrypt 合约由关键字 `contract` 定义，类似面向对象语言 Java/C++ 里面的 `class`。一份名为 HelloWorld 的空合约如下:
+sCrypt 合约由关键字 `contract` 定义，类似面向对象语言 Java/C++ 里面的 `class`。一份名为`HelloWorld`的空合约如下:
 
 ```
 

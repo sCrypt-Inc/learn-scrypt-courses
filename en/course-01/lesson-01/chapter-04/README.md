@@ -2,7 +2,7 @@
 
 ## static property
 
-The property decorated with the keyword `static` is the `static` property, which must be initialized when the `static` property is declared. In the function of the contract, it can be accessed through the contract name and the property name (with a dot in the middle). like:
+A property decorated with the keyword `static` is a static property, which must be initialized when the property is declared. In the function of the contract, it can be accessed through the contract name and the property name (with a dot in the middle), as below:
 
 
 ```solidity
@@ -17,7 +17,7 @@ contract Test {
 
 ## const variables
 
-The `const` keyword can modify local variables, properties, function parameters, and variables declared as `const` cannot be changed once they are initialized. like:
+The `const` keyword can modify local variables, properties, function parameters, and variables. A variable declared as `const` cannot be changed once it is initialized, as below:
 
 ```solidity
 contract Test {
@@ -39,9 +39,9 @@ contract Test {
 
 ## Put it to the Test
 
-Add the following `static` properties to the `TicTacToe` contract and decorate it with `const`
+Add the following `static` properties to the `TicTacToe` contract and decorate it with `const`.
 
-1. Add `TURNLEN`, the type is `int`, the value is `1`. Indicates contract storage rotation. Byte length of the state
+1. Add `TURNLEN` with type `int` and value `1`. It is the number of bytes to store whose turn for the next move as part of the state.
 2. Add `BOARDLEN`, type is `int`, value is `9`. Indicates the byte length of the storage state of the contract. Tic-tac-toe game has a total of 9 board positions.
 3. Add `EMPTY`, the type is `bytes`, and the value is `00`. Indicates that the board position has not yet been placed
 4. Add `ALICE`, the type is `bytes`, and the value is `01`. Indicates that the board position was placed by the player `alice`
