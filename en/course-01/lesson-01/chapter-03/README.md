@@ -25,6 +25,9 @@ contract Test {
     int x;
     bool y;
     bytes z;
+    public function unlock(int y) {
+        require(this.x == y);
+    }
 }
 ```
 
