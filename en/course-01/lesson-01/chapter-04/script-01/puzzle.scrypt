@@ -1,0 +1,5 @@
+contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
+    // add static properties here
+}

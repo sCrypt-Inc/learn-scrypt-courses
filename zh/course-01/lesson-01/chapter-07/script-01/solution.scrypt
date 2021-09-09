@@ -1,0 +1,39 @@
+
+library Util {
+
+    static function getElemAt(bytes board, int index) : bytes {
+        return board[index : index + 1];
+    } 
+
+    static function setElemAt(bytes board, int index, bytes value) : bytes {
+        return board[ : index] + value + board[index + 1 : ];
+    }
+}
+
+
+contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
+    
+    static const int TURNLEN = 1;
+    static const int BOARDLEN = 9;
+    static const bytes EMPTY = b'00';
+    static const bytes ALICE = b'01';
+    static const bytes BOB = b'02';
+
+    
+    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
+
+        require(n >= 0 && n < BOARDLEN);
+    }
+
+
+    function won(bytes board, bytes play) : bool {
+
+    }
+
+
+    function full(bytes board) : bool {
+
+    }
+}

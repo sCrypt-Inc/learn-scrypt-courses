@@ -1,0 +1,4 @@
+contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
+}
