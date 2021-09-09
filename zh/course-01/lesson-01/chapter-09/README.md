@@ -8,7 +8,7 @@ loop (maxLoopCount) [: i] {
 }
 ```
 
-`maxLoopCount` 必须是编译时已知的常量。通过重复循环体 `maxLoopCount` 次来实现循环。`maxLoopCount` 必须是一个编译时常量 [CTC](https://scryptdoc.readthedocs.io/zh_CN/latest/ctc.html)。`i` 是一个归纳变量（induction variable），表示第几次循环。例如，下面的循环：
+`maxLoopCount` 必须是编译时已知的常量。`i` 是一个归纳变量[归纳变量](https://scryptdoc.readthedocs.io/zh_CN/latest/loop.html#induction-variable)，表示第几次循环。例如，下面的循环：
 
 ```solidity
 contract Loop {

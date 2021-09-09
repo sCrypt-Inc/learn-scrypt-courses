@@ -2,10 +2,10 @@
 
 
 
-An array is a list of values of the same type. Array elements are separated by commas. The array size must be an integer greater than `0`
+An array is a list of values of the same type. Array elements are separated by commas. The array size must be a positive integer.
 
     ```solidity
-    bool[3] b = [false, false && true || false, true || (1 > 2)];
+    bool[3] b = [false, false && true, (1 > 2)];
     ```
 
 

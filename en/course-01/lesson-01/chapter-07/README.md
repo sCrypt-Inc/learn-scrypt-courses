@@ -1,7 +1,7 @@
 # Chapter 7: bytes slice
 
 
-bytes represents a variable-length byte array, which can be sliced. like:
+`bytes` represents a variable-length byte array, which can be sliced. like:
 
 ```solidity
 
@@ -19,4 +19,4 @@ bytes rightb = b[10:];
 
 ## Put it to the test
 
-1. The board is an array of 9 bytes, and each byte represents the state of a certain position on the chessboard. Refer to `getElemAt` to implement `setElemAt`.
+1. The board is an array of 9 bytes, and each byte represents the state of a cell on the board. Refer to `getElemAt` to implement `setElemAt`.
