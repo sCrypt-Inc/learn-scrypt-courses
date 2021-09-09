@@ -1,24 +1,17 @@
 # Chapter 10: Bitcoin Script
 
-## Bitcoin UTXO Model
+## UTXO Model
 
-The bottom layer of Bitcoin uses a very special transaction model design, namely the UTXO (Unspent Transaction Outputs) model:
-
-![UTXO](../../../../images/02.png)
-
-UTXO model mainly includes two parts: input record and output record. The input contains the unlocking script, and the output contains the locking script.
-
-## Script and contracts
-
-Bitcoin Script is a stack-based scripting language. It is a set of instructions composed of opcodes. When verifying the unlocking script, connect the locking script to the back of the unlocking script to form a complete execution script.
-
-Any behavior that spends **UTXO** can be regarded as a call of a contract: the unlocking script corresponds to the parameters of the public function, and the locking script corresponds to the function body of the public function.
+Bitcoins are locked in outputs of transactions. To spend bitcoins in an output, a transaction has to provide a matching key in its input. Bitcoins can only be transferred to new outputs when the key can open the lock successfully. This is the so called UTXO（Unspent Transaction Outputs）model. As an example shown below, two transactions each have one input and one output. The input on the right spends the output on the left.
 
 ![UTXO](../../../../images/01.png)
 
-The contract is compiled into a locking script template. Instantiating a contract is actually instantiating a locking script template. When the contract is called, the unlocking parameters will be spliced with this locking script to form a complete execution script.
+## Bitcoin Script Language
 
-![UTXO](../../../../images/03.png)
+Both lock and key are encoded in a language called [Bitcoin Script](https://wiki.bitcoinsv.io/index.php/Script). It is the instruction set for the [Bitcoin Virtual Machine](https://xiaohuiliu.medium.com/introduction-to-bitcoin-smart-contracts-9c0ea37dc757), an assembly-like low-level language. The script in the key and lock are called unlocking and locking script, respectively.
 
+## Script and sCrypt
 
-Any act of spending bitcoins can be regarded as the execution of a contract. With the help of the versatility and flexible expression of the Bitcoin scripting language, arbitrarily complex contracts can be executed on the Bitcoin network.
+sCrypt is a high-level language, compiled to Script. They are analogous to Java and [Java virtual machine](https://en.wikipedia.org/wiki/Java_virtual_machine) bytecode. Specifically, sCrypt public function parameters correspond to unlocking script, its body to locking script, as shown below.
+
+![UTXO](../../../../images/02.png)
