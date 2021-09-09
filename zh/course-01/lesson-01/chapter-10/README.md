@@ -1,42 +1,23 @@
-# 第十章: 检查Sighash原象
+# 第十章: 比特币脚本
 
-## Sighash原象
+## 比特币 UTXO 模型
 
-比特币里使用的签名算法先对一个消息生成哈希摘要，然后对摘要进行签名。这里的消息被称为Sighash原象。这个原象主要是根据当前交易推算出来的。
+比特币底层采用了一个很特别的交易模型设计，即 UTXO（Unspent Transaction Outputs） 模型：
 
-[其具体格式](https://github.com/bitcoin-sv/bitcoin-sv/blob/master/doc/abc/replay-protected-sighash.md#digest-algorithm) 规定如下：
+![UTXO](../../../../images/02.png)
 
-![](https://img-blog.csdnimg.cn/20200712222718698.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVkb21oZXJv,size_16,color_FFFFFF,t_70#pic_center)
+UTXO模型主要包括两部分：输入记录和输出记录。输入包含解锁脚本，输出包含锁定脚本。
 
-## 检查Sighash原象
-sCrypt实现了 [OP_PUSH_TX](https://blog.csdn.net/freedomhero/article/details/107306604?spm=1001.2014.3001.5501) 算法，并把它封装成标准库函数 `Tx.checkPreimage`，用于校验传入参数是否为当前交易的Sighash原象。
+## 脚本与合约
 
-```solidity
-contract OP_PUSH_TX {
-    public function unlock(SigHashPreimage preimage) { 
-        require(Tx.checkPreimage(preimage));
-    }
-}
-```
+比特币脚本是一种基于栈的脚本语言。它是一串由操作码（opcode）组成的指令集合。验证解锁脚本时，将锁定脚本连接在解锁脚本的后面，从而形成完整的执行脚本。
 
+任何花费 **UTXO** 的行为都可以看做是一个合约的调用：解锁脚本对应公共函数的参数，锁定脚本对应公共函数的函数体。
+![UTXO](../../../../images/01.png)
 
-## 获取合约锁定脚本
+合约被编译成一段锁定脚本模板。实例化合约实际上就是实例化一段锁定脚本模板。当合约被调用时，会将解锁参数与这段解锁脚本拼接起来，从而形成完整的执行脚本。
 
-通过 `Tx.checkPreimage` 我们可以确保Sighash原象是当前交易的原象。由于原象包含交易的相关数据，我们能通过访问原象来访问被当前交易调用的合约的锁定脚本，原象中的`scriptCode`字段。
-
-```solidity
-static function scriptCode(SigHashPreimage txPreimage) : bytes {
-    return Util.readVarint(txPreimage[104 : ]);
-}
-
-```
+![UTXO](../../../../images/03.png)
 
 
-## 实战演习
-
-`TicTacToe` 合约是一个带状态的合约。通过交易不断地调用公共方法 `move`，触发合约的执行，从而更新状态。
-
-1. 检查 `move` 方法的最后一个参数 `txPreimage` 是否当前交易的原象。
-
-2. 获取合约的锁定脚本 `scriptCode`
-
+任何花费比特币的行为都可以看做是一个合约的执行。借助于比特币脚本语言的通用性及灵活表达性，可以在比特币网络上执行任意复杂的合约。

@@ -59,6 +59,10 @@ contract TicTacToe {
         require(n >= 0 && n < BOARDLEN);
 
         bytes scriptCode = Util.scriptCode(txPreimage);
+        int scriptLen = len(scriptCode);
+		int boardStart = scriptLen - BOARDLEN;
+		
+        //TODO: paring state from scriptCode: turn (1 byte) + board (9 bytes)
     }
 
 
