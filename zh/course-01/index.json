@@ -1,40 +1,40 @@
 {
     "title": "Learn sCrypt",
-    "desc": "this is the first course for learning sCrypt",
+    "desc": "这是学习sCrypt的第一门课程",
     "lessons": [
         {
-            "title": "Let's start learning basic sCrypt",
+            "title": "让我们开始学习基本的 sCrypt",
             "num": 2,
             "chapters": [
                 {
                     "num": 0,
-                    "title": "Course overview"
+                    "title": "课程概述"
                 },
                 {
                     "num": 1,
-                    "title": "sCrypt Contract",
+                    "title": "sCrypt 合约",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt",
-                            "hints": ["Add empty contract and name it TicTacToe"]
+                            "hints": ["添加空合约并将其命名为TicTacToe"]
                         }
                     ]
                 },
                 {
                     "num": 1,
-                    "title": "Basic data types and property",
+                    "title": "基本数据类型和属性",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt",
-                            "hints": ["Define two attributes alice and bob"]
+                            "hints": ["定义两个属性 alice 和 bob"]
                         }
                     ]
                 },
                 {
                     "num": 1,
-                    "title": "static properties and const variables",
+                    "title": "static 属性和 const 变量",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -44,7 +44,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Public and Non-public Functions",
+                    "title": "函数和公共函数",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -58,7 +58,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "library",
+                    "title": "library 库",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -68,7 +68,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "bytes slice",
+                    "title": "bytes 切片",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -78,7 +78,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Array",
+                    "title": "数组",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -88,7 +88,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Loop",
+                    "title": "循环",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -102,7 +102,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Bitcoin Script",
+                    "title": "比特币脚本",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -112,7 +112,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Checking the preimage",
+                    "title": "检查Sighash原象",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -126,7 +126,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Contract Status",
+                    "title": "合约状态",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -141,7 +141,7 @@
             ]
         },
         {
-            "title": "Learn how to integrate with the frontend",
+            "title": "了解如何与前端集成",
             "num": 1,
             "chapters": [
                 {
@@ -150,7 +150,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Compiling the contract",
+                    "title": "编译合约",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -160,7 +160,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Data types and instantiation contracts",
+                    "title": "数据类型和实例化合约",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -170,7 +170,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Wallet",
+                    "title": "钱包",
                     "scripts": [  
                         {
                             "name": "wallet.js",
@@ -180,7 +180,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Deploying the contract",
+                    "title": "部署合约",
                     "scripts": [  
                         {
                             "name": "web3.ts",
@@ -190,7 +190,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Call Contract",
+                    "title": "调用合约",
                     "scripts": [  
                         {
                             "name": "game.js",
@@ -200,7 +200,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Summary"
+                    "title": "总结"
                 }
             ]
         }

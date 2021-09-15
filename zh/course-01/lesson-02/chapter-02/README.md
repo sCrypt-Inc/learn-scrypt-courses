@@ -1,4 +1,4 @@
-# 第一章: 编译合约
+# 第二章: 编译合约
 
 [sCrpt IDE](https://scrypt-ide.readthedocs.io/zh_CN/latest/compiling.html) 提供一个右键编译合约的功能。我们使用它来编译刚刚编写的 `TicTacToe` 合约。编译合约会输出一个对应的合约描述文件 （Contract Description File) `tictactoe_debug_desc.json`。以下是合约描述文件的结构：
 
