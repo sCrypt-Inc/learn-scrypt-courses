@@ -2,7 +2,7 @@
 
 The locking script of a stateful contract is divided into data and code. The data part is the state. The code part contains the state transition rule, which is the business logic of the contract.
 
-![](https://img-blog.csdnimg.cn/20200712230128735.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2ZyZWVkb21oZXJv,size_16,color_FFFFFF,t_70#pic_center)
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/04.png?raw=true)
 
 To manage the state, we require that the code part of the contract cannot be changed (that is, the contract rules cannot be changed), and the change of the data part (state) must comply with the state transition rules specified in the code part. Below is a simple counter contract. Its state is the number of times public function ``increment()`` has been called (initialized to 0), stored in the last byte of the locking script.
 
