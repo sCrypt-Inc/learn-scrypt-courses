@@ -4,7 +4,7 @@
 
 比特币被“锁”在交易的输出中。要想在另一个交易中花费它，其输入中必须含有匹配的“钥匙”。只有钥匙能打开锁时，比特币才能被转移到新的输出中。这就是所谓的 UTXO（Unspent Transaction Outputs） 模型。如下图所示，两个交易各有一个输入和输出。右边的交易输入花费左边交易的输出。
 
-![UTXO](../../../../images/01.png)
+![UTXO](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/02.png?raw=true)
 
 ## 比特币脚本语言Script
 
@@ -13,4 +13,4 @@
 ## Script与sCrypt
 
 sCrypt是一种高级语言，编译生成Script。两者的关系类似于Java和[Java虚拟机](https://en.wikipedia.org/wiki/Java_virtual_machine)的字节码。具体来说，sCrypt里公共函数的参数对应解锁脚本，公共函数的函数体对应锁定脚本，如下图所示。
-![UTXO](../../../../images/02.png)
+![UTXO](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/01.png?raw=true)
