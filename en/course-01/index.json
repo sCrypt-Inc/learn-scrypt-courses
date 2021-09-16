@@ -122,7 +122,7 @@
                             "lang": "scrypt"
                         },
                         {
-                            "name": "tictactoe.scrypt",
+                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
@@ -136,7 +136,7 @@
                             "lang": "scrypt"
                         },
                         {
-                            "name": "tictactoe.scrypt",
+                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
