@@ -87,6 +87,10 @@
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt"
+                        },
+                        {
+                            "name": "util.scrypt",
+                            "lang": "scrypt"
                         }
                     ]
                 },
