@@ -4,14 +4,14 @@
     "lessons": [
         {
             "title": "让我们开始学习基本的 sCrypt",
-            "num": 2,
+            "num": 1,
             "chapters": [
                 {
-                    "num": 0,
+                    "num": 1,
                     "title": "课程概述"
                 },
                 {
-                    "num": 1,
+                    "num": 2,
                     "title": "sCrypt 合约",
                     "scripts": [  
                         {
@@ -22,7 +22,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 3,
                     "title": "基本数据类型和属性",
                     "scripts": [  
                         {
@@ -33,7 +33,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 4,
                     "title": "static 属性和 const 变量",
                     "scripts": [  
                         {
@@ -43,7 +43,7 @@
                     ]
                 },
                 {
-                    "num": 2,
+                    "num": 5,
                     "title": "函数和公共函数",
                     "scripts": [  
                         {
@@ -57,7 +57,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 6,
                     "title": "library 库",
                     "scripts": [  
                         {
@@ -67,7 +67,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 7,
                     "title": "bytes 切片",
                     "scripts": [  
                         {
@@ -77,7 +77,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 8,
                     "title": "数组",
                     "scripts": [  
                         {
@@ -87,7 +87,7 @@
                     ]
                 },
                 {
-                    "num": 2,
+                    "num": 9,
                     "title": "循环",
                     "scripts": [  
                         {
@@ -101,17 +101,11 @@
                     ]
                 },
                 {
-                    "num": 1,
-                    "title": "比特币脚本",
-                    "scripts": [  
-                        {
-                            "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        }
-                    ]
+                    "num": 10,
+                    "title": "比特币脚本"
                 },
                 {
-                    "num": 2,
+                    "num": 11,
                     "title": "检查Sighash原象",
                     "scripts": [  
                         {
@@ -125,7 +119,7 @@
                     ]
                 },
                 {
-                    "num": 2,
+                    "num": 12,
                     "title": "合约状态",
                     "scripts": [  
                         {
@@ -142,14 +136,15 @@
         },
         {
             "title": "了解如何与前端集成",
-            "num": 1,
+            "desc": "学习如何使用官方的Javascript SDK scryptlib 将合约集成到前端",
+            "num": 2,
             "chapters": [
                 {
-                    "num": 0,
+                    "num": 1,
                     "title": "scryptlib"
                 },
                 {
-                    "num": 1,
+                    "num": 2,
                     "title": "编译合约",
                     "scripts": [  
                         {
@@ -159,7 +154,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 3,
                     "title": "数据类型和实例化合约",
                     "scripts": [  
                         {
@@ -169,7 +164,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 4,
                     "title": "钱包",
                     "scripts": [  
                         {
@@ -179,7 +174,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 5,
                     "title": "部署合约",
                     "scripts": [  
                         {
@@ -189,7 +184,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 6,
                     "title": "调用合约",
                     "scripts": [  
                         {
@@ -199,7 +194,7 @@
                     ]
                 },
                 {
-                    "num": 1,
+                    "num": 7,
                     "title": "总结"
                 }
             ]
