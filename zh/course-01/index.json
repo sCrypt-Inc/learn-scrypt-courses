@@ -103,7 +103,7 @@
                             "lang": "scrypt"
                         },
                         {
-                            "name": "tictactoe.scrypt",
+                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
