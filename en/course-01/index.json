@@ -50,10 +50,6 @@
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt"
-                        },
-                        {
-                            "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
                         }
                     ]
                 },
@@ -64,6 +60,10 @@
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt"
+                        },
+                        {
+                            "name": "util.scrypt",
+                            "lang": "scrypt"
                         }
                     ]
                 },
@@ -73,6 +73,10 @@
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        },
+                        {
+                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]

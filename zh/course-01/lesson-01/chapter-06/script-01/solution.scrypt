@@ -1,15 +1,4 @@
-
-library Util {
-
-    static function getElemAt(bytes board, int index) : bytes {
-  
-    } 
-
-    static function setElemAt(bytes board, int index, bytes value) : bytes {
-       
-    } 
-}
-
+import "util.scrypt";
 
 contract TicTacToe {
     PubKey alice;

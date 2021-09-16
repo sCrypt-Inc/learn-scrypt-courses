@@ -11,10 +11,11 @@ contract TicTacToe {
     
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
+        require(n >= 0 && n < BOARDLEN);
     }
 
 
-    function won(bytes board, bytes play) : bool{
+    function won(bytes board, bytes play) : bool {
 
     }
 
