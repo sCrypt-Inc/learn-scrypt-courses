@@ -18,4 +18,4 @@ bytes rightb = b[10:];
 
 ## 实战演习
 
-1. 棋盘是有9个字节的数组，每一个字节代表棋盘上某个位置的状态，参照 `getElemAt`，实现 `setElemAt`。
+1. 棋盘是有9个字节的数组，每一个字节代表棋盘上某个位置的状态。参照 `getElemAt`，实现 Util 库的`setElemAt` 函数。

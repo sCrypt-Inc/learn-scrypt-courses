@@ -1,0 +1,10 @@
+library Util {
+
+    static function getElemAt(bytes board, int index) : bytes {
+        return board[index : index + 1];
+    } 
+
+    static function setElemAt(bytes board, int index, bytes value) : bytes {
+       //TODO: implement setElemAt
+    } 
+}

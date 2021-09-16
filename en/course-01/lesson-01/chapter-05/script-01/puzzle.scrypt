@@ -8,17 +8,18 @@ contract TicTacToe {
     static const bytes ALICE = b'01';
     static const bytes BOB = b'02';
 
-    
+    //TODO: change move to public function
     function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
+        //TODO: add require here
     }
 
 
-    function won(bytes board, bytes play) {
+    function won(bytes board, bytes play) : bool {
 
     }
 
-
+    //TODO: add bool return type
     function full(bytes board) {
 
     }

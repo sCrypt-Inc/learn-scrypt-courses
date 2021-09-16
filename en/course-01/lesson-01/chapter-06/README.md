@@ -17,12 +17,8 @@ library Util {
 
 ```
 
-The library can be defined in the same file as the contract.
+The library can be defined in the same file as the contract, or it can be imported using the `import` keyword.
 
 ## Put it to the test
 
-Build a `Util` library, containing two functions to manipulate the board
-
-1. Access the board state according to the index, the function name `getElemAt`, has two parameters: `bytes board` and `int index`, the return type is `bytes`;
-
-2. Modify the state of the board according to the index. The function name is `setElemAt`, which has three parameters: `bytes board`, `int index`, and `bytes value`, and the return type is `bytes`;
+Import the `Util` library in the `TicTacToe` contract

@@ -1,7 +1,4 @@
-//TODO: add library Util here
-
-
-
+//TODO: import library Util here
 
 contract TicTacToe {
     PubKey alice;

@@ -17,11 +17,14 @@ library Util {
 
 ```
 
-库可以和合约定义在同一个文件。
+库可以和合约定义在同一个文件，也可以使用 `import` 关键字导入。
+
+```solidity
+import "util.scrypt";
+```
 
 ## 实战演习
 
-建立一个 `Util` 库，包含两个操作棋盘的函数
+在 `TicTacToe` 合约中导入 `Util` 库
 
-1. 根据索引访问棋盘状态，函数名 `getElemAt`，有两个参数： `bytes board` 和 `int index`，返回类型 `bytes`;
-1. 根据索引修改棋盘状态，函数名 `setElemAt`，有三个参数： `bytes board` ， `int index`， 和 `bytes value`，返回类型 `bytes`;
+
