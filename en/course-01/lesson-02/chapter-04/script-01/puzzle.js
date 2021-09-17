@@ -1,56 +1,34 @@
 
 import React, { useState, useEffect } from 'react';
 import { web3, DotWallet} from './web3';
-import server from './Server';
-import {getCode} from './utils';
 
 const Wallet = props => {
     const [balance, setBalance] = useState(0)
-    const [authed, setAuth] = useState(false)
-
-    useEffect(()=>{
-        const dw = new DotWallet()
-        dw.code2token(getCode())
-    },[])
 
     useEffect(() => {
 
         if (!web3.wallet) {
-            if (server.getAccessToken()) {
-                web3.setWallet(new DotWallet());
-                setAuth(true)
-            }
-        }  
+            web3.setWallet(new DotWallet());
+        } 
 
-        if(web3.wallet) {
-
-          //TODO: add getbalance
-
-        }
+        const fetchBalance = async () => {
+            
+            //TODO: add call getbalance
+       
+        };
+       
+        fetchBalance();
 
     },[]);
 
 
-    const handleAuth = (e)=>{
-        new DotWallet().auth()
-    }
-
-
-    if (authed) {
-        return <div className="wallet">
+    return <div className="wallet">
             <div className="walletInfo">
                 <div className="balance">
                     <label >Balance: {balance}</label>
                 </div>
             </div>
-        </div>
-    } else {
-        return <div className="wallet">
-            <button className="pure-button button-large" onClick={handleAuth}>Login dotwallet</button>
-        </div>
-    }
+        </div>;
 }
 
 export default Wallet;
-
-
