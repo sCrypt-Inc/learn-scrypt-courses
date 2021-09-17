@@ -3,7 +3,6 @@ import { UTXO, wallet, Tx,  SignType } from './wallet';
 import { AbstractContract } from 'scryptlib/dist/contract';
 import {toRawTx } from './wutils';
 import { DotWallet } from './dotwallet';
-import { DotWalletAddress, DotWalletPublicKey } from '../utils';
 const WEB3_VERSION = '0.0.1';
 
 const FEE = 2000;
@@ -89,20 +88,4 @@ export class web3 {
     })
   }
 
-
-  static async sendRawTx(rawTx: string): Promise<string> {
-    return web3.wallet.sendRawTransaction(rawTx);
-  }
-
-  static async sendTx(tx: Tx): Promise<string> {
-    return web3.wallet.sendRawTransaction(toRawTx(tx));
-  }
-
-  static async deploy(contract: AbstractContract, amountInContract: number): Promise<[Tx, string]> {
-    return web3.buildDeployTx(contract, amountInContract).then(async tx => {
-      return web3.sendTx(tx).then(txid => {
-        return [tx, txid];
-      })
-    });
-  }
 }
