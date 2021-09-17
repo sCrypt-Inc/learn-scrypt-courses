@@ -15,7 +15,6 @@ function App() {
   async function fetchContract(alicePubKey, bobPubKey) {
     if (contractInstance === null && alicePubKey && bobPubKey) {
         let { contractClass: TictactoeContractClass } = await web3.loadContract(
-            // "/tic-tac-toe/tictactoe_desc.json"
             "/tic-tac-toe/tictactoe_desc.json"
         );
     }

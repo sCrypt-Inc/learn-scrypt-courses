@@ -149,7 +149,13 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "scryptlib"
+                    "title": "scryptlib",
+                    "scripts": [  
+                        {
+                            "name": "app.js",
+                            "lang": "js"
+                        }
+                    ]
                 },
                 {
                     "num": 2,

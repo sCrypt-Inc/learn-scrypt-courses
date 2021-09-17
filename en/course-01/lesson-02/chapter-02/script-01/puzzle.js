@@ -13,7 +13,7 @@ function App() {
 
   async function fetchContract(alicePubKey, bobPubKey) {
     if (contractInstance === null && alicePubKey && bobPubKey) {
-      //TODO: loadContract here
+      //TODO: load tictactoe_desc.json here
 
     }
     return contractInstance;

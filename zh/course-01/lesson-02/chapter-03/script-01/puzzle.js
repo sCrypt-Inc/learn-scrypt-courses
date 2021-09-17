@@ -3,8 +3,8 @@ import Game from "./Game";
 import React, { useState, useEffect } from "react";
 import TitleBar from "./TitleBar";
 //TODO: add PubKey here
-import { } from "scryptlib";
-import { web3, SignType } from "./web3";
+import { toHex } from "scryptlib";
+import { web3 } from "./web3";
 
 function App() {
   
