@@ -24,7 +24,7 @@ The contents repo of interactive learning project @Learn-sCrypt
 ```json
 {
     "title": "Learn sCrypt", // the course's title (required)
-    "desc": "this is the first course for learning sCrypt", // the course's description (required)
+    "desc": "This is the first course for learning sCrypt", // the course's description (required)
     "lessons": [
         {
             "title": "Let's start learning sCrypt",  // the lesson's title (required)

@@ -1,4 +1,4 @@
-# Chapter 2: Compiling the contract
+# Chapter 2: Compile a contract
 
 [sCrpt IDE](https://scrypt-ide.readthedocs.io/zh_CN/latest/compiling.html) Provides a right-click function to compile contracts. We use it to compile the TicTacToe contract we just wrote. Compiling the contract will output a corresponding Contract Description File `tictactoe_debug_desc.json`. The following is the structure of the contract description file:
 

@@ -1,10 +1,10 @@
 {
     "title": "Learn sCrypt",
-    "desc": "this is the first course for learning sCrypt",
+    "desc": "This is the first course for learning sCrypt",
     "lessons": [
         {
-            "title": "Let's start learning basic sCrypt",
-            "desc": "Learning basic sCrypt sCrypt and writing the contract of Tic-Tac-Toe dApp",
+            "title": "Let's start learning sCrypt basics",
+            "desc": "Learn sCrypt basics and write the Tic-Tac-Toe contract",
             "num": 1,
             "chapters": [
                 {
@@ -144,8 +144,8 @@
             ]
         },
         {
-            "title": "Learn how to integrate with the frontend",
-            "desc": "Learning how to interact the contract on the front-end page with the official JavaScript library scryptlib",
+            "title": "Learn how to integrate the contract with the frontend",
+            "desc": "Learn how to interact the contract with the frontend using the JavaScript SDK",
             "num": 2,
             "chapters": [
                 {
@@ -160,7 +160,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Compiling the contract",
+                    "title": "Compile a contract",
                     "scripts": [  
                         {
                             "name": "app.js",
