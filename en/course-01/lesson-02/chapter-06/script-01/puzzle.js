@@ -1,86 +1,17 @@
-
-
 import React from 'react';
-import Board from './Board';
 import { bsv, Bytes, Sig, toHex } from 'scryptlib';
 import { web3, Input, SignType } from './web3';
-
-import server from './Server';
-import { getPreimage, toRawTx, toBsvTx } from './web3/wutils';
-import { DotWalletAddress, DotWalletPublicKey, getPlayer } from './utils';
+import { getPreimage, toRawTx } from './web3/wutils';
+import { DotWalletAddress } from './utils';
 
 class Game extends React.Component {
   constructor(props) {
     super(props);
-
-    if (props.game && props.game.gameState) {
-      this.state = props.game.gameState;
-    } else {
-      this.state = initialState;
-    }
+    ...
   }
 
-
-
-
   async buildCallContractTx(i, newState, oldState, squares, history) {
-    let newLockingScript = "";
-    let winner = calculateWinner(squares).winner;
-    const FEE = 3000;
-    let outputs = [];
-    let amount = this.props.game.lastUtxo.satoshis - FEE;
-    if (winner) {
-      const player = getPlayer();
-      // winner is current player
-
-      let address = await DotWalletAddress.get(player);
-
-      newLockingScript = bsv.Script.buildPublicKeyHashOut(address).toHex();
-
-      outputs.push({
-        satoshis: amount,
-        script: newLockingScript
-      })
-
-    } else if (history.length >= 9) {
-
-      const aliceAddress = new bsv.PublicKey(this.props.game.alicePubKey, {
-        network: bsv.Networks.testnet
-      });
-      const bobAddress = new bsv.PublicKey(this.props.game.bobPubKey, {
-        network: bsv.Networks.testnet
-      });
-
-      //no body win
-      const aliceLockingScript = bsv.Script.buildPublicKeyHashOut(aliceAddress.toAddress(bsv.Networks.testnet)).toHex();
-      const bobLockingScript = bsv.Script.buildPublicKeyHashOut(bobAddress.toAddress(bsv.Networks.testnet)).toHex();
-      amount = (this.props.game.lastUtxo.satoshis - FEE) / 2;
-
-      outputs.push({
-        satoshis: amount,
-        script: aliceLockingScript
-      })
-
-      outputs.push({
-        satoshis: amount,
-        script: bobLockingScript
-      })
-
-    } else {
-      //next
-      newLockingScript = [this.props.contractInstance.codePart.toHex(), bsv.Script.fromASM(newState).toHex()].join('');
-      outputs.push({
-        satoshis: amount,
-        script: newLockingScript
-      })
-    }
-
-
-    if (outputs[0].satoshis <= 0) {
-      alert(`fund in contract is too low `)
-      return undefined;
-    }
-
+    ...
 
     let tx = {
       inputs: [{
