@@ -16,6 +16,6 @@ contract HelloWorld {
 
 # Put it to the test
 
-Before writing the TicTacToe contract, we first create an empty contract `TicTacToe` in the editor on the right.
+Before writing the Tic Tac Toe contract, we first find the position of `TODO` in the editor on the right (this is the case in all subsequent chapters), and create an empty contract `TicTacToe`.
 
-When everything is done, click the "Submit" button below to submit your answers.
+Click the "Show Answer" button below to display the answer.
