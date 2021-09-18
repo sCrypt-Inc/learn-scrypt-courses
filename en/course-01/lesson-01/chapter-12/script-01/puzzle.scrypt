@@ -11,8 +11,8 @@ contract TicTacToe {
 
         bytes scriptCode = Util.scriptCode(txPreimage);
         int scriptLen = len(scriptCode);
-		int boardStart = scriptLen - BOARDLEN;
-		
+        int boardStart = scriptLen - BOARDLEN;
+
         //TODO: paring state from scriptCode: turn (1 byte) + board (9 bytes)
 
 
