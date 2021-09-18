@@ -22,10 +22,10 @@ const result = game.move(n, new Sig(toHex(sig)), 10000, preimage).verify(context
 `scryptlib` can be installed via `npm`.
 
 ```javascript
-// 用 NPM
+// use NPM
 npm install scryptlib
 
-// 用 Yarn
+// use Yarn
 yarn add scryptlib
 ```
 
