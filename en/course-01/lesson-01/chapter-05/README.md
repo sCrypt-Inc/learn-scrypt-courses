@@ -1,4 +1,4 @@
-# Chapter 5: Public and Non-public Functions 
+# Chapter 5: Function and Require Statement
 
 
 ## Function
