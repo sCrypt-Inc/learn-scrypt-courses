@@ -4,9 +4,9 @@
 
 An array is a list of values of the same type. Array elements are separated by commas. The array size must be a positive integer.
 
-    ```solidity
-    bool[3] b = [false, false && true, (1 > 2)];
-    ```
+```solidity
+bool[3] b = [false, false && true, (1 > 2)];
+```
 
 
 ##  Put it to the test

@@ -5,20 +5,19 @@ import TitleBar from "./TitleBar";
 import { } from "scryptlib";
 
 function App() {
-  
+
 
   useEffect(() => {
-    
+
   }, []);
 
   return (
     <div className="App">
       <header className="App-header">
         <h2>Play Tic-Tac-Toe on Bitcoin</h2>
-        <TitleBar
-        />
+        <TitleBar />
 
-        <Game  />
+        <Game />
 
         <Wallet></Wallet>
       </header>

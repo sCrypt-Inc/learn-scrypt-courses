@@ -1,4 +1,4 @@
-# Chapter 1: sCrypt Contract
+# Chapter 2: sCrypt Contract
 
 sCrypt is a high-level programming language for writing Bitcoin smart contracts.
 
@@ -6,7 +6,7 @@ An sCrypt contract is the basic module of Bitcoin dApp. All variables and functi
 
 An sCrypt contract is defined by the keyword `contract`, similar to `class` in object-oriented languages such as Java/C++. An empty contract called `HelloWorld` is as follows:
 
-```
+```solidity
 
 contract HelloWorld {
 
