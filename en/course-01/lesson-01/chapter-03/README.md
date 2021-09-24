@@ -15,7 +15,7 @@ sCrypt is a strongly typed language. The basic data types include:
 
 Among them, `PubKey` and `Sig` are subtypes of `bytes` type.
 
-## property
+## Property
 
 Each contract can have several properties (i.e., member variables in object-oriented languages), which can be accessed through the `this` keyword in the function of the contract, like:
 
