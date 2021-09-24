@@ -1,6 +1,6 @@
-# Chapter 4: `static` property and `const` variable
+# Chapter 4: **static** Property and **const** Variable
 
-## `static` property
+## **static** Property
 
 A property decorated with the keyword `static` is a static property, which must be initialized when the property is declared. In the function of the contract, it can be accessed through the contract name and the property name (with a dot in the middle), as below:
 
@@ -15,7 +15,7 @@ contract Test {
 }
 ```
 
-## `const` variables
+## **const** Variable
 
 The `const` keyword can modify local variables, properties, function parameters, and variables. A variable declared as `const` cannot be changed once it is initialized, as below:
 
