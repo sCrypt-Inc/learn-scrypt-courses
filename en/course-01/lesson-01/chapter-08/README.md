@@ -24,4 +24,4 @@ For the Tic-Tac-Toe game, the rule for whether a player wins the game is that th
 2, 4, 6
 ```
 
-Use a two-dimensional array `int[8][3] lines` to save all the above winning states. Add this array in the `win` function.
+Use a two-dimensional array `int[8][3] lines` to save all the above winning states. Add this array in the `won` function.
