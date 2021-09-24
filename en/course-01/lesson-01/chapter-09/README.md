@@ -11,7 +11,7 @@ loop (maxLoopCount) [: i] {
 `maxLoopCount` must be a constant known at compile time. `i` is an [induction variable](https://scryptdoc.readthedocs.io/en/latest/loop.html#induction-variable), representing the loop index starting from 0. For example, the following loop:
 
 
-```solidity
+```
 contract Loop {
     
     static const int N = 10;
@@ -28,7 +28,7 @@ contract Loop {
 
 is equivalent to:
 
-```solidity
+```
 x = x * 2;
 x = x * 2;
 x = x * 2;

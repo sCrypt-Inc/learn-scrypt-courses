@@ -4,7 +4,7 @@
 
 sCrypt 语言的函数使用 `function` 关键字声明。函数主要作用是封装合约内部逻辑及代码重用。定义时需要使用冒号 `:` 来说明返回值的类型，如：
 
-```solidity
+```
 
 contract Test {
     function valueOf(int x) : int {
@@ -29,7 +29,7 @@ contract Test {
 
 该语句会检查布尔表达式是否为真。当不满足某些条件时抛出错误，并停止执行。这与 `solidity` 语言的 `require` 类似。sCrypt 公有函数的最后一个语句必须是 **require 语句** ，合约的每个公有函数至少有一个 **require 语句** 。当且仅当所有**require 语句** 都检查通过，合约才能被成功解锁。
 
-```solidity
+```
 contract Test {
     public function unlock(int y) {
         require(y == 42);

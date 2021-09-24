@@ -5,7 +5,7 @@
 带有 `static` 关键字修饰的属性是 `static` 属性，声明 `static` 属性时必须初始化。在该合约的函数中可以通过合约名加属性名字（中间加点）来访问。如：
 
 
-```solidity
+```
 contract Test {
     static int x = 12;
     public function unlock(int y) {
@@ -19,7 +19,7 @@ contract Test {
 
 `const` 关键字可以修饰局部变量，属性，函数参数。声明为 `const` 的变量一旦初始化就不能更改。如： 
 
-```solidity
+```
 contract Test {
     const int x;
 

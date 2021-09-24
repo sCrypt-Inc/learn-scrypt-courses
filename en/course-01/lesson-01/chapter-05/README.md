@@ -5,7 +5,7 @@
 
 The functions of the sCrypt language are declared using the `function` keyword. The main function of the function is to encapsulate the internal logic of the contract and code reuse. When defining, you need to use a colon `:` to indicate the type of return value, such as:
 
-```solidity
+```
 
 contract Test {
     function valueOf(int x) : int {
@@ -31,7 +31,7 @@ The **require statement** contains the `require` keyword and a boolean expressio
 
 This statement checks whether the Boolean expression is true. When certain conditions are not met, an error is thrown and execution is stopped. This is similar to the `require` of the `solidity` language. The last statement of the sCrypt public function must be a **require statement**, and each public function of the contract has at least one **require statement**. If and only if all **require statements** are checked, the contract can be successfully unlocked.
 
-```solidity
+```
 contract Test {
     public function unlock(int y) {
         require(y == 42);

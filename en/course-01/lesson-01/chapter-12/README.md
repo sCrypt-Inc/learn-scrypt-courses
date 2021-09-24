@@ -7,7 +7,7 @@ The locking script of a stateful contract is divided into data and code. The dat
 To manage the state, we require that the code part of the contract cannot be changed (that is, the contract rules cannot be changed), and the change of the data part (state) must comply with the state transition rules specified in the code part. Below is a simple counter contract. Its state is the number of times public function ``increment()`` has been called (initialized to 0), stored in the last byte of the locking script.
 
 
-```solidity
+```
 import "util.scrypt";
 
 contract Counter {
@@ -33,7 +33,7 @@ contract Counter {
 
 We parse the current states of the contract from the locking script: `turn` and `board`. Next we need to update these two.
 
-```solidity
+```
 board = Util.setElemAt(board, n, play);
 turn = 1 - turn;
 ```
@@ -41,7 +41,7 @@ turn = 1 - turn;
 
 Usually, after updating the state, we need to process some business logic based on the new state of the contract. In the `TicTacToe` contract, we check the new state to determine whether someone has won the game or the board is full, then the contract ends. Otherwise, the contract continues. Through the following code, we append the new state to the code part to get the locking script of the contract containing the new state, and construct a transaction with a output containing the updated contract.
 
-```solidity
+```
 bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;
 bytes output = Util.buildOutput(scriptCode_, amount);
 ```
@@ -54,7 +54,7 @@ Sighash preimage contains the hash of all outputs in the transaction: `hashOutpu
 
 The outputs of the current transaction are constrained by the following code:
 
-```solidity
+```
 require(hash256(outputs) == Util.hashOutputs(txPreimage));
 ```
 

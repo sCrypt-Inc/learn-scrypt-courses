@@ -6,7 +6,7 @@
 
 为了管理状态，我们要求合约的代码部分不能变（即合约规则不能变），数据（状态）部分的变化则必须符合代码部分规定的状态转换规则。下面是一个简单的[计数器合约](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/counter.scrypt)。它的状态是公共函数``increment()``被调用的次数(初始值为0)，存储在锁定脚本的最后一个字节。
 
-```solidity
+```
 import "util.scrypt";
 
 contract Counter {
@@ -32,7 +32,7 @@ contract Counter {
 ## 更新状态
 我们已经从合约的锁定脚本中解析出来合约当前的状态：`turn` 和 `board`。接下来我们需要更新这个状态。
 
-```solidity
+```
 board = Util.setElemAt(board, n, play);
 turn = 1 - turn;
 ```
@@ -40,7 +40,7 @@ turn = 1 - turn;
 
 通常，更新完状态后，需要根据合约的新状态做一些业务逻辑的处理。在 `TicTacToe` 合约中，我们通过检查新状态，判断是否有人赢得比赛，或者棋盘已经满了, 则 `TicTacToe` 合约运行结束。否则 `TicTacToe` 合约继续运行。通过以下代码，我们将新状态与代码部分拼接起来，得到包含新状态的合约锁定脚本，并构建一个包含该合约的交易输出。
 
-```solidity
+```
 bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;
 bytes output = Util.buildOutput(scriptCode_, amount);
 ```
@@ -52,7 +52,7 @@ Sighash原象中包含当前交易所有输出脚本的哈希，即 `hashOutputs
 
 通过以下代码约束了交易的输出：
 
-```solidity
+```
 require(hash256(outputs) == Util.hashOutputs(txPreimage));
 ```
 

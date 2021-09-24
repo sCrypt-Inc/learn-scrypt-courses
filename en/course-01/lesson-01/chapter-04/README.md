@@ -5,7 +5,7 @@
 A property decorated with the keyword `static` is a static property, which must be initialized when the property is declared. In the function of the contract, it can be accessed through the contract name and the property name (with a dot in the middle), as below:
 
 
-```solidity
+```
 contract Test {
     static int x = 12;
     public function unlock(int y) {
@@ -19,7 +19,7 @@ contract Test {
 
 The `const` keyword can modify local variables, properties, function parameters, and variables. A variable declared as `const` cannot be changed once it is initialized, as below:
 
-```solidity
+```
 contract Test {
     const int x;
 

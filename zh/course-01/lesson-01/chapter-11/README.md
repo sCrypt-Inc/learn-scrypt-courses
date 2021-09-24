@@ -11,7 +11,7 @@
 ## 检查Sighash原象
 sCrypt实现了 [OP_PUSH_TX](https://blog.csdn.net/freedomhero/article/details/107306604?spm=1001.2014.3001.5501) 算法，并把它封装成标准库函数 `Tx.checkPreimage`，用于校验传入参数是否为当前交易的Sighash原象。
 
-```solidity
+```
 contract OP_PUSH_TX {
     public function unlock(SigHashPreimage preimage) { 
         require(Tx.checkPreimage(preimage));
@@ -24,7 +24,7 @@ contract OP_PUSH_TX {
 
 通过 `Tx.checkPreimage` 我们可以确保Sighash原象是当前交易的原象。由于原象包含交易的相关数据，我们能通过访问原象来访问被当前交易调用的合约的锁定脚本，原象中的`scriptCode`字段。
 
-```solidity
+```
 static function scriptCode(SigHashPreimage txPreimage) : bytes {
     return Util.readVarint(txPreimage[104 : ]);
 }

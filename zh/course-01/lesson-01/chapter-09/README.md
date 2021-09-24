@@ -10,7 +10,7 @@ loop (maxLoopCount) [: i] {
 
 `maxLoopCount` 必须是编译时已知的常量。`i` 是一个归纳变量[归纳变量](https://scryptdoc.readthedocs.io/zh_CN/latest/loop.html#induction-variable)，表示第几次循环。例如，下面的循环：
 
-```solidity
+```
 contract Loop {
     
     static const int N = 10;
@@ -27,7 +27,7 @@ contract Loop {
 
 等价于以下展开形式：
 
-```solidity
+```
 x = x * 2;
 x = x * 2;
 x = x * 2;
