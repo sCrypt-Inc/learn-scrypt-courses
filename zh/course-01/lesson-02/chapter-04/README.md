@@ -57,9 +57,9 @@ export abstract class wallet {
 首先我们需要登录 **DotWallet** 钱包，我们使用该钱包提供的登录接口登录：
 
 ```javascript
-    const handleAuth = (e)=>{
-        new DotWallet().auth()
-    }
+const handleAuth = (e)=>{
+    new DotWallet().auth()
+}
 ```
 
 登录成功之后，我们就可以使用上面的各个钱包接口了。

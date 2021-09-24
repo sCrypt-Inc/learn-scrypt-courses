@@ -8,12 +8,12 @@
 通过钱包的 `listUnspent` 接口查询可用的未花费输出。
 
 ```javascript
-    const minAmount = amountInContract + FEE;
-    wallet.listUnspent(minAmount, {
-      purpose: 'alice'
-    }).then(async (utxos: UTXO[]) => {
+const minAmount = amountInContract + FEE;
+wallet.listUnspent(minAmount, {
+  purpose: 'alice'
+}).then(async (utxos: UTXO[]) => {
 
-    })
+})
 ```
 
 
@@ -23,25 +23,25 @@
 
 ```javascript
           
-  const tx: Tx = {
-    inputs: [],
-    outputs: []
-  };
+const tx: Tx = {
+  inputs: [],
+  outputs: []
+};
 
-  tx.outputs.push({
-    script: contract.lockingScript.toHex(),
-    satoshis: amountInContract 
-  });
+tx.outputs.push({
+  script: contract.lockingScript.toHex(),
+  satoshis: amountInContract 
+});
 
 
-  //add input which using utxo from alice
-  tx.inputs.push(
-    {
-      utxo: utxos[0],
-      script: '',
-      sequence: 0
-    }
-  );
+//add input which using utxo from alice
+tx.inputs.push(
+  {
+    utxo: utxos[0],
+    script: '',
+    sequence: 0
+  }
+);
 
 ```
 
@@ -50,14 +50,14 @@
 钱包提供了 `getSignature` 接口，虽然我们没有私钥，但是可以请求钱包帮忙签名。
 
 ```typescript
-  wallet.getSignature(toRawTx(tx), 0, SignType.ALL,changeAddress).then(signature => {
-    const script = new bsv.Script()
-    .add(Buffer.from(signature,'hex'))
-    .add(new bsv.PublicKey(publicKey).toBuffer())
-    .toHex()
-    tx.inputs[0].script = script;
-    return tx;
-  })
+wallet.getSignature(toRawTx(tx), 0, SignType.ALL,changeAddress).then(signature => {
+  const script = new bsv.Script()
+  .add(Buffer.from(signature,'hex'))
+  .add(new bsv.PublicKey(publicKey).toBuffer())
+  .toHex()
+  tx.inputs[0].script = script;
+  return tx;
+})
 ```
 
 ## 广播交易
@@ -65,9 +65,9 @@
 完成签名并设置对应的解锁脚本后，接下来就是广播包含合约的交易来部署合约了。广播交易我们使用钱包提供的 `sendRawTransaction` 接口。
 
 ```typescript
-  static async sendTx(tx: Tx): Promise<string> {
-    return web3.wallet.sendRawTransaction(toRawTx(tx));
-  }
+static async sendTx(tx: Tx): Promise<string> {
+  return web3.wallet.sendRawTransaction(toRawTx(tx));
+}
 ```
 
 ## 实战演习

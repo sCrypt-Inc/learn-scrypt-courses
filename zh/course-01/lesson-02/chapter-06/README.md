@@ -3,27 +3,27 @@
 上一章我们通过交易将合约部署到了链上。部署后我们得到一个包含合约的 **UTXO** ，我们把这个 **UTXO** 保存起来，调用合约需要用到这个 **UTXO**。
 
 ```javascript
-  web3
-  .deploy(contract, game.amount)
-  .then(([tx, txid]) => {
-    game.lastUtxo = {
-      txHash: txid,
-      outputIndex: 0,
-      satoshis: tx.outputs[0].satoshis,
-      script: tx.outputs[0].script,
-    };
+web3
+.deploy(contract, game.amount)
+.then(([tx, txid]) => {
+  game.lastUtxo = {
+    txHash: txid,
+    outputIndex: 0,
+    satoshis: tx.outputs[0].satoshis,
+    script: tx.outputs[0].script,
+  };
 
-    game.tx = tx;
-    game.deploy = txid;
-    server.saveGame(game, "deployed");
-    updateStart(true);
-  })
-  .catch((e) => {
-    if (e.message === "no utxos") {
-      alert("no available utxos, please fund your wallet");
-    }
-    console.error("deploy error", e);
-  });
+  game.tx = tx;
+  game.deploy = txid;
+  server.saveGame(game, "deployed");
+  updateStart(true);
+})
+.catch((e) => {
+  if (e.message === "no utxos") {
+    alert("no available utxos, please fund your wallet");
+  }
+  console.error("deploy error", e);
+});
 ```
 
 ## 构建交易
@@ -68,30 +68,30 @@ let newState = this.calculateNewState(squares);
 使用合约新状态构建交易输出:
 
 ```javascript
-    let outputs = [];
-    let amount = this.props.game.lastUtxo.satoshis - FEE;
-    if (winner) {
-      ...
+let outputs = [];
+let amount = this.props.game.lastUtxo.satoshis - FEE;
+if (winner) {
+  ...
 
-    } else if (history.length >= 9) {
-      ...
-    } else {
-      //next
-      newLockingScript = [this.props.contractInstance.codePart.toHex(), bsv.Script.fromASM(newState).toHex()].join('');
-      outputs.push({
-        satoshis: amount,
-        script: newLockingScript
-      })
-    }
+} else if (history.length >= 9) {
+  ...
+} else {
+  //next
+  newLockingScript = [this.props.contractInstance.codePart.toHex(), bsv.Script.fromASM(newState).toHex()].join('');
+  outputs.push({
+    satoshis: amount,
+    script: newLockingScript
+  })
+}
 
-    let tx = {
-      inputs: [{
-        utxo: this.props.game.lastUtxo,
-        sequence: 0,
-        script: ""
-      }],
-      outputs: outputs
-    }
+let tx = {
+  inputs: [{
+    utxo: this.props.game.lastUtxo,
+    sequence: 0,
+    script: ""
+  }],
+  outputs: outputs
+}
 
 ```
 
@@ -119,26 +119,26 @@ tx.inputs[0].script = unlockScript;
 
 
 ```javascript
- web3.sendTx(tx).then(txid => {
-      ...
-      server.saveGame(Object.assign({}, this.props.game, {
-        gameState: gameState,
-        lastUtxo: {
-          txHash: txid,
-          outputIndex: 0,
-          satoshis: tx.outputs[0].satoshis,
-          script: tx.outputs[0].script
-        }
-      }), 'next')
+web3.sendTx(tx).then(txid => {
+    ...
+  server.saveGame(Object.assign({}, this.props.game, {
+    gameState: gameState,
+    lastUtxo: {
+      txHash: txid,
+      outputIndex: 0,
+      satoshis: tx.outputs[0].satoshis,
+      script: tx.outputs[0].script
+    }
+  }), 'next')
 
-      this.setState(gameState);
+  this.setState(gameState);
 
-    }).catch(e => {
-      if (e.response) {
-        alert('sendTx errror: ' + e.response.data)
-      }
-      console.error('sendTx errror', e.response)
-    })
+}).catch(e => {
+  if (e.response) {
+    alert('sendTx errror: ' + e.response.data)
+  }
+  console.error('sendTx errror', e.response)
+})
 ```
 
 

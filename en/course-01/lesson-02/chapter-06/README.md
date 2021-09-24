@@ -3,27 +3,27 @@
 In the previous chapter, we deployed the contract to the chain through transactions. After deployment, we get a **UTXO** that contains the contract. We save this **UTXO**. Calling the contract requires this **UTXO**.
 
 ```javascript
-  web3
-  .deploy(contract, game.amount)
-  .then(([tx, txid]) => {
-    game.lastUtxo = {
-      txHash: txid,
-      outputIndex: 0,
-      satoshis: tx.outputs[0].satoshis,
-      script: tx.outputs[0].script,
-    };
+web3
+.deploy(contract, game.amount)
+.then(([tx, txid]) => {
+  game.lastUtxo = {
+    txHash: txid,
+    outputIndex: 0,
+    satoshis: tx.outputs[0].satoshis,
+    script: tx.outputs[0].script,
+  };
 
-    game.tx = tx;
-    game.deploy = txid;
-    server.saveGame(game, "deployed");
-    updateStart(true);
-  })
-  .catch((e) => {
-    if (e.message === "no utxos") {
-      alert("no available utxos, please fund your wallet");
-    }
-    console.error("deploy error", e);
-  });
+  game.tx = tx;
+  game.deploy = txid;
+  server.saveGame(game, "deployed");
+  updateStart(true);
+})
+.catch((e) => {
+  if (e.message === "no utxos") {
+    alert("no available utxos, please fund your wallet");
+  }
+  console.error("deploy error", e);
+});
 ```
 
 ## Build Transaction
@@ -68,30 +68,30 @@ let newState = this.calculateNewState(squares);
 Use the new state of the contract to construct the transaction output:
 
 ```javascript
-    let outputs = [];
-    let amount = this.props.game.lastUtxo.satoshis - FEE;
-    if (winner) {
-      ...
+let outputs = [];
+let amount = this.props.game.lastUtxo.satoshis - FEE;
+if (winner) {
+  ...
 
-    } else if (history.length >= 9) {
-      ...
-    } else {
-      //next
-      newLockingScript = [this.props.contractInstance.codePart.toHex(), bsv.Script.fromASM(newState).toHex()].join('');
-      outputs.push({
-        satoshis: amount,
-        script: newLockingScript
-      })
-    }
+} else if (history.length >= 9) {
+  ...
+} else {
+  //next
+  newLockingScript = [this.props.contractInstance.codePart.toHex(), bsv.Script.fromASM(newState).toHex()].join('');
+  outputs.push({
+    satoshis: amount,
+    script: newLockingScript
+  })
+}
 
-    let tx = {
-      inputs: [{
-        utxo: this.props.game.lastUtxo,
-        sequence: 0,
-        script: ""
-      }],
-      outputs: outputs
-    }
+let tx = {
+  inputs: [{
+    utxo: this.props.game.lastUtxo,
+    sequence: 0,
+    script: ""
+  }],
+  outputs: outputs
+}
 
 ```
 
@@ -119,26 +119,26 @@ The next step is to broadcast the transaction containing the contract with the n
 
 
 ```javascript
- web3.sendTx(tx).then(txid => {
-      ...
-      server.saveGame(Object.assign({}, this.props.game, {
-        gameState: gameState,
-        lastUtxo: {
-          txHash: txid,
-          outputIndex: 0,
-          satoshis: tx.outputs[0].satoshis,
-          script: tx.outputs[0].script
-        }
-      }), 'next')
+web3.sendTx(tx).then(txid => {
+  ...
+  server.saveGame(Object.assign({}, this.props.game, {
+    gameState: gameState,
+    lastUtxo: {
+      txHash: txid,
+      outputIndex: 0,
+      satoshis: tx.outputs[0].satoshis,
+      script: tx.outputs[0].script
+    }
+  }), 'next')
 
-      this.setState(gameState);
+  this.setState(gameState);
 
-    }).catch(e => {
-      if (e.response) {
-        alert('sendTx errror: ' + e.response.data)
-      }
-      console.error('sendTx errror', e.response)
-    })
+}).catch(e => {
+  if (e.response) {
+    alert('sendTx errror: ' + e.response.data)
+  }
+  console.error('sendTx errror', e.response)
+})
 ```
 
 

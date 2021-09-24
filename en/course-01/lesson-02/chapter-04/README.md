@@ -57,9 +57,9 @@ export abstract class wallet {
 First, we need to log in to the **DotWallet** wallet, we use the login interface provided by the wallet to log in:
 
 ```javascript
-    const handleAuth = (e)=>{
-        new DotWallet().auth()
-    }
+const handleAuth = (e)=>{
+    new DotWallet().auth()
+}
 ```
 
 After the login is successful, we can use the various wallet interfaces above.

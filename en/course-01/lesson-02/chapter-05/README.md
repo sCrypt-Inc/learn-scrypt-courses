@@ -9,12 +9,12 @@ Deploying the contract requires generating transactions, and generating transact
 Query the **UTXO** through the wallet's `listUnspent` interface.
 
 ```javascript
-    const minAmount = amountInContract + FEE;
-    wallet.listUnspent(minAmount, {
-      purpose: 'alice'
-    }).then(async (utxos: UTXO[]) => {
+const minAmount = amountInContract + FEE;
+wallet.listUnspent(minAmount, {
+  purpose: 'alice'
+}).then(async (utxos: UTXO[]) => {
 
-    })
+})
 ```
 
 
@@ -24,25 +24,25 @@ With the **UTXO** available, we can use it to construct transactions that includ
 
 ```javascript
           
-  const tx: Tx = {
-    inputs: [],
-    outputs: []
-  };
+const tx: Tx = {
+  inputs: [],
+  outputs: []
+};
 
-  tx.outputs.push({
-    script: contract.lockingScript.toHex(),
-    satoshis: amountInContract 
-  });
+tx.outputs.push({
+  script: contract.lockingScript.toHex(),
+  satoshis: amountInContract 
+});
 
 
-  //add input which using utxo from alice
-  tx.inputs.push(
-    {
-      utxo: utxos[0],
-      script: '',
-      sequence: 0
-    }
-  );
+//add input which using utxo from alice
+tx.inputs.push(
+  {
+    utxo: utxos[0],
+    script: '',
+    sequence: 0
+  }
+);
 
 ```
 
@@ -51,14 +51,14 @@ After the transaction is structured, there seems to be a little less. That's rig
 The wallet provides the `getSignature` interface. Although we don't have a private key, we can ask the wallet to help sign it.
 
 ```typescript
-  wallet.getSignature(toRawTx(tx), 0, SignType.ALL,changeAddress).then(signature => {
-    const script = new bsv.Script()
-    .add(Buffer.from(signature,'hex'))
-    .add(new bsv.PublicKey(publicKey).toBuffer())
-    .toHex()
-    tx.inputs[0].script = script;
-    return tx;
-  })
+wallet.getSignature(toRawTx(tx), 0, SignType.ALL,changeAddress).then(signature => {
+  const script = new bsv.Script()
+  .add(Buffer.from(signature,'hex'))
+  .add(new bsv.PublicKey(publicKey).toBuffer())
+  .toHex()
+  tx.inputs[0].script = script;
+  return tx;
+})
 ```
 
 ## Broadcast Transaction
@@ -66,9 +66,9 @@ The wallet provides the `getSignature` interface. Although we don't have a priva
 After signing and setting the corresponding unlocking script, the next step is to broadcast the transaction containing the contract to deploy the contract. For broadcast transactions, we use the `sendRawTransaction` interface provided by the wallet.
 
 ```typescript
-  static async sendTx(tx: Tx): Promise<string> {
-    return web3.wallet.sendRawTransaction(toRawTx(tx));
-  }
+static async sendTx(tx: Tx): Promise<string> {
+  return web3.wallet.sendRawTransaction(toRawTx(tx));
+}
 ```
 
 ##  Put it to the test
