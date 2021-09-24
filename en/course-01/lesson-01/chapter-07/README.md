@@ -1,4 +1,4 @@
-# Chapter 7: bytes slice
+# Chapter 7: Bytes Slice
 
 
 `bytes` represents a variable-length byte array, which can be sliced. like:

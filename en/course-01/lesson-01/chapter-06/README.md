@@ -1,4 +1,4 @@
-# Chapter 6: library
+# Chapter 6: Library
 
 
 The library is basically the same as the contract, except that it does not contain any public functions, so it cannot be deployed and called independently. It is usually used to group related constants and `static` functions.

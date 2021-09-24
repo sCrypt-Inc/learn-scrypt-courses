@@ -24,7 +24,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "Basic data types and property",
+                    "title": "Basic data types and Property",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -35,7 +35,7 @@
                 },
                 {
                     "num": 4,
-                    "title": "static properties and const variables",
+                    "title": "static Property and const Variable",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -45,7 +45,7 @@
                 },
                 {
                     "num": 5,
-                    "title": "Public and Non-public Functions",
+                    "title": "Function and Require Statement",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -55,7 +55,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "library",
+                    "title": "Library",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -69,7 +69,7 @@
                 },
                 {
                     "num": 7,
-                    "title": "bytes slice",
+                    "title": "Bytes Slice",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
