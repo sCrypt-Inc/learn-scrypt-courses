@@ -35,7 +35,7 @@
                 },
                 {
                     "num": 4,
-                    "title": "static Property and const Variable",
+                    "title": "Static Property and Const Variable",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
