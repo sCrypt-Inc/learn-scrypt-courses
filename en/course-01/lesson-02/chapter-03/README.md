@@ -19,7 +19,7 @@ The basic data type is the type supported by **scryptlib** by default. For user-
 const {Person, Male, Female} = buildTypeClasses(JSON.parse(descFileContent));
 ```
 
-## Instantiate Contract
+## Instantiate a Contract
 
 We have obtained the contract class `TictactoeContractClass` by loading the contract description file. Next, use the `new` keyword to instantiate the contract, and use `setDataPart` to set the initial state of the instance and save it.
 

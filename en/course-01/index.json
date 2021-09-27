@@ -3,8 +3,8 @@
     "desc": "This is the first course for learning sCrypt",
     "lessons": [
         {
-            "title": "Let's start learning sCrypt basics",
-            "desc": "Learn sCrypt basics and write the Tic-Tac-Toe contract",
+            "title": "sCrypt Basics",
+            "desc": "Learn sCrypt basics and write the TicTacToe contract",
             "num": 1,
             "chapters": [
                 {
@@ -144,8 +144,8 @@
             ]
         },
         {
-            "title": "Learn how to integrate the contract with the frontend",
-            "desc": "Learn how to interact the contract with the frontend using the JavaScript SDK",
+            "title": "Interact with the contract via a frontend",
+            "desc": "Learn how to build an app frontend to interact with the contract using sCrypt JavaScript SDK",
             "num": 2,
             "chapters": [
                 {
@@ -160,7 +160,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Compile a contract",
+                    "title": "Compile a Contract",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -170,7 +170,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "Data types and instantiation contracts",
+                    "title": "Instantiate a Contract",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -190,7 +190,7 @@
                 },
                 {
                     "num": 5,
-                    "title": "Deploying the contract",
+                    "title": "Deploy a Contract",
                     "scripts": [  
                         {
                             "name": "web3.ts",
@@ -200,7 +200,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "Call Contract",
+                    "title": "Call a Contract",
                     "scripts": [  
                         {
                             "name": "game.js",
