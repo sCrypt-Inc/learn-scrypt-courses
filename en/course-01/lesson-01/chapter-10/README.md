@@ -1,17 +1,25 @@
-# Chapter 10: Bitcoin Script
+# Chapter 10: Structure
 
-## UTXO Model
+The members of a structure can be a basic type, an array, or a structure, similar to the structure of the `C` language.
 
-Bitcoins are locked in outputs of transactions. To spend bitcoins in an output, a transaction has to provide a matching key in its input. Bitcoins can only be transferred to new outputs when the key can open the lock successfully. This is the so called UTXO（Unspent Transaction Outputs）model. As an example shown below, two transactions each have one input and one output. The input on the right spends the output on the left.
+## Define structure
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/02.png?raw=true" width="600">
+The structure is defined using the `struct` keyword. The structure needs to be defined outside the contract.
+```
+struct Point {
+  int x;
+  int y;
+}
 
-## Bitcoin Script Language
+struct Line {
+  // nested struct
+  Point start;
+  Point end;
+}
+```
 
-Both lock and key are encoded in a language called [Bitcoin Script](https://wiki.bitcoinsv.io/index.php/Script). It is the instruction set for the [Bitcoin Virtual Machine](https://xiaohuiliu.medium.com/introduction-to-bitcoin-smart-contracts-9c0ea37dc757), an assembly-like low-level language. The script in the key and lock are called unlocking and locking script, respectively.
 
-## Script and sCrypt
 
-sCrypt is a high-level language, compiled to Script. They are analogous to Java and [Java virtual machine](https://en.wikipedia.org/wiki/Java_virtual_machine) bytecode. Specifically, sCrypt public function parameters correspond to unlocking script, its body to locking script, as shown below.
+## Put it to the test
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/01.png?raw=true" width="600">
+Define a `State` structure for the contract, which contains a `turn` property of type `int` and a `board` property of type `bytes`.

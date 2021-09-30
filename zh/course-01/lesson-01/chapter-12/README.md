@@ -13,7 +13,7 @@ contract Counter {
         require(Tx.checkPreimage(txPreimage));
 
         this.counter++;
-        bytes outputScript = this.createScript();
+        bytes outputScript = this.getStateScript();
         bytes output = Util.buildOutput(outputScript, amount);
         // ensure output is expected: amount is same with specified
         // also output script is the same with scriptCode except counter incremented
@@ -40,11 +40,11 @@ this.state.turn = 1 - this.state.turn;
 ```
 
 
-通常，更新完状态后，使用 `createScript` 来创建包含新状态的锁定脚本。
+通常，更新完状态后，使用 `getStateScript` 来获取包含最新状态的锁定脚本。
 
 ```
-bytes scriptCode_ =  this.createScript();
-bytes output = Util.buildOutput(scriptCode_, amount);
+bytes outputScript  =  this.getStateScript();
+bytes output = Util.buildOutput(outputScript, amount);
 outputs = output;
 ```
   
@@ -62,7 +62,6 @@ require(hash256(outputs) == Util.hashOutputs(txPreimage));
 
 ## 实战演习
 
-我们已经读取了 `TicTacToe` 的锁定脚本，现在我们从锁定脚本的数据部分解析出合约的状态并更新：
 
-1. 更新 `TicTacToe` 合约的状态
+1. 合约的状态包含棋盘和轮流顺序，请更新 `TicTacToe`  合约的状态
 2. 约束交易的输出包含 `TicTacToe` 合约。

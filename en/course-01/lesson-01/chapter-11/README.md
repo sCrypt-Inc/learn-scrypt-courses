@@ -39,5 +39,3 @@ The `TicTacToe` contract is a stateful contract. The public function `move` is c
 
 1. Check if the last parameter `txPreimage` of the `move` function is the preimage of the current transaction.
 
-2. Get the contract's locking script `scriptCode`
-

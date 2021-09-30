@@ -111,11 +111,21 @@
                 },
                 {
                     "num": 10,
-                    "title": "Bitcoin Script"
+                    "title": "Structure",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        },
+                        {
+                            "name": "util.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
                 },
                 {
                     "num": 11,
-                    "title": "Checking the preimage",
+                    "title": "Checking the Preimage",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",

@@ -36,8 +36,8 @@ contract TicTacToe {
         else if (this.full(board)) {
             ...
         } else {
-            bytes scriptCode_ =  this.createScript();
-            bytes output = Util.buildOutput(scriptCode_, amount);
+            bytes outputScript  =  this.getStateScript();
+            bytes output = Util.buildOutput(outputScript, amount);
             outputs = output;
         }
 

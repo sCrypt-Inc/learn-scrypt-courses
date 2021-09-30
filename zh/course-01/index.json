@@ -110,7 +110,17 @@
                 },
                 {
                     "num": 10,
-                    "title": "比特币脚本"
+                    "title": "结构体",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        },
+                        {
+                            "name": "util.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
                 },
                 {
                     "num": 11,

@@ -1,27 +1,20 @@
 # Chapter 12: Contract Status
 
-The locking script of a stateful contract is divided into data and code. The data part is the state. The code part contains the state transition rule, which is the business logic of the contract.
-
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/04.png?raw=true)
-
-To manage the state, we require that the code part of the contract cannot be changed (that is, the contract rules cannot be changed), and the change of the data part (state) must comply with the state transition rules specified in the code part. Below is a simple counter contract. Its state is the number of times public function ``increment()`` has been called (initialized to 0), stored in the last byte of the locking script.
+The state of the contract needs to be declared with the @state annotation. Below is a simple [counter contract](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/counter.scrypt).
 
 
 ```
 import "util.scrypt";
 
 contract Counter {
+    @state
+    int counter;
     public function increment(SigHashPreimage txPreimage, int amount) {
         require(Tx.checkPreimage(txPreimage));
 
-        bytes scriptCode = Util.scriptCode(txPreimage);
-        int scriptLen = len(scriptCode);
-
-        // state (i.e., counter value) is at the end
-        int counter = unpack(scriptCode[scriptLen - Util.DataLen :]);
-        // increment counter
-        bytes scriptCode_ = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter + 1, Util.DataLen);
-        bytes output = Util.buildOutput(scriptCode_, amount);
+        this.counter++;
+        bytes outputScript = this.getStateScript();
+        bytes output = Util.buildOutput(outputScript, amount);
         // ensure output is expected: amount is same with specified
         // also output script is the same with scriptCode except counter incremented
         require(hash256(output) == Util.hashOutputs(txPreimage));
@@ -29,21 +22,30 @@ contract Counter {
 }
 ```
 
+We use the `State` structure defined in Chapter 10 to add a state property `state` to the `TicTacToe` contract.
+
+
+```
+@state
+State state;
+```
+
 ## Update State
 
-We parse the current states of the contract from the locking script: `turn` and `board`. Next we need to update these two.
+During the execution of the contract, the status of the contract needs to be updated.
 
 ```
-board = Util.setElemAt(board, n, play);
-turn = 1 - turn;
+this.state.board = Util.setElemAt(this.state.board, n, play);
+this.state.turn = 1 - this.state.turn;
 ```
 
 
-Usually, after updating the state, we need to process some business logic based on the new state of the contract. In the `TicTacToe` contract, we check the new state to determine whether someone has won the game or the board is full, then the contract ends. Otherwise, the contract continues. Through the following code, we append the new state to the code part to get the locking script of the contract containing the new state, and construct a transaction with a output containing the updated contract.
+Usually, after updating the state, use `getStateScript` to get the locking script containing the latest state.
 
 ```
-bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;
-bytes output = Util.buildOutput(scriptCode_, amount);
+bytes outputScript  =  this.getStateScript();
+bytes output = Util.buildOutput(outputScript, amount);
+outputs = output;
 ```
   
 ## Constraint
@@ -61,7 +63,6 @@ require(hash256(outputs) == Util.hashOutputs(txPreimage));
 
 ## Put it to the test
 
-We have read the locking script of `TicTacToe`. Let us parse the state of the contract from the data part of locking script and update it:
 
-1. State `turn` is the first byte of the contract data part, representing whose turn it it to play next. State `board` starts from the second byte of the contract data part and runs a total of 9 bytes, representing the status of the board.
+1. The state of the contract includes the board and turn order, please update the state of the `TicTacToe` contract
 2. Ensure one output of the current transaction contains the `TicTacToe` contract.

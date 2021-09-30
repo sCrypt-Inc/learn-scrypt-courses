@@ -1,17 +1,19 @@
 import "util.scrypt";
 
-struct State {
-    int turn;
-    bytes board;
-}
+//TODO: defined struct State here
 
 contract TicTacToe {
+    PubKey alice;
+    PubKey bob;
+    
+    static const int TURNLEN = 1;
+    static const int BOARDLEN = 9;
+    static const bytes EMPTY = b'00';
+    static const bytes ALICE = b'01';
+    static const bytes BOB = b'02';
 
-    ...
     
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
-
-        //TODO: Check txPreimage
 
         require(n >= 0 && n < BOARDLEN);
     }
@@ -33,10 +35,11 @@ contract TicTacToe {
         bool anyLine = false;
         loop (8) : i {
             bool line = true;
+
             loop (3) : j {
                 line = line && Util.getElemAt(board, lines[i][j]) == play;
             }
-            
+
             anyLine = anyLine || line;
         }
 
