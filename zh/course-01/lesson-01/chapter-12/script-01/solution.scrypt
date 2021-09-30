@@ -2,19 +2,23 @@ import "util.scrypt";
 
 contract TicTacToe {
 
-    ...
+    PubKey alice;
+    PubKey bob;
+
+    @state
+    State state;
+
+    
+    static const int TURNLEN = 1;
+    static const int BOARDLEN = 9;
+    static const bytes EMPTY = b'00';
+    static const bytes ALICE = b'01';
+    static const bytes BOB = b'02';
 
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
         require(Tx.checkPreimage(txPreimage));
         require(n >= 0 && n < BOARDLEN);
-
-        bytes scriptCode = Util.scriptCode(txPreimage);
-        int scriptLen = len(scriptCode);
-        int boardStart = scriptLen - BOARDLEN;
-
-        int turn = unpack(scriptCode[boardStart - TURNLEN : boardStart]);
-        bytes board = scriptCode[boardStart : ];
 
         require(Util.getElemAt(board, n) == EMPTY);
 
@@ -22,8 +26,8 @@ contract TicTacToe {
         PubKey player = turn == 0 ? this.alice : this.bob;
         require(checkSig(sig, player));
         
-        board = Util.setElemAt(board, n, play);
-        turn = 1 - turn;
+        this.state.board = Util.setElemAt(this.state.board, n, play);
+        this.state.turn = 1 - this.state.turn;
 
         bytes outputs = b'';
         if (this.won(board, play)) {
@@ -32,7 +36,9 @@ contract TicTacToe {
         else if (this.full(board)) {
             ...
         } else {
-            ...
+            bytes scriptCode_ =  this.createScript();
+            bytes output = Util.buildOutput(scriptCode_, amount);
+            outputs = output;
         }
 
         require(hash256(outputs) == Util.hashOutputs(txPreimage));
