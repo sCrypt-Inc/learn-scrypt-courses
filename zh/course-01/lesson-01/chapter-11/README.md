@@ -38,5 +38,4 @@ static function scriptCode(SigHashPreimage txPreimage) : bytes {
 
 1. 检查 `move` 方法的最后一个参数 `txPreimage` 是否当前交易的原象。
 
-2. 获取合约的锁定脚本 `scriptCode`
 
