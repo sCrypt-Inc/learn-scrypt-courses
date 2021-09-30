@@ -1,18 +1,25 @@
-# 第十章: 比特币脚本语言
+# 第九章: 结构体
 
-## UTXO 模型
+结构体的成员可以是基本类型，数组，也可以是结构体，与 `C` 语言的结构体类似。
 
-比特币被“锁”在交易的输出中。要想在另一个交易中花费它，其输入中必须含有匹配的“钥匙”。只有钥匙能打开锁时，比特币才能被转移到新的输出中。这就是所谓的 UTXO（Unspent Transaction Outputs） 模型。如下图所示，两个交易各有一个输入和输出。右边的交易输入花费左边交易的输出。
+## 定义结构体
+
+结构使用 `struct` 关键字定义。结构体需要定义在合约的外部。
+```
+struct Point {
+  int x;
+  int y;
+}
+
+struct Line {
+  // nested struct
+  Point start;
+  Point end;
+}
+```
 
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/02.png?raw=true" width="600">
 
-## 比特币脚本语言Script
+## 实战演习
 
-锁和钥匙都是用比特币脚本语言[Script](https://wiki.bitcoinsv.io/index.php/Script)表示。它是[比特币虚拟机](https://blog.csdn.net/freedomhero/article/details/106801904)的指令集，是一种类似于汇编的低级语言。锁和钥匙里脚本分别被称为锁定脚本和解锁脚本。
-
-## Script与sCrypt
-
-sCrypt是一种高级语言，编译生成Script。两者的关系类似于Java和[Java虚拟机](https://en.wikipedia.org/wiki/Java_virtual_machine)的字节码。具体来说，sCrypt里公共函数的参数对应解锁脚本，公共函数的函数体对应锁定脚本，如下图所示。
-
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/01.png?raw=true" width="600">
+为合约定义一个 `State` 结构体， 该结构体包含一个 `int` 类型的 `turn` 属性和一个 `bytes` 类型的 `board` 属性。
