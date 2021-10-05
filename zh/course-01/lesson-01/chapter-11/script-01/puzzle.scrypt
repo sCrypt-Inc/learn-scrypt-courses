@@ -9,8 +9,6 @@ contract TicTacToe {
         //TODO: Check txPreimage
 
         require(n >= 0 && n < BOARDLEN);
-
-        //TODO: read scriptCode here
     }
 
 

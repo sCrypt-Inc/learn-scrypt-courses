@@ -20,23 +20,8 @@ contract OP_PUSH_TX {
 ```
 
 
-## 获取合约锁定脚本
-
-通过 `Tx.checkPreimage` 我们可以确保Sighash原象是当前交易的原象。由于原象包含交易的相关数据，我们能通过访问原象来访问被当前交易调用的合约的锁定脚本，原象中的`scriptCode`字段。
-
-```
-static function scriptCode(SigHashPreimage txPreimage) : bytes {
-    return Util.readVarint(txPreimage[104 : ]);
-}
-
-```
-
-
 ## 实战演习
 
 `TicTacToe` 合约是一个带状态的合约。通过交易不断地调用公共方法 `move`，触发合约的执行，从而更新状态。
 
 1. 检查 `move` 方法的最后一个参数 `txPreimage` 是否当前交易的原象。
-
-2. 获取合约的锁定脚本 `scriptCode`
-
