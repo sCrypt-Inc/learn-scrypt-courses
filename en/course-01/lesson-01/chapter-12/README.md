@@ -8,20 +8,23 @@ To manage the state, we require that the code part of the contract cannot be cha
 
 
 ```
-import "util.scrypt";
-
 contract Counter {
     public function increment(SigHashPreimage txPreimage, int amount) {
         require(Tx.checkPreimage(txPreimage));
 
+        // deserialize state (i.e., counter value)
         bytes scriptCode = Util.scriptCode(txPreimage);
         int scriptLen = len(scriptCode);
-
-        // state (i.e., counter value) is at the end
+        // counter is at the end
         int counter = unpack(scriptCode[scriptLen - Util.DataLen :]);
+
         // increment counter
-        bytes scriptCode_ = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter + 1, Util.DataLen);
-        bytes output = Util.buildOutput(scriptCode_, amount);
+        counter++;
+
+        // serialize state
+        bytes outputScript = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter, Util.DataLen);
+        
+        bytes output = Util.buildOutput(outputScript, amount);
         // ensure output is expected: amount is same with specified
         // also output script is the same with scriptCode except counter incremented
         require(hash256(output) == Util.hashOutputs(txPreimage));
@@ -29,39 +32,44 @@ contract Counter {
 }
 ```
 
+## Deserialization State
+
+We have parsed the current state of the contract from the lockingScript of the contract: `counter`.
+```
+// deserialize state (i.e., counter value)
+bytes scriptCode = Util.scriptCode(txPreimage);
+int scriptLen = len(scriptCode);
+// counter is at the end
+int counter = unpack(scriptCode[scriptLen - Util.DataLen :]);
+```
+
+
 ## Update State
-
-We parse the current states of the contract from the locking script: `turn` and `board`. Next we need to update these two.
-
-```
-board = Util.setElemAt(board, n, play);
-turn = 1 - turn;
-```
-
-
-Usually, after updating the state, we need to process some business logic based on the new state of the contract. In the `TicTacToe` contract, we check the new state to determine whether someone has won the game or the board is full, then the contract ends. Otherwise, the contract continues. Through the following code, we append the new state to the code part to get the locking script of the contract containing the new state, and construct a transaction with a output containing the updated contract.
+Next we need to update this state.
 
 ```
-bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;
-bytes output = Util.buildOutput(scriptCode_, amount);
+// increment counter
+counter++;
+```
+
+## Serialization State
+Usually, after updating the state, it is necessary to splice the new state with the code part to obtain the lockingscript containing the new state contract, and construct a transaction output containing the contract.
+
+```
+// serialize state
+bytes outputScript = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter, Util.DataLen);
+bytes output = Util.buildOutput(outputScript, amount);
 ```
   
-## Constraint
-
-By updating the state we have generated the `TicTacToe` contract with the new state. We need to ensure that the output of the current transaction must include this new contract. How to ensure that?
+## Constraint Transaction Output
+By updating the state we have generated the `Counter` contract with the new state. Now we need to ensure that the output of the current transaction must include this new contract. How to ensure that?
 
 Sighash preimage contains the hash of all outputs in the transaction: `hashOutputs`. If this hash value is the same with the hash value of all outputs in the current transaction, we can be sure that the outputs of current transaction is consistent with the outputs we constructed in the contract, and the contract with updated state is included.
 
 The outputs of the current transaction are constrained by the following code:
 
 ```
-require(hash256(outputs) == Util.hashOutputs(txPreimage));
+// ensure output is expected: amount is same with specified
+// also output script is the same with scriptCode except counter incremented
+require(hash256(output) == Util.hashOutputs(txPreimage));
 ```
-
-
-## Put it to the test
-
-We have read the locking script of `TicTacToe`. Let us parse the state of the contract from the data part of locking script and update it:
-
-1. State `turn` is the first byte of the contract data part, representing whose turn it it to play next. State `board` starts from the second byte of the contract data part and runs a total of 9 bytes, representing the status of the board.
-2. Ensure one output of the current transaction contains the `TicTacToe` contract.

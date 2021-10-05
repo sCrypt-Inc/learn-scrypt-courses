@@ -1,0 +1,59 @@
+import "util.scrypt";
+
+contract TicTacToe {
+
+    PubKey alice;
+    PubKey bob;
+
+    @state
+    bool is_alice_turn;
+
+    @state
+    bytes board;
+
+    static const int TURNLEN = 1;
+    static const int BOARDLEN = 9;
+    static const bytes EMPTY = b'00';
+    static const bytes ALICE = b'01';
+    static const bytes BOB = b'02';
+
+    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
+
+        require(Tx.checkPreimage(txPreimage));
+        require(n >= 0 && n < BOARDLEN);
+        require(Util.getElemAt(this.board, n) == EMPTY);
+
+        bytes play = this.is_alice_turn ? ALICE : BOB;
+        PubKey player = this.is_alice_turn ? this.alice : this.bob;
+        require(checkSig(sig, player));
+        
+        this.board = Util.setElemAt(this.board, n, play);
+        this.is_alice_turn = !this.is_alice_turn;
+
+
+        bytes outputs = b'';
+        if (this.won(this.board, play)) {
+            bytes outputScript = Util.pubKeyToP2PKH(player);
+            bytes output = Util.buildOutput(outputScript, amount);
+            outputs = output;
+        }
+        else if (this.full(this.board)) {
+            bytes aliceScript = Util.pubKeyToP2PKH(this.alice);
+            bytes aliceOutput = Util.buildOutput(aliceScript, amount);
+
+            bytes bobScript = Util.pubKeyToP2PKH(this.bob);
+            bytes bobOutput = Util.buildOutput(bobScript, amount);
+
+            outputs = aliceOutput + bobOutput;
+        }
+        else {
+            bytes scriptCode_ = this.getStateScript();
+            bytes output = Util.buildOutput(scriptCode_, amount);
+            outputs = output;
+        }
+
+        require(hash256(output) == Util.hashOutputs(txPreimage));
+    }
+    
+    ...
+}
