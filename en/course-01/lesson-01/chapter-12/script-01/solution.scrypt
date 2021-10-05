@@ -27,8 +27,8 @@ contract TicTacToe {
         PubKey player = this.is_alice_turn ? this.alice : this.bob;
         require(checkSig(sig, player));
         
-        this.board = Util.setElemAt(this.board, n, play);
         this.is_alice_turn = !this.is_alice_turn;
+        this.board = Util.setElemAt(this.board, n, play);
 
 
         bytes outputs = b'';

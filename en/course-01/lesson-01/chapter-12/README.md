@@ -12,18 +12,14 @@ Declare any property that is part of the state with a decorator `@state`. You ca
 contract TicTacToe {
 
     @state
-    bool is_alice_turn;
-
-    @state
-    bytes board;
+    bool is_alice_turn;     // is Alice's turn?
 
     ...
 
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
         ...
-        //update states to make move
-        this.board = Util.setElemAt(this.board, n, play);
+        // take turns
         this.is_alice_turn = !this.is_alice_turn;
         ...
     }
