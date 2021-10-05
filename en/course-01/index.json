@@ -129,11 +129,7 @@
                 },
                 {
                     "num": 12,
-                    "title": "Chapter 12: Contract Status"
-                },
-                {
-                    "num": 13,
-                    "title": "Chapter 13: Stateful Contract",
+                    "title": "Chapter 12: Maintain Game State",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -154,7 +150,7 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "scryptlib",
+                    "title": "Chapter 1: scryptlib",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -164,7 +160,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Compile a Contract",
+                    "title": "Chapter 2: Compile a Contract",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -174,7 +170,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "Instantiate a Contract",
+                    "title": "Chapter 3: Instantiate a Contract",
                     "scripts": [  
                         {
                             "name": "app.js",
@@ -184,7 +180,7 @@
                 },
                 {
                     "num": 4,
-                    "title": "Wallet",
+                    "title": "Chapter 4: Wallet",
                     "scripts": [  
                         {
                             "name": "wallet.js",
@@ -194,7 +190,7 @@
                 },
                 {
                     "num": 5,
-                    "title": "Deploy a Contract",
+                    "title": "Chapter 5: Deploy a Contract",
                     "scripts": [  
                         {
                             "name": "web3.ts",
@@ -204,7 +200,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "Call a Contract",
+                    "title": "Chapter 6: Call a Contract",
                     "scripts": [  
                         {
                             "name": "game.js",
@@ -214,7 +210,7 @@
                 },
                 {
                     "num": 7,
-                    "title": "Summary"
+                    "title": "Chapter 7: Summary"
                 }
             ]
         }

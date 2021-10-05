@@ -1,4 +1,4 @@
-# Chapter 11: Checking the preimage
+# Chapter 11: Checking the Preimage
 
 ## Preimage
 
