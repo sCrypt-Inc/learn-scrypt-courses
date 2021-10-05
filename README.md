@@ -1,8 +1,9 @@
-# learn-scrypt-contents
-The contents repo of interactive learning project @Learn-sCrypt
+# Learn sCrypt Contents
+The contents of interactive [Learn sCrypt](https://learn.scrypt.io/).
 
 
 ## Structure
+To create a new course, use the following format. Pull requests are welcome.
 <pre>
 #language
 ├── course-#courseNum
