@@ -26,9 +26,9 @@ const {Person, Male, Female} = buildTypeClasses(JSON.parse(descFileContent));
 let c = new TictactoeContractClass(
   new PubKey(toHex(alicePubKey)),
   new PubKey(toHex(bobPubKey)),
+  true,
+  new Bytes('000000000000000000')
 );
-
-c.setDataPart("00000000000000000000");
 
 ```
 

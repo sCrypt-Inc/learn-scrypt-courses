@@ -77,10 +77,9 @@ if (winner) {
   ...
 } else {
   //next
-  newLockingScript = [this.props.contractInstance.codePart.toHex(), bsv.Script.fromASM(newState).toHex()].join('');
   outputs.push({
     satoshis: amount,
-    script: newLockingScript
+    script: this.props.contractInstance.lockingScript.toHex()
   })
 }
 
@@ -103,9 +102,6 @@ let preimage = getPreimage(tx);
 const addr = DotWalletAddress.get();
 
 let sig = await web3.wallet.getSignature(toRawTx(tx), 0, SignType.ALL, addr);
-
-this.props.contractInstance.setDataPart(oldState);
-
 
 let unlockScript = this.props.contractInstance.move(i, new Sig(toHex(sig)), amount, preimage).toHex();
 

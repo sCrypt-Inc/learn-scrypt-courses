@@ -10,7 +10,7 @@ class Game extends React.Component {
     ...
   }
 
-  async buildCallContractTx(i, newState, oldState, squares, history) {
+  async buildCallContractTx(i, squares, history) {
     ...
 
     let tx = {
@@ -27,9 +27,6 @@ class Game extends React.Component {
     const addr = DotWalletAddress.get();
 
     let sig = await web3.wallet.getSignature(toRawTx(tx), 0, SignType.ALL, addr);
-
-    this.props.contractInstance.setDataPart(oldState);
-
 
     let unlockScript = this.props.contractInstance.move(i, new Sig(toHex(sig)), amount, preimage).toHex();
 
