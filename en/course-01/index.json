@@ -1,5 +1,5 @@
 {
-    "title": "Build A Tic-tac-toe Game With sCrypt",
+    "title": "Build a Tic-tac-toe Game with sCrypt",
     "desc": "This is the first course for learning sCrypt",
     "lessons": [
         {
@@ -9,11 +9,11 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "Course overview"
+                    "title": "Chapter 1: Course overview"
                 },
                 {
                     "num": 2,
-                    "title": "sCrypt Contract",
+                    "title": "Chapter 2: sCrypt Contract",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -24,7 +24,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "Basic data types and Property",
+                    "title": "Chapter 3: Basic data types and Property",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -35,7 +35,7 @@
                 },
                 {
                     "num": 4,
-                    "title": "Static Property and Const Variable",
+                    "title": "Chapter 4: Static Property and Const Variable",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -45,7 +45,7 @@
                 },
                 {
                     "num": 5,
-                    "title": "Function and Require Statement",
+                    "title": "Chapter 5: Function and Require Statement",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -55,7 +55,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "Library",
+                    "title": "Chapter 6: Library",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -69,7 +69,7 @@
                 },
                 {
                     "num": 7,
-                    "title": "Bytes Slice",
+                    "title": "Chapter 7: Bytes Slice",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -83,7 +83,7 @@
                 },
                 {
                     "num": 8,
-                    "title": "Array",
+                    "title": "Chapter 8: Array",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -97,7 +97,7 @@
                 },
                 {
                     "num": 9,
-                    "title": "Loop",
+                    "title": "Chapter 9: Loop",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -111,11 +111,11 @@
                 },
                 {
                     "num": 10,
-                    "title": "Bitcoin Script"
+                    "title": "Chapter 10: Bitcoin Script"
                 },
                 {
                     "num": 11,
-                    "title": "Checking the preimage",
+                    "title": "Chapter 11: Checking the Preimage",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -129,7 +129,11 @@
                 },
                 {
                     "num": 12,
-                    "title": "Contract Status",
+                    "title": "Chapter 12: Contract Status"
+                },
+                {
+                    "num": 13,
+                    "title": "Chapter 13: Stateful Contract",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",

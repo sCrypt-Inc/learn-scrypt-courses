@@ -8,11 +8,11 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "课程概述"
+                    "title": "第一章: 课程概述"
                 },
                 {
                     "num": 2,
-                    "title": "sCrypt 合约",
+                    "title": "第二章: sCrypt 合约",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -23,7 +23,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "基本数据类型和属性",
+                    "title": "第三章: 基本数据类型和属性",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -34,7 +34,7 @@
                 },
                 {
                     "num": 4,
-                    "title": "static 属性和 const 变量",
+                    "title": "第四章: static 属性和 const 变量",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -44,7 +44,7 @@
                 },
                 {
                     "num": 5,
-                    "title": "函数和公共函数",
+                    "title": "第五章: 函数和 require 语句",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -54,7 +54,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "library 库",
+                    "title": "第六章: library 库",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -68,7 +68,7 @@
                 },
                 {
                     "num": 7,
-                    "title": "bytes 切片",
+                    "title": "第七章: bytes 切片",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -82,7 +82,7 @@
                 },
                 {
                     "num": 8,
-                    "title": "数组",
+                    "title": "第八章: 数组",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -96,7 +96,7 @@
                 },
                 {
                     "num": 9,
-                    "title": "循环",
+                    "title": "第九章: 循环 ",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -110,11 +110,11 @@
                 },
                 {
                     "num": 10,
-                    "title": "比特币脚本"
+                    "title": "第十章: 比特币脚本语言"
                 },
                 {
                     "num": 11,
-                    "title": "检查Sighash原象",
+                    "title": "第十一章: 检查Sighash原象",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
@@ -128,7 +128,21 @@
                 },
                 {
                     "num": 12,
-                    "title": "合约状态",
+                    "title": "第十二章: 合约状态",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        },
+                        {
+                            "name": "util.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 13,
+                    "title": "第十三章: 有状态合约",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
