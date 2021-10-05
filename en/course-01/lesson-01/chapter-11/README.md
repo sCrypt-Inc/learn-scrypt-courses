@@ -21,23 +21,8 @@ contract OP_PUSH_TX {
 ```
 
 
-## Get contract locking script
-
-We can use `Tx.checkPreimage` to ensure that a sighash preimage is for the current transaction. Since the preimage contains transaction-related data, we can access the locking script of the contract called by the current transaction, in the `scriptCode` field.
-
-```
-static function scriptCode(SigHashPreimage txPreimage) : bytes {
-    return Util.readVarint(txPreimage[104 : ]);
-}
-
-```
-
-
 ## Put it to the test
 
 The `TicTacToe` contract is a stateful contract. The public function `move` is continuously called through transactions to trigger the execution of the contract, thereby updating the state.
 
 1. Check if the last parameter `txPreimage` of the `move` function is the preimage of the current transaction.
-
-2. Get the contract's locking script `scriptCode`
-

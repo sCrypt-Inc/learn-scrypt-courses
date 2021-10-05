@@ -9,8 +9,6 @@ contract TicTacToe {
         require(Tx.checkPreimage(txPreimage));
 
         require(n >= 0 && n < BOARDLEN);
-
-        bytes scriptCode = Util.scriptCode(txPreimage);
     }
 
 
