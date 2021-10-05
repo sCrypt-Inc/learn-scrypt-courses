@@ -13,7 +13,7 @@ scryptlib 用于集成以 sCrypt 语言编写的 Bitcoin SV 智能合约的 Java
 
 ```javascript
 const Tictactoe = buildContractClass(runCompile('tictactoe.scrypt'));
-const game = new Tictactoe(new PubKey(toHex(publicKeyAlice)), new PubKey(toHex(publicKeyBob)));
+const game = new Tictactoe(new PubKey(toHex(publicKeyAlice)), new PubKey(toHex(publicKeyBob)),true, new Byte('000000000000000000'));
 const result = game.move(n, new Sig(toHex(sig)), 10000, preimage).verify(context)
 ```
 

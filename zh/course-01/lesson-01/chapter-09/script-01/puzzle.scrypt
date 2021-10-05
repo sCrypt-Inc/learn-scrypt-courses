@@ -30,6 +30,10 @@ contract TicTacToe {
 
 
     function full(bytes board) : bool {
+        bool full = true;
+
         //TODO: add loop to check if full
+        
+        return full;
     }
 }

@@ -1,67 +1,60 @@
-# Chapter 12: Contract Status
+# Chapter 12: Maintain Game State
 
-The locking script of a stateful contract is divided into data and code. The data part is the state. The code part contains the state transition rule, which is the business logic of the contract.
+A contract can keep state across chained transactions by storing it in the locking script. In the following example, a contract goes from `state0` to `state1`, and then to `state2`. Input in transaction 1 (`tx1`) is spending UTXO in `tx0`, and `tx2` spending `tx1`.
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
 
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/04.png?raw=true)
+You can maintain state in a contract with these simple steps.
 
-To manage the state, we require that the code part of the contract cannot be changed (that is, the contract rules cannot be changed), and the change of the data part (state) must comply with the state transition rules specified in the code part. Below is a simple counter contract. Its state is the number of times public function ``increment()`` has been called (initialized to 0), stored in the last byte of the locking script.
-
+## Step 1 
+Declare any property that is part of the state with a decorator `@state`. You can use the *stateful* property as a normal property: read and update it.
 
 ```
-import "util.scrypt";
+contract TicTacToe {
 
-contract Counter {
-    public function increment(SigHashPreimage txPreimage, int amount) {
-        require(Tx.checkPreimage(txPreimage));
+    @state
+    bool is_alice_turn;
 
-        bytes scriptCode = Util.scriptCode(txPreimage);
-        int scriptLen = len(scriptCode);
+    @state
+    bytes board;
 
-        // state (i.e., counter value) is at the end
-        int counter = unpack(scriptCode[scriptLen - Util.DataLen :]);
-        // increment counter
-        bytes scriptCode_ = scriptCode[: scriptLen - Util.DataLen] + num2bin(counter + 1, Util.DataLen);
-        bytes output = Util.buildOutput(scriptCode_, amount);
-        // ensure output is expected: amount is same with specified
-        // also output script is the same with scriptCode except counter incremented
-        require(hash256(output) == Util.hashOutputs(txPreimage));
+    ...
+
+    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
+
+        ...
+        //update states to make move
+        this.board = Util.setElemAt(this.board, n, play);
+        this.is_alice_turn = !this.is_alice_turn;
+        ...
     }
+
+    ...
 }
 ```
 
-## Update State
-
-We parse the current states of the contract from the locking script: `turn` and `board`. Next we need to update these two.
-
-```
-board = Util.setElemAt(board, n, play);
-turn = 1 - turn;
-```
-
-
-Usually, after updating the state, we need to process some business logic based on the new state of the contract. In the `TicTacToe` contract, we check the new state to determine whether someone has won the game or the board is full, then the contract ends. Otherwise, the contract continues. Through the following code, we append the new state to the code part to get the locking script of the contract containing the new state, and construct a transaction with a output containing the updated contract.
+## Step 2
+When you are ready to pass the new states onto the locking script of the `output[s]` in the current spending transaction, simply call a built-in function `this.getStateScript()`, automatically generated for every contract.
 
 ```
-bytes scriptCode_ = scriptCode[ : scriptLen - BOARDLEN - TURNLEN] + num2bin(1 - turn, TURNLEN) + board;
-bytes output = Util.buildOutput(scriptCode_, amount);
-```
-  
-## Constraint
-
-By updating the state we have generated the `TicTacToe` contract with the new state. We need to ensure that the output of the current transaction must include this new contract. How to ensure that?
-
-Sighash preimage contains the hash of all outputs in the transaction: `hashOutputs`. If this hash value is the same with the hash value of all outputs in the current transaction, we can be sure that the outputs of current transaction is consistent with the outputs we constructed in the contract, and the contract with updated state is included.
-
-The outputs of the current transaction are constrained by the following code:
-
-```
-require(hash256(outputs) == Util.hashOutputs(txPreimage));
+bytes outputScript = this.getStateScript();
 ```
 
+## Step 3
+Ensure that the output of the current transaction must include this new state. 
+Step 3 uses sighash preimage in the last chapter, containing the hash of all outputs in the transaction `hashOutputs`. If this hash value is the same with the hash value of all outputs in the current transaction, we can be sure that the outputs of current transaction is consistent with the outputs we constructed in the contract. Therefore, the updated state is included.
+
+The following code demonstrates this approach:
+
+```
+// construct an output from its locking script and satoshi amount
+bytes output = Util.buildOutput(outputScript, amount);
+// only 1 input here
+require(hash256(output) == Util.hashOutputs(txPreimage));
+```
 
 ## Put it to the test
 
-We have read the locking script of `TicTacToe`. Let us parse the state of the contract from the data part of locking script and update it:
+Use `@state` decoration to add the following state to the `TicTacToe` contract.
 
-1. State `turn` is the first byte of the contract data part, representing whose turn it it to play next. State `board` starts from the second byte of the contract data part and runs a total of 9 bytes, representing the status of the board.
-2. Ensure one output of the current transaction contains the `TicTacToe` contract.
+1. Add state property `board`, type `bytes`
+2. Update state property

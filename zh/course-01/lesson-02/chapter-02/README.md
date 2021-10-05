@@ -39,18 +39,30 @@
             "params": [
                 {
                     "name": "alice",
-                    "type": "PubKey"
+                    "type": "PubKey",
+                    "state": false
                 },
                 {
                     "name": "bob",
-                    "type": "PubKey"
+                    "type": "PubKey",
+                    "state": false
+                },
+                {
+                    "name": "is_alice_turn",
+                    "type": "bool",
+                    "state": true
+                },
+                {
+                    "name": "board",
+                    "type": "bytes",
+                    "state": true
                 }
             ]
         }
     ],
     "buildType": "debug",
     "file": "file:///d:/code/tic-tac-toe/contracts/tictactoe.scrypt",
-    "asm": "OP_1 40 76 88 a9 ac 00 OP_1 OP_2 $alice $bob OP_NOP OP_11 OP_PICK ...",
+    "asm": "OP_1 40 76 88 a9 ac 00 OP_1 OP_2 $__codePart__ $alice $bob $is_alice_turn $board ...",
     "hex": "5101400176018801a901ac01005152<alice><bob>615b79610 ...",
     "sources": [
         "std",
