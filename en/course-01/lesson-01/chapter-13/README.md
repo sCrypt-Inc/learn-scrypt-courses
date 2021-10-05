@@ -1,24 +1,16 @@
-# Chapter 13: Stateful Contract
+# Chapter 13: Maintain Game State
 
-One of the most challenging parts for sCrypt beginners is to keep internal state in a contract. We provide an elegant solution using state decorators.
+A contract can keep state across chained transactions by storing it in the locking script. In the following example, a contract goes from `state0` to `state1`, and then to `state2`. Input in transaction 1 (`tx1`) is spending UTXO in `tx0`, and `tx2` spending `tx1`.
+<!-- TODO: add a pic -->
 
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
-
-## The Problem
-
-
-For instance, in the counter contract in the previous chapter, we maintain a state, counter, and increase it by one every time increment() is called. We only maintain a counter here and there is already tons of boilerplate code, mostly to serialize and deserialize the state (Line 5–9 and Line 15). The core logic is just one line at Line 12. Code grows more cumbersome and error-prone when the state becomes more complex.
-
-
-## The Solution: State Decorators
-
-With the new state decorator approach, you can maintain state in a contract with three simple steps, as shown below:
+You can maintain state in a contract with three simple steps:
 
 1. Declare any property that is part of the state with a decorator `@state`.
 2. Use the stateful property as a normal property: read and update it.
-3. When you are ready to pass the state onto the `output[s]` in the spending transaction, simply call a built-in function `this.getStateScript()` (Line 11), automatically generated for every contract.
+3. When you are ready to pass the state onto the `output[s]` in the spending transaction, simply call a built-in function `this.getStateScript()`, automatically generated for every contract.
 
 
+<!-- TODO: use tictactoe as example, with is_alice_turn as state -->
 ```
 contract Counter {
     @state
@@ -37,8 +29,6 @@ contract Counter {
     }
 }
 ```
-
-As you can see, this is more concise and secure than manually serializing and deserializing state. The advantage is more significant when the state grows.
 
 ## Put it to the test
 
