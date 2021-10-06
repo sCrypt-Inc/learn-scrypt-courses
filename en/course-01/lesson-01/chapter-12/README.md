@@ -37,7 +37,7 @@ bytes outputScript = this.getStateScript();
 
 ## Step 3
 Ensure that the output of the current transaction must include this new state. 
-Step 3 uses sighash preimage in the last chapter, containing the hash of all outputs in the transaction `hashOutputs`. If this hash value is the same with the hash value of all outputs in the current transaction, we can be sure that the outputs of current transaction is consistent with the outputs we constructed in the contract. Therefore, the updated state is included.
+Step 3 uses sighash preimage in the last chapter, containing the hash of all outputs in the transaction `hashOutputs` (in field 8). If this hash value is the same with the hash value of all outputs in the current transaction, we can be sure that the outputs of current transaction is consistent with the outputs we constructed in the contract. Therefore, the updated state is included.
 
 The following code demonstrates this approach:
 
