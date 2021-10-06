@@ -9,5 +9,6 @@ Through these two lessons, we will show you the core content of smart contract d
 3. Access more wallets
 4. Increase the grid, such as 5X5
 
+The code of this course [Tic-Tac-Toe: Bitcoin onchain App Tutorial](https://github.com/sCrypt-Inc/tic-tac-toe)
 
 Looking forward to you building a surprising dApp

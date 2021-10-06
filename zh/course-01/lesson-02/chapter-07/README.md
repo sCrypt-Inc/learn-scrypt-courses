@@ -8,6 +8,7 @@
 3. 接入更多的钱包
 4. 增加宫格，比如 5X5
 
+本课程的代码 [Tic-Tac-Toe: Bitcoin onchain App Tutorial](https://github.com/sCrypt-Inc/tic-tac-toe)
 
 期待你构建出让人惊喜的dApp
 
