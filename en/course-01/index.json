@@ -115,17 +115,7 @@
                 },
                 {
                     "num": 11,
-                    "title": "Chapter 11: Checking the Preimage",
-                    "scripts": [  
-                        {
-                            "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
-                            "lang": "scrypt"
-                        }
-                    ]
+                    "title": "Chapter 11: Get Sighash Preimage"
                 },
                 {
                     "num": 12,

@@ -114,17 +114,7 @@
                 },
                 {
                     "num": 11,
-                    "title": "第十一章: 检查Sighash原象",
-                    "scripts": [  
-                        {
-                            "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
-                            "lang": "scrypt"
-                        }
-                    ]
+                    "title": "第十一章：获取 Sighash 原像"
                 },
                 {
                     "num": 12,

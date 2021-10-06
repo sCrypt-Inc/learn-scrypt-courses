@@ -1,4 +1,4 @@
-# 第 11 章：获取 Sighash 原像
+# 第十一章：获取 Sighash 原像
 
 ## Sighash 原像
 
