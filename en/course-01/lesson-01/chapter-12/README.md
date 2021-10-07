@@ -6,7 +6,7 @@ A contract can keep state across chained transactions by storing it in the locki
 You can maintain state in a contract with these simple steps.
 
 ## Step 1 
-Declare any property that is part of the state with a decorator `@state`. You can use the *stateful* property as a normal property: read and update it.
+Declare any property that is part of the state with a [decorator `@state`](https://scryptdoc.readthedocs.io/en/latest/state.html). You can use the *stateful* property as a normal property: read and update it.
 
 ```
 contract TicTacToe {
@@ -29,7 +29,7 @@ contract TicTacToe {
 ```
 
 ## Step 2
-When you are ready to pass the new states onto the locking script of the `output[s]` in the current spending transaction, simply call a built-in function `this.getStateScript()`, automatically generated for every contract.
+When you are ready to pass the new state onto the output[s] in the current spending transaction, simply call a built-in function `this.getStateScript()` to get the locking script containing the latest stateful properties. It is automatically generated for every stateful contract, i.e., a contract that has at least one property decorated with `@state`.
 
 ```
 bytes outputScript = this.getStateScript();
