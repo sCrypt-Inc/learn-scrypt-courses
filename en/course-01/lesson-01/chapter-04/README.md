@@ -1,29 +1,34 @@
-# Chapter 4: Static Property and Const Variable
+# Chapter 4: Static Properties and Const Variables
 
-## Static Property
+## Static Properties
 
-A property decorated with the keyword `static` is a static property, which must be initialized when the property is declared. In the function of the contract, it can be accessed through the contract name and the property name (with a dot in the middle), as below:
+A property decorated with the keyword `static` is a static property, which must be initialized when the property is declared. In the function of the contract, it can be accessed through the contract name and the property name (with a dot in the middle). The contract prefix can be omitted if used in the same contract where it is defined.
 
 
 ```
 contract Test {
     static int x = 12;
+
     public function unlock(int y) {
         Test.x = y;
+        // using prefix
         int z = Test.x + y;
+        // without prefix
+        z = x;
     }
 }
 ```
 
-## Const Variable
+## Const Variables
 
-The `const` keyword can modify local variables, properties, function parameters, and variables. A variable declared as `const` cannot be changed once it is initialized, as below:
+A variable declared using the `const` keyword cannot be changed once it is initialized, as shown below:
 
 ```
 contract Test {
     const int x;
 
     constructor(int x) {
+        // initialize a const property
         this.x = x; // good
     }
 
@@ -36,6 +41,14 @@ contract Test {
     }
 }
 ```
+
+A property can be declared using both. This is typically used to define constants.
+```
+contract Test {
+    static const int PERCENT = 100;
+}
+```
+
 
 ## Put it to the test
 

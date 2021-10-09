@@ -2,7 +2,7 @@
 
 ## Sighash Preimage
 
-In generating a signature for a message in Bitcoin, it is first hashed into a digest, which is then signed. The message signed in an input (i.e., where the resulting signature resides) is called its sighash preimage. It roughly consists the current transaction containing the input and the UTXO it spends from. In the example below, the sighash preimage of the first input in `tx1` is circled in red. Note different inputs have different sighash preimages, even if they are in the same transaction, since they spend different UTXOs.
+In generating a signature for a message in Bitcoin, the message is first hashed into a digest, which is then signed. The message signed in an input (i.e., where the resulting signature resides) is called its sighash preimage. It roughly consists the current transaction containing the input and the UTXO it spends from. In the example below, the sighash preimage of the first input in `tx1` is circled in red. Note different inputs have different sighash preimages, even if they are in the same transaction, since they spend different UTXOs.
 
 ![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/05.png?raw=true)
 

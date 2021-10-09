@@ -1,7 +1,7 @@
 # Chapter 7: Bytes Slice
 
 
-`bytes` represents a variable-length byte array, which can be sliced. like:
+`bytes` represents a variable-length byte array, which can be sliced.
 
 ```
 
@@ -10,7 +10,7 @@ bytes leftb = b[0:10];
 bytes sub = b[10:20];
 ```
 
-The left side of the colon `:` indicates the index at the beginning of the slice, and the right side indicates the index at the end of the slice. If the array slice starts at index `0` or until the end of the byte array, it can be ignored. like:
+``b[start:end]`` returns subarray of b from index ``start`` (inclusive) to ``end`` (exclusive). ``start`` is 0 if omitted, ``end`` is length of array if omitted.
 
 ```
 bytes leftb = b[:10]; 

@@ -3,7 +3,7 @@
 
 ## Function
 
-The functions of the sCrypt language are declared using the `function` keyword. The main function of the function is to encapsulate the internal logic of the contract and code reuse. When defining, you need to use a colon `:` to indicate the type of return value, such as:
+Functions are declared using the `function` keyword. The main purpose of a function is to encapsulate the internal logic of the contract and code reuse. When defining a function, you need to use a colon `:` to indicate the type of return value, such as:
 
 ```
 
