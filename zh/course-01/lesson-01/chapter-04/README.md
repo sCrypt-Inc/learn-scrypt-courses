@@ -1,29 +1,33 @@
-# 第四章: static 属性和 const 变量
+# 第四章: Static 属性和 Const 变量
 
 ## static 属性
 
-带有 `static` 关键字修饰的属性是 `static` 属性，声明 `static` 属性时必须初始化。在该合约的函数中可以通过合约名加属性名字（中间加点）来访问。如：
-
+带有 `static` 关键字修饰的属性是 `static` 属性，声明 `static` 属性时必须初始化。在该合约的函数中可以通过合约名加属性名字（中间加点）来访问。如果在定义它的同一合约中使用，则可以省略该前缀。
 
 ```
 contract Test {
     static int x = 12;
+    
     public function unlock(int y) {
         Test.x = y;
+        // using prefix
         int z = Test.x + y;
+        // without prefix
+        z = x;
     }
 }
 ```
 
 ## const 变量
 
-`const` 关键字可以修饰局部变量，属性，函数参数。声明为 `const` 的变量一旦初始化就不能更改。如： 
+使用 `const` 关键字的修饰局的变量一旦初始化就不能更改。
 
 ```
 contract Test {
     const int x;
 
     constructor(int x) {
+        // initialize a const property
         this.x = x; // good
     }
 
@@ -34,6 +38,15 @@ contract Test {
         a = 11; // <-- error
 
     }
+}
+```
+
+
+可以同时使用两者来声明属性。 这通常用于定义常量。
+
+```
+contract Test {
+    static const int PERCENT = 100;
 }
 ```
 
