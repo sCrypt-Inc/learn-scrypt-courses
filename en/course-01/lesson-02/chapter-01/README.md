@@ -1,21 +1,10 @@
 # Chapter 1: scryptlib
 
-After completing the previous lesson, the sCrypt contract part of our Tic-Tac-Toe dApp is completed.
-It should be noted that this APP interface will be written in JavaScript, not sCrypt. We assume that you already have the basic knowledge of front-end development, so we won't take the time to introduce the basics of these technologies.
+Congratulations! You've built your very first Bitcoin SV smart contract using sCrypt. Now, you will learn how to implement your contract into your Web3/dAPP application using Javascript. We are assuming that you have some basic knowledge of the front-end development.
 
-dApp needs to interact with the contract on the front-end page. To do this, we will use the official JavaScript SDK library released by sCrypt —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
+## scryptlib
 
-
-`scryptlib` is used to integrate Bitcoin SV smart contracts written in the sCrypt language with Javascript/TypeScript code.
-With `scryptlib`, you can easily compile, test, deploy, and call contracts.
-
-The code that uses `scryptlib` to instantiate and call the contract's public methods looks like;
-
-```javascript
-const Tictactoe = buildContractClass(runCompile('tictactoe.scrypt'));
-const game = new Tictactoe(new PubKey(toHex(publicKeyAlice)), new PubKey(toHex(publicKeyBob)));
-const result = game.move(n, new Sig(toHex(sig)), 10000, preimage).verify(context)
-```
+`scryptlib` is sCrypt's official Javascript SDK for integrating Bitcoin SV Smart Contract in your application. It is designed to help you quickly build a high-quality Smart Contract applications. You will be able to compile, test, deploy and call contracts through this SDK.
 
 ## Setup
 
@@ -29,9 +18,20 @@ npm install scryptlib
 yarn add scryptlib
 ```
 
+## Compile
+
+Here's how to instantiate Tic-Tac-Toe Smart Contract and call its pujblic methods. Just like regular Javascript objects, you can simply compile new contract class `Tictactoe`, instantiate new object named `game` using the class, and call the function called `move`.
+
+```javascript
+const Tictactoe = buildContractClass(runCompile('tictactoe.scrypt'));
+const game = new Tictactoe(new PubKey(toHex(publicKeyAlice)), new PubKey(toHex(publicKeyBob)));
+const result = game.move(n, new Sig(toHex(sig)), 10000, preimage).verify(context)
+```
+
 ## Put it to the test
 
+First we can create a boilerplate React application with  [create-react-app](https://github.com/facebook/create-react-app).
 
-First we use [create-react-app](https://github.com/facebook/create-react-app) to create a front-end project.
+Then, you can download `scryptlib` using commands from Setup.
 
-In App.js. Introduce `scryptlib` through `import` of **nodejs**.
+In App.js, introduce `scryptlib` to your application through `import` of **nodejs**.
