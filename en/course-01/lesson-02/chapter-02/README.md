@@ -1,6 +1,8 @@
 # Chapter 2: Compile a contract
 
-[sCrpt IDE](https://scrypt-ide.readthedocs.io/zh_CN/latest/compiling.html) Provides a right-click function to compile contracts. We use it to compile the TicTacToe contract we just wrote. Compiling the contract will output a corresponding Contract Description File `tictactoe_debug_desc.json`. The following is the structure of the contract description file:
+## Contract Description File
+After importing `scryptlib`, you need a Contract Description File for your front-end application to interact with the TicTacToe Smart Contract.
+You should consider installing [sCrpt IDE](https://scrypt-ide.readthedocs.io/zh_CN/latest/compiling.html) that provides a right-click button to compile contracts. Compiling the contract will output a corresponding Contract Description File `tictactoe_debug_desc.json`. The following is the structure of the contract description file:
 
 ```json
 {
@@ -64,9 +66,7 @@
 }
 ```
 
-
-
-With the contract description file, first we need to build the contract class using `buildContractClass`:
+With the generated contract description file above, you can build the cotnract class by running `buildContractClass` function:
 
 ```javascript
 
@@ -76,7 +76,7 @@ const TictactoeContract = buildContractClass(loadDesc('tictactoe_debug_desc.json
 
 ```
 
-In the `web3.ts` file, we wrote `loadContract` to load the contract description file from the network.
+From the [`web3.ts`](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/web3.ts) file, you can utilize `loadContract` to load the contract description file from the network.
 
 ```javascript
   static loadContract(url: string): Promise<{
@@ -95,7 +95,6 @@ In the `web3.ts` file, we wrote `loadContract` to load the contract description 
     });
   }
 ```
-
 
 ## Put it to the test
 
