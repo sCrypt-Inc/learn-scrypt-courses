@@ -14,6 +14,6 @@
 
 在开始这个课程之前，你可以先试玩一下该游戏 [Go to Play](https://scrypt.io/tic-tac-toe)
 
-或者观看以下游戏视频
+井字棋游戏过程如下：
 
-[![井字棋](https://img.youtube.com/vi/_7otVKxSGH8/0.jpg)](https://www.youtube.com/watch?v=_7otVKxSGH8&feature=youtu.be)
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/dapp.gif?raw=true)
