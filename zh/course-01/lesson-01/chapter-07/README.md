@@ -21,9 +21,9 @@
 
 ## 检查 Sighash 原像
 
-如上一章所示，合约位于输出的锁定脚本中。要检查 sighash 原像是否是输入花费输出的原像，只需调用标准库 `Tx` 合约的函数 [`Tx.checkPreimage`](https://scryptdoc.readthedocs.io/en/latest/contracts.html#library-tx).
+如上一章所示，合约位于输出的锁定脚本中。要检查 sighash 原像是否是输入花费输出的原像，只需调用标准库 [Tx](https://scryptdoc.readthedocs.io/zh_CN/latest/contracts.html#library-tx) 合约的 `checkPreimage()` 函数。
 
-合约 `CheckLockTimeVerify` 确保合约中的币是时间锁定的，并且不能在时间达到 `matureTime` 之前花费。
+例如，合约 `CheckLockTimeVerify` 确保合约中的币是时间锁定的，并且不能在时间达到 `matureTime` 之前花费。
 
 ```
 contract CheckLockTimeVerify {
