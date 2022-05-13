@@ -47,7 +47,7 @@ contract Test {
 
 -  `n` : 在棋盘上哪个位置下棋
 -  `sig` : 玩家的签名
--  `amount` : 合约余额
+-  `amount` : 减去交易手续费后的合约余额
 -  `txPreimage`: 将在第七章介绍
 
 
