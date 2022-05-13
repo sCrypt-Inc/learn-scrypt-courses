@@ -1,30 +1,20 @@
-# 第六章: library 库
+# 第六章: 比特币脚本语言
+
+本章和下一章都是第八章的背景知识。
+
+## UTXO 模型
+
+比特币被“锁”在交易的输出中。要想在另一个交易中花费它，其输入中必须含有匹配的“钥匙”。只有钥匙能打开锁时，比特币才能被转移到新的输出中。这就是所谓的 UTXO（Unspent Transaction Outputs） 模型。如下图所示，两个交易各有一个输入和输出。右边的交易输入花费左边交易的输出。
 
 
-库与合约基本相同，只是它不包含任何公有函数，因此它不能被独立部署和调用。它通常用于对相关常量和 `static` 函数进行分组。
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/02.png?raw=true" width="600">
 
+## 比特币脚本语言Script
 
-```
-library Util {
-    static const int DataLen = 1;
-    static const int StateLen = 3;
+锁和钥匙都是用比特币脚本语言[Script](https://wiki.bitcoinsv.io/index.php/Script)表示。它是[比特币虚拟机](https://blog.csdn.net/freedomhero/article/details/106801904)的指令集，是一种类似于汇编的低级语言。锁和钥匙里脚本分别被称为锁定脚本和解锁脚本。输出由两部分组成：锁定脚本和以 satoshis 表示的比特币数量。
 
-    static function toLEUnsigned(int n, int l): bytes {
-        bytes m = num2bin(n, l + 1);
-        return m[0 : len(m) - 1];
-    }
-}
+## Script与sCrypt
 
-```
+sCrypt是一种高级语言，编译生成Script。两者的关系类似于Java和[Java虚拟机](https://en.wikipedia.org/wiki/Java_virtual_machine)的字节码。具体来说，sCrypt里公共函数的参数对应解锁脚本，公共函数的函数体对应锁定脚本，如下图所示。
 
-库可以和合约定义在同一个文件，也可以使用 `import` 关键字导入。
-
-```
-import "util.scrypt";
-```
-
-## 实战演习
-
-在 `TicTacToe` 合约中导入 `Util` 库
-
-
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/01.png?raw=true" width="600">
