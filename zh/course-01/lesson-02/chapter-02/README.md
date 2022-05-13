@@ -89,7 +89,7 @@
 const MyContract = buildContractClass(JSON.parse(descFileContent));
 ```
 
-这里我们为你提供了 [web3](https://github.com/sCrypt-Inc/tic-tac-toe/blob/7ae1eb8cb46bd8315d9c7d858b6a190ba3c4c306/src/web3/web3.ts) 系列工具函数。你可以直接使用 `web3.loadContract()` 从网络中加载出合约类。
+这里我们为你提供了 [web3](https://github.com/sCrypt-Inc/tic-tac-toe/blob/7ae1eb8cb46bd8315d9c7d858b6a190ba3c4c306/src/web3/web3.ts) 工具类。该工具类提供了进行合约与网络交互的工具函数以及对钱包接口的封装。你可以直接使用 `web3.loadContract()` 从网络中加载出合约类。
 
 
 ## 实战演习
