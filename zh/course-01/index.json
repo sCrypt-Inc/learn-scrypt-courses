@@ -54,81 +54,61 @@
                 },
                 {
                     "num": 6,
-                    "title": "第六章: library 库",
-                    "scripts": [  
-                        {
-                            "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
-                            "lang": "scrypt"
-                        }
-                    ]
+                    "title": "第六章: 比特币脚本语言"
                 },
                 {
                     "num": 7,
-                    "title": "第七章: bytes 切片",
+                    "title": "第七章: 获取 Sighash 原像",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
                 },
                 {
                     "num": 8,
-                    "title": "第八章: 数组",
+                    "title": "第八章: 维护游戏状态",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
                 },
                 {
                     "num": 9,
-                    "title": "第九章: 循环 ",
+                    "title": "第九章: 签名验证",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
                 },
                 {
                     "num": 10,
-                    "title": "第十章: 比特币脚本语言"
-                },
-                {
-                    "num": 11,
-                    "title": "第十一章：获取 Sighash 原像"
-                },
-                {
-                    "num": 12,
-                    "title": "第十二章: 维护游戏状态",
+                    "title": "第十章: 数组",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "num": 11,
+                    "title": "第十一章：循环",
+                    "scripts": [  
                         {
-                            "name": "util.scrypt",
+                            "name": "tictactoe.scrypt",
                             "lang": "scrypt"
                         }
                     ]
+                },
+                {
+                    "num": 12,
+                    "title": "第十二章: 总结"
                 }
             ]
         },
