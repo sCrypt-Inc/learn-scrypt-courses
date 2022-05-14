@@ -5,7 +5,7 @@
 需要注意的是这个 APP 界面将使用 JavaScript 来写，并不是 sCrypt。React App 项目 [tic-tac-toe](https://github.com/sCrypt-Inc/tic-tac-toe) 的 `webapp` 分支包含一个只有前端代码的井字棋游戏。我们将从这个分支开始，一步步实现一个合约版的井字棋游戏。
 。
 
-我们假设你已经具备前端开发的基础知识，因此我们不会花时间来介绍这些技术的基础知识。
+我们假设你已经具备前端开发的基础知识，因此我们不会花时间来介绍它。
 dApp 需要在前端页面与合约进行交互。 要做到这一点，我们将使用 sCrypt 官方发布的 JavaScript 库 —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
 
 
@@ -39,4 +39,4 @@ assert(result.success);
 
 ## 实战演习
 
-克隆 React App 项目 [tic-tac-toe](https://github.com/sCrypt-Inc/tic-tac-toe)。并检出到 `webapp` 分支。
+克隆 React App 项目 [tic-tac-toe](https://github.com/sCrypt-Inc/tic-tac-toe)。并切换到 `webapp` 分支。

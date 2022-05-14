@@ -28,7 +28,7 @@ const instance = new TictactoeContractClass(
     new PubKey(alicePubKey),
     new PubKey(bobPubKey),
     true,
-    [0,0,0,0,0,0,0,0,0]
+    [0,0,0,0,0,0,0,0,0]  // empty board
   );
 
 ```
