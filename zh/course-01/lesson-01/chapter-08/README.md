@@ -8,7 +8,7 @@
 
 ## 第一步
 
-使用装饰器 `@state` 声明状态属性。 您可以将**状态属性**当作普通属性：读取和更新它。
+使用[装饰器 `@state`](https://scryptdoc.readthedocs.io/zh_CN/latest/state.html) 声明状态属性。 您可以将**状态属性**当作普通属性：读取和更新它。
 
 ```
 contract Counter {

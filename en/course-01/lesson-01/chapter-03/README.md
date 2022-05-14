@@ -7,7 +7,7 @@ sCrypt is a strongly typed language. The basic data types include:
 
 2. `int`: signed integer
 
-3. `bytes`: byte array
+3. `int[3]`: Integer array of size 3
 
 4. `PubKey`: public key
 

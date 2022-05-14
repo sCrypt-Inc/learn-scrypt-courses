@@ -1,19 +1,38 @@
-# Chapter 10: Bitcoin Script
+# Chapter 8: Array
 
-This chapter and next are both prerequisites for Chapter 12.
 
-## UTXO Model
 
-Bitcoins are locked in outputs of transactions. To spend bitcoins in an output, a transaction has to provide a matching key in its input. Bitcoins can only be transferred to new outputs when the key can open the lock successfully. This is the so called UTXO（Unspent Transaction Outputs）model. As an example shown below, two transactions each have one input and one output. The input on the right spends the output on the left.
+An array is a list of values of the same type. Array elements are separated by commas. The array size must be a positive integer.
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/02.png?raw=true" width="600">
+```
+int[3] a = [0, 1, 2];
+bool[3] b = [false, false && true, (1 > 2)];
+int[2][3] arr2D = [[11, 12, 13], [21, 22, 23]];
+int d = a[2];
+int idx = 2;
+// read
+d = a[idx];
+d = arr2D[idx][1];
+// write
+a[idx] = 2;
+// assign to an array variable
+a = arr2D[1];
+```
 
-## Bitcoin Script Language
 
-Both lock and key are encoded in a language called [Bitcoin Script](https://wiki.bitcoinsv.io/index.php/Script). It is the instruction set for the [Bitcoin Virtual Machine](https://xiaohuiliu.medium.com/introduction-to-bitcoin-smart-contracts-9c0ea37dc757), an assembly-like low-level language. The script in the key and lock are called unlocking and locking script, respectively. An output consists of two parts: a locking script and bitcoin amount denoted in satoshis.
+##  Put it to the test
 
-## Script and sCrypt
+For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all the possible connections in a line:
 
-sCrypt is a high-level language, compiled to Script. They are analogous to Java and [Java virtual machine](https://en.wikipedia.org/wiki/Java_virtual_machine) bytecode. Specifically, sCrypt public function parameters correspond to unlocking script, its body to locking script, as shown below.
+```
+0, 1, 2
+3, 4, 5
+6, 7, 8
+0, 3, 6
+1, 4, 7
+2, 5, 8
+0, 4, 8
+2, 4, 6
+```
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/01.png?raw=true" width="600">
+Use a two-dimensional array `int[8][3] lines` to save all the above winning states. Add this array in the `won` function.

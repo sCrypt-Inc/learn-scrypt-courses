@@ -1,48 +1,23 @@
-# Chapter 9: Loop
+# Chapter 9: Signature Verification
 
-sCrypt uses the `loop` keyword to define loops. The syntax is as follows:
+The `sig` parameter of the `move()` function is the player's signature. If the signature is not verified, anyone can call the contract's `move()` method to move the piece.
 
-```
-loop (maxLoopCount) [: i] {
-    loopBody
-}
-```
+The following example is the most common contract in the Bitcoin network: pay to public key hash.
 
-`maxLoopCount` must be a constant known at compile time. `i` is an [induction variable](https://scryptdoc.readthedocs.io/en/latest/loop.html#induction-variable), representing the loop index starting from 0. For example, the following loop:
+```js
+contract P2PKH {
+    Ripemd160 pubKeyHash;
 
-
-```
-contract Loop {
-    
-    static const int N = 10;
-    
-    public function unlock(int x) {
-    
-        loop (N) {
-            x = x * 2;
-        }
-        require(x > 100);
+    public function unlock(Sig sig, PubKey pubKey) {
+        require(hash160(pubKey) == this.pubKeyHash);
+        require(checkSig(sig, pubKey));
     }
 }
 ```
 
-is equivalent to:
+The signature and public key of pay to public key hash are both passed in from the unlock parameter. In the `TicTacToe` contract, only the signature is passed in from the unlock parameter, and the player's public key has been stored in the contract's `PubKey alice` and `PubKey bob` properties.
 
-```
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-x = x * 2;
-```
 
 ## Put it to the test
 
-1. In the previous chapter, we stored all possible winning lines in the array `lines`. Let us loop through all the lines, to check if there is a line a player has formed on the board. If there is, he wins the game.
-
-2. In the `full` function, traverse all the cells of the board and check whether it is occupied.
+1. Verify the `sig` signature parameter of the `move()` function.

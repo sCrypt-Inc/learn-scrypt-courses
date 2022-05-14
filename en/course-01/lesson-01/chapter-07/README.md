@@ -1,22 +1,44 @@
-# Chapter 7: Bytes Slice
+# Chapter 7: Get Sighash Preimage
+
+## Sighash Preimage
+
+In generating a signature for a message in Bitcoin, the message is first hashed into a digest, which is then signed. The message signed in an input (i.e., where the resulting signature resides) is called its sighash preimage. It roughly consists the current transaction containing the input and the UTXO it spends from. In the example below, the sighash preimage of the first input in `tx1` is circled in red. Note different inputs have different sighash preimages, even if they are in the same transaction, since they spend different UTXOs.
+
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/05.png?raw=true)
+
+[Its detailed format](https://github.com/bitcoin-sv/bitcoin-sv/blob/master/doc/abc/replay-protected-sighash.md#digest-algorithm) is as follows:
+
+     1. nVersion of the transaction (4-byte little endian)
+     2. hashPrevouts (32-byte hash)
+     3. hashSequence (32-byte hash)
+     4. outpoint (32-byte hash + 4-byte little endian) 
+     5. scriptCode of the input (serialized as scripts inside CTxOuts)
+     6. value of the output spent by this input (8-byte little endian)
+     7. nSequence of the input (4-byte little endian)
+     8. hashOutputs (32-byte hash)
+     9. nLocktime of the transaction (4-byte little endian)
+    10. sighash type of the signature (4-byte little endian)
+
+## Check Sighash Preimage
+
+A contract is in the locking script of an output, as seen in the last chapter. To check whether a sighash preimage is that of the input spending the output, simply call a standard library function [`Tx.checkPreimage`](https://scryptdoc.readthedocs.io/zh_CN/latest/contracts.html#library-tx).
+
+For example, the contract `CheckLockTimeVerify` ensures that coins in the contract are time locked and cannot be spent until the time reaches `matureTime`.
 
 
-`bytes` represents a variable-length byte array, which can be sliced.
+```js
+contract CheckLockTimeVerify {
+    int matureTime;
 
-```
+    public function spend(SigHashPreimage txPreimage) {
+        // using Tx.checkPreimage() to verify txPreimage
+        require(Tx.checkPreimage(txPreimage));
 
-bytes b = b'414136d08c5ed2bf3ba048afe6dcaebafeffffffffffffffffffffffffffffff00';
-bytes leftb = b[0:10]; 
-bytes sub = b[10:20];
-```
-
-``b[start:end]`` returns subarray of b from index ``start`` (inclusive) to ``end`` (exclusive). ``start`` is 0 if omitted, ``end`` is length of array if omitted.
-
-```
-bytes leftb = b[:10]; 
-bytes rightb = b[10:]; 
+        require(SigHash.nLocktime(txPreimage) >= this.matureTime);
+    }
+}
 ```
 
 ## Put it to the test
 
-1. The board is an array of 9 bytes, and each byte represents the state of a cell on the board. Refer to `getElemAt` to implement the `setElemAt` function of the Util library.
+1. Use `Tx.checkPreimage()` to check the `txPreimage` parameter of the `move()` method

@@ -16,4 +16,4 @@ Before starting this course, you can try the game [Go to Play](https://scrypt.io
 
 or watch the video below.
 
-[![Tic-Tac-Toe](https://img.youtube.com/vi/_7otVKxSGH8/0.jpg)](https://www.youtube.com/watch?v=_7otVKxSGH8&feature=youtu.be)
+![Tic-Tac-Toe](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/dapp.gif?raw=true)
