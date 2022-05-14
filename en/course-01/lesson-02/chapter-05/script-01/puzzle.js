@@ -3,13 +3,22 @@ import Game from "./Game";
 import React, { useState, useEffect } from "react";
 import TitleBar from "./TitleBar";
 import {GameData, PlayerPublicKey, Player, ContractUtxos, CurrentPlayer} from "./storage";
-import { web3 } from "./web3";
+import { web3, SensiletWallet } from "./web3";
+import { PubKey } from "scryptlib";
+import Balance from "./balance";
+import Auth from "./auth";
 
 async function fetchContract(alicePubKey, bobPubKey) {
   let { contractClass: TictactoeContractClass } = await web3.loadContract(
     "/tic-tac-toe/tictactoe_release_desc.json"
   );
 
+  return new TictactoeContractClass(
+    new PubKey(alicePubKey),
+    new PubKey(bobPubKey),
+    true,
+    [0,0,0,0,0,0,0,0,0]
+  );
 }
 
 function App() {
@@ -22,36 +31,40 @@ function App() {
     instance: null
   });
 
+  // init web3 wallet
   useEffect(async () => {
 
-    updateStates({
-      started: Object.keys(GameData.get()).length > 0,
-      isConnected: false,
-      instance: null
-    })
+
+    const timer = setTimeout(async ()=> {
+
+      const instance = await fetchContract(PlayerPublicKey.get(Player.Alice),
+        PlayerPublicKey.get(Player.Bob))
+
+      web3.setWallet(new SensiletWallet());
+      const isConnected = await web3.wallet.isConnected();
+      
+      updateStates({
+        started: Object.keys(GameData.get()).length > 0,
+        isConnected: isConnected,
+        instance: instance
+      })
+  
+    }, 100)
+
+
+    return () => {
+      clearTimeout(timer)
+    }
 
   }, []);
 
   const startGame = async (amount) => {
 
-    let gameStates = {
-      amount: amount,
-      name: "tic-tac-toe",
-      date: new Date(),
-      history: [
-        {
-          squares: Array(9).fill(null),
-        },
-      ],
-      currentStepNumber: 0,
-      isAliceTurn: true,
-    };
-    GameData.set(gameStates);
-    CurrentPlayer.set(Player.Alice);
-    updateStates(Object.assign({}, states, {
-      started: true
-    }))
-    
+    if (web3.wallet && states.instance) {
+      
+        // TODO: call web.deploy to deploy contract instance
+    }
+
   };
 
   const cancelGame = async () => {
@@ -59,7 +72,11 @@ function App() {
     ContractUtxos.clear();
     CurrentPlayer.set(Player.Alice);
 
-
+    if(states.instance) {
+      // reset states
+      states.instance.isAliceTurn = true;
+      states.instance.board = [0,0,0,0,0,0,0,0,0];
+    }
 
     ref.current.clean();
 
@@ -80,11 +97,12 @@ function App() {
           onCancel={cancelGame}
           started={states.started}
         />
-        <Game ref={ref}/>
-
+        <Game ref={ref} contractInstance={states.instance}/>
+        {states.isConnected ? <Balance></Balance> : <Auth></Auth>}
       </header>
     </div>
   );
 }
 
 export default App;
+

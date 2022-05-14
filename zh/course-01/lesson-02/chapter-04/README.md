@@ -98,6 +98,6 @@ export default Balance;
 
 1. 在 `App` 组件中初始化钱包。
 2. 在 `Auth` 组件使用 `requestAccount` 接口来登入钱包
-2. 在 `Balance` 组件使用 `getbalance` 接口获取钱包余额并展示出来。
+3. 在 `Balance` 组件使用 `getbalance` 接口获取钱包余额并展示出来。
 
 参考这个 [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/b792258bdd3909b9e00f788db8e62c586b182681)

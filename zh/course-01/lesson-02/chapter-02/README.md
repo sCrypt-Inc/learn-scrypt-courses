@@ -85,7 +85,7 @@
 
 通常可以使用合约描述文件在 Javascript/TypeScript 中构建出合约类，如下所示：
 
-```
+```js
 const MyContract = buildContractClass(JSON.parse(descFileContent));
 ```
 
