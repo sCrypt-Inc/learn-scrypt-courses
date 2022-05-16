@@ -1,70 +1,106 @@
-# Chapter 4: Wallet
+# Chapter 4: Integrating Wallet
 
-After the contract is instantiated, it can be deployed to the Bitcoin network. But before that, we need to understand the wallet first. Because the deployment contract is to send the contract to the blockchain network through a transaction, that is, on the chain. A certain amount of Bitcoin is required as a handling fee for the chain, and a handling fee is also required for invoking the contract.
+Deploying the contract object `instance` to the Bitcoin network requires bitcoins. To do this, we need to access the wallet first to get bitcoins. Here we take [sensilet](https://sensilet.com) as an example to introduce how to access the wallet.
 
-## Wallet interface
 
-In [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/wallet.ts), we define the wallet interface that needs to be used:
+## Wallet implementation
 
-```typescript
-export abstract class wallet {
+We define some common wallet interfaces in [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/wallet.ts) and use sensilet to implement these interfaces. For the specific implementation, see: [sensiletwallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/sensiletwallet.ts)
 
-  network: NetWork;
 
-  constructor(network: NetWork) {
-    this.network = network;
-  }
+## Wallet initialization
 
-  //dApp use this api to connect to the wallet.
-  abstract requestAccount(name: string, permissions: string[]): Promise<any>;
+Initialize the wallet in `useEffect`. First, set up a `SensiletWallet` object for `web3`. Then call `web3.wallet.isConnected()` to save the status of whether the wallet is connected.
 
-  //get wallet balance
-  abstract getbalance(): Promise<number>;
-
-  //sign raw transaction, returns unlockscript of the p2pkh input if success
-  abstract signRawTransaction(rawtx: string, inputIndex: number, sigHashType: SignType, addr: string
-  ): Promise<string>;
-
-  //get signature for special input
-  abstract getSignature(rawtx: string, inputIndex: number, sigHashType: SignType, addr: string
-  ): Promise<string>;
-
-  //send raw transaction, returns transaction hash if success
-  abstract sendRawTransaction(rawTx: string): Promise<string>;
-
-  //returns array of unspent transaction outputs, which total amount is more than the minAmount argument.
-  abstract listUnspent(minAmount: number, options?: {
-    purpose?: string
-  }): Promise<UTXO[]>;
-
-  //returns a new Bitcoin address, for receiving change.
-  abstract getRawChangeAddress(options?: {
-    purpose?: string
-  }): Promise<string>;
-
-  //returns a public key
-  abstract getPublicKey(options?: {
-    purpose?: string
-  }): Promise<string>;
-
-}
-```
-
-## DotWallet
-
-[DotWallet](https://www.ddpurse.com) Wallet implements the wallet interface interface. For specific implementation, you can check [DotWallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/dotwallet.ts)
-
-First, we need to log in to the **DotWallet** wallet, we use the login interface provided by the wallet to log in:
+In the rendering code of the App, it is determined whether to render the wallet login component `Auth` or the wallet balance component `Balance` by judging the state of `states.isConnected`.
 
 ```javascript
-const handleAuth = (e)=>{
-    new DotWallet().auth()
-}
+return (
+    <div className="App">
+      <header className="App-header">
+        <h2>Play Tic-Tac-Toe on Bitcoin</h2>
+        ...
+        {states.isConnected ? <Balance></Balance> : <Auth></Auth>}
+      </header>
+    </div>
+  );
 ```
 
-After the login is successful, we can use the various wallet interfaces above.
+## Wallet login
 
+Below is the component `Auth` that implements wallet login. When the user clicks the Sensilet button, the wallet's `requestAccount` interface is called to log in to the wallet. An authorization prompt box will appear in the wallet plugin.
+
+```js
+import { web3 } from "./web3";
+
+const Auth = (props) => {
+
+  const sensiletLogin = async (e) => {
+    try {
+      const res = await web3.wallet.requestAccount("tic-tac-toe");
+      if (res) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("requestAccount error", error);
+    }
+  };
+
+  return (
+    <div className="auth">
+      <div>
+        <button
+          className="pure-button button-large sensilet"
+          onClick={sensiletLogin}
+        >
+          Sensilet
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Auth;
+```
+
+
+## Wallet balance
+
+The `Balance` component calls the `getbalance` interface of the wallet to implement the function of displaying the wallet balance.
+
+```js
+import { useState, useEffect } from "react";
+import { web3 } from "./web3";
+const Balance = (props) => {
+  const [balance, setBalance] = useState(0);
+
+  useEffect(async () => {
+    if (web3.wallet) {
+      web3.wallet.getbalance().then((balance) => {
+        setBalance(balance);
+      });
+    }
+  }, []);
+
+    return (
+      <div className="wallet">
+        <div className="walletInfo">
+          <div className="balance">
+            <label>Balance: {balance} <span> (satoshis)</span></label>
+          </div>
+        </div>
+      </div>
+    );
+};
+
+export default Balance;
+```
 
 ## Put it to the test
 
-1. Use the `getbalance` interface to get the wallet balance and display it.
+1. Initialize the wallet in the `App` component.
+2. Use the `requestAccount` interface in the `Auth` component to log in to the wallet
+3. Use the `getbalance` interface in the `Balance` component to get the wallet balance and display it.
+
+Refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/b792258bdd3909b9e00f788db8e62c586b182681)
+

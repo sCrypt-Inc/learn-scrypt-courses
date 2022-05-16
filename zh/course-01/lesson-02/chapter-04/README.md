@@ -1,70 +1,103 @@
-# 第四章: 钱包
+# 第四章: 集成钱包
 
-合约实例化之后，就可以部署到比特币网络了。但在那个之前，我们需要先了解一下钱包。因为部署合约是通过交易将合约发送到区块链网络，即上链。上链需要有一定的比特币作为手续费，调用合约同样也需要手续费。
+将合约对象 `instance` 部署到比特币网络需要比特币。为此我们需要先接入钱包用来获取比特币。这里以 [sensilet](https://sensilet.com) 为例，介绍如何接入钱包。
 
-## 钱包接口
+## 钱包实现
 
-在 [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/wallet.ts) 中，我们定义了需要用到的钱包接口：
+我们在 [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/wallet.ts) 中定义了一些通用的钱包接口。并使用 sensilet 来实现这些接口。具体实现见: [sensiletwallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/sensiletwallet.ts)
 
-```typescript
-export abstract class wallet {
 
-  network: NetWork;
+## 钱包初始化
 
-  constructor(network: NetWork) {
-    this.network = network;
-  }
+在 `useEffect` 中初始化钱包。首先，为 `web3` 设置一个 `SensiletWallet` 对象。然后调用 `web3.wallet.isConnected()` 将钱包是否连接的状态保存起来。
 
-  //dApp use this api to connect to the wallet.
-  abstract requestAccount(name: string, permissions: string[]): Promise<any>;
-
-  //get wallet balance
-  abstract getbalance(): Promise<number>;
-
-  //sign raw transaction, returns unlockscript of the p2pkh input if success
-  abstract signRawTransaction(rawtx: string, inputIndex: number, sigHashType: SignType, addr: string
-  ): Promise<string>;
-
-  //get signature for special input
-  abstract getSignature(rawtx: string, inputIndex: number, sigHashType: SignType, addr: string
-  ): Promise<string>;
-
-  //send raw transaction, returns transaction hash if success
-  abstract sendRawTransaction(rawTx: string): Promise<string>;
-
-  //returns array of unspent transaction outputs, which total amount is more than the minAmount argument.
-  abstract listUnspent(minAmount: number, options?: {
-    purpose?: string
-  }): Promise<UTXO[]>;
-
-  //returns a new Bitcoin address, for receiving change.
-  abstract getRawChangeAddress(options?: {
-    purpose?: string
-  }): Promise<string>;
-
-  //returns a public key
-  abstract getPublicKey(options?: {
-    purpose?: string
-  }): Promise<string>;
-
-}
-```
-
-## DotWallet
-
-[DotWallet](https://www.ddpurse.com) 钱包实现了该钱包接口接口。具体实现你可以查看 [DotWallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/master/src/web3/dotwallet.ts)
-
-首先我们需要登录 **DotWallet** 钱包，我们使用该钱包提供的登录接口登录：
+在 App 的渲染代码中，通过判断 `states.isConnected` 状态来决定渲染钱包登入组件 `Auth` 还是钱包余额组件 `Balance`。
 
 ```javascript
-const handleAuth = (e)=>{
-    new DotWallet().auth()
-}
+return (
+    <div className="App">
+      <header className="App-header">
+        <h2>Play Tic-Tac-Toe on Bitcoin</h2>
+        ...
+        {states.isConnected ? <Balance></Balance> : <Auth></Auth>}
+      </header>
+    </div>
+  );
 ```
 
-登录成功之后，我们就可以使用上面的各个钱包接口了。
+## 钱包登入
+下面是实现钱包登入的组件 `Auth`。用户点击 Sensilet 按钮则调用钱包的 `requestAccount` 接口来登入钱包。钱包插件会出现授权提示框。
 
+```js
+import { web3 } from "./web3";
+
+const Auth = (props) => {
+
+  const sensiletLogin = async (e) => {
+    try {
+      const res = await web3.wallet.requestAccount("tic-tac-toe");
+      if (res) {
+        window.location.reload();
+      }
+    } catch (error) {
+      console.error("requestAccount error", error);
+    }
+  };
+
+  return (
+    <div className="auth">
+      <div>
+        <button
+          className="pure-button button-large sensilet"
+          onClick={sensiletLogin}
+        >
+          Sensilet
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Auth;
+```
+
+
+## 钱包余额
+
+`Balance` 组件调用了钱包的 `getbalance` 接口，实现了展示钱包余额的功能。
+
+```js
+import { useState, useEffect } from "react";
+import { web3 } from "./web3";
+const Balance = (props) => {
+  const [balance, setBalance] = useState(0);
+
+  useEffect(async () => {
+    if (web3.wallet) {
+      web3.wallet.getbalance().then((balance) => {
+        setBalance(balance);
+      });
+    }
+  }, []);
+
+    return (
+      <div className="wallet">
+        <div className="walletInfo">
+          <div className="balance">
+            <label>Balance: {balance} <span> (satoshis)</span></label>
+          </div>
+        </div>
+      </div>
+    );
+};
+
+export default Balance;
+```
 
 ## 实战演习
 
-1. 使用 `getbalance` 接口获取钱包余额并展示出来。
+1. 在 `App` 组件中初始化钱包。
+2. 在 `Auth` 组件使用 `requestAccount` 接口来登入钱包
+3. 在 `Balance` 组件使用 `getbalance` 接口获取钱包余额并展示出来。
+
+参考这个 [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/b792258bdd3909b9e00f788db8e62c586b182681)

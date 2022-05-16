@@ -19,7 +19,7 @@ contract Test {
 
 ## Public Function
 
-The public function uses the `public` modifier to modify the function, which is the interface for externally calling the contract. The public function does not have a clear return type declaration and the `return` statement at the end of the function, which implicitly returns the `bool` type, and the return value is `true`
+The public function uses the `public` modifier to modify the function, which is the interface for externally calling the contract. The parameters of the public function represent the unlock parameters in the UTXO model (described in the next chapter). The public function does not have a clear return type declaration and the `return` statement at the end of the function, which implicitly returns the `bool` type, and the return value is `true`
 
 ## Require Statement
 
@@ -44,10 +44,18 @@ contract Test {
 
 There are 3 functions in the `TicTacToe` contract:
 
-`move`:  Alice (Alice) and Bob (Bob) each lock X bitcoins in a UTXO containing the above contract. Next, they alternately play the game by calling the public function move()
-`won`: Checks if any player has won the game, he will be able to take away all the bets locked in the contract
-`full`: Checks whether there are pieces in all the squares of the board, if no one wins the game, the two people divide the bet equally
+`move()` : Alice and Bob each lock X bitcoins in a UTXO containing the above contract. Next, they alternately play the game by calling the public function `move()`. The public function `move()` has 4 parameters, which represent:
 
-1. Add return type `bool` for `won` and `full` function and change `move` to a public function
+- `n` : where on the board to play the chess
+- `sig` : the player's signature
+- `amount` : the contract balance after subtracting transaction fees
+- `txPreimage`: will be introduced in Chapter 7
 
-2. Add a **require statement** to the public function `move`, requiring that the function parameter `n` must be greater than or equal to `0` and less than the contract's `static` property `BOARDLEN`
+`won()` : Check if a player has won the game, he will be able to take away all contract locked bets
+
+`full()` : Check if all squares of the board have pieces, if no one wins the game, the two players will split the bet evenly
+
+
+1. Add return type `bool` for `won()` and `full()` function and change `move()` to a public function
+
+2. Add a **require statement** to the public function `move()`, requiring that the function parameter `n` must be greater than or equal to `0` and less than the contract's `static` property `N`

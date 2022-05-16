@@ -1,13 +1,68 @@
-import "util.scrypt";
-
 contract TicTacToe {
-    
-    ...
+    PubKey alice;
+    PubKey bob;
 
-    function won(bytes board, bytes play) : bool {
-        //TODO: add int[8][3] lines here
-        
+    // if it is alice's turn to play
+    @state
+    bool isAliceTurn;
+
+    // state of the board. For example, a chess with Alice in the first row 
+    // and first column is expressed as [1,0,0,0,0,0,0,0,0]
+    @state
+    int[N] board;
+    
+    static const int N = 9;
+    static const int EMPTY = 0;
+    static const int ALICE = 1;
+    static const int BOB = 2;
+
+    
+    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
+        require(Tx.checkPreimage(txPreimage));
+        require(n >= 0 && n < N);
+
+        // square not filled
+        require(this.board[n] == EMPTY);
+
+        int play = this.isAliceTurn ? ALICE : BOB;
+        PubKey player = this.isAliceTurn ? this.alice : this.bob;
+
+
+        //TODO: update state properties to make the move
+
+        bytes outputs = b'';
+        if (this.won(play)) {
+            bytes outputScript = Utils.buildPublicKeyHashScript(hash160(player));
+            bytes output = Utils.buildOutput(outputScript, amount);
+            outputs = output;
+        }
+        else if (this.full()) {
+            bytes aliceScript = Utils.buildPublicKeyHashScript(hash160(this.alice));
+            bytes aliceOutput = Utils.buildOutput(aliceScript, amount);
+
+            bytes bobScript = Utils.buildPublicKeyHashScript(hash160(this.bob));
+            bytes bobOutput = Utils.buildOutput(bobScript, amount);
+
+            outputs = aliceOutput + bobOutput;
+        }
+        else {
+            //TODO: serialize the state of the contract
+
+            bytes output = Utils.buildOutput(outputScript, amount);
+            outputs = output;
+        }
+
+        //TODO: make sure the transaction contains the expected outputs
+
     }
 
-    ...
+
+    function won(int play) : bool {
+        return true;
+    }
+
+
+    function full() : bool {
+        return true;
+    }
 }

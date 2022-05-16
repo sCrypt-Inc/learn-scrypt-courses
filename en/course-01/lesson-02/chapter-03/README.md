@@ -8,9 +8,8 @@ For each basic data type of the `sCrypt` language, **scryptlib** has a correspon
 for example:
 
 1. `int` type corresponds to `Int` class
-2. `bytes` type corresponds to `Bytes` class
-3. `bool` type corresponds to `Bool` class
-4. `PubKey` type corresponds to `PubKey` class
+2. `bool` type corresponds to `Bool` class
+3. `PubKey` type corresponds to `PubKey` class
 
 
 The basic data type is the type supported by **scryptlib** by default. For user-defined structures or aliases, they need to be dynamically generated through `buildTypeClasses`.
@@ -21,20 +20,20 @@ const {Person, Male, Female} = buildTypeClasses(JSON.parse(descFileContent));
 
 ## Instantiate a Contract
 
-We have obtained the contract class `TictactoeContractClass` by loading the contract description file. Next, use the `new` keyword to instantiate the contract, and use `setDataPart` to set the initial state of the instance and save it.
+We have obtained the contract class `TictactoeContractClass` by loading the contract description file. Next, then use the `new` keyword to instantiate the contract.
 
 ```javascript
-
-let c = new TictactoeContractClass(
-  new PubKey(toHex(alicePubKey)),
-  new PubKey(toHex(bobPubKey)),
+const instance = new TictactoeContractClass(
+  new PubKey(alicePubKey),
+  new PubKey(bobPubKey),
+  true,
+  [0,0,0,0,0,0,0,0,0]  // empty board
 );
-
-c.setDataPart("00000000000000000000");
-
 ```
 
 ## Put it to the test
 
-1. Import `PubKey` type
-2. Paste the code for instantiating the contract into `fetchContract`.
+1. Use the `TictactoeContractClass` contract class in `fetchContract` to instantiate the contract and return the instantiated contract object
+
+
+Refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/47ec1328fbf63b5104c3612c955034bd736fc067)

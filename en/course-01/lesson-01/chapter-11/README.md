@@ -1,35 +1,46 @@
-# Chapter 11: Get Sighash Preimage
+# Chapter 9: Loop
 
-## Sighash Preimage
-
-In generating a signature for a message in Bitcoin, the message is first hashed into a digest, which is then signed. The message signed in an input (i.e., where the resulting signature resides) is called its sighash preimage. It roughly consists the current transaction containing the input and the UTXO it spends from. In the example below, the sighash preimage of the first input in `tx1` is circled in red. Note different inputs have different sighash preimages, even if they are in the same transaction, since they spend different UTXOs.
-
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/05.png?raw=true)
-
-[Its detailed format](https://github.com/bitcoin-sv/bitcoin-sv/blob/master/doc/abc/replay-protected-sighash.md#digest-algorithm) is as follows:
-
-     1. nVersion of the transaction (4-byte little endian)
-     2. hashPrevouts (32-byte hash)
-     3. hashSequence (32-byte hash)
-     4. outpoint (32-byte hash + 4-byte little endian) 
-     5. scriptCode of the input (serialized as scripts inside CTxOuts)
-     6. value of the output spent by this input (8-byte little endian)
-     7. nSequence of the input (4-byte little endian)
-     8. hashOutputs (32-byte hash)
-     9. nLocktime of the transaction (4-byte little endian)
-    10. sighash type of the signature (4-byte little endian)
-
-## Check Sighash Preimage
-
-A contract is in the locking script of an output, as seen in the last chapter. To check whether a sighash preimage is that of the input spending the output, simply call a standard library function [`Tx.checkPreimage`](https://scryptdoc.readthedocs.io/en/latest/contracts.html#contract-op-push-tx).
+sCrypt uses the `loop` keyword to define loops. The syntax is as follows:
 
 ```
-contract TicTacToe {
+loop (maxLoopCount) [: i] {
+    loopBody
+}
+```
 
-    ...
+`maxLoopCount` must be a constant known at compile time. `i` is an [induction variable](https://scryptdoc.readthedocs.io/en/latest/loop.html#induction-variable), representing the loop index starting from 0. For example, the following loop:
+
+
+```
+contract Loop {
     
-    public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
-        require(Tx.checkPreimage(txPreimage));
+    static const int N = 10;
+    
+    public function unlock(int x) {
+    
+        loop (N) : i {
+            x = x * 2 + i;
+        }
+        require(x > 100);
     }
 }
 ```
+
+is equivalent to:
+
+```
+x = x * 2 + 0;
+x = x * 2 + 1;
+x = x * 2 + 2;
+x = x * 2 + 3;
+x = x * 2 + 4;
+x = x * 2 + 5;
+x = x * 2 + 6;
+x = x * 2 + 7;
+x = x * 2 + 8;
+x = x * 2 + 9;
+```
+
+## Put it to the test
+
+1. In the `full` function, iterate over all the squares of the board and check whether each square is empty.

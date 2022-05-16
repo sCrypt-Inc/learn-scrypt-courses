@@ -119,13 +119,7 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第一章: scryptlib",
-                    "scripts": [  
-                        {
-                            "name": "app.js",
-                            "lang": "js"
-                        }
-                    ]
+                    "title": "第一章: scryptlib"
                 },
                 {
                     "num": 2,
@@ -149,10 +143,18 @@
                 },
                 {
                     "num": 4,
-                    "title": "第四章: 钱包",
+                    "title": "第四章: 集成钱包",
                     "scripts": [  
                         {
-                            "name": "wallet.js",
+                            "name": "app.js",
+                            "lang": "js"
+                        },
+                        {
+                            "name": "auth.js",
+                            "lang": "js"
+                        },
+                        {
+                            "name": "balance.js",
                             "lang": "js"
                         }
                     ]
@@ -162,8 +164,8 @@
                     "title": "第五章: 部署合约",
                     "scripts": [  
                         {
-                            "name": "web3.ts",
-                            "lang": "ts"
+                            "name": "app.js",
+                            "lang": "js"
                         }
                     ]
                 },

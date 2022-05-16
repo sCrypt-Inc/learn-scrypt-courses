@@ -54,8 +54,7 @@ contract Test {
 
 Add the following `static` properties to the `TicTacToe` contract and decorate it with `const`.
 
-1. Add `TURNLEN` with type `int` and value `1`. It is the number of bytes to store whose turn for the next move as part of the state.
-2. Add `BOARDLEN`, type is `int`, value is `9`. Indicates the byte length of the storage state of the contract. Tic-tac-toe game has a total of 9 board positions.
-3. Add `EMPTY`, the type is `bytes`, and the value is `00`. Indicates that the board position has not yet been placed
-4. Add `ALICE`, the type is `bytes`, and the value is `01`. Indicates that the board position was placed by the player `alice`
-5. Add `BOB`, the type is `bytes`, and the value is `02`. Indicates that the board position was placed by the player `bob`
+1. Add `N`, type is `int`, value is `9`. Indicates the byte length of the storage state of the contract. Tic-tac-toe game has a total of 9 board positions.
+2. Add `EMPTY`, the type is `int`, and the value is `0`. Indicates that the board position has not yet been placed
+3. Add `ALICE`, the type is `int`, and the value is `1`. Indicates that the board position was placed by the player `alice`
+4. Add `BOB`, the type is `int`, and the value is `2`. Indicates that the board position was placed by the player `bob`

@@ -2,25 +2,24 @@ contract TicTacToe {
     PubKey alice;
     PubKey bob;
     
-    static const int TURNLEN = 1;
-    static const int BOARDLEN = 9;
-    static const bytes EMPTY = b'00';
-    static const bytes ALICE = b'01';
-    static const bytes BOB = b'02';
+    static const int N = 9;
+    static const int EMPTY = 0;
+    static const int ALICE = 1;
+    static const int BOB = 2;
 
     
     public function move(int n, Sig sig, int amount, SigHashPreimage txPreimage) {
 
-        require(n >= 0 && n < BOARDLEN);
+        require(n >= 0 && n < N);
     }
 
 
-    function won(bytes board, bytes play) : bool {
-
+    function won(int play) : bool {
+        return true;
     }
 
 
-    function full(bytes board) : bool {
-
+    function full() : bool {
+        return true;
     }
 }
