@@ -55,81 +55,61 @@
                 },
                 {
                     "num": 6,
-                    "title": "Chapter 6: Library",
-                    "scripts": [  
-                        {
-                            "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
-                            "lang": "scrypt"
-                        }
-                    ]
+                    "title": "Chapter 6: Bitcoin Script"
                 },
                 {
                     "num": 7,
-                    "title": "Chapter 7: Bytes Slice",
+                    "title": "Chapter 7: Get Sighash Preimage",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
                 },
                 {
                     "num": 8,
-                    "title": "Chapter 8: Array",
+                    "title": "Chapter 8: Maintain Game State",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
                 },
                 {
                     "num": 9,
-                    "title": "Chapter 9: Loop",
+                    "title": "Chapter 9: Signature Verification",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
-                            "lang": "scrypt"
-                        },
-                        {
-                            "name": "util.scrypt",
                             "lang": "scrypt"
                         }
                     ]
                 },
                 {
                     "num": 10,
-                    "title": "Chapter 10: Bitcoin Script"
-                },
-                {
-                    "num": 11,
-                    "title": "Chapter 11: Get Sighash Preimage"
-                },
-                {
-                    "num": 12,
-                    "title": "Chapter 12: Maintain Game State",
+                    "title": "Chapter 10: Array",
                     "scripts": [  
                         {
                             "name": "tictactoe.scrypt",
                             "lang": "scrypt"
-                        },
+                        }
+                    ]
+                },
+                {
+                    "num": 11,
+                    "title": "Chapter 11: Loop",
+                    "scripts": [  
                         {
-                            "name": "util.scrypt",
+                            "name": "tictactoe.scrypt",
                             "lang": "scrypt"
                         }
                     ]
+                },
+                {
+                    "num": 12,
+                    "title": "Chapter 12: Summary"
                 }
             ]
         },
@@ -140,13 +120,7 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "Chapter 1: scryptlib",
-                    "scripts": [  
-                        {
-                            "name": "app.js",
-                            "lang": "js"
-                        }
-                    ]
+                    "title": "Chapter 1: scryptlib"
                 },
                 {
                     "num": 2,
@@ -170,10 +144,18 @@
                 },
                 {
                     "num": 4,
-                    "title": "Chapter 4: Wallet",
+                    "title": "Chapter 4: Integrating Wallet",
                     "scripts": [  
                         {
-                            "name": "wallet.js",
+                            "name": "app.js",
+                            "lang": "js"
+                        },
+                        {
+                            "name": "auth.js",
+                            "lang": "js"
+                        },
+                        {
+                            "name": "balance.js",
                             "lang": "js"
                         }
                     ]
@@ -183,8 +165,8 @@
                     "title": "Chapter 5: Deploy a Contract",
                     "scripts": [  
                         {
-                            "name": "web3.ts",
-                            "lang": "ts"
+                            "name": "app.js",
+                            "lang": "js"
                         }
                     ]
                 },
