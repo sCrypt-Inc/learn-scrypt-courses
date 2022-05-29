@@ -119,11 +119,11 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第一章: scryptlib"
+                    "title": "第一章: 编译合约"
                 },
                 {
                     "num": 2,
-                    "title": "第二章: 编译合约",
+                    "title": "第二章: 集成 scryptlib",
                     "scripts": [  
                         {
                             "name": "app.js",

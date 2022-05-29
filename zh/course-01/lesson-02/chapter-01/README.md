@@ -1,42 +1,97 @@
-# 第一章: scryptlib
-
-完成上一节课以后，我们的井字棋 dApp 的 sCrypt 合约部分就完成了。
-
-需要注意的是这个 APP 界面将使用 JavaScript 来写，并不是 sCrypt。React App 项目 [tic-tac-toe](https://github.com/sCrypt-Inc/tic-tac-toe) 的 `webapp` 分支包含一个只有前端代码的井字棋游戏。我们将从这个分支开始，一步步实现一个合约版的井字棋游戏。
-。
-
-我们假设你已经具备前端开发的基础知识，因此我们不会花时间来介绍它。
-dApp 需要在前端页面与合约进行交互。 要做到这一点，我们将使用 sCrypt 官方发布的 JavaScript 库 —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
+# 第一章: 编译合约
 
 
-scryptlib 用于集成以 sCrypt 语言编写的 Bitcoin SV 智能合约的 Javascript/TypeScript SDK。
-通过 `scryptlib` ，你就能方便地编译，测试，部署，调用合约了。
+## 编译
+
+完成上一节课以后，我们的井字棋 dApp 的 sCrypt 合约部分就完成了。接下来我们需要编译合约。
+
+sCrpt IDE 提供一个右键[编译合约](https://scrypt-ide.readthedocs.io/zh_CN/latest/compiling.html)的功能。我们使用它来编译刚刚编写的 `TicTacToe` 合约。
 
 
-## scryptlib 安装
+## 合约描述文件 
 
+编译合约会输出一个对应的合约描述文件 （Contract Description File) `tictactoe_release_desc.json`。合约描述文件是一个命名为 `xxx_desc.json` 的 JSON 文件。可用于在链下构建锁定脚本和解锁脚本并实例化合约。
 
-`scryptlib` 可以通过 `npm` 安装。
+以下是合约描述文件的结构：
 
-```javascript
-// use NPM
-npm install scryptlib
-
-// use Yarn
-yarn add scryptlib
+```json
+{
+    "version": 8,
+    "compilerVersion": "1.14.0+commit.9fdbe60",
+    "contract": "TicTacToe",
+    "md5": "fb6b0618f95002b289dda96a20be139e",
+    "structs": [],
+    "library": [],
+    "alias": [
+        {
+            "name": "PubKeyHash",
+            "type": "Ripemd160"
+        }
+    ],
+    "abi": [
+        {
+            "type": "function",
+            "name": "move",
+            "index": 0,
+            "params": [
+                {
+                    "name": "n",
+                    "type": "int"
+                },
+                {
+                    "name": "sig",
+                    "type": "Sig"
+                },
+                {
+                    "name": "amount",
+                    "type": "int"
+                },
+                {
+                    "name": "txPreimage",
+                    "type": "SigHashPreimage"
+                }
+            ]
+        },
+        {
+            "type": "constructor",
+            "params": [
+                {
+                    "name": "alice",
+                    "type": "PubKey"
+                },
+                {
+                    "name": "bob",
+                    "type": "PubKey"
+                },
+                {
+                    "name": "isAliceTurn",
+                    "type": "bool"
+                },
+                {
+                    "name": "board",
+                    "type": "int[9]"
+                }
+            ]
+        }
+    ],
+    "stateProps": [
+        {
+            "name": "isAliceTurn",
+            "type": "bool"
+        },
+        {
+            "name": "board",
+            "type": "int[9]"
+        }
+    ],
+    "buildType": "release",
+    "file": "",
+    "asm": "OP_1 40 76 88 a9 ac 00 OP_1 OP_2 $__codePart__ $alice $bob $is_alice_turn $board ...",
+    "hex": "5101400176018801a901ac01005152<alice><bob>615b79610 ...",
+    "sources": [
+    ],
+    "sourceMap": [ 
+    ]
+}
 ```
 
-使用 `scryptlib` 实例化和调用合约公共方法的代码看起来像:
-
-```javascript
-const Demo = buildContractClass(compileContract('demo.scrypt'));
-const demo = new Demo(7, 4);
-
-const result = demo.add(11).verify()
-assert(result.success);
-```
-
-
-## 实战演习
-
-克隆 React App 项目 [tic-tac-toe](https://github.com/sCrypt-Inc/tic-tac-toe)。并切换到 `webapp` 分支。
