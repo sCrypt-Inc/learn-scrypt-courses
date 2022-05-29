@@ -1,11 +1,8 @@
-# 第三章: 数据类型和实例化合约。
+# 第三章: 数据类型和实例化合约
 
 ## 数据类型
 
-在上一节课，介绍了 `sCrypt` 语言的基础数据类型，以及如何使用 `sCrypt` 语言实例化合约。那么当我们使用 **scryptlib** 与合约进行交互式，同样需要传递数据与实例化合约。
-
-每一个 `sCrypt` 语言的基础数据类型，**scryptlib** 都有一个与之对应的类，
-比如： 
+sCrypt 语言的所有基本类型在 scryptlib 中都有对应的 javascript 类。在使用 scryptlib 实例化合约和调用合约的公共方法时，需要使用相应的 javascript 类来传递数据。这样，可以在运行之前检查参数的类型并检测潜在的错误。
 
 1. int 类型 对应 `Int` 类
 2. bool 类型对应 `Bool` 类
@@ -20,7 +17,7 @@ const {Person, Male, Female} = buildTypeClasses(JSON.parse(descFileContent));
 
 ## 实例化合约
 
-我们已经通过加载合约描述文件得到了合约类 `TictactoeContractClass`， 接下来通过 `new` 关键字来实例化合约。
+我们已经通过加载合约描述文件得到了合约类 `TictactoeContractClass`， 接下来通过此合约类来实例化合约。
 
 ```javascript
 
