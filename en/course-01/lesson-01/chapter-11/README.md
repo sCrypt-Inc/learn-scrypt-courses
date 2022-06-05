@@ -1,4 +1,4 @@
-# Chapter 9: Loop
+# Chapter 11: Loop
 
 sCrypt uses the `loop` keyword to define loops. The syntax is as follows:
 

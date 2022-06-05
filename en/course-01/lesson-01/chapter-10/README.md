@@ -1,4 +1,4 @@
-# Chapter 8: Array
+# Chapter 10: Array
 
 
 
