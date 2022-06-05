@@ -13,7 +13,7 @@ sCrypt is a strongly typed language. The basic data types include:
 
 5. `Sig`: signature
 
-Among them, `PubKey` and `Sig` are subtypes of `bytes`.
+Among them, `PubKey` and `Sig` are subtypes of `bytes`. If you want to know more about basic types, you can check [language reference documentation](https://scryptdoc.readthedocs.io/en/latest/)
 
 ## Properties
 

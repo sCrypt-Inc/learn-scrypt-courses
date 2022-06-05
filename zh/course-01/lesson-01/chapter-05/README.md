@@ -4,20 +4,35 @@
 
 函数使用 `function` 关键字声明。函数主要作用是封装合约内部逻辑及代码重用。定义函数时需要使用冒号 `:` 来说明返回值的类型。
 
-```
+下面的 `Test` 合约包含一个 `clone` 普通函数：
 
+
+```js
 contract Test {
-    function valueOf(int x) : int {
+    function clone(int x) : int {
         return x;
     }
-    ...
 }
-
 ```
 
 ## 公共函数 （public function）
 
 公共函数使用 `public` 修饰符修饰函数，是外部调用合约的接口。公共函数的参数代表 UTXO 模型(在下一章介绍)中的解锁参数。公共函数没有明确的返回类型声明和函数结尾的 `return` 语句，隐形返回 `bool` 类型，返回值为 `true`。
+
+下面的 `Test` 合约包含一个 `main` 公共函数:
+
+```js
+contract Test {
+
+    function clone(int x) : int {
+        return x;
+    }
+
+    public function main(int x)  {
+        require(true);
+    }
+}
+```
 
 ## require 语句
 
@@ -29,12 +44,16 @@ contract Test {
 
 该语句会检查布尔表达式是否为真。当不满足某些条件时抛出错误，并停止执行。这与 `solidity` 语言的 `require` 类似。sCrypt 公有函数的最后一个语句必须是 **require 语句** ，合约的每个公有函数至少有一个 **require 语句** 。当且仅当所有**require 语句** 都检查通过，合约才能被成功解锁。
 
-```
+```js
 contract Test {
-    public function unlock(int y) {
-        require(y == 42);
+
+    function clone(int x) : int {
+        return x;
     }
-    ...
+
+    public function main(int x)  {
+        require(this.clone(x) == x);
+    }
 }
 ```
 

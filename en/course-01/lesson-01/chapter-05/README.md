@@ -3,23 +3,38 @@
 
 ## Function
 
-Functions are declared using the `function` keyword. The main purpose of a function is to encapsulate the internal logic of the contract and code reuse. When defining a function, you need to use a colon `:` to indicate the type of return value, such as:
+Functions are declared using the `function` keyword. The main purpose of a function is to encapsulate the internal logic of the contract and code reuse. When defining a function, you need to use a colon `:` to indicate the type of return value. 
 
-```
+The following `Test` contract contains a `clone` function:
 
+```js
 contract Test {
-    function valueOf(int x) : int {
+
+    function clone(int x) : int {
         return x;
     }
-    ...
 }
-
 ```
 
 
 ## Public Function
 
-The public function uses the `public` modifier to modify the function, which is the interface for externally calling the contract. The parameters of the public function represent the unlock parameters in the UTXO model (described in the next chapter). The public function does not have a clear return type declaration and the `return` statement at the end of the function, which implicitly returns the `bool` type, and the return value is `true`
+The public function uses the `public` modifier to modify the function, which is the interface for externally calling the contract. The parameters of the public function represent the unlock parameters in the UTXO model (described in the next chapter). The public function does not have a clear return type declaration and the `return` statement at the end of the function, which implicitly returns the `bool` type, and the return value is `true`.
+
+The following `Test` contract contains a `main` public function:
+
+```js
+contract Test {
+
+    function clone(int x) : int {
+        return x;
+    }
+
+    public function main(int x)  {
+        require(true);
+    }
+}
+```
 
 ## Require Statement
 
@@ -31,12 +46,16 @@ The **require statement** contains the `require` keyword and a boolean expressio
 
 This statement checks whether the Boolean expression is true. When certain conditions are not met, an error is thrown and execution is stopped. This is similar to the `require` of the `solidity` language. The last statement of the sCrypt public function must be a **require statement**, and each public function of the contract has at least one **require statement**. If and only if all **require statements** are checked, the contract can be successfully unlocked.
 
-```
+```js
 contract Test {
-    public function unlock(int y) {
-        require(y == 42);
+
+    function clone(int x) : int {
+        return x;
     }
-    ...
+
+    public function main(int x)  {
+        require(this.clone(x) == x);
+    }
 }
 ```
 

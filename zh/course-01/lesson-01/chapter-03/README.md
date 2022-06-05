@@ -14,7 +14,8 @@ sCrypt 是强类型语言。基本数据类型包括：
 5. `Sig`：签名
 
 
-其中， `PubKey` 和 `Sig` 是 `bytes` 类型的子类型。
+其中， `PubKey` 和 `Sig` 是 `bytes` 类型的子类型。如果你想了解更多的基本类型，可以查看[语言参考文档](https://scryptdoc.readthedocs.io/zh_CN/latest/) 
+
 
 ## 属性
 
