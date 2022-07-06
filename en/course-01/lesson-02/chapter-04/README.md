@@ -2,6 +2,8 @@
 
 Deploying the contract object `instance` to the Bitcoin network requires bitcoins. To do this, we need to access the wallet first to get bitcoins. Here we take [sensilet](https://sensilet.com) as an example to introduce how to access the wallet.
 
+After installing the **sensilet** wallet, click the settings button in the upper right corner to switch to the testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to claim testnet BSV.
+
 
 ## Wallet implementation
 
