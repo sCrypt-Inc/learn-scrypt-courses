@@ -3,6 +3,10 @@
 将合约对象 `instance` 部署到比特币网络需要比特币。为此我们需要先接入钱包用来获取比特币。这里以 [sensilet](https://sensilet.com) 为例，介绍如何接入钱包。
 
 安装完 **sensilet** 钱包后， 点击右上角的设置按钮，切换到测试网。然后复制你的钱包地址，去我们的 [水龙头](https://scrypt.io/#faucet) 领取测试网 BSV。
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
+
+
 ## 钱包实现
 
 我们在 [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/wallet.ts) 中定义了一些通用的钱包接口。并使用 sensilet 来实现这些接口。具体实现见: [sensiletwallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/sensiletwallet.ts)

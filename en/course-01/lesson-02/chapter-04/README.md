@@ -5,6 +5,9 @@ Deploying the contract object `instance` to the Bitcoin network requires bitcoin
 After installing the **sensilet** wallet, click the settings button in the upper right corner to switch to the testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to claim testnet BSV.
 
 
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
+
+
 ## Wallet implementation
 
 We define some common wallet interfaces in [wallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/wallet.ts) and use sensilet to implement these interfaces. For the specific implementation, see: [sensiletwallet.ts](https://github.com/sCrypt-Inc/tic-tac-toe/blob/webapp/src/web3/sensiletwallet.ts)
