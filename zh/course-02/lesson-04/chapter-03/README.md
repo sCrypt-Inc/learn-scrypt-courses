@@ -8,7 +8,7 @@ scryptlib 是 sCrypt 的官方 Javascript SDK，用于在您的应用程序中�
 
 我们使用 IDE 编译我们刚刚编写的 `BattleShip` 合约。 编译合约会输出对应的合约描述文件（Contract Description File）`battleship_release_desc.json`。将合约描述文件拷贝到 `public` 资源目录。
 
-我们使用 `web3.loadContractDesc()` 从 `WelcomeScreen.js` 中的资源文件中加载合约描述文件：
+我们使用 `web3.loadContractDesc()` 在 `WelcomeScreen.js` 组件中加载合约描述文件：
 
 ```js
     async function fetchContract() {
@@ -30,7 +30,7 @@ scryptlib 是 sCrypt 的官方 Javascript SDK，用于在您的应用程序中�
 
 ## 实例化和部署合约
 
-每次游戏开始时，我们都会在 `startTurn` 回调函数中实例化并部署合约。
+每次游戏开始时，我们都会在 `Game` 组件的 `startTurn` 回调函数中实例化并部署合约。
 
 有了合约描述文件，我们就可以通过 `buildContractClass` 函数来构建战舰合约类。 之后，我们用玩家的公钥和位置的哈希承诺初始化战舰合约：
 

@@ -7,7 +7,7 @@
 
 ## 致谢
 
-我们基于[这个项目]（https://github.com/diemkay/battleship）构建了前端。
+我们基于[这个项目](https://github.com/diemkay/battleship) 构建了前端。
 
 ## Git 克隆
 
@@ -41,6 +41,6 @@ npm start
 为了体验游戏，您应该满足下面列出的两个准备工作：
 
 - 已安装 [sensilet chrome 扩展程序](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
-- 从 [faucet](https://scrypt.io/#faucet) 获取一些测试网 BSV；
+- 从 [水龙头](https://scrypt.io/#faucet) 获取一些测试网 BSV；
 
-你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试在线版本 [这里](https://scrypt.io/battleship)。
+你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试[在线版本](https://scrypt.io/battleship)。
