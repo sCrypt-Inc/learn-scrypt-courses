@@ -1,3 +1,3 @@
-## Chapter 4: Summary
+## 第 4 章：总结
 
-Congratulations, you have successfully completed the course! Now you should have learned how to create a zkSNARK-based application with sCrypt smart contract running on bitcoin. The combination of ZKP and Bitcoin smart contract techniques has a huge potential for killer applications previously impossible on bitcoin. We are very eager to see what you can build from here.
+恭喜，您已成功完成课程！ 现在您应该已经学会了如何使用sCrypt 智能合约创建基于 zkSNARK 的在比特币上运行的应用程序。 ZKP 和比特币智能合约技术的结合对于实现以前不可能实现的杀手级应用具有巨大的潜力。 我们非常渴望看到您可以从这里构建什么。

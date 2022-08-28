@@ -1,27 +1,30 @@
-# Chapter 2: Integrate the circuit with `zokrates-js`
+# 第 2 章：用 `zokrates-js` 集成电路
 
-Zokrates provides a Javascript library [`zokrates-js`](https://zokrates.github.io/toolbox/zokrates_js.html) that can be used in web browsers. You can use this command to install it in your project:
+Zokrates 提供了一个 Javascript 库 [`zokrates-js`](https://zokrates.github.io/toolbox/zokrates_js.html)，可以在 Web 浏览器中使用。您可以使用此命令将其安装到您的项目中：
 
 ```
 npm install zokrates-js
 ```
 
-## Wrap zero-knowledge-proof related APIs in `ZKProvider`
+## 在 `ZKProvider` 中封装零知识证明相关的 API
 
-`zokrates-js` provides APIs which covers the whole workflow we mentioned in the previous chapter, including:
+`zokrates-js` 提供的 API 涵盖了我们在上一章提到的整个工作流程，包括：
 
-compile
-setup
-computeWitness
-generateProof
-verify
 
-As we mentioned in the previous chapter, we’ve already finished the `compile` and `setup` process in `npm run setup`. Here we just wrap the last three APIs into a Javascript class called `ZKProvider` to provide features we need.
+- 编译
+- 设置
+- 计算见证人
+- 生成证明
+- 验证证明
 
-## ZKProvider.init()
+正如我们在上一章中提到的，我们已经完成了 `npm run setup` 中的 `compile` 和 `setup` 过程。 在这里，我们只是将最后三个 API 包装到一个名为
+`ZKProvider` 的 Javascript 类中，以提供我们需要的功能。
 
-Let us take a look at the code of the `ZKProvider.init()` function, which should be called before any other APIs. Its job is to load those static assets to the browser to build a singleton instance.
-The assets files `/zk/out` and `/zk/abi.json` are the outputs of the compile process, and the `/zk/proving.key` and `/zk/verification.key` are the outputs of the setup process. 
+## ZKProvider 初始化
+
+
+让我们看一下 `ZKProvider.init()` 函数的代码，它应该在任何其他 API 之前调用。 它的工作是将这些静态资源加载到浏览器以构建单例实例。
+资源文件 `/zk/out` 和 `/zk/abi.json` 是编译过程的输出，`/zk/proving.key`和`/zk/verification.key`是设置过程的输出。
 
 ```js
 static async init() {
@@ -46,11 +49,12 @@ static async init() {
   }
 ```
 
-## Add ZKP-related logic to the firing event handlers
+## 将 ZKP 相关逻辑添加到开火事件的处理函数中
 
-We created a new function called `handleFire` to process the ZKP-related logic in the game. The code looks like this:
 
-```
+我们创建了一个名为 `handleFire` 的新函数来处理游戏中与 ZKP 相关的逻辑。 代码如下所示：
+
+```js
 const handleFire = (role, targetIdx, isHit) => {
   const isPlayerFired = role === 'player';
   const privateInputs = toPrivateInputs(isPlayerFired ? computerShips : placedShips);
@@ -75,17 +79,18 @@ const handleFire = (role, targetIdx, isHit) => {
 }
 ```
 
-Next we have to find the fire event handlers in the game to apply this function. The game was originally designed to be a PvC(Player vs Computer) game, so there are two handlers should be modified:
 
-Player fire event handler function `fireTorpedo` in `ComputerBoard.js`;
+接下来，我们必须在游戏中找到开火事件处理程序来添加此功能。 该游戏最初设计为PvC（Player vs Computer）游戏，因此需要修改两个处理程序：
 
-Computer fire event handler function `computerFire` in `Game.js`;
+- `ComputerBoard.js`中的开火事件处理函数 `fireTorpedo`；
 
-## Use web worker to unblock UI
+- `Game.js` 中的电脑开火事件处理函数 `computerFire`；
 
-After we added the `handleFire` callback to these event handlers, the UI appears to be non-responsible after every fire event. This is because generating a proof is CPU intensive and it is in the same thread that renders UI. 
+## 使用 web worker 优化 UI
 
-A standard way to deal with this situation is to separate the code into a web worker. So we created a file named `zkp.worker.js` as below:
+在我们将 `handleFire` 回调添加到这些事件处理程序后，UI 似乎在每次触发事件后都会无响应。 这是因为生成证明是 CPU 密集型的，并且它运行在与渲染 UI 的同一线程中。
+
+处理这种情况的标准方法是将代码分离到 web worker 中。 所以我们创建了一个名为 `zkp.worker.js` 的文件，如下所示：
 
 ```js
 import { ZKProvider } from './zkProvider';
@@ -123,7 +128,7 @@ function runZKP(privateInputs, publicInputs) {
 
 ```
 
-Then we updated the `handleFire` function to be like this:
+然后我们将 `handleFire` 函数更新为如下所示：
 
 ```js
 const handleFire = (role, targetIdx, isHit, newStates) => {
@@ -148,7 +153,7 @@ const handleFire = (role, targetIdx, isHit, newStates) => {
 }
 ```
 
-Initialize the worker as below:
+初始化worker如下：
 
 ```js
   useEffect((battleShipContract) => {
@@ -164,5 +169,5 @@ Initialize the worker as below:
 
 ```
 
-Now we have successfully unblocked the UI from ZKP-related calculations.
+现在我们已经成功地将 ZKP 相关的计算中剥离了 UI。
 

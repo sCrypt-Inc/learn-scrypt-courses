@@ -1,24 +1,25 @@
-# Chapter 1: Setup battleship frontend
+# 第 1 章：搭建前端
 
-Since we have built the circuit and the smart contract, the next thing to do is to integrate them into a frontend so users can easily interact with the contract.
+由于我们已经构建了电路和智能合约，接下来要做的是将它们集成到前端，以便用户可以轻松地与合约交互。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/05.png?raw=true" width="600">
 
 
-## Credit
-We built the frontend based on [this project](https://github.com/diemkay/battleship).
+## 致谢
 
-## Git clone
+我们基于[这个项目]（https://github.com/diemkay/battleship）构建了前端。
 
-You can get it with following command:
+## Git 克隆
+
+您可以使用以下命令获取它：
 
 ```
 git clone https://github.com/sCrypt-Inc/zk-battleship
 ```
 
-## Setup & Run
+## 设置和运行
 
-You can run the following commands to setup and run the project quickly:
+您可以运行以下命令来快速设置和运行项目：
 
 ```
 npm install
@@ -26,19 +27,20 @@ npm run setup
 npm start
 ```
 
-The setup script will accomplish these primary jobs:
-Compile the circuit and finish Zokrates setup procedure;
-Export the dedicated sCrypt verifier contract bound to the outcome of the first step;
-Compile the battleship.scrypt contract;
-Copy all necessary output files to `public` folder as assets;
+安装脚本将完成以下主要工作：
 
-## Play
+1. 编译电路并完成Zokrates初始化设置；
+2. 导出与第一步结果绑定的专用 sCrypt 验证者库；
+3. 编译 `battleship.scrypt` 合约；
+4. 将所有必要的输出文件作为资源文件复制到 “public” 文件夹；
 
-### Prerequisites
+## 体验游戏
 
-In order to play it you should meet those two prerequisites listed as below:
+### 准备工作
 
-Have [sensilet chrome extension](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm) installed;
-Get some testnet BSVs in the above wallet from a [faucet](https://scrypt.io/#faucet);
+为了体验游戏，您应该满足下面列出的两个准备工作：
 
-You can now visit `http://localhost:3000` in chrome browser, also you could try the online version [here](https://scrypt.io/battleship).
+- 已安装 [sensilet chrome 扩展程序](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
+- 从 [faucet](https://scrypt.io/#faucet) 获取一些测试网 BSV；
+
+你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试在线版本 [这里](https://scrypt.io/battleship)。
