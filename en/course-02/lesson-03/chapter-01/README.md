@@ -29,8 +29,7 @@ The contract contains a public function named `move()`. In the `move()` function
 
 
 ```
- Verifier verifier = new Verifier();
- require(verifier.unlock([this.yourTurn ? this.computerHash : this.yourHash, x, y, hit ? 1 : 0], proof));
+ require(ZKNARK.verify([this.yourTurn ? this.computerHash : this.yourHash, x, y, hit ? 1 : 0], proof));
 ```
 
 `ZKNARK.verify()` contains four inputs and a proof:
