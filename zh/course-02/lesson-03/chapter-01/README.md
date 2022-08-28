@@ -1,49 +1,46 @@
-# Chapter 1: Implement the battleship contract
+# 第 1 章：实现战舰合约
 
-After implementing the circuit, we export a zkSNARK verifier in sCrypt by following command, as in the [sixth step](https://xiaohuiliu.medium.com/create-your-first-zero-knowledge-proof-program-on-bitcoin-ec159cc501f4) in the workflow:
+实现电路后，我们通过以下命令导出一个 zkSNARK 验证器，如【第六步】（https://blog.csdn.net/freedomhero/article/details/126096767）：
 
 ```
 zokrates export-verifier-scrypt
 ```
 
-We get a library named `verifier.scrypt`. With this verifier library, we can implement the battleship contract with ZKP. We can start building the actual game logic in the contract.
+我们得到一个名为“verifier.scrypt”的库。有了这个验证者库，我们可以用 ZKP 实现战舰合约。我们可以开始在合约中构建实际的游戏逻辑。
 
-The Battleship game consists of two players: you and athe computer. The battleship contract contains four properties:
+战舰游戏由两个玩家组成：你和电脑。战舰合约包含四个属性：
 
-`PubKey you` :  used to check the signature to confirm that you executed the contract.
-`PubKey computer`: used to check the signature to confirm that the computer executed the contract.
-`int yourHash` : A hash commitment of the positions and orientations of all your ships
-`int computerHash` : A hash commitment of the positions and orientations of all computer’s ships
+`PubKey you` ：用于检查签名以确认你执行了合约。
+`PubKey computer`：用于检查签名以确认计算机执行合约。
+`int yourHash` : 你所有船只的位置和方向的哈希承诺
+`int computerHash` : 电脑所有船只的位置和方向的哈希承诺
 
-In addition to the above four properties, the contract also contains three state properties:
+除了以上四个属性外，合约还包含三个状态属性：
 
-`successfulYourHits` : Indicates how many times you hit the battleship
-`successfulComputerHits` : Indicates how many times the computer player has hit the ship
-`yourTurn` : Indicates that it's your turn or the computer’s to fire
-
-
-When the game starts, you and the computer each secretly place the ships and calculate the hash commitment. The contract is initialized with the hashed commitments and public keys of both players.
+`successfulYourHits` : 表示你击中战舰的次数
+`successfulComputerHits` : 表示电脑击中战舰的次数
+`yourTurn` : 表示轮到你或电脑开火
 
 
-The contract contains a public function named `move()`. In the `move()` function, we use the zkSNARK verifier to check the firing submitted by the other player.
+游戏开始时，您和电脑各自秘密放置船只并计算哈希承诺。合约使用双方的哈希承诺和公钥进行初始化。
+
+
+该合约包含一个名为 `move()` 的公共函数。在 `move()` 函数中，我们使用 zkSNARK 验证器来检查其他玩家提交的证明。
 
 
 ```
  require(ZKNARK.verify([this.yourTurn ? this.computerHash : this.yourHash, x, y, hit ? 1 : 0], proof));
 ```
 
-`ZKNARK.verify()` contains four inputs and a proof:
+`ZKNARK.verify()` 包含四个输入和一个证明：
 
 
-1. Your or computer’s hash commitment.
-2. `x`, `y` indicate where the player fires.
-3. `hit` indicates the other party reports whether you hit or not.
-4. `proof` is the proof that the other party generates for their own firing. With the verifier library and the proof provided by the other party, you can check whether the other party is honest.
+1. 您或计算机的哈希承诺。
+2. `x`, `y` 表示玩家开火的位置。
+3. `hit` 表示对方报告你是否命中。
+4. `proof` 是对方为开火是否命中而生成的证明。借助验证者库和对方提供的证明，可以检查对方是否诚实。
 
-If the other party provides an honest result, it will pass the check, otherwise it will fail. Afterwards, we check whether the signature of the player calling the contract is valid and update the number of times the corresponding player hit the battleship according to whether the battleship is hit, that is, we update the state properties `successfulYourHits` and `successfulComputerHits`. Finally we update state properties `yourTurn`. If someone hits the ships `17` times first, he wins the game and the game is over. If not, save the latest states and wait for the next move.
-
-
-In conclusion, we have implemented the battleship contract, including verification of zkSNARK proofs in contracts and maintenance of game state.
+如果对方提供了一个诚实的结果，它就会通过检查，否则就会失败。之后，我们检查调用合约的玩家的签名是否有效，并根据战舰是否被击中更新对应玩家击中战舰的次数，即更新状态属性 `successfulYourHits` 和 `successfulComputerHits` . 最后我们更新状态属性 `yourTurn`。如果有人击中船只的次数先达到“17”次，则他赢得比赛，比赛结束。如果没有，则保存最新状态并等待下一步。
 
 
-
+综上所述，我们已经实现了战舰合约，包括在合约中验证zkSNARK证明和维护游戏状态。
