@@ -1,42 +1,40 @@
-# Chapter 2: Zero Knowledge Proof Basics
+# 第 2 章：零知识证明基础
 
-## Zero Knowledge Proof
+## 零知识证明
 
-A zero knowledge proof lets one party (i.e., a prover), who claims to know a secret, convince another party (i.e., a verifier) that the claim is valid, whilst not revealing the secret.
+零知识证明让声称知道秘密的一方（即证明者）说服另一方（即验证者）该声明是有效的，同时不泄露秘密。
 
-## Where’s Waldo?
+## 沃尔多在哪里？
 
-Finding Waldo is a game where you have to find Waldo among a sea of people that look like him.
+寻找沃尔多是一款游戏，您必须在一大堆长得像他的人中找到沃尔多。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/06.png?raw=true" width="600">
 
-Peggy (the prover) tells Victor (the verifier) that she knows where Waldo is in a scene but she doesn’t want to show him where exactly he is. Peggy finds a large piece of cardboard and cuts a Waldo shaped hole right in the middle.
+Peggy（证明者）告诉 Victor（验证者）她知道沃尔多在场景中的位置，但她不想告诉他沃尔多到底在哪里。Peggy找到一大块硬纸板，在中间切了一个沃尔多形状的洞。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/07.png?raw=true" width="600">
 
-She then takes the Where’s Waldo scene (which is on a piece of paper) and tapes it to the back of the cardboard so that Waldo is occupying the Waldo shaped hole in the center. Victor should stand in front of the cardboard while Peggy is taping it up.
+然后，她拍摄了沃尔多在哪里的场景（在一张纸上）并将其粘贴到纸板的背面，这样沃尔多就占据了中心的沃尔多形状的洞。当 Peggy 给它贴胶带时，Victor 应该站在纸板前面。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/08.png?raw=true" width="600">
 
-When Victor sees Waldo through the hole, he is convinced that Peggy’s claim is valid, while not knowing Waldo’s exact location. That is a zero knowledge proof.
+当 Victor 通过洞看到沃尔多时，他确信Peggy的说法是有效的，但他不知道沃尔多的确切位置。这就是零知识证明。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/09.png?raw=true" width="600">
 
 
-## zk-SNARKs on Bitcoin
+## 比特币上的 zk-SNARKs
 
-a zk-SNARK (zero-knowledge Succinct Non-interactive ARguments of Knowledge) is a protocol designed to generate a ZKP for any mathematical function. It can proved that one knows some mathematical secret using zero knowledge proof (ZKP), without revealing the secret itself.
+zk-SNARK（零知识简洁非交互式知识论证）是一种旨在为任何数学函数生成 ZKP 的协议。
 
+生成的证明是“简洁的”和“非交互的”：一个证明只有几百字节，可以在恒定时间内在几毫秒内得到验证，无需向证明者提出额外的问题。这些特性共同使 zk-SNARK 特别适用于区块链，其中链上存储和计算可能很昂贵，并且发送者在发送交易后经常会离线。匿名加密货币 [Zcash](https://z.cash/technology/zksnarks.html) 和智能合约平台 [Ethereum](https://github.com/ethereum/wiki/wiki/Byzantium-Hard-Fork-变化）是其值得注意的早期采用者之一。
 
-The generated proof is “succinct” and “non-interactive”: a proof is only a few hundred bytes and can be verified in constant time and within a few milliseconds, without needing to ask additional questions of the prover. Together, these properties make zk-SNARK especially suitable for blockchains, where on-chain storage and computation can be expensive and senders often go offline after sending a transaction. Anonymous cryptocurrency [Zcash](https://z.cash/technology/zksnarks.html) and the smart-contract platform [Ethereum](https://github.com/ethereum/wiki/wiki/Byzantium-Hard-Fork-changes) are among its notable early adopters, among others.
+一个 zk-SNARK 由以下三种算法组成：
 
-A zk-SNARK consists of the following three algorithms: 
+1. 密钥生成算法
+2. 证明者算法
+3. 验证者算法
 
-1. Key Generation
-2. Prover
-3. Verifier
+在区块链中使用 zk-SNARK 时，密钥和证明的生成都是在链下执行的。只有通用验证算法在链上智能合约中运行。
 
-When zk-SNARKs are used in blockchains, both the key and proof generation are executed off-chain. Only the general verification algorithm is run inside a smart contract on chain.
-
-We implement the most widely used scheme [Groth16](https://eprint.iacr.org/2016/260.pdf) due to its [small proof size and fast verification](http://www.zeroknowledgeblog.com/index.php/groth16). The full code is [here](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt).
-
+我们实现了使用最广泛的方案 [Groth16](https://eprint.iacr.org/2016/260.pdf)，因为它的[证明大小较小且可以快速验证](http://www.zeroknowledgeblog.com/index .php/groth16)。完整代码在 [这里](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt)。

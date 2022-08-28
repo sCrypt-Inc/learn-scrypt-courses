@@ -1,14 +1,14 @@
-# Chapter 1: Course Overview
+# 第 1 章：课程概述
 
 
-In this course, we’re going to build a zkSNARK-based battleship game on the BitcoinSV network in those main steps:
+在本课程中，我们将通过以下主要步骤在 BitcoinSV 网络上构建基于 zkSNARK 的战舰游戏：
 
 
-* Creating a dedicated zero-knowledge-proof circuit by using the Zokrates toolkit;
-* Creating an sCrypt smart contract to run the game on chain;
-* Add a user-friendly UI;
+* 使用Zokrates工具包创建专用的零知识证明电路；
+* 创建 sCrypt 智能合约以在链上运行游戏；
+* 添加友好的用户界面；
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/01.png?raw=true" width="600">
 
 
-By the end of the course, you could be familiar with all the main concepts and techniques we used in this project and be able to create your own zero-knowledge app on the BitcoinSV network.
+在课程结束时，您将熟悉我们在该项目中使用的所有主要概念和技术，并能够在 BitcoinSV 网络上创建自己的零知识应用程序。

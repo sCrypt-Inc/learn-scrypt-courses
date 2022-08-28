@@ -25,7 +25,7 @@ When Victor sees Waldo through the hole, he is convinced that Peggy’s claim is
 
 ## zk-SNARKs on Bitcoin
 
-a zk-SNARK (zero-knowledge Succinct Non-interactive ARguments of Knowledge) is a protocol designed to generate a ZKP for any mathematical function. It can proved that one knows some mathematical secret using zero knowledge proof (ZKP), without revealing the secret itself.
+a zk-SNARK (zero-knowledge Succinct Non-interactive ARguments of Knowledge) is a protocol designed to generate a ZKP for any mathematical function. 
 
 
 The generated proof is “succinct” and “non-interactive”: a proof is only a few hundred bytes and can be verified in constant time and within a few milliseconds, without needing to ask additional questions of the prover. Together, these properties make zk-SNARK especially suitable for blockchains, where on-chain storage and computation can be expensive and senders often go offline after sending a transaction. Anonymous cryptocurrency [Zcash](https://z.cash/technology/zksnarks.html) and the smart-contract platform [Ethereum](https://github.com/ethereum/wiki/wiki/Byzantium-Hard-Fork-changes) are among its notable early adopters, among others.

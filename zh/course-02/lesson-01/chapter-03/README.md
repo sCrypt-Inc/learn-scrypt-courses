@@ -1,17 +1,17 @@
-# Chapter 3: zkSNARK-based Battleship Game
+# 第三章：基于zkSNARK的战舰游戏
 
 
-Battleship is a strategic guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
+战舰是两个玩家的战略猜谜游戏。该游戏在一个 `10X10` 的网格中进行，每个玩家在网格中标记自己的战舰舰队。舰队的位置对其他玩家隐藏。玩家交替轮流向对方的战舰发出“射击”，游戏的目标是摧毁对方玩家的舰队。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/02.png?raw=true" width="600">
 
 
-## Incomplete Information Problem
+## 信息不完整问题
 
-In an offline setting, two players sit opposite to each other and they cannot see each other’s fleet. But when playing online, especially through an on-chain smart contract, a player cannot tell the smart contract the critical information about his fleet during the game, otherwise its component will also know.  Is there any way for the contract to verify each response of moves and update the game state under this situation? In other words, can we make this game a fair incomplete information game?
+在离线环境中，两名玩家面对面坐着，他们看不到对方的舰队。但是在线上玩游戏时，尤其是通过链上智能合约，玩家在游戏过程中不能告诉智能合约关于他的舰队的关键信息，否则它的对手也会知道。在这种情况下，合约有什么办法可以验证每一个动作的响应并更新游戏状态？换句话说，我们能否让这个博弈成为一个公平的不完全信息博弈？
 
-## zkSNARK Solution
+## zkSNARK 解决方案
 
-We use zkSNARK to solve the problem. Each player first commits to his fleet location by hashing it and submitting it on chain. Using zkSNARK, a player can submit a proof of whether the opponent’s guessed coordinate is a hit or miss, against his own public hash of fleet location without disclosing it. The opponent can verify the proof is valid before any further moves. Thus we can make a fair P2P battleship game from it.
+我们使用 zkSNARK 来解决这个问题。每个玩家首先通过散列他的舰队位置并在链上提交这个哈希承诺。使用 zkSNARK，玩家可以提交一个证明来证明对方的标记，是否击中船舰，而无需披露舰队位置。对手可以在进一步移动之前验证证明是否有效。因此，我们可以从中制作一个公平的 P2P 战舰游戏。
 
-Note this is very different from the commit-reveal scheme we often used in smart contracts before, the location information is kept private to its owner throughout the entire game.
+请注意，这与我们之前在智能合约中经常使用的显性-承诺方案有很大不同，位置信息在整个游戏过程中对其所有者保密。
