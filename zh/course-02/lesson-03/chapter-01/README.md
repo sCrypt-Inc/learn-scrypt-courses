@@ -6,7 +6,9 @@
 zokrates export-verifier-scrypt
 ```
 
-我们得到一个名为 `verifier.scrypt` 的库文件。有了这个验证者库，我们可以用 ZKP 实现战舰合约。我们可以开始在合约中构建实际的游戏逻辑。
+我们得到一个名为 `verifier.scrypt` 的库文件。有了这个验证者库，我们可以用 ZKP 实现战舰合约。我们可以开始在合约中构建实际的游戏逻辑。在我们的例子中，我们可以传递一个棋盘状态（私有）并移动，并给出是否命中。 合约只需要证明以确保不作弊。
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/11.png?raw=true" width="600">
 
 战舰游戏由两个玩家组成：你和电脑。战舰合约包含四个属性：
 

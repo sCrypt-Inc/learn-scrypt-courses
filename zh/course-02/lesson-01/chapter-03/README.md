@@ -3,12 +3,14 @@
 
 战舰是两个玩家的战略猜谜游戏。该游戏在一个 `10X10` 的网格中进行，每个玩家在网格中标记自己的战舰舰队。舰队的位置对其他玩家隐藏。玩家交替轮流向对方的战舰发出“射击”，游戏的目标是摧毁对方玩家的舰队。
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/02.png?raw=true" width="600">
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/02.jpeg?raw=true" width="600">
 
 
 ## 信息不完整问题
 
 在离线环境中，两名玩家面对面坐着，他们看不到对方的舰队。但是在线上玩游戏时，尤其是通过链上智能合约，玩家在游戏过程中不能告诉智能合约关于他的舰队的关键信息，否则它的对手也会知道。在这种情况下，合约有什么办法可以验证每一个动作的响应并更新游戏状态？换句话说，我们能否让这个博弈成为一个公平的不完全信息博弈？
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/10.jpeg?raw=true" width="600">
 
 ## zkSNARK 解决方案
 
