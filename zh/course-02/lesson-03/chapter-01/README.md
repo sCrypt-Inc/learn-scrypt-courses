@@ -1,25 +1,25 @@
 # 第 1 章：实现战舰合约
 
-实现电路后，我们通过以下命令导出一个 zkSNARK 验证器，如【第六步】（https://blog.csdn.net/freedomhero/article/details/126096767）：
+实现电路后，如 [第六步](https://blog.csdn.net/freedomhero/article/details/126096767)，我们通过以下命令导出一个 zkSNARK 验证器：
 
 ```
 zokrates export-verifier-scrypt
 ```
 
-我们得到一个名为“verifier.scrypt”的库。有了这个验证者库，我们可以用 ZKP 实现战舰合约。我们可以开始在合约中构建实际的游戏逻辑。
+我们得到一个名为 `verifier.scrypt` 的库文件。有了这个验证者库，我们可以用 ZKP 实现战舰合约。我们可以开始在合约中构建实际的游戏逻辑。
 
 战舰游戏由两个玩家组成：你和电脑。战舰合约包含四个属性：
 
-`PubKey you` ：用于检查签名以确认你执行了合约。
-`PubKey computer`：用于检查签名以确认计算机执行合约。
-`int yourHash` : 你所有船只的位置和方向的哈希承诺
-`int computerHash` : 电脑所有船只的位置和方向的哈希承诺
+1. `PubKey you` ：用于检查签名以确认你执行了合约。
+2. `PubKey computer`：用于检查签名以确认计算机执行合约。
+3. `int yourHash` : 你所有船只的位置和方向的哈希承诺
+4. `int computerHash` : 电脑所有船只的位置和方向的哈希承诺
 
 除了以上四个属性外，合约还包含三个状态属性：
 
-`successfulYourHits` : 表示你击中战舰的次数
-`successfulComputerHits` : 表示电脑击中战舰的次数
-`yourTurn` : 表示轮到你或电脑开火
+1. `successfulYourHits` : 表示你击中战舰的次数
+2. `successfulComputerHits` : 表示电脑击中战舰的次数
+3. `yourTurn` : 表示轮到你或电脑开火
 
 
 游戏开始时，您和电脑各自秘密放置船只并计算哈希承诺。合约使用双方的哈希承诺和公钥进行初始化。

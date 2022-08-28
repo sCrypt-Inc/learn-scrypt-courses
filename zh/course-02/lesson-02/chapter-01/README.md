@@ -2,7 +2,7 @@
 
 [Zokrates](https://zokrates.github.io/) 是 zkSNARKs 的工具箱，隐藏了零知识证明 (ZKP) 固有的显著复杂性。它为开发人员提供了一种类似于 python 的高级语言来编写他们想要证明的计算问题。
 
-我们扩展它来生成和在比特币上验证的证明。
+我们扩展它来生成和在比特币上验证证明。
 
 ## 安装
 
@@ -34,9 +34,9 @@ cd target/release
 
 ### 1. 设计电路
 
-用 Zokrates 语言实现电路。例如，这个名为 `factor.zok` 的简单电路/程序证明了人们知道将整数 `n` 分解为两个整数，而无需透露整数。该电路有两个名为 `p` 和 `q` 的私有输入和一个名为 `n` 的公共输入。关于如何使用 Zokrates 的更多信息，您可以参考 https://zokrates.github.io/。
+用 Zokrates 语言实现电路。例如，这个名为 `factor.zok` 的简单电路/程序证明了人们知道将整数 `n` 分解为两个整数，而无需透露整数。该电路有两个名为 `p` 和 `q` 的私有输入和一个名为 `n` 的公共输入。关于如何使用 Zokrates 的更多信息，您可以参考 https://zokrates.github.io 。
 
-```
+```python
 // p 和 q 是 n 的因式分解
 def main(private field p, private field q, field n) {
     assert(p * q == n);
@@ -60,7 +60,7 @@ zokrates compile -i my_circuit.zok
 ```
 zokrates setup
 ```
-### 4. 计算见证
+### 4. 计算见证人
 
 一个证明可以证明证明者知道一些满足原始程序的秘密信息。这个秘密信息被称为见证人。在以下示例中，`7` 和 `13` 是见证人，因为它们是 `91` 的因数。
 

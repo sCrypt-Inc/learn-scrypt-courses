@@ -4,7 +4,7 @@
 
 首先是为游戏设计电路。请记住，电路的目的是执行以下列出的主要游戏规则：
 
-- 游戏板为10*10网格；
+- 游戏板为 `10*10` 网格；
 - 有五艘战舰可以水平或垂直放置在网格中，它们应放置在板内：
     * Carrier(航母) 长度为 5；
     * Battleship(战舰) 长度为 4；
@@ -14,7 +14,7 @@
 
 - 船队在比赛开始前摆放好，在比赛期间就不能更改；
 
-- 开火坐标由 (x, y) 表示，必须在棋盘内，并且击中或未击中舰队；
+- 开火坐标由 (x, y) 表示，必须在网格内，可能击中或未击中舰队；
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/04.png?raw=true" width="600">
 
@@ -23,7 +23,7 @@
 
 - 输入：
     * 秘密输入：有关舰队位置的所有信息
-        * (pos_x, pos_y, direction) 的元组指示每艘船在棋盘上的位置；
+        * (pos_x, pos_y, direction) 的元组指示每艘船在网格上的位置；
     * 公共输入：开火事件的所有信息
         * 舰队位置的已提交的哈希；
         * 目标坐标 (pos_x, pos_y);
@@ -34,7 +34,7 @@
 
 ### 编码舰队状态
 
-如上所述，我们可以使用 (pos_x, pos_y,orientation) 的元组来表示一艘船在船上的位置，但是我们如何表示整个舰队的位置状态呢？
+如上所述，我们可以使用 (pos_x, pos_y,orientation) 的元组来表示一艘船在网格中的位置，但是我们如何表示整个舰队的位置状态呢？
 
 请注意，位置的有效值在 `0` 到 `9` 之间，方向值只是 `0` 或 `1`。所以我们可以将它们中的每一个编码为 `4` 个比特位，并将它们全部连接起来形成一个可以表示整个元组的数字。例如：
 
@@ -50,7 +50,7 @@ fleetState = carrierState + battleshipState * (1<<12) + cruiserState * (1<<24) +
 
 ### Mimc 哈希
 
-接下来是计算舰队状态的哈希值。我们选择了一个 zkSNARK 友好的哈希算法 [`mimc7`](https://xiaohuiliu.medium.com/zk-friendly-hash-function-mimc-in-bitcoin-1236783d7f64) 来完成这项工作，因为它在最后的电路。这里还可以使用其他哈希算法。
+接下来是计算舰队状态的哈希值。我们选择了一个 zkSNARK 友好的哈希算法 [`mimc7`](https://xiaohuiliu.medium.com/zk-friendly-hash-function-mimc-in-bitcoin-1236783d7f64) 来完成这项工作，因为它能够减少最终电路的大小。这里还可以使用其他哈希算法。
 
 我们只是确保它与公共输入中声明的相同：
 

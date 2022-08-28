@@ -10,16 +10,16 @@ We get a library named `verifier.scrypt`. With this verifier library, we can imp
 
 The Battleship game consists of two players: you and athe computer. The battleship contract contains four properties:
 
-`PubKey you` :  used to check the signature to confirm that you executed the contract.
-`PubKey computer`: used to check the signature to confirm that the computer executed the contract.
-`int yourHash` : A hash commitment of the positions and orientations of all your ships
-`int computerHash` : A hash commitment of the positions and orientations of all computer’s ships
+1. `PubKey you` :  used to check the signature to confirm that you executed the contract.
+2. `PubKey computer`: used to check the signature to confirm that the computer executed the contract.
+3. `int yourHash` : A hash commitment of the positions and orientations of all your ships
+4. `int computerHash` : A hash commitment of the positions and orientations of all computer’s ships
 
 In addition to the above four properties, the contract also contains three state properties:
 
-`successfulYourHits` : Indicates how many times you hit the battleship
-`successfulComputerHits` : Indicates how many times the computer player has hit the ship
-`yourTurn` : Indicates that it's your turn or the computer’s to fire
+1. `successfulYourHits` : Indicates how many times you hit the battleship
+2. `successfulComputerHits` : Indicates how many times the computer player has hit the ship
+3. `yourTurn` : Indicates that it's your turn or the computer’s to fire
 
 
 When the game starts, you and the computer each secretly place the ships and calculate the hash commitment. The contract is initialized with the hashed commitments and public keys of both players.
