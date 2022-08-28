@@ -16,7 +16,7 @@ The first thing is to design the circuit for the game. Keep in mind that the pur
 
 - A shot represented by coordinates of (x, y) should be within the board and either hits or misses the fleet;
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/04.png?raw=true" width="600">
 
 
 After confirming the rules, the next important job is to determine the inputs and outputs of the circuit, which seems to be very straightforward:

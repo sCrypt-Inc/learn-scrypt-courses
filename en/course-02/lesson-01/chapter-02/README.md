@@ -8,19 +8,19 @@ A zero knowledge proof lets one party (i.e., a prover), who claims to know a sec
 
 Finding Waldo is a game where you have to find Waldo among a sea of people that look like him.
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/06.png?raw=true" width="600">
 
 Peggy (the prover) tells Victor (the verifier) that she knows where Waldo is in a scene but she doesn’t want to show him where exactly he is. Peggy finds a large piece of cardboard and cuts a Waldo shaped hole right in the middle.
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/07.png?raw=true" width="600">
 
 She then takes the Where’s Waldo scene (which is on a piece of paper) and tapes it to the back of the cardboard so that Waldo is occupying the Waldo shaped hole in the center. Victor should stand in front of the cardboard while Peggy is taping it up.
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/08.png?raw=true" width="600">
 
 When Victor sees Waldo through the hole, he is convinced that Peggy’s claim is valid, while not knowing Waldo’s exact location. That is a zero knowledge proof.
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/09.png?raw=true" width="600">
 
 
 ## zk-SNARKs on Bitcoin

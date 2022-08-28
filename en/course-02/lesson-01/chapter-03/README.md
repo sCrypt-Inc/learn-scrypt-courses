@@ -3,7 +3,7 @@
 
 Battleship is a strategic guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/02.png?raw=true" width="600">
 
 
 ## Incomplete Information Problem

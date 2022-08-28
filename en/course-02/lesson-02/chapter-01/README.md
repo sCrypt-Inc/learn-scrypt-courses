@@ -27,7 +27,7 @@ Note Zokrates itself was written in Rust Language, you may need to set up the Ru
 
 The whole workflow is the same as the original ZoKrates, except that the verification step is done on Bitcoin. Generally speaking, it contains following steps:
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/03.png?raw=true" width="600">
 
 
 ### 1. Design a circuit 

@@ -2,7 +2,7 @@
 
 Since we have built the circuit and the smart contract, the next thing to do is to integrate them into a frontend so users can easily interact with the contract.
 
-![TODO]()
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/05.png?raw=true" width="600">
 
 
 ## Credit
