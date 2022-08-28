@@ -22,7 +22,7 @@ yarn add scryptlib
 
 ## Compile
 
-Here's how to instantiate Tic-Tac-Toe Smart Contract and call its pujblic methods. Just like regular Javascript objects, you can simply compile new contract class `Tictactoe`, instantiate new object named `game` using the class, and call the function called `move`.
+Here's how to instantiate Tic-Tac-Toe Smart Contract and call its public methods. Just like regular Javascript objects, you can simply compile new contract class `Tictactoe`, instantiate new object named `game` using the class, and call the function called `move`.
 
 ```javascript
 const Demo = buildContractClass(compileContract('demo.scrypt'));
