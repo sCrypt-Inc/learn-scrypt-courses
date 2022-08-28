@@ -1,0 +1,80 @@
+{
+    "title": "在比特币上构建基于 zkSNARKs 的战舰游戏",
+    "desc": "在比特币上创建你的第一个零知识证明程序",
+    "lessons": [
+        {
+            "title": "介绍",
+            "desc": "学习零知识证明基础知识",
+            "num": 3,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第 1 章：课程概述"
+                },
+                {
+                    "num": 2,
+                    "title": "第 2 章：零知识证明基础",
+                    "scripts": [  
+                    ]
+                },
+                {
+                    "num": 3,
+                    "title": "第 3 章：基于zkSNARK的战舰游戏",
+                    "scripts": [
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "构建 zkSNARK 电路",
+            "desc": "学习如何使用 zokrates 和编写电路",
+            "num": 2,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第 1 章：Zokrates 简介"
+                },
+                {
+                    "num": 2,
+                    "title": "第 2 章：在 Zokrates 中实现战舰电路",
+                    "scripts": [  
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "构建 sCrypt 智能合约",
+            "desc": "了解如何将 ZKP 集成到合约中",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第一章：实现战舰合约"
+                }
+            ]
+        },
+        {
+            "title": "前端集成",
+            "desc": "了解如何使用 scryptlib 将 ZKP 和合约与前端集成",
+            "num": 4,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第 1 章：搭建前端"
+                },
+                {
+                    "num": 1,
+                    "title": "第 2 章：将 Zokrates 电路与 zokrates-js 集成"
+                },
+                {
+                    "num": 1,
+                    "title": "第 3 章：将 sCrypt 合约与 scryptlib 集成"
+                },
+                {
+                    "num": 1,
+                    "title": "第 4 章：总结"
+                }
+            ]
+        }
+    ]
+}
