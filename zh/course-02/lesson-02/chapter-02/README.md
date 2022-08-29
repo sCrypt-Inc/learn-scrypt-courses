@@ -50,7 +50,7 @@ fleetState = carrierState + battleshipState * (1<<12) + cruiserState * (1<<24) +
 
 ### Mimc 哈希
 
-接下来是计算舰队状态的哈希值。我们选择了一个 zkSNARK 友好的哈希算法 [`mimc7`](https://xiaohuiliu.medium.com/zk-friendly-hash-function-mimc-in-bitcoin-1236783d7f64) 来完成这项工作，因为它能够减少最终电路的大小。这里还可以使用其他哈希算法。
+接下来是计算舰队状态的哈希值。我们选择了一个 zkSNARKs 友好的哈希算法 [`mimc7`](https://xiaohuiliu.medium.com/zk-friendly-hash-function-mimc-in-bitcoin-1236783d7f64) 来完成这项工作，因为它能够减少最终电路的大小。这里还可以使用其他哈希算法。
 
 我们只是确保它与公共输入中声明的相同：
 

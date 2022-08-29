@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "构建 zkSNARK 电路",
+            "title": "构建 zkSNARKs 电路",
             "desc": "学习如何使用 zokrates 和编写电路",
             "num": 2,
             "chapters": [

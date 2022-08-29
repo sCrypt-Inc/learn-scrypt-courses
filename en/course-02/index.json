@@ -19,14 +19,14 @@
                 },
                 {
                     "num": 3,
-                    "title": "Chapter 3: zkSNARK-based Battleship Game",
+                    "title": "Chapter 3: zkSNARKs-based Battleship Game",
                     "scripts": [
                     ]
                 }
             ]
         },
         {
-            "title": "Build the zkSNARK circuit",
+            "title": "Build the zkSNARKs circuit",
             "desc": "Learn how to use zokrates and write circuits",
             "num": 2,
             "chapters": [

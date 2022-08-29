@@ -10,11 +10,11 @@ npm install zokrates-js
 
 `zokrates-js` provides APIs which covers the whole workflow we mentioned in the previous chapter, including:
 
-compile
-setup
-computeWitness
-generateProof
-verify
+* compile
+* setup
+* computeWitness
+* generateProof
+* verify
 
 As we mentioned in the previous chapter, we’ve already finished the `compile` and `setup` process in `npm run setup`. Here we just wrap the last three APIs into a Javascript class called `ZKProvider` to provide features we need.
 
@@ -77,9 +77,9 @@ const handleFire = (role, targetIdx, isHit) => {
 
 Next we have to find the fire event handlers in the game to apply this function. The game was originally designed to be a PvC(Player vs Computer) game, so there are two handlers should be modified:
 
-Player fire event handler function `fireTorpedo` in `ComputerBoard.js`;
+* Player fire event handler function `fireTorpedo` in `ComputerBoard.js`;
 
-Computer fire event handler function `computerFire` in `Game.js`;
+* Computer fire event handler function `computerFire` in `Game.js`;
 
 ## Use web worker to unblock UI
 
