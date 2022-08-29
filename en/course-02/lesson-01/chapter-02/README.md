@@ -36,6 +36,33 @@ A zk-SNARK consists of the following three algorithms:
 2. Prover
 3. Verifier
 
+### 1. Key Generation
+
+A key generator *G* takes a secret parameter *λ* and a function *C*, and produces a proving key *pk* and a verification key *vk*. Both keys are made public.
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/12.png?raw=true" width="600">
+
+
+C is a boolean function (also called a program or circuit) that takes two inputs: a public input x and a private input w (aka, witness). For example, C can be a function that checks if w is the sha256 preimage of the digest x.
+
+```
+C(x, w) = sha256(w) == x
+```
+
+### 2. Prover
+
+The prover *P* takes as input the proving key *pk*, a public input *x* and a private witness *w* to produce a proof that the prover knows a witness *w* that makes *C(x, w)* evaluates to true.
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/13.png?raw=true" width="600">
+
+### 3. Verifier
+
+The verifier *V* takes verification key *vk*, the proof, and the public input *x* and accepts the proof only if it is produced with the knowledge of witness *w*.
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/14.png?raw=true" width="600">
+
+## Implementation
+
 When zk-SNARKs are used in blockchains, both the key and proof generation are executed off-chain. Only the general verification algorithm is run inside a smart contract on chain.
 
 We implement the most widely used scheme [Groth16](https://eprint.iacr.org/2016/260.pdf) due to its [small proof size and fast verification](http://www.zeroknowledgeblog.com/index.php/groth16). The full code is [here](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt).
