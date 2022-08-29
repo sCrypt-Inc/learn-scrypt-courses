@@ -44,7 +44,7 @@
         },
         {
             "title": "Build the sCrypt smart contract",
-            "desc": "Learn how to integrat ZKP in contract",
+            "desc": "Learn how to integrate ZKP in contract",
             "num": 1,
             "chapters": [
                 {
@@ -55,7 +55,7 @@
         },
         {
             "title": "Integration with a frontend",
-            "desc": "Learn how to integrat ZKP and the contract with a frontend using scryptlib",
+            "desc": "Learn how to integrate ZKP and the contract with a frontend using scryptlib",
             "num": 4,
             "chapters": [
                 {
