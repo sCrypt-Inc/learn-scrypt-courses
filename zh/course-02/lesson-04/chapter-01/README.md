@@ -44,7 +44,7 @@ npm run setup
 - 已安装 [sensilet chrome 扩展程序](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
 - 从 [水龙头](https://scrypt.io/#faucet) 获取一些测试网 BSV；
 
-你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试[在线版本](https://scrypt.io/battleship)。
+你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试[在线版本](https://scrypt.io/zk-battleship)。
 
 ## 致谢
 

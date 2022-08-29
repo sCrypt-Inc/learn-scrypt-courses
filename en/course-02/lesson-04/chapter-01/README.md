@@ -43,7 +43,7 @@ In order to play it you should meet those two prerequisites listed as below:
 * Have [sensilet chrome extension](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm) installed;
 Get some testnet BSVs in the above wallet from a [faucet](https://scrypt.io/#faucet);
 
-* You can now visit `http://localhost:3000` in chrome browser, also you could try the online version [here](https://scrypt.io/battleship).
+* You can now visit `http://localhost:3000` in chrome browser, also you could try the online version [here](https://scrypt.io/zk-battleship).
 
 ## Credits
 We built the frontend based on [this project](https://github.com/diemkay/battleship).
