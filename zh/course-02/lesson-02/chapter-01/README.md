@@ -90,3 +90,8 @@ zokrates export-verifier-scrypt
 ```
 zokrates verify
 ```
+
+
+## 实战演习
+
+完成右边的电路， 以确保 秘密输入 `x` 的平方等于 `1` 。

@@ -34,7 +34,7 @@ The whole workflow is the same as the original ZoKrates, except that the verific
 
 Implement the circuit in the Zokrates language. For example, this simple circuit/program named factor.zok proves one knows the factorization of an integer n into two integers, without revealing the integers. The circuit has two private inputs named p and q and one public input named n. You can refer to https://zokrates.github.io/ for more information on how to use Zokrates.
 
-```
+```python
 // p and q are factorization of n
 def main(private field p, private field q, field n) {
     assert(p * q == n);
@@ -88,3 +88,7 @@ You can verify it locally:
 ```
 zokrates verify
 ```
+
+## Put it to the test
+
+Complete the circuit on the right to ensure that the square of the private input `x` equals `y` .
