@@ -32,7 +32,14 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第 1 章：Zokrates 简介"
+                    "title": "第 1 章：Zokrates 简介",
+                    "scripts": [  
+                        {
+                            "name": "example.zok",
+                            "lang": "js",
+                            "hints": ["一个简单的电路"]
+                        }
+                    ]
                 },
                 {
                     "num": 2,

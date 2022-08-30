@@ -32,7 +32,14 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "Chapter 1: Introduction to Zokrates"
+                    "title": "Chapter 1: Introduction to Zokrates",
+                    "scripts": [  
+                        {
+                            "name": "example.zok",
+                            "lang": "js",
+                            "hints": ["A simple circuit"]
+                        }
+                    ]
                 },
                 {
                     "num": 2,
