@@ -45,6 +45,16 @@
                     "num": 2,
                     "title": "Chapter 2: Implement the battleship circuit in Zokrates",
                     "scripts": [  
+                        {
+                            "name": "battleship.zok",
+                            "lang": "js",
+                            "hints": ["battleship circuit"]
+                        },
+                        {
+                            "name": "mimc7.zok",
+                            "lang": "js",
+                            "hints": ["mimc7 circuit"]
+                        }
                     ]
                 }
             ]

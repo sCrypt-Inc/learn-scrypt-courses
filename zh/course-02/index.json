@@ -45,6 +45,16 @@
                     "num": 2,
                     "title": "第 2 章：在 Zokrates 中实现战舰电路",
                     "scripts": [  
+                        {
+                            "name": "battleship.zok",
+                            "lang": "js",
+                            "hints": ["战舰电路"]
+                        },
+                        {
+                            "name": "mimc7.zok",
+                            "lang": "js",
+                            "hints": ["mimc7 哈希算法"]
+                        }
                     ]
                 }
             ]
