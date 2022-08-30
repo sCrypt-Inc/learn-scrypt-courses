@@ -45,7 +45,10 @@ The contract contains a public function named `move()`. In the `move()` function
 If the other party provides an honest result, it will pass the check, otherwise it will fail. Afterwards, we check whether the signature of the player calling the contract is valid and update the number of times the corresponding player hit the battleship according to whether the battleship is hit, that is, we update the state properties `successfulYourHits` and `successfulComputerHits`. Finally we update state properties `yourTurn`. If someone hits the ships `17` times first, he wins the game and the game is over. If not, save the latest states and wait for the next move.
 
 
-In conclusion, we have implemented the battleship contract, including verification of zkSNARK proofs in contracts and maintenance of game state.
+## Put it to the test
+
+
+In summary, we have achieved the battleship contract. Please use the `zkSNARK` library in the right contract to verify the player's provided proof.
 
 
 

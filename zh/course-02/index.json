@@ -66,7 +66,19 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第一章：实现战舰合约"
+                    "title": "第一章：实现战舰合约",
+                    "scripts": [  
+                        {
+                            "name": "battleship.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["battleship contract"]
+                        },
+                        {
+                            "name": "verifier.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["ZKSNARK library"]
+                        }
+                    ]
                 }
             ]
         },

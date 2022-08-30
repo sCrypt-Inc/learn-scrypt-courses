@@ -66,7 +66,19 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "Chapter 1: Implement the battleship contract"
+                    "title": "Chapter 1: Implement the battleship contract",
+                    "scripts": [  
+                        {
+                            "name": "battleship.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["battleship contract"]
+                        },
+                        {
+                            "name": "verifier.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["ZKSNARK library"]
+                        }
+                    ]
                 }
             ]
         },
