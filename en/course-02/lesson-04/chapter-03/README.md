@@ -161,3 +161,12 @@ await move(isPlayerFired, ctx.targetIdx, contractUtxo, ctx.isHit, new Proof({
 ```
 
 Now, we have implemented the deployment and called the contract, using `scryptlib`.
+
+
+
+## Put it to the test
+
+1. Finish loading the contract description file in `WelcomeScreen.js`.
+2. Finish deploying the contract in `startTurn` function.
+3. Implement the `move` function that calls the contract
+

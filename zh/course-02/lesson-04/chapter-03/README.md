@@ -160,3 +160,9 @@ await move(isPlayerFired, ctx.targetIdx, contractUtxo, ctx.isHit, new Proof({
 ```
 
 现在，我们已经使用 scryptlib 实现了部署并调用了合约。
+
+## 实战演习
+
+1. 在 `WelcomeScreen.js` 中完成合约描述文件的加载。
+2. 在 `startTurn` 函数中完成部署合约。
+3. 实现调用合约的 `move` 函数。

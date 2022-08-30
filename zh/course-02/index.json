@@ -109,7 +109,17 @@
                 },
                 {
                     "num": 1,
-                    "title": "第 3 章：将 sCrypt 合约与 scryptlib 集成"
+                    "title": "第 3 章：将 sCrypt 合约与 scryptlib 集成",
+                    "scripts": [{
+                            "name": "WelcomeScreen.js",
+                            "lang": "js",
+                            "hints": ["加载合约描述文件"]
+                        },
+                        {
+                            "name": "Game.js",
+                            "lang": "js",
+                            "hints": ["部署，调用合约"]
+                    }]
                 },
                 {
                     "num": 1,

@@ -108,7 +108,17 @@
                 },
                 {
                     "num": 1,
-                    "title": "Chapter 3: Integrating sCrypt contract with scryptlib"
+                    "title": "Chapter 3: Integrating sCrypt contract with scryptlib",
+                    "scripts": [{
+                        "name": "WelcomeScreen.js",
+                        "lang": "js",
+                        "hints": ["Load description file "]
+                    },
+                    {
+                        "name": "Game.js",
+                        "lang": "js",
+                        "hints": ["Deploy and call the contract"]
+                }]
                 },
                 {
                     "num": 1,
