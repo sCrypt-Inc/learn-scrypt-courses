@@ -81,7 +81,7 @@ def isShipHit(field x, field y, field o, field size, field targetX, field target
     return ((o == 0 && targetX == x && targetY >= y && targetY <= y + size - 1) || (o == 1 && targetY == y && targetX >= x && targetX <= x + size - 1));
 }
 ```
-### 完整代码
+### 实战演习
 
 最后我们得到完整的电路代码如右边所示。
 

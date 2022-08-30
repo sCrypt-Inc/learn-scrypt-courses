@@ -93,7 +93,19 @@
                 },
                 {
                     "num": 1,
-                    "title": "第 2 章：将 Zokrates 电路与 zokrates-js 集成"
+                    "title": "第 2 章：将 Zokrates 电路与 zokrates-js 集成",
+                    "scripts": [  
+                        {
+                            "name": "zkp.worker.js",
+                            "lang": "js",
+                            "hints": ["计算见证人，生成证明，验证证明的worker 线程"]
+                        },
+                        {
+                            "name": "zkProvider.js",
+                            "lang": "js",
+                            "hints": ["zkp Provider"]
+                        }
+                    ]
                 },
                 {
                     "num": 1,

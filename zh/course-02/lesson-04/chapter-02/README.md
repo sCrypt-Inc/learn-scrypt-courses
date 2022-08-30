@@ -90,43 +90,7 @@ const handleFire = (role, targetIdx, isHit) => {
 
 在我们将 `handleFire` 回调添加到这些事件处理程序后，UI 似乎在每次触发事件后都会无响应。 这是因为生成证明是 CPU 密集型的，并且它运行在与渲染 UI 的同一线程中。
 
-处理这种情况的标准方法是将代码分离到 web worker 中。 所以我们创建了一个名为 `zkp.worker.js` 的文件，如下所示：
-
-```js
-import { ZKProvider } from './zkProvider';
-
-self.addEventListener("message", (event) => {
-  const { ctx, publicInputs, privateInputs } = event.data;
-  runZKP(privateInputs, publicInputs)
-    .then((res) => {
-      self.postMessage({ ctx, ...res });
-    });
-});
-
-// run zero knowledge proof
-function runZKP(privateInputs, publicInputs) {
-  return ZKProvider
-    .init()
-    .then(() => {
-      // computer witness for fire result
-      return ZKProvider.computeWitness(privateInputs.concat(publicInputs))
-    })
-    .then(async ({ witness }) => {
-      return ZKProvider.generateProof(witness);
-    })
-    .then(async (proof) => {
-      const isVerified = await ZKProvider.verify(proof);
-      return { isVerified, proof };
-    })
-    .catch(e => {
-      console.error('zkp.worker error:', e)
-      return {
-        isVerified: false
-      }
-    })
-}
-
-```
+处理这种情况的标准方法是将代码分离到 web worker 中。 所以我们创建了一个名为 `zkp.worker.js` 的文件，并在 worker 中生成证明。
 
 然后我们将 `handleFire` 函数更新为如下所示：
 
@@ -171,3 +135,8 @@ const handleFire = (role, targetIdx, isHit, newStates) => {
 
 现在我们已经成功地将 ZKP 相关的计算中剥离了 UI。
 
+## 实战演习
+
+1. 在 `zkProvider.js` 加载证明密钥和验证密钥
+
+2. 在 `zkp.worker.js` 计算见证人、生成证明并验证证明。

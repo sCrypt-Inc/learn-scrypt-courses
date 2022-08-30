@@ -85,43 +85,7 @@ Next we have to find the fire event handlers in the game to apply this function.
 
 After we added the `handleFire` callback to these event handlers, the UI appears to be non-responsible after every fire event. This is because generating a proof is CPU intensive and it is in the same thread that renders UI. 
 
-A standard way to deal with this situation is to separate the code into a web worker. So we created a file named `zkp.worker.js` as below:
-
-```js
-import { ZKProvider } from './zkProvider';
-
-self.addEventListener("message", (event) => {
-  const { ctx, publicInputs, privateInputs } = event.data;
-  runZKP(privateInputs, publicInputs)
-    .then((res) => {
-      self.postMessage({ ctx, ...res });
-    });
-});
-
-// run zero knowledge proof
-function runZKP(privateInputs, publicInputs) {
-  return ZKProvider
-    .init()
-    .then(() => {
-      // computer witness for fire result
-      return ZKProvider.computeWitness(privateInputs.concat(publicInputs))
-    })
-    .then(async ({ witness }) => {
-      return ZKProvider.generateProof(witness);
-    })
-    .then(async (proof) => {
-      const isVerified = await ZKProvider.verify(proof);
-      return { isVerified, proof };
-    })
-    .catch(e => {
-      console.error('zkp.worker error:', e)
-      return {
-        isVerified: false
-      }
-    })
-}
-
-```
+A standard way to deal with this situation is to separate the code into a web worker.  So we create a file called `zkp.worker.js` and generate the proof in the worker.
 
 Then we updated the `handleFire` function to be like this:
 
@@ -164,5 +128,8 @@ Initialize the worker as below:
 
 ```
 
-Now we have successfully unblocked the UI from ZKP-related calculations.
+## Put it to the test
 
+1. Load proving key and verification key in `zkProvider.js`
+
+2. Compute witnesses, generate proof, and verify proof in `zkp.worker.js`.

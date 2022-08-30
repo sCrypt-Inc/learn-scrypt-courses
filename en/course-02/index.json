@@ -93,7 +93,18 @@
                 },
                 {
                     "num": 1,
-                    "title": "Chapter 2: Integrating the Zokrates circuit with zokrates-js"
+                    "title": "Chapter 2: Integrating the Zokrates circuit with zokrates-js",
+                    "scripts": [  
+                        {
+                            "name": "zkp.worker.js",
+                            "lang": "js",
+                            "hints": ["A worker to compute witness, generate proof"]
+                        },{
+                            "name": "zkProvider.js",
+                            "lang": "js",
+                            "hints": ["zkp Provider"]
+                        }
+                    ]
                 },
                 {
                     "num": 1,
