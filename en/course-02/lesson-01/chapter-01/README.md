@@ -1,7 +1,7 @@
 # Chapter 1: Course Overview
 
 
-In this course, we’re going to build a zkSNARKs-based battleship game on the BitcoinSV network in those main steps:
+In this course, we’re going to build a zkSNARK-based battleship game on the BitcoinSV network in those main steps:
 
 
 * Creating a dedicated zero-knowledge-proof circuit by using the Zokrates toolkit;

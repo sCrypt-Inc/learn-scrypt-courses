@@ -61,9 +61,9 @@ setDeployTxid(txid)
 
 Note: After successful deployment, we save the UTXO of the deployed contract to localStorage so that the transaction can be constructed when the contract is invoked.
 
-## Invoke battleship contract using a zkSNARKs proof
+## Invoke battleship contract using a zkSNARK proof
 
-As described in the previous chapter, whenever a player fires, we generate a zkSNARKs proof in `zkp.worker.js`, which proves `hit` parameter we passed in when calling the contract is correct.
+As described in the previous chapter, whenever a player fires, we generate a zkSNARK proof in `zkp.worker.js`, which proves `hit` parameter we passed in when calling the contract is correct.
 
 We get the computed proof in the message response function called `zkpWorkerMsgHandler`  of `zkp.worker.js` and use it to construct the transaction to invoke the battleship contract.
 
@@ -108,7 +108,7 @@ if (newStates.successfulYourHits === 17) {
 ```
 
 
-Next, we use the contract's `move` public function. The parameters of the `move` function include the player's signature, and the position of the firing, as well as the result of the hit or not reported by the opponent, and the zkSNARKs proof provided by the opponent. At the same time, the new balance of the contract needs to be calculated.
+Next, we use the contract's `move` public function. The parameters of the `move` function include the player's signature, and the position of the firing, as well as the result of the hit or not reported by the opponent, and the zkSNARK proof provided by the opponent. At the same time, the new balance of the contract needs to be calculated.
 
 ```js
 tx.setInputScript(0, (tx, output) => {
@@ -128,7 +128,7 @@ After that, we call the `seal()` function in [Chained APIs](https://github.com/s
 
 Now that we have constructed the transaction in the callback function of `web3.call()`, it will broadcast the transaction and thus call the contract. We encapsulate the process of building the transaction in the `move()` function and call it in the `zkpWorkerMsgHandler` message handler.
 
-Note that the generated zkSNARKs proof needs to be converted into an sCrypt struct.
+Note that the generated zkSNARK proof needs to be converted into an sCrypt struct.
 
 ```js
 const isPlayerFired = ctx.role === 'player';

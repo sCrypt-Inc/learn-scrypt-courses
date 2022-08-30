@@ -1,4 +1,4 @@
-# Chapter 3: zkSNARKs-based Battleship Game
+# Chapter 3: zkSNARK-based Battleship Game
 
 
 Battleship is a strategic guessing game for two players. It is played on a grid on which each player's fleet of warships are marked. The locations of the fleets are concealed from the other player. Players alternate turns calling "shots" at the other player's ships, and the objective of the game is to destroy the opposing player's fleet.
@@ -13,8 +13,8 @@ In an offline setting, two players sit opposite to each other and they cannot se
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/10.jpeg?raw=true" width="600">
 
 
-## zkSNARKs Solution
+## zkSNARK Solution
 
-We use zkSNARKs to solve the problem. Each player first commits to his fleet location by hashing it and submitting it on chain. Using zkSNARKs, a player can submit a proof of whether the opponent’s guessed coordinate is a hit or miss, against his own public hash of fleet location without disclosing it. The opponent can verify the proof is valid before any further moves. Thus we can make a fair P2P battleship game from it.
+We use zkSNARK to solve the problem. Each player first commits to his fleet location by hashing it and submitting it on chain. Using zkSNARK, a player can submit a proof of whether the opponent’s guessed coordinate is a hit or miss, against his own public hash of fleet location without disclosing it. The opponent can verify the proof is valid before any further moves. Thus we can make a fair P2P battleship game from it.
 
 Note this is very different from the commit-reveal scheme we often used in smart contracts before, the location information is kept private to its owner throughout the entire game.

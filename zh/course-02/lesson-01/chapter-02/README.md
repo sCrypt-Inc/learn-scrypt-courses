@@ -23,7 +23,7 @@ Peggy（证明者）告诉 Victor（验证者）她知道沃尔多在场景中�
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/09.png?raw=true" width="600">
 
 
-## 比特币上的 zk-SNARKs
+## 比特币上的 zk-SNARK
 
 zk-SNARK（零知识简洁非交互式知识论证）是一种旨在为任何数学函数生成 ZKP 的协议。
 

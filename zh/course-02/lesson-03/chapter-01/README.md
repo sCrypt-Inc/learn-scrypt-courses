@@ -1,6 +1,6 @@
 # 第 1 章：实现战舰合约
 
-实现电路后，如 [第六步](https://blog.csdn.net/freedomhero/article/details/126096767)，我们通过以下命令导出一个 zkSNARKs 验证器：
+实现电路后，如 [第六步](https://blog.csdn.net/freedomhero/article/details/126096767)，我们通过以下命令导出一个 zkSNARK 验证器：
 
 ```
 zokrates export-verifier-scrypt
@@ -27,7 +27,7 @@ zokrates export-verifier-scrypt
 游戏开始时，您和电脑各自秘密放置船只并计算哈希承诺。合约使用双方的哈希承诺和公钥进行初始化。
 
 
-该合约包含一个名为 `move()` 的公共函数。在 `move()` 函数中，我们使用 zkSNARKs 验证器来检查其他玩家提交的证明。
+该合约包含一个名为 `move()` 的公共函数。在 `move()` 函数中，我们使用 zkSNARK 验证器来检查其他玩家提交的证明。
 
 
 ```

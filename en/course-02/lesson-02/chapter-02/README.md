@@ -50,7 +50,7 @@ fleetState = carrierState + battleshipState * (1<<12) + cruiserState * (1<<24) +
 
 ### Mimc Hash
 
-The next thing is to calculate the hash value of the fleet state. We choose a zkSNARKs-friendly hash algorithm [`mimc7`](https://xiaohuiliu.medium.com/zk-friendly-hash-function-mimc-in-bitcoin-1236783d7f64) to do the job due to its small size in the final circuit. There are also other hash algorithms that can be used here.
+The next thing is to calculate the hash value of the fleet state. We choose a zkSNARK-friendly hash algorithm [`mimc7`](https://xiaohuiliu.medium.com/zk-friendly-hash-function-mimc-in-bitcoin-1236783d7f64) to do the job due to its small size in the final circuit. There are also other hash algorithms that can be used here.
 
 We just make sure it’s the same as the declared one in public inputs:
 

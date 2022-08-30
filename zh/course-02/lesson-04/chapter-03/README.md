@@ -60,9 +60,9 @@ setDeployTxid(txid)
 
 注意：部署成功后，我们将部署的合约的UTXO保存到localStorage，以便合约调用时构建交易。
 
-## 使用 zkSNARKs 证明调用战舰合约
+## 使用 zkSNARK 证明调用战舰合约
 
-如上一章所述，每当玩家开火时，我们会在 `zkp.worker.js` 中生成一个 zkSNARKs 证明，证明我们在调用合约时传入的 `hit` 参数是正确的。
+如上一章所述，每当玩家开火时，我们会在 `zkp.worker.js` 中生成一个 zkSNARK 证明，证明我们在调用合约时传入的 `hit` 参数是正确的。
 
 我们在 `zkp.worker.js` 的名为 `zkpWorkerMsgHandler` 的消息响应函数中获取计算好的证明，并使用它来构造交易以调用战舰合约。
 
@@ -106,7 +106,7 @@ if (newStates.successfulYourHits === 17) {
 ```
 
 
-接下来，我们使用合约的 `move` 公共函数。 `move` 函数的参数包括玩家的签名，射击的位置，击中或未击中的结果，以及对手提供的 zkSNARKs 证明。 同时，需要计算合约的新余额。
+接下来，我们使用合约的 `move` 公共函数。 `move` 函数的参数包括玩家的签名，射击的位置，击中或未击中的结果，以及对手提供的 zkSNARK 证明。 同时，需要计算合约的新余额。
 
 
 ```js
@@ -127,7 +127,7 @@ tx.setInputScript(0, (tx, output) => {
 
 现在我们已经在 `web3.call()` 的回调函数中构造了交易，接下来它会广播交易，从而调用合约。 我们将构建事务的过程封装在`move()`函数中，并在`zkpWorkerMsgHandler`消息处理程序中调用 `move()`函数。
 
-请注意，生成的 zkSNARKs 证明需要转换为 sCrypt 的结构体。
+请注意，生成的 zkSNARK 证明需要转换为 sCrypt 的结构体。
 
 ```js
 const isPlayerFired = ctx.role === 'player';

@@ -1,5 +1,5 @@
 {
-    "title": "在比特币上构建基于 zkSNARKs 的战舰游戏",
+    "title": "在比特币上构建基于 zkSNARK 的战舰游戏",
     "desc": "在比特币上创建你的第一个零知识证明程序",
     "lessons": [
         {
@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "构建 zkSNARKs 电路",
+            "title": "构建 zkSNARK 电路",
             "desc": "学习如何使用 zokrates 和编写电路",
             "num": 2,
             "chapters": [

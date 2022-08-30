@@ -1,6 +1,6 @@
 # Chapter 1: Introduction to Zokrates
 
-[Zokrates](https://zokrates.github.io/) is a toolbox for zkSNARKs, hiding significant complexity inherent to zero-knowledge proofs (ZKP). It provides a python-like higher-level language for developers to code the computational problem they want to prove.
+[Zokrates](https://zokrates.github.io/) is a toolbox for zkSNARK, hiding significant complexity inherent to zero-knowledge proofs (ZKP). It provides a python-like higher-level language for developers to code the computational problem they want to prove.
 
 We extend it to generate and verify proofs on Bitcoin.
 

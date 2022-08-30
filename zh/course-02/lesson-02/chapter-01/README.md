@@ -1,6 +1,6 @@
 # 第 1 章：Zokrates 简介
 
-[Zokrates](https://zokrates.github.io/) 是 zkSNARKs 的工具箱，隐藏了零知识证明 (ZKP) 固有的显著复杂性。它为开发人员提供了一种类似于 python 的高级语言来编写他们想要证明的计算问题。
+[Zokrates](https://zokrates.github.io/) 是 zkSNARK 的工具箱，隐藏了零知识证明 (ZKP) 固有的显著复杂性。它为开发人员提供了一种类似于 python 的高级语言来编写他们想要证明的计算问题。
 
 我们扩展它来生成和在比特币上验证证明。
 

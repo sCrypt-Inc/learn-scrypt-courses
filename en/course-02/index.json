@@ -1,5 +1,5 @@
 {
-    "title": "Build a zkSNARKs-based Battleship Game on Bitcoin",
+    "title": "Build a zkSNARK-based Battleship Game on Bitcoin",
     "desc": "Create Your First Zero-Knowledge Proof Program on Bitcoin",
     "lessons": [
         {
@@ -19,14 +19,14 @@
                 },
                 {
                     "num": 3,
-                    "title": "Chapter 3: zkSNARKs-based Battleship Game",
+                    "title": "Chapter 3: zkSNARK-based Battleship Game",
                     "scripts": [
                     ]
                 }
             ]
         },
         {
-            "title": "Build the zkSNARKs circuit",
+            "title": "Build the zkSNARK circuit",
             "desc": "Learn how to use zokrates and write circuits",
             "num": 2,
             "chapters": [
