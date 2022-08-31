@@ -40,13 +40,13 @@
 
 请注意，位置的有效值在 `0` 到 `9` 之间，方向值只是 `0` 或 `1`。所以我们可以将它们中的每一个编码为 `4` 个比特位，并将它们全部连接起来形成一个可以表示整个元组的数字。例如：
 
-```
+```python
 shipState = shipX + shipY * (1<<4) + shipOrientation * (1<<8);
 ```
 
 用同样的想法，我们可以在一个“字段”中表示整个舰队的位置状态：
 
-```
+```python
 fleetState = carrierState + battleshipState * (1<<12) + cruiserState * (1<<24) + submarineState * (1<<36) + destroyerState * (1<<48);
 ```
 
@@ -56,7 +56,7 @@ fleetState = carrierState + battleshipState * (1<<12) + cruiserState * (1<<24) +
 
 我们只是确保它与公共输入中声明的相同：
 
-```
+```python
 assert(mimc7::<91>(shipState, 0) == shipHash);
 ```
 
@@ -64,52 +64,30 @@ assert(mimc7::<91>(shipState, 0) == shipHash);
 
 首先我们检查目标位置是否有效：
 
-```
+```python
 assert(targetX >= 0 && targetX <= 9 && targetY >= 0 && targetY <= 9);
 ```
 
 然后我们可以将命中或未命中逻辑放在帮助函数中并在主函数中调用它：
 
-```
-def isShipHit（字段 x，字段 y，字段 o，字段大小，字段 targetX，字段 targetY）-> bool {
-    return ((o == 0 && targetX == x && targetY >= y && targetY <= y + size - 1) || (o == 1 && targetY == y && targetX >= x && targetX <= x +大小 - 1));
+```python
+def isShipHit(field x, field y, field o, field size, field targetX, field targetY) -> bool {
+    return ((o == 0 && targetX == x && targetY >= y && targetY <= y + size - 1) || (o == 1 && targetY == y && targetX >= x && targetX <= x + size - 1));
 }
 ```
 
 最后一件事是检查是否有任何船只按照公共输入中的声明被击中：
 
+```python
+assert(hit == (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit));
 ```
-def isShipHit(field x, field y, field o, field size, field targetX, field targetY) -> bool {
-    return ((o == 0 && targetX == x && targetY >= y && targetY <= y + size - 1) || (o == 1 && targetY == y && targetX >= x && targetX <= x + size - 1));
-}
-```
+
+
 ### 实战演习
 
 最后我们得到完整的电路代码如右边所示。
 
-请在 `battleship.zok` 中检查射击的坐标是否有效。
-
-
-### 更新
-
 如果你仔细看我们刚刚完成的代码，你可能会发现我们没有检查舰队位置的有效性。这意味着一个人可以通过在开始时提供一个无效的船位置作为秘密输入来欺骗它的对手，因此船舰永远不会被击中。你能更新电路以防止这种情况发生吗？试着看看我们提供的答案。
-
-
-```python
-def isShipWithinBoard(field x, field y, field o, field size) -> bool {
-    return ((o == 0 && x >= 0 && x <= 9 && y >= 0 && y <= 10 - size) || (o == 1 && x >= 0 && x <= 10 - size && y >= 0 && y <= 9));
-}
-
-def main(…) {
-    assert(isShipWithinBoard(carrierX, carrierY, carrierO, 5));
-    assert(isShipWithinBoard(battleshipX, battleshipY, battleshipO, 4));
-    assert(isShipWithinBoard(cruiserX, cruiserY, cruiserO, 3));
-    assert(isShipWithinBoard(submarineX, submarineY, submarineO, 3));
-    assert(isShipWithinBoard(destroyerX, destroyerY, destroyerO, 2));
-    …
-}
-```
-
 
 ### 致谢
 
