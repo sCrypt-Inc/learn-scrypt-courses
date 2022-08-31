@@ -21,6 +21,8 @@ The first thing is to design the circuit for the game. Keep in mind that the pur
 
 After confirming the rules, the next important job is to determine the inputs and outputs of the circuit, which seems to be very straightforward:
 
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/11.png?raw=true" width="600">
+
 - Inputs: 
     * Private inputs: all the information about the fleet location
         * tuples of (pos_x, pos_y, direction) indicating each ship’s position on board;

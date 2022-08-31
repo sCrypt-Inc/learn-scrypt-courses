@@ -21,6 +21,8 @@
 
 确定规则后，接下来的重要工作就是确定电路的输入和输出，这看起来很简单：
 
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/11.png?raw=true" width="600">
+
 - 输入：
     * 秘密输入：有关舰队位置的所有信息
         * (pos_x, pos_y, direction) 的元组指示每艘船在网格上的位置；
