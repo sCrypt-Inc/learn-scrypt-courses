@@ -25,14 +25,14 @@ Note Zokrates itself was written in Rust Language, you may need to set up the Ru
 
 ## Workflow
 
-The whole workflow is the same as the original ZoKrates, except that the verification step is done on Bitcoin. Generally speaking, it contains following steps:
+The whole workflow is the same as the original ZoKrates, except that the verification step is done on Bitcoin. Generally speaking, it contains the following steps:
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/03.png?raw=true" width="600">
 
 
 ### 1. Design a circuit 
 
-Implement the circuit in the Zokrates language. For example, this simple circuit/program named factor.zok proves one knows the factorization of an integer n into two integers, without revealing the integers. The circuit has two private inputs named p and q and one public input named n. You can refer to https://zokrates.github.io/ for more information on how to use Zokrates.
+Implement the circuit in the Zokrates language. For example, this simple circuit/program named `factor.zok` proves one knows the factorization of an integer `n` into two integers, without revealing the integers. The circuit has two private inputs named `p` and `q` and one public input named `n`. You can refer to https://zokrates.github.io/ for more information on how to use Zokrates.
 
 ```python
 // p and q are factorization of n
@@ -75,7 +75,7 @@ zokrates generate-proof
 
 ### 6. Export an sCrypt verifier
 
-This outputs a smart contract file `verifier.scrypt`, containing all the necessary code to verify a proof.
+This outputs a smart contract file `verifier.scrypt`, containing all the necessary code to verify a proof on chain.
 
 ```
 zokrates export-verifier-scrypt
@@ -83,7 +83,7 @@ zokrates export-verifier-scrypt
 
 ### 7. Verify the proof
 
-You can verify it locally:
+You can verify it off-chain locally:
 
 ```
 zokrates verify

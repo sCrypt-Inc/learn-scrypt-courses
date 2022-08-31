@@ -38,12 +38,12 @@ A zk-SNARK consists of the following three algorithms:
 
 ### 1. Key Generation
 
-A key generator *G* takes a secret parameter *λ* and a function *C*, and produces a proving key *pk* and a verification key *vk*. Both keys are made public.
+A key generator `G` takes a secret parameter `λ` and a function `C`, and produces a proving key `pk` and a verification key `vk`. Both keys are made public.
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/12.png?raw=true" width="600">
 
 
-C is a boolean function (also called a program or circuit) that takes two inputs: a public input x and a private input w (aka, witness). For example, C can be a function that checks if w is the sha256 preimage of the digest x.
+`C` is a boolean function (also called a program or circuit) that takes two inputs: a public input `x` and a private input `w` (aka, witness). For example, `C` can be a function that checks if `w` is the sha256 preimage of the digest `x`.
 
 ```
 C(x, w) = sha256(w) == x
@@ -51,13 +51,13 @@ C(x, w) = sha256(w) == x
 
 ### 2. Prover
 
-The prover *P* takes as input the proving key *pk*, a public input *x* and a private witness *w* to produce a proof that the prover knows a witness *w* that makes *C(x, w)* evaluates to true.
+The prover `P` takes as input the proving key `pk`, a public input `x` and a private witness `w` to produce a proof that the prover knows a witness `w` that makes `C(x, w)` evaluates to true.
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/13.png?raw=true" width="600">
 
 ### 3. Verifier
 
-The verifier *V* takes verification key *vk*, the proof, and the public input *x* and accepts the proof only if it is produced with the knowledge of witness *w*.
+The verifier `V` takes verification key `vk`, the proof, and the public input `x` and accepts the proof only if it is produced with the knowledge of witness `w`.
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/14.png?raw=true" width="600">
 

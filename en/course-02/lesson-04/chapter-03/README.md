@@ -32,7 +32,7 @@ We use `web3.loadContractDesc()` to load the construct description file from ass
 
 We instantiate and deploy the contract every time the game starts in the `startTurn` callback function.
 
-With the contract description file, we can build the battleship contract class by `buildContractClass` function. After that, we initialize the battleship contract with players’ public keys and location hash commitments: 
+With the contract description file, we can build the Battleship contract class by `buildContractClass` function. After that, we initialize the Battleship contract with players’ public keys and location hash commitments: 
 
 ```js
 const BattleShip = buildContractClass(desc);
@@ -61,11 +61,11 @@ setDeployTxid(txid)
 
 Note: After successful deployment, we save the UTXO of the deployed contract to localStorage so that the transaction can be constructed when the contract is invoked.
 
-## Invoke battleship contract using a zkSNARK proof
+## Invoke Battleship contract using a zkSNARK proof
 
 As described in the previous chapter, whenever a player fires, we generate a zkSNARK proof in `zkp.worker.js`, which proves `hit` parameter we passed in when calling the contract is correct.
 
-We get the computed proof in the message response function called `zkpWorkerMsgHandler`  of `zkp.worker.js` and use it to construct the transaction to invoke the battleship contract.
+We get the computed proof in the message response function called `zkpWorkerMsgHandler`  of `zkp.worker.js` and use it to construct the transaction to invoke the Battleship contract.
 
 We use the `web3.call()`  function, provided by the web3 tooling class, to call the contract and use the previously saved utxo to build the transaction.
 

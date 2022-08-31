@@ -38,12 +38,12 @@ zk-SNARK（零知识简洁非交互式知识论证）是一种旨在为任何数
 
 ### 1. 密钥生成
 
-密钥生成器 *G* 采用秘密参数 *λ* 和函数 *C*，并生成证明密钥 *pk* 和验证密钥 *vk*。两个密钥都是公开的。
+密钥生成器 `G` 采用秘密参数 `λ` 和函数 `C`，并生成证明密钥 `pk` 和验证密钥 `vk`。两个密钥都是公开的。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/12.png?raw=true" width="600">
 
 
-*C* 是一个布尔函数（也称为程序或电路），它接受两个输入：公共输入 *x* 和私有输入 *w*（又名见证人）。例如，*C* 可以是一个检查 *w* 是否是摘要 *x* 的 sha256 原像的函数。
+`C` 是一个布尔函数（也称为程序或电路），它接受两个输入：公共输入 `x` 和私有输入 `w`（又名见证人）。例如，`C` 可以是一个检查 `w` 是否是摘要 `x` 的 sha256 原像的函数。
 
 ```
 C(x, w) = sha256(w) == x
@@ -51,13 +51,13 @@ C(x, w) = sha256(w) == x
 
 ### 2. 证明者
 
-证明者 *P* 将证明密钥 *pk*、公共输入 *x* 和私人证人 *w* 作为输入，以生成证明者知道证人 *w* 的证明，证人 *w* 使得 *C(x, w) * 评估为真。
+证明者 `P` 将证明密钥 `pk`、公共输入 `x` 和私人证人 `w` 作为输入，以生成证明者知道证人 `w` 的证明，证人 `w` 使得 `C(x, w) ` 评估为真。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/13.png?raw=true" width="600">
 
 ### 3. 验证者
 
-验证者 *V* 获取验证密钥 *vk*、证明和公共输入 *x*，并且仅当证明是在见证 *w* 的知识下生成时才接受。
+验证者 `V` 获取验证密钥 `vk`、证明和公共输入 `x`，并且仅当证明是在见证 `w` 的知识下生成时才接受。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/14.png?raw=true" width="600">
 

@@ -1,4 +1,4 @@
-# Chapter 1: Implement the battleship contract
+# Chapter 1: Implement the Battleship contract
 
 After implementing the circuit, we export a zkSNARK verifier in sCrypt by following command, as in the [sixth step](https://xiaohuiliu.medium.com/create-your-first-zero-knowledge-proof-program-on-bitcoin-ec159cc501f4) in the workflow:
 
@@ -6,9 +6,11 @@ After implementing the circuit, we export a zkSNARK verifier in sCrypt by follow
 zokrates export-verifier-scrypt
 ```
 
-We get a library named `verifier.scrypt`. With this verifier library, we can implement the battleship contract with ZKP. We can start building the actual game logic in the contract. In our case, we can pass a board state (private) and move, and emit whether it's a hit. The contract just needs the proof to ensure no cheating.
+We get a library named `verifier.scrypt`. With this verifier library, we can implement the Battleship contract with ZKP. We can start building the actual game logic in the contract. In our case, we can pass a board state (private) and move, and emit whether it's a hit. The contract just needs the proof to ensure no cheating.
 
-The Battleship game consists of two players: you and a computer. The battleship contract contains four properties:
+<<<<<<< HEAD<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/11.png?raw=true" width="600">
+
+The Battleship game consists of two players: you and a computer. The Battleship contract contains four properties:
 
 1. `PubKey you` :  used to check the signature to confirm that you executed the contract.
 2. `PubKey computer`: used to check the signature to confirm that the computer executed the contract.
@@ -46,7 +48,7 @@ If the other party provides an honest result, it will pass the check, otherwise 
 ## Put it to the test
 
 
-In summary, we have achieved the battleship contract. Please use the `zkSNARK` library in the right contract to verify the player's provided proof.
+In summary, we have achieved the Battleship contract. Please use the `zkSNARK` library in the right contract to verify the player's provided proof.
 
 
 

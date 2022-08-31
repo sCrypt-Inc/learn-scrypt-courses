@@ -1,36 +1,36 @@
-# Chapter 2: Implement the battleship circuit in Zokrates
+# Chapter 2: Implement the Battleship circuit in Zokrates
 
 ## Design circuit
 
-The first thing is to design the circuit for the game. Keep in mind that the purpose of the circuit is to enforce the main rules of the game which are listed as below:
+The first thing is to design the circuit for the game, which enforces the  rules of the game listed as below:
 
 - The game board is a 10*10 grid;
-- There are five ships which can be placed on board in either horizontal or vertical directions, and they should be placed within the board:
-    * Carrier is size of 5;
-    * Battleship is size of 4;
-    * Cruiser is size of 3;
-    * Submarine is size of 3;
-    * Destroyer is size of 2;
+- There are five ships placed on board, either horizontally or vertically. And they should have the following size:
+    * Carrier: 5;
+    * Battleship: 4;
+    * Cruiser: 3;
+    * Submarine: 3;
+    * Destroyer: 2.
 
-- Once the fleet were placed on board before a game start, they cannot be changed during the game;
+- Once the fleet are placed on board before a game starts, they cannot be moved during the game;
 
-- A shot represented by coordinates of (x, y) should be within the board and either hits or misses the fleet;
+- A shot represented by coordinates of (x, y) should be within the board and either hits or misses a fleet.
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/04.png?raw=true" width="600">
 
 
-After confirming the rules, the next important job is to determine the inputs and outputs of the circuit, which seems to be very straightforward:
+Next we determine the inputs and outputs of the circuit.
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/11.png?raw=true" width="600">
 
 - Inputs: 
     * Private inputs: all the information about the fleet location
-        * tuples of (pos_x, pos_y, direction) indicating each ship’s position on board;
-    * Public inputs: all the information for a fire event
+        * tuples of `(pos_x, pos_y, direction)` indicating each ship’s position on board;
+    * Public inputs: all the information for a firing event
         * a committed hash of the fleet location;
-        * target coordinates (pos_x, pos_y);
+        * target coordinates `(pos_x, pos_y)`;
         * hit or miss any ship;
-- Outputs: Nothing. (It will throw error if anything wrong with the inputs during proof or verification process)
+- Outputs: Nothing. Error will be thrown if there is anything wrong with the inputs during proof generation or verification.
 
 ## Write circuit in Zokrates
 
