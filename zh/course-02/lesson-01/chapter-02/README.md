@@ -51,13 +51,13 @@ C(x, w) = sha256(w) == x
 
 ### 2. 证明者
 
-证明者 `P` 将证明密钥 `pk`、公共输入 `x` 和私人证人 `w` 作为输入，以生成证明者知道证人 `w` 的证明，证人 `w` 使得 `C(x, w) ` 评估为真。
+证明者 `P` 将证明密钥 `pk`、公共输入 `x` 和私人证人 `w` 作为输入，以生成证明者知道证人 `w` 的证明，证人 `w` 使得 `C(x, w)` 评估为真。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/13.png?raw=true" width="600">
 
 ### 3. 验证者
 
-验证者 `V` 获取验证密钥 `vk`、证明和公共输入 `x`，并且仅当证明是在见证 `w` 的知识下生成时才接受。
+验证者 `V` 获取验证密钥 `vk`、证明和公共输入 `x`，并且仅当证明是根据见证人 `w` 的生成时才接受。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/14.png?raw=true" width="600">
 

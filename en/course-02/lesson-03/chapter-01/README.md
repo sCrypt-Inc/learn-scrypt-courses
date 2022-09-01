@@ -8,7 +8,6 @@ zokrates export-verifier-scrypt
 
 We get a library named `verifier.scrypt`. With this verifier library, we can implement the Battleship contract with ZKP. We can start building the actual game logic in the contract. In our case, we can pass a board state (private) and move, and emit whether it's a hit. The contract just needs the proof to ensure no cheating.
 
-<<<<<<< HEAD<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/11.png?raw=true" width="600">
 
 The Battleship game consists of two players: you and a computer. The Battleship contract contains four properties:
 

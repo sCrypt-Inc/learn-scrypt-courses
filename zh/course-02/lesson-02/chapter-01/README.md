@@ -77,7 +77,7 @@ zokrates generate-proof
 
 ### 6. 导出一个 sCrypt 验证器
 
-这会输出一个智能合约文件“verifier.scrypt”，其中包含验证证明所需的所有代码。
+这会输出一个智能合约文件“verifier.scrypt”，其中包含在链上验证证明所需的所有代码。
 
 ```
 zokrates export-verifier-scrypt

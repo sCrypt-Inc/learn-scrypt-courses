@@ -1,7 +1,7 @@
 # 第 1 章：课程概述
 
 
-在本课程中，我们将通过以下主要步骤在 Bitcoin 网络上构建基于 zkSNARK 的战舰游戏：
+在本课程中，我们将分三个步骤在比特币上构建基于 zkSNARK 的[战舰游戏](https://en.wikipedia.org/wiki/Battleship_(game))：
 
 
 1. 使用Zokrates工具包创建专用的零知识证明电路；
@@ -11,4 +11,4 @@
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/01.png?raw=true" width="600">
 
 
-在课程结束时，您将熟悉我们在该项目中使用的所有主要概念和技术，并能够在 Bitcoin 网络上创建自己的零知识应用程序。
+在课程结束时，您将熟悉构建浏览器战舰游戏所需的基于零知识的所有主要概念和技术，并能够在比特币上创建自己的零知识应用。
