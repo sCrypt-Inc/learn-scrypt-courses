@@ -8,7 +8,7 @@ loop (maxLoopCount) [: i] {
 }
 ```
 
-`maxLoopCount` must be a constant known at compile time. `i` is an [induction variable](https://scryptdoc.readthedocs.io/en/latest/loop.html#induction-variable), representing the loop index starting from 0. For example, the following loop:
+`maxLoopCount` must be a constant known at compile time. `i` An [induction variable](https://scryptdoc.readthedocs.io/en/latest/loop.html#induction-variable), representing the loop index starting from 0. For example, the following loop:
 
 
 ```
