@@ -1,12 +1,12 @@
 # Chapter 3: Integrating sCrypt contract with scryptlib
 
-scryptlib is sCrypt's official Javascript SDK for integrating smart contracts in your application. You can compile, test, deploy and call contracts through this SDK.
+[scryptlib](https://github.com/sCrypt-Inc/scryptlib) is sCrypt's official Javascript SDK for integrating smart contracts in your application. You can compile, test, deploy and call contracts through this SDK.
 
-We provide you [web3](https://github.com/sCrypt-Inc/zk-battleship/blob/master/src/web3/web3.ts) tooling class. This class provides tooling functions for the interaction between the contract and the network and the encapsulation of the wallet interface. 
+We provide you [web3](https://github.com/sCrypt-Inc/zk-battleship/blob/master/src/web3/web3.ts) tooling class. This class provides tooling functions for the interaction between the contract and the network, and the implementation of the wallet interface. 
 
 ## Load contract description file
 
-We use IDE to compile the `BattleShip` contract we just wrote. Compiling the contract will output a corresponding contract description file (Contract Description File) `battleship_release_desc.json`.
+We use [the sCrypt IDE](https://scrypt-ide.readthedocs.io/en/latest/compiling.html#id3) to compile the `BattleShip` contract we just wrote, which yields a corresponding contract description file `battleship_release_desc.json`.
 
 We use `web3.loadContractDesc()` to load the construct description file from assets in `WelcomeScreen.js`: 
 
@@ -50,7 +50,7 @@ setBattleShipContract(contract);
 ```
 
 
-Before deploying the contract instance, we should [integrate Wallet](https://learn.scrypt.io/en/courses/614c387bc0974f55df5af1e5/lessons/2/chapters/4). After that, just call `web3.deploy()` to deploy the contract with some initial funding:
+Before deploying the contract instance, we should [integrate Wallet](https://learn.scrypt.io/en/courses/614c387bc0974f55df5af1e5/lessons/2/chapters/4). After that, we call `web3.deploy()` to deploy the contract with some initial funding:
 
 ```js
 const rawTx = await web3.deploy(contract, 2000000);
@@ -59,18 +59,18 @@ const txid = ContractUtxos.getdeploy().utxo.txId
 setDeployTxid(txid)
 ```
 
-Note: After successful deployment, we save the UTXO of the deployed contract to localStorage so that the transaction can be constructed when the contract is invoked.
+Note: after a successful deployment, we save the UTXO of the deployed contract to local storage so that the transaction can be constructed when the contract is invoked.
 
 ## Invoke Battleship contract using a zkSNARK proof
 
 As described in the previous chapter, whenever a player fires, we generate a zkSNARK proof in `zkp.worker.js`, which proves `hit` parameter we passed in when calling the contract is correct.
 
-We get the computed proof in the message response function called `zkpWorkerMsgHandler`  of `zkp.worker.js` and use it to construct the transaction to invoke the Battleship contract.
+We get the computed proof in the message response function called `zkpWorkerMsgHandler` of `zkp.worker.js` and use it to construct the transaction to invoke the Battleship contract.
 
-We use the `web3.call()`  function, provided by the web3 tooling class, to call the contract and use the previously saved utxo to build the transaction.
+We use the `web3.call()` function, provided by the `web3` tooling class, to call the contract and use the previously saved utxo to build the transaction.
 
 
-First, we add different outputs to the transaction depending on the game state. If a player has already hit `17` times, the game is over. The contract sends the locked balance to the winner by  adding an output containing the winner's address to the transaction. Then the contract terminates. Otherwise, we call the `getNewStateScript` function to get a locking script containing the latest contract states, and add an output containing this locking script to the transaction. The contract continues to run.
+First, we add different outputs to the transaction depending on the game state. If a player has already hit `17` times, the game is over. The contract sends the total balance to the winner by  adding an output containing the winner's address to the transaction. Then the contract terminates. Otherwise, we call the `getNewStateScript` function to get a locking script containing the latest contract state, and add an output containing this locking script to the transaction. The contract continues to run.
 
 
 ```js
@@ -108,7 +108,7 @@ if (newStates.successfulYourHits === 17) {
 ```
 
 
-Next, we use the contract's `move` public function. The parameters of the `move` function include the player's signature, and the position of the firing, as well as the result of the hit or not reported by the opponent, and the zkSNARK proof provided by the opponent. At the same time, the new balance of the contract needs to be calculated.
+Next, we call the contract's `move` public function. The arguements of the `move` function include the player's signature, and the position of the firing, the result of the hit or not reported by the opponent, and the zkSNARK proof provided by the opponent. At the same time, the new balance of the contract needs to be calculated.
 
 ```js
 tx.setInputScript(0, (tx, output) => {

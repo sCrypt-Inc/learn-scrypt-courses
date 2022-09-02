@@ -22,28 +22,27 @@ npm install
 npm start
 ```
 
-If you've changed the circuit or sCrypt contract, you need to use this command to generate assets again, otherwise you do not have to run it:
+If you modify the circuit or sCrypt contract, you need to run the `setup` command to generate assets again. Otherwise you do not have to run it.
 
 ```
 npm run setup
 ```
 
-The setup script will accomplish these primary jobs:
-* Compile the circuit and finish Zokrates setup procedure;
-* Export the dedicated sCrypt verifier contract bound to the outcome of the first step;
-* Compile the battleship.scrypt contract;
-* Copy all necessary output files to `public` folder as assets;
+The setup script will:
+1. Compile the circuit and finish the Zokrates setup procedure;
+2. Export an sCrypt verifier contract using the outcome of the first step
+3. Compile the `battleship.scrypt` contract;
+4. Copy all output files to `public` folder as assets;
 
-## Play
+## Prerequisites
 
-### Prerequisites
+In order to play the game, you need to:
 
-In order to play it you should meet those two prerequisites listed as below:
+* Install [Sensilet wallet chrome extension](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm);
+* Deposit some test coins in the wallet from a [faucet](https://scrypt.io/#faucet);
+* Switch to testnet mode in Sensilet.
 
-* Have [sensilet chrome extension](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm) installed;
-Get some testnet BSVs in the above wallet from a [faucet](https://scrypt.io/#faucet);
-
-* You can now visit `http://localhost:3000` in chrome browser, also you could try the online version [here](https://scrypt.io/zk-battleship).
+You can now visit `http://localhost:3000` in Chrome browser, or you could try the online version [here](https://scrypt.io/zk-battleship).
 
 ## Credits
-We built the frontend based on [this project](https://github.com/diemkay/battleship).
+We build the frontend based on [this project](https://github.com/diemkay/battleship).
