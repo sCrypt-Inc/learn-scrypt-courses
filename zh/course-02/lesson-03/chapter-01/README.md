@@ -25,15 +25,9 @@ zokrates export-verifier-scrypt
 游戏开始时，您和电脑各自秘密放置船只并计算哈希承诺。合约使用双方的哈希承诺和公钥进行初始化。
 
 
-该合约包含一个名为 `move()` 的公共函数。在 `move()` 函数中，我们使用 zkSNARK 验证器来检查其他玩家提交的证明。
-
-
-```
- require(ZKNARK.verify([this.yourTurn ? this.computerHash : this.yourHash, x, y, hit ? 1 : 0], proof));
-```
+该合约包含一个名为 `move()` 的公共函数。在 `move()` 函数中，我们使用 zkSNARK 验证器的 `ZKNARK.verify()` 函数来检查其他玩家提交的证明。
 
 `ZKNARK.verify()` 包含四个输入和一个证明：
-
 
 1. 您或计算机的哈希承诺。
 2. `x`, `y` 表示玩家开火的位置。
