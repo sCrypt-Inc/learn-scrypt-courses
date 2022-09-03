@@ -41,8 +41,16 @@ npm run setup
 
 为了体验游戏，您应该满足下面列出的两个准备工作：
 
-- 已安装 [sensilet chrome 扩展程序](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
+- 已安装 [sensilet 钱包](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
+- 将 sensilet 钱包切换到测试网
 - 从 [水龙头](https://scrypt.io/#faucet) 获取一些测试网 BSV；
+
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="600">
+
+<center>如何切换到测试网</center>
+<br></br>
+
 
 你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试[在线版本](https://scrypt.io/zk-battleship)。
 

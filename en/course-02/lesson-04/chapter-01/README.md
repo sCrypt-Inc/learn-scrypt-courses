@@ -39,8 +39,14 @@ The setup script will:
 In order to play the game, you need to:
 
 * Install [Sensilet wallet chrome extension](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm);
-* Deposit some test coins in the wallet from a [faucet](https://scrypt.io/#faucet);
 * Switch to testnet mode in Sensilet.
+* Deposit some test coins in the wallet from a [faucet](https://scrypt.io/#faucet);
+
+
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="600">
+
+<center>How to switch to testnet</center>
+<br></br>
 
 You can now visit `http://localhost:3000` in Chrome browser, or you could try the online version [here](https://scrypt.io/zk-battleship).
 
