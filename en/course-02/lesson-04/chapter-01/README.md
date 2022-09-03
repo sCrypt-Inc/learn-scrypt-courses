@@ -43,7 +43,7 @@ In order to play the game, you need to:
 * Deposit some test coins in the wallet from a [faucet](https://scrypt.io/#faucet);
 
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="600">
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="300">
 
 <center>How to switch to testnet</center>
 <br></br>

@@ -46,7 +46,7 @@ npm run setup
 - 从 [水龙头](https://scrypt.io/#faucet) 获取一些测试网 BSV；
 
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="600">
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="300">
 
 <center>如何切换到测试网</center>
 <br></br>
