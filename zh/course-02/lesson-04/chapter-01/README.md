@@ -22,24 +22,22 @@ npm install
 npm start
 ```
 
-如果您修改了电路或者智能合约的代码，则需要使用以下命令进行构建：
+如果你修改了电路或者智能合约的代码，则需要运行 `setup` 命令，否则，您不必运行它。
 
 ```
 npm run setup
 ```
 
-这个安装脚本将完成以下主要工作：
+这个初始化脚本将：
 
-* 编译电路并完成Zokrates初始化设置；
-* 导出与第一步结果绑定的专用 sCrypt 验证者库；
-* 编译 `battleship.scrypt` 合约；
-* 将所有必要的输出文件作为资源文件复制到 “public” 文件夹；
+1. 编译电路并完成Zokrates初始化设置；
+2. 导出与第一步结果绑定的专用 sCrypt 验证者库；
+3. 编译 `battleship.scrypt` 合约；
+4. 将所有必要的输出文件作为资源文件复制到 `public` 文件夹；
 
-## 体验游戏
+## 准备工作
 
-### 准备工作
-
-为了体验游戏，您应该满足下面列出的两个准备工作：
+为了体验游戏，你需要：
 
 - 已安装 [sensilet 钱包](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
 - 将 sensilet 钱包切换到测试网

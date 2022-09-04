@@ -8,7 +8,7 @@ npm install zokrates-js
 
 ## 在 `ZKProvider` 中封装零知识证明相关的 API
 
-`zokrates-js` 提供的 API 涵盖了我们在上一章提到的整个工作流程，包括：
+`zokrates-js` 提供的 API 涵盖了我们在上一章提到的整个ZKP工作流程，包括：
 
 
 - 编译
@@ -17,8 +17,7 @@ npm install zokrates-js
 - 生成证明
 - 验证证明
 
-正如我们在上一章中提到的，我们已经完成了 `npm run setup` 中的 `compile` 和 `setup` 过程。 在这里，我们只是将最后三个 API 包装到一个名为
-`ZKProvider` 的 Javascript 类中，以提供我们需要的功能。
+我们已经完成了 `npm run setup` 中的 `compile` 和 `setup` 过程。在这里，我们只是将最后三个 API 包装到一个名为 `ZKProvider` 的 Javascript 类中。
 
 ## ZKProvider 初始化
 

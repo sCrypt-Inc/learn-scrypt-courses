@@ -1,12 +1,12 @@
 # 第 3 章：将 sCrypt 合约与 scryptlib 集成
 
-scryptlib 是 sCrypt 的官方 Javascript SDK，用于在您的应用程序中集成智能合约。 您可以通过此 SDK 编译、测试、部署和调用合约。
+[scryptlib](https://github.com/sCrypt-Inc/scryptlib) 是 sCrypt 的官方 Javascript SDK，用于在您的应用程序中集成智能合约。 您可以通过此 SDK 编译、测试、部署和调用合约。
 
 我们为您提供 [web3](https://github.com/sCrypt-Inc/zk-battleship/blob/master/src/web3/web3.ts) 工具类。 该类为合约与网络的交互以及钱包接口的调用提供了工具函数。
 
 ## 加载合约描述文件
 
-我们使用 IDE 编译我们刚刚编写的 `BattleShip` 合约。 编译合约会输出对应的合约描述文件（Contract Description File）`battleship_release_desc.json`。将合约描述文件拷贝到 `public` 资源目录。
+我们使用 [sCrypt IDE](https://scrypt-ide.readthedocs.io/zh_CN/latest/compiling.html#id3) 编译我们刚刚编写的 `BattleShip` 合约。 编译合约会输出对应的合约描述文件 `battleship_release_desc.json`。将合约描述文件拷贝到 `public` 资源目录。
 
 我们使用 `web3.loadContractDesc()` 在 `WelcomeScreen.js` 组件中加载合约描述文件：
 
@@ -49,7 +49,7 @@ const contract = new BattleShip(new PubKey(PlayerPublicKey.get(Player.You)),
 setBattleShipContract(contract);
 ```
 
-在部署合约实例之前，我们应该先[集成钱包](https://learn.scrypt.io/en/courses/614c387bc0974f55df5af1e5/lessons/2/chapters/4)。 之后，使用一些初始资金，只需调用 `web3.deploy()` 来部署合约：
+在部署合约实例之前，我们应该先[集成钱包](https://learn.scrypt.io/en/courses/614c387bc0974f55df5af1e5/lessons/2/chapters/4)。 之后，使用一些初始资金，我们调用 `web3.deploy()` 来部署合约：
 
 ```js
 const rawTx = await web3.deploy(contract, 2000000);
@@ -58,7 +58,7 @@ const txid = ContractUtxos.getdeploy().utxo.txId
 setDeployTxid(txid)
 ```
 
-注意：部署成功后，我们将部署的合约的UTXO保存到localStorage，以便合约调用时构建交易。
+注意：部署成功后，我们将部署的合约的UTXO保存到本地存储，以便合约调用时构建交易。
 
 ## 使用 zkSNARK 证明调用战舰合约
 
@@ -69,7 +69,7 @@ setDeployTxid(txid)
 我们使用 web3 工具类提供的 `web3.call()` 函数来调用合约并使用之前保存的 utxo 来构建交易。
 
 
-首先，我们根据游戏状态向交易添加不同的输出。 如果玩家已经击中 `17` 次，则游戏结束。通过将包含获胜者地址的输出添加到交易中，合约将锁定的余额发送给获胜者。 然后合约终止。 否则，我们调用 `getNewStateScript()` 函数来获取包含最新合约状态的锁定脚本，并将包含此锁定脚本的输出添加到交易中。 合约继续运行。
+首先，我们根据游戏状态向交易添加不同的输出。 如果玩家已经击中 `17` 次，则游戏结束。通过将包含获胜者地址的输出添加到交易中，合约将锁定的全部余额发送给获胜者。 然后合约终止。 否则，我们调用 `getNewStateScript()` 函数来获取包含最新合约状态的锁定脚本，并将包含此锁定脚本的输出添加到交易中。 合约继续运行。
 
 ```js
 if (newStates.successfulYourHits === 17) {
