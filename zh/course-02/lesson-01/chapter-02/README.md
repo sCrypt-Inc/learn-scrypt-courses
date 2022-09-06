@@ -27,7 +27,7 @@ Peggy（证明者）告诉 Victor（验证者）她知道沃尔多在场景中�
 
 zk-SNARK（零知识简洁非交互式知识论证）是一种旨在为任何数学函数生成 ZKP 的协议。
 
-生成的证明是“简洁的”和“非交互的”：一个证明只有几百字节，可以在恒定时间内在几毫秒内得到验证，无需向证明者提出额外的问题。这些特性共同使 zk-SNARK 特别适用于区块链，其中链上存储和计算可能很昂贵，并且发送者在发送交易后经常会离线。匿名加密货币 [Zcash](https://z.cash/technology/zksnarks.html) 和智能合约平台 [Ethereum](https://github.com/ethereum/wiki/wiki/Byzantium-Hard-Fork-changes）是其值得注意的早期采用者之一。
+生成的证明是“简洁的”和“非交互的”：一个证明只有几百字节，可以在恒定时间内在几毫秒内得到验证，无需向证明者提出额外的问题。这些特性共同使 zk-SNARK 特别适用于区块链，其中链上存储和计算可能很昂贵，并且发送者在发送交易后经常会离线。匿名加密货币 [Zcash](https://z.cash/technology/zksnarks.html) 和智能合约平台 [Ethereum](https://github.com/ethereum/wiki/wiki/Byzantium-Hard-Fork-changes) 是其值得注意的早期采用者之一。
 
 一个 zk-SNARK 由以下三种算法组成：
 
