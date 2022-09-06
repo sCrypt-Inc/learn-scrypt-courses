@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "构建 zkSNARK 电路",
+            "title": "构建基于 zokrates 的 zkSNARK 电路",
             "desc": "学习如何使用 zokrates 和编写电路",
             "num": 2,
             "chapters": [
@@ -54,6 +54,35 @@
                             "name": "mimc7.zok",
                             "lang": "js",
                             "hints": ["mimc7 哈希算法"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "构建基于 circom 的 zkSNARK 电路",
+            "desc": "学习如何使用 snarkjs 和编写电路",
+            "num": 2,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第 1 章：snarkjs 简介",
+                    "scripts": [  
+                        {
+                            "name": "example.circom",
+                            "lang": "js",
+                            "hints": ["一个简单的电路"]
+                        }
+                    ]
+                },
+                {
+                    "num": 2,
+                    "title": "第 2 章：在 circom 中实现战舰电路",
+                    "scripts": [  
+                        {
+                            "name": "battleship.circom",
+                            "lang": "js",
+                            "hints": ["战舰电路"]
                         }
                     ]
                 }
@@ -109,7 +138,18 @@
                 },
                 {
                     "num": 1,
-                    "title": "第 3 章：将 sCrypt 合约与 scryptlib 集成",
+                    "title": "第 3 章：将 circom 电路 与 `snarkjs` 集成",
+                    "scripts": [  
+                        {
+                            "name": "circomProvider.js",
+                            "lang": "js",
+                            "hints": [""]
+                        }
+                    ]
+                },
+                {
+                    "num": 1,
+                    "title": "第 4 章：将 sCrypt 合约与 scryptlib 集成",
                     "scripts": [{
                             "name": "WelcomeScreen.js",
                             "lang": "js",
@@ -123,7 +163,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "第 4 章：总结"
+                    "title": "第 5 章：总结"
                 }
             ]
         }

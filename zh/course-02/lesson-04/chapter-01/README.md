@@ -1,57 +1,51 @@
-# 第 1 章：搭建前端
-
-由于我们已经构建了电路和智能合约，接下来要做的是将它们集成到前端，以便用户可以轻松地与合约交互。
-
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/05.png?raw=true" width="600">
+# 第 1 章：实现战舰合约
 
 
-## Git 克隆
+实现电路后，我们通过以下命令导出一个 zkSNARK 验证器：
 
-您可以使用以下命令获取它：
+## 1. zokrates
 
 ```
-git clone https://github.com/sCrypt-Inc/zk-battleship
+zokrates export-verifier-scrypt
 ```
 
-## 设置和运行
-
-您可以运行以下命令来快速设置和运行项目：
+## 2. snarkjs
 
 ```
-npm install
-npm start
+snarkjs zkey export scryptverifier
 ```
 
-如果你修改了电路或者智能合约的代码，则需要运行 `setup` 命令，否则，您不必运行它。
 
-```
-npm run setup
-```
+我们得到一个名为 `verifier.scrypt` 的库文件。有了这个验证者库，我们可以用 ZKP 实现战舰合约。我们可以开始在合约中构建实际的游戏逻辑。在我们的例子中，我们可以传递一个棋盘状态（私有）并移动，并给出是否命中。 合约只需要证明以确保不作弊。
 
-这个初始化脚本将：
+战舰游戏由两个玩家组成：你和电脑。战舰合约包含四个属性：
 
-1. 编译电路并完成Zokrates初始化设置；
-2. 导出与第一步结果绑定的专用 sCrypt 验证者库；
-3. 编译 `battleship.scrypt` 合约；
-4. 将所有必要的输出文件作为资源文件复制到 `public` 文件夹；
+1. `PubKey you` ：用于检查签名以确认你执行了合约。
+2. `PubKey computer`：用于检查签名以确认计算机执行合约。
+3. `int yourHash` : 你所有船只的位置和方向的哈希承诺
+4. `int computerHash` : 电脑所有船只的位置和方向的哈希承诺
 
-## 准备工作
+除了以上四个属性外，合约还包含三个状态属性：
 
-为了体验游戏，你需要：
-
-- 已安装 [sensilet 钱包](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm)；
-- 将 sensilet 钱包切换到测试网
-- 从 [水龙头](https://scrypt.io/#faucet) 获取一些测试网 BSV；
+1. `successfulYourHits` : 表示你击中战舰的次数
+2. `successfulComputerHits` : 表示电脑击中战舰的次数
+3. `yourTurn` : 表示轮到你或电脑开火
 
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="300">
-
-<center>如何切换到测试网</center>
-<br></br>
+游戏开始时，您和电脑各自秘密放置船只并计算哈希承诺。合约使用双方的哈希承诺和公钥进行初始化。
 
 
-你现在可以在 chrome 浏览器中访问 `http://localhost:3000`，也可以尝试[在线版本](https://scrypt.io/zk-battleship)。
+该合约包含一个名为 `move()` 的公共函数。在 `move()` 函数中，我们使用 zkSNARK 验证器的 `ZKNARK.verify()` 函数来检查其他玩家提交的证明。
 
-## 致谢
+`ZKNARK.verify()` 包含四个输入和一个证明：
 
-我们基于[这个项目](https://github.com/diemkay/battleship) 构建了前端。
+1. 您或计算机的哈希承诺。
+2. `x`, `y` 表示玩家开火的位置。
+3. `hit` 表示对方报告你是否命中。
+4. `proof` 是对方为开火是否命中而生成的证明。借助验证者库和对方提供的证明，可以检查对方是否诚实。
+
+如果对方提供了一个诚实的结果，它就会通过检查，否则就会失败。之后，我们检查调用合约的玩家的签名是否有效，并根据战舰是否被击中更新对应玩家击中战舰的次数，即更新状态属性 `successfulYourHits` 和 `successfulComputerHits` . 最后我们更新状态属性 `yourTurn`。如果有人击中船只的次数先达到“17”次，则他赢得比赛，比赛结束。如果没有，则保存最新状态并等待下一步。
+
+## 实战演习
+
+综上所述，我们已经实现了战舰合约。请在右侧合约中使用 `zkSNARK` 库验证玩家的提供的证明。
