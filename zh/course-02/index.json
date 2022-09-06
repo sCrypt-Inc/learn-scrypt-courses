@@ -83,6 +83,10 @@
                             "name": "battleship.circom",
                             "lang": "js",
                             "hints": ["战舰电路"]
+                        }, {
+                            "name": "consts.circom",
+                            "lang": "js",
+                            "hints": ["常量定义"]
                         }
                     ]
                 }
