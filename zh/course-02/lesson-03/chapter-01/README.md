@@ -7,7 +7,10 @@
 
 ### 1. 安装 circom 编译器 
 
-首先需要从官方的[发布页面](https://github.com/iden3/circom/releases)下载 circom 编译器。
+
+```
+curl -Ls https://scrypt.io/scripts/setup-circom.sh | sh
+```
 
 
 ### 2. 安装 snarkjs 库 
