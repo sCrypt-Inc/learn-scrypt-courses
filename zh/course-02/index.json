@@ -77,7 +77,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "第 2 章：在 circom 中实现战舰电路",
+                    "title": "第 2 章：使用 circom 实现战舰电路",
                     "scripts": [  
                         {
                             "name": "battleship.circom",

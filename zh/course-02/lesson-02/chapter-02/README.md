@@ -36,7 +36,7 @@
 
 ### 编码舰队状态
 
-如上所述，我们可以使用 `(pos_x, pos_y,orientation)` 的元组来表示一艘船在网格中的位置，但是我们如何表示整个舰队的位置状态呢？
+如上所述，我们可以使用 `(pos_x, pos_y, orientation)` 的元组来表示一艘船在网格中的位置，但是我们如何表示整个舰队的位置状态呢？
 
 请注意，位置的有效值在 `0` 到 `9` 之间，方向值只是 `0` 或 `1`。所以我们可以将它们中的每一个编码为 `4` 个比特位，并将它们全部连接起来形成一个可以表示整个元组的数字。例如：
 
@@ -44,7 +44,7 @@
 shipState = shipX + shipY * (1<<4) + shipOrientation * (1<<8);
 ```
 
-用同样的想法，我们可以在一个“字段”中表示整个舰队的位置状态：
+用同样的想法，我们可以在一个 `field` 中表示整个舰队的位置状态：
 
 ```python
 fleetState = carrierState + battleshipState * (1<<12) + cruiserState * (1<<24) + submarineState * (1<<36) + destroyerState * (1<<48);

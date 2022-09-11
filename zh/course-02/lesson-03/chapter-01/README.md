@@ -1,7 +1,6 @@
-# 第 1 章：snarkjs 简介
+# 第 1 章：snarkjs/Circom 简介
 
-[snarkjs](https://docs.iden3.io/circom-snarkjs/) 是 zkSNARK 方案的 JavaScript 和纯 **Web Assembly** 实现。它实现了 Groth16 协议。类似 Zokrates，他提供了另外一种高级语言 `circom` 来编写电路。同样，我们扩展它来生成和在比特币上验证证明。
-
+[snarkjs](https://docs.iden3.io/circom-snarkjs/) 是 zkSNARK 方案的 JavaScript库。类似 Zokrates，它提供了另外一种语言 circom 来编写电路。同样，我们扩展它来生成证明和在比特币上验证证明。
 ## 安装
 
 
@@ -24,12 +23,14 @@ npm install https://github.com/sCrypt-Inc/snarkjs.git
 
 ## 工作流程
 
-整个工作流程与原始 snarkjs 相同，只是验证步骤是在比特币上完成的。一般来说，它包含以下步骤：
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/15.png?raw=true" width="600">
 
+
+整个工作流程与原始 snarkjs 相同，只是验证步骤是在比特币上完成的。一般来说，它包含以下步骤：
 
 ### 1. 设计电路
 
-用 circom 语言实现电路。例如，这个名为 `factor.circom` 的简单电路/程序证明了人们知道将整数 `n` 分解为两个整数，而无需透露整数。该电路有两个名为 `p` 和 `q` 的私有输入和一个名为 `n` 的公共输入。关于如何使用 snarkjs 的更多信息，您可以参考 https://docs.circom.io 。
+用 circom 语言实现电路。例如，这个名为 `factor.circom` 的简单电路/程序证明了人们知道将整数 `n` 分解为两个整数，而无需透露整数。该电路有两个名为 `p` 和 `q` 的私有输入和一个名为 `n` 的公共输入。关于如何使用 circom 的更多信息，您可以参考 https://docs.circom.io 。
 
 ```python
 // p 和 q 是 n 的因式分解
@@ -62,9 +63,9 @@ component main = Factor();
 circom factor.circom --r1cs --wasm
 ```
 
-### 3. 开始新的权力tau仪式
+### 3. 开始新的 **powers of tau** 仪式
 
-这个 `new` 的命令用于启动 权力 tau 的仪式。
+这个 `new` 的命令用于启动 **powers of tau** 的仪式。
 
 ```bash
 snarkjs powersoftau new bn128 12 pot12_0000.ptau
@@ -72,7 +73,7 @@ snarkjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau --name="First con
 snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau
 ```
 
-最后验证生成的 `ptau` 文件是否可用：
+最后得到输出文件 `pot12_final.ptau`。 验证该文件是否可用：
 
 ```js
 snarkjs powersoftau verify pot12_final.ptau
