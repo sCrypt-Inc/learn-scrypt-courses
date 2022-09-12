@@ -142,7 +142,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "第 3 章：将 circom 电路 与 `snarkjs` 集成",
+                    "title": "第 3 章：将 circom 电路 与 snarkjs 集成",
                     "scripts": [  
                         {
                             "name": "circomProvider.js",
