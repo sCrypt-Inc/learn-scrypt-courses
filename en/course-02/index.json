@@ -26,7 +26,7 @@
             ]
         },
         {
-            "title": "Build the zkSNARK circuit",
+            "title": "Build the zkSNARK circuit with zokrates",
             "desc": "Learn how to use zokrates and write circuits",
             "num": 2,
             "chapters": [
@@ -54,6 +54,39 @@
                             "name": "mimc7.zok",
                             "lang": "js",
                             "hints": ["mimc7 circuit"]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "title": "Build the zkSNARK circuit with snarkjs/circom",
+            "desc": "Learn how to use snarkjs/circom to write circuits",
+            "num": 3,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "Chapter 1: Introduction to Snarkjs/Circom",
+                    "scripts": [  
+                        {
+                            "name": "example.circom",
+                            "lang": "js",
+                            "hints": ["an example circuit"]
+                        }
+                    ]
+                },
+                {
+                    "num": 2,
+                    "title": "Chapter 2: Implement the Battleship circuit in Circom",
+                    "scripts": [
+                        {
+                            "name": "battleship.circom",
+                            "lang": "js",
+                            "hints": ["battleship circuit"]
+                        }, {
+                            "name": "consts.circom",
+                            "lang": "js",
+                            "hints": ["constants"]
                         }
                     ]
                 }
@@ -108,7 +141,18 @@
                 },
                 {
                     "num": 1,
-                    "title": "Chapter 3: Integrating sCrypt contract with scryptlib",
+                    "title": "Chapter 3: Integrating the circom circuit with snarkjs",
+                    "scripts": [  
+                        {
+                            "name": "circomProvider.js",
+                            "lang": "js",
+                            "hints": [""]
+                        }
+                    ]
+                },
+                {
+                    "num": 1,
+                    "title": "Chapter 4: Integrating sCrypt contract with scryptlib",
                     "scripts": [{
                         "name": "WelcomeScreen.js",
                         "lang": "js",
@@ -122,7 +166,7 @@
                 },
                 {
                     "num": 1,
-                    "title": "Chapter 4: Summary"
+                    "title": "Chapter 5: Summary"
                 }
             ]
         }

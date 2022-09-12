@@ -1,36 +1,49 @@
-import React, { useEffect, useState } from 'react';
-import { web3 } from './web3';
-export const WelcomeScreen = ({ startPlay, desc, setDesc }) => {
 
-  const [loading, setLoading] = useState(true); // play or welcome
-  // Similar to componentDidMount and componentDidUpdate:
-  useEffect(() => {
-    async function fetchContract() {
-      let desc = await web3.loadContractDesc(
-        "/zk-battleship/battleship_debug_desc.json"
-      );
-      return desc;
+export class CircomProvider {
+    static instance;
+  
+    constructor(program, proving_key, verification_key) {
+      this.program = program;
+      this.proving_key = proving_key;
+      this.verification_key = verification_key;
     }
-
-    if(!desc) {
-      fetchContract().then(desc => {
-        setDesc(desc)
-        setLoading(false)
-      })
-      .catch(e => {
-        console.error('load desc error:', e)
-      })
+  
+    static async init() {
+      // console.log('ZKP init...')
+      if (CircomProvider.instance) return CircomProvider;
+      try {
+        let verification_key = await fetch('/zk-battleship/zk/verification_key.json').then(resp => resp.json());
+        CircomProvider.instance = new CircomProvider(
+          "/zk-battleship/zk/battleship.wasm",
+          "/zk-battleship/zk/circuit_final.zkey",
+          verification_key
+        );
+        console.log('ZKP initialized.')
+        return CircomProvider;
+      } catch (error) {
+        console.log('init CircomProvider fail', error)
+      }
     }
-  });
-  return (
-    <main>
-      <h2 className="tip-box-title">Rules</h2>
-      <p className="player-tip">
-        You and your opponent are competing navy commanders. Your fleets are positioned at
-        secret coordinates, and you take turns firing torpedoes at each other. The first
-        to sink the other person’s whole fleet wins!
-      </p>
-      <button onClick={startPlay}>{loading ? "loading..." : "Play"}</button>
-    </main>
-  );
-};
+  
+    static generateProof(witness) {
+      if (!CircomProvider.instance) {
+        throw Error('Uninitilized CircomProvider, call `CircomProvider.init()` first!');
+      }
+      return new Promise(async resolve => {
+        const { proof, publicSignals } =
+        await window.snarkjs.groth16.fullProve(witness, CircomProvider.instance.program, CircomProvider.instance.proving_key);
+  
+        resolve({ proof, publicSignals, isHit: publicSignals[0] === "1" } );
+      });
+    }
+  
+    static verify({ proof, publicSignals } ) {
+      if (!CircomProvider.instance) {
+        throw Error('Uninitilized CircomProvider, call `CircomProvider.init()` first!');
+      }
+      return new Promise(async resolve => {
+        const res = await window.snarkjs.groth16.verify(CircomProvider.instance.verification_key, publicSignals, proof);
+        resolve(res);
+      });
+    }
+  }

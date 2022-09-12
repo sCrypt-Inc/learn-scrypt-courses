@@ -1,9 +1,17 @@
 # Chapter 1: Implement the Battleship contract
 
-After implementing the circuit, we export a zkSNARK verifier in sCrypt by following command, as in the [sixth step](https://xiaohuiliu.medium.com/create-your-first-zero-knowledge-proof-program-on-bitcoin-ec159cc501f4) in the workflow:
+After implementing the circuit, we export a zkSNARK validator with the following command:
+
+## 1. zokrates
 
 ```
 zokrates export-verifier-scrypt
+```
+
+## 2. snarkjs
+
+```
+snarkjs zkey export scryptverifier
 ```
 
 We get a library named `verifier.scrypt`. With this verifier library, we can implement the Battleship contract with ZKP. We can start building the actual game logic in the contract. In our case, we can pass a board state (private) and move, and emit whether it's a hit. The contract just needs the proof to ensure no cheating.
