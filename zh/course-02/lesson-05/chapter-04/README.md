@@ -1,4 +1,4 @@
-# 第 3 章：将 sCrypt 合约与 scryptlib 集成
+# 第 4 章：将 sCrypt 合约与 scryptlib 集成
 
 [scryptlib](https://github.com/sCrypt-Inc/scryptlib) 是 sCrypt 的官方 Javascript SDK，用于在您的应用程序中集成智能合约。 您可以通过此 SDK 编译、测试、部署和调用合约。
 
@@ -62,9 +62,9 @@ setDeployTxid(txid)
 
 ## 使用 zkSNARK 证明调用战舰合约
 
-如上一章所述，每当玩家开火时，我们会在 `zkp.worker.js` 中生成一个 zkSNARK 证明，证明我们在调用合约时传入的 `hit` 参数是正确的。
+如上一章所述，每当玩家开火时，我们会使用ZKP (zokrate 或者 snarkjs) 生成一个 zkSNARK 证明，证明我们在调用合约时传入的 `hit` 参数是正确的。
 
-我们在 `zkp.worker.js` 的名为 `zkpWorkerMsgHandler` 的消息响应函数中获取计算好的证明，并使用它来构造交易以调用战舰合约。
+我们获取计算好的证明，并使用它来构造交易以调用战舰合约。
 
 我们使用 web3 工具类提供的 `web3.call()` 函数来调用合约并使用之前保存的 utxo 来构建交易。
 

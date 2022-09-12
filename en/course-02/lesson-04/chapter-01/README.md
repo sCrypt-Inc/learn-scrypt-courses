@@ -1,54 +1,57 @@
-# Chapter 1: Setup battleship frontend
+# Chapter 1: Implement the Battleship contract
 
-Since we have built the circuit and the smart contract, the next thing to do is to integrate them into a frontend so users can easily interact with the contract.
+After implementing the circuit, we export a zkSNARK validator with the following command:
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/05.png?raw=true" width="600">
-
-
-## Git clone
-
-You can get it with following command:
+## 1. zokrates
 
 ```
-git clone https://github.com/sCrypt-Inc/zk-battleship
+zokrates export-verifier-scrypt
 ```
 
-## Setup & Run
-
-You can run the following commands to setup and run the project quickly:
+## 2. snarkjs
 
 ```
-npm install
-npm start
+snarkjs zkey export scryptverifier
 ```
 
-If you modify the circuit or sCrypt contract, you need to run the `setup` command to generate assets again. Otherwise you do not have to run it.
-
-```
-npm run setup
-```
-
-The setup script will:
-1. Compile the circuit and finish the Zokrates setup procedure;
-2. Export an sCrypt verifier contract using the outcome of the first step
-3. Compile the `battleship.scrypt` contract;
-4. Copy all output files to `public` folder as assets;
-
-## Prerequisites
-
-In order to play the game, you need to:
-
-* Install [Sensilet wallet chrome extension](https://chrome.google.com/webstore/detail/sensilet/aadkcfdlmiddiiibdnhfbpbmfcaoknkm);
-* Switch to testnet mode in Sensilet.
-* Deposit some test coins in the wallet from a [faucet](https://scrypt.io/#faucet);
+We get a library named `verifier.scrypt`. With this verifier library, we can implement the Battleship contract with ZKP. We can start building the actual game logic in the contract. In our case, we can pass a board state (private) and move, and emit whether it's a hit. The contract just needs the proof to ensure no cheating.
 
 
-<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/testnet.gif?raw=true" width="300">
+The Battleship game consists of two players: you and a computer. The Battleship contract contains four properties:
 
-<center>How to switch to testnet</center>
-<br></br>
+1. `PubKey you` :  used to check the signature to confirm that you executed the contract.
+2. `PubKey computer`: used to check the signature to confirm that the computer executed the contract.
+3. `int yourHash` : A hash commitment of the positions and orientations of all your ships
+4. `int computerHash` : A hash commitment of the positions and orientations of all computer’s ships
 
-You can now visit `http://localhost:3000` in Chrome browser, or you could try the online version [here](https://scrypt.io/zk-battleship).
+In addition to the above four properties, the contract also contains three state properties:
 
-## Credits
-We build the frontend based on [this project](https://github.com/diemkay/battleship).
+1. `successfulYourHits` : Indicates how many times you hit the battleship
+2. `successfulComputerHits` : Indicates how many times the computer player has hit the ship
+3. `yourTurn` : Indicates that it's your turn or the computer’s to fire
+
+
+When the game starts, you and the computer each secretly place the ships and calculate the hash commitment. The contract is initialized with the hashed commitments and public keys of both players.
+
+
+The contract contains a public function named `move()`. In the `move()` function, we use the `ZKNARK.verify()` function of the zkSNARK verifier to check the firing submitted by the other player.
+
+
+`ZKNARK.verify()` contains four inputs and a proof:
+
+
+1. Your or computer’s hash commitment.
+2. `x`, `y` indicate where the player fires.
+3. `hit` indicates the other party reports whether you hit or not.
+4. `proof` is the proof that the other party generates for their own firing. With the verifier library and the proof provided by the other party, you can check whether the other party is honest.
+
+If the other party provides an honest result, it will pass the check, otherwise it will fail. Afterwards, we check whether the signature of the player calling the contract is valid and update the number of times the corresponding player hit the battleship according to whether the battleship is hit, that is, we update the state properties `successfulYourHits` and `successfulComputerHits`. Finally we update state properties `yourTurn`. If someone hits the ships `17` times first, he wins the game and the game is over. If not, save the latest states and wait for the next move.
+
+
+## Put it to the test
+
+
+In summary, we have achieved the Battleship contract. Please use the `zkSNARK` library in the right contract to verify the player's provided proof.
+
+
+

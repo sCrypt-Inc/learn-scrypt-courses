@@ -1,49 +1,152 @@
-# Chapter 1: Implement the Battleship contract
+# Chapter 1: Introduction to Snarkjs/Circom
 
-After implementing the circuit, we export a zkSNARK verifier in sCrypt by following command, as in the [sixth step](https://xiaohuiliu.medium.com/create-your-first-zero-knowledge-proof-program-on-bitcoin-ec159cc501f4) in the workflow:
+[snarkjs](https://docs.iden3.io/circom-snarkjs/) is a JavaScript library for the zkSNARK scheme. Similar to Zokrates, it provides another language, circom, to write circuits. Again, we extend it to generate proofs and verify proofs on Bitcoin.
+
+## Install
+
+
+### 1. Install circom compiler 
+
 
 ```
-zokrates export-verifier-scrypt
+curl -Ls https://scrypt.io/scripts/setup-circom.sh | sh
 ```
 
-We get a library named `verifier.scrypt`. With this verifier library, we can implement the Battleship contract with ZKP. We can start building the actual game logic in the contract. In our case, we can pass a board state (private) and move, and emit whether it's a hit. The contract just needs the proof to ensure no cheating.
+
+### 2. Install snarkjs library 
+
+Then install our [extended version](https://github.com/sCrypt-Inc/snarkjs) using the following command:
+
+```
+npm install https://github.com/sCrypt-Inc/snarkjs.git
+```
 
 
-The Battleship game consists of two players: you and a computer. The Battleship contract contains four properties:
+## Workflow
 
-1. `PubKey you` :  used to check the signature to confirm that you executed the contract.
-2. `PubKey computer`: used to check the signature to confirm that the computer executed the contract.
-3. `int yourHash` : A hash commitment of the positions and orientations of all your ships
-4. `int computerHash` : A hash commitment of the positions and orientations of all computer’s ships
-
-In addition to the above four properties, the contract also contains three state properties:
-
-1. `successfulYourHits` : Indicates how many times you hit the battleship
-2. `successfulComputerHits` : Indicates how many times the computer player has hit the ship
-3. `yourTurn` : Indicates that it's your turn or the computer’s to fire
+<img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/15.png?raw=true" width="600">
 
 
-When the game starts, you and the computer each secretly place the ships and calculate the hash commitment. The contract is initialized with the hashed commitments and public keys of both players.
+The entire workflow is the same as the original snarkjs, except that the verification step is done on Bitcoin. Generally, it consists of the following steps:
+
+### 1. Design a circuit 
+
+Implement circuits in circom language. For example, this simple circuit/program called `factor.circom` proves that people know to factor the integer `n` into two integers without revealing the integer. The circuit has two private inputs named `p` and `q` and one public input named `n`. For more information on how to use circom, you can refer to https://docs.circom.io.
 
 
-The contract contains a public function named `move()`. In the `move()` function, we use the `ZKNARK.verify()` function of the zkSNARK verifier to check the firing submitted by the other player.
+```python
+// p and q are factorizations of n
+pragma circom 2.0.0;
+
+template Factor() {
+
+    // Private Inputs:
+    signal input p;
+    signal input q;
+
+    // Public Inputs:
+    signal output n;
+
+    assert(p > 1);
+    assert(q > 1);
+
+    n <== p * q;
+
+}
+
+component main = Factor();
+```
+
+### 2. Compile the circuit
+
+Compile the circuit with the following command:
+
+```
+circom factor.circom --r1cs --wasm
+```
+
+### 3. Start a new **powers of tau** ceremony
+
+The `new` command is used to initiate the ceremony of **powers of tau**.
+
+```bash
+snarkjs powersoftau new bn128 12 pot12_0000.ptau
+snarkjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau --name="First contribution" -e="$(openssl rand -base64 20)"
+snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau
+```
+
+Finally get the output file `pot12_final.ptau`. Verify that the file is available:
+
+```js
+snarkjs powersoftau verify pot12_final.ptau
+```
 
 
-`ZKNARK.verify()` contains four inputs and a proof:
+### 3. Setup
+
+This will generate a proving key for the circuit and verify that key.
+
+```bash
+snarkjs groth16 setup factor.r1cs pot12_final.ptau factor_0000.zkey
+snarkjs zkey contribute factor_0000.zkey circuit_final.zkey --name="Second contribution" -e="$(openssl rand -base64 20)"
+snarkjs zkey verify circuit.r1cs pot12_final.ptau circuit_final.zkey
+```
 
 
-1. Your or computer’s hash commitment.
-2. `x`, `y` indicate where the player fires.
-3. `hit` indicates the other party reports whether you hit or not.
-4. `proof` is the proof that the other party generates for their own firing. With the verifier library and the proof provided by the other party, you can check whether the other party is honest.
+### 4. Export verification key
 
-If the other party provides an honest result, it will pass the check, otherwise it will fail. Afterwards, we check whether the signature of the player calling the contract is valid and update the number of times the corresponding player hit the battleship according to whether the battleship is hit, that is, we update the state properties `successfulYourHits` and `successfulComputerHits`. Finally we update state properties `yourTurn`. If someone hits the ships `17` times first, he wins the game and the game is over. If not, save the latest states and wait for the next move.
+We export the verification key from `circuit_final.zkey` into `verification_key.json`.
+
+```bash
+snarkjs zkey export verificationkey circuit_final.zkey verification_key.json
+```
+
+
+### 5. Calculating a witness
+
+First, we create a file `input.json` containing the circuit inputs with the following contents:
+
+```json
+{
+    "p": 7,
+    "q": 13,
+    "n": 91
+}
+```
+
+Next, we use the `factor.wasm` obtained by compiling the circuit to calculate the witnesses:
+
+
+```bash
+node generate_witness.js circuit.wasm ../input.json ../witness.wtns
+```
+
+### 6. Create a proof
+
+It uses proving keys and witnesses to generate proofs.
+
+
+```bash
+snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json
+```
+
+### 6. Export an sCrypt verifier
+
+This outputs a smart contract file "verifier.scrypt" that contains all the code needed to verify the proof on-chain.
+
+```
+snarkjs zkey export scryptverifier
+```
+
+### 7. Proof of verification
+
+You can verify it locally:
+
+```
+snarkjs groth16 verify verification_key.json public.json proof.json
+```
 
 
 ## Put it to the test
 
-
-In summary, we have achieved the Battleship contract. Please use the `zkSNARK` library in the right contract to verify the player's provided proof.
-
-
-
+Complete the circuit on the right to ensure that the square of the private input `x` equals `y` .
