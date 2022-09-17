@@ -74,7 +74,7 @@ function isMatch(guess, ship, len) {
 }
 ```
 
-最后一件事是检查是否有任何船只按照公共输入中的声明被击中：
+最后电路输出是否有任意船只被击中：
 
 ```
   // 3. check if it's a hit

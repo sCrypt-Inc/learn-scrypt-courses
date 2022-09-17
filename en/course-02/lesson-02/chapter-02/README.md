@@ -29,8 +29,7 @@ Next we determine the inputs and outputs of the circuit.
     * Public inputs: all the information for a firing event
         * a committed hash of the fleet location;
         * target coordinates `(pos_x, pos_y)`;
-        * hit or miss any ship;
-- Outputs: Nothing. Error will be thrown if there is anything wrong with the inputs during proof generation or verification.
+- Outputs: hit or miss any ship
 
 ## Write circuit in Zokrates
 
@@ -76,10 +75,10 @@ def isShipHit(field x, field y, field o, field size, field targetX, field target
 }
 ```
 
-The last thing is to check whether any ship got hit as declared in public inputs:
+The final circuit outputs whether any ships were hit:
 
 ```python
-assert(hit == (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit));
+return (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit);
 ```
 
 

@@ -8,7 +8,7 @@ def isShipWithinBoard(field x, field y, field o, field size) -> bool {
     return ((o == 0 && x >= 0 && x <= 9 && y >= 0 && y <= 10 - size) || (o == 1 && x >= 0 && x <= 10 - size && y >= 0 && y <= 9));
 }
 
-def main(private field carrierX, private field carrierY, private field carrierO, private field battleshipX, private field battleshipY, private field battleshipO, private field cruiserX, private field cruiserY, private field cruiserO, private field submarineX, private field submarineY, private field submarineO, private field destroyerX, private field destroyerY, private field destroyerO, field shipHash, field targetX, field targetY, bool hit) {
+def main(private field carrierX, private field carrierY, private field carrierO, private field battleshipX, private field battleshipY, private field battleshipO, private field cruiserX, private field cruiserY, private field cruiserO, private field submarineX, private field submarineY, private field submarineO, private field destroyerX, private field destroyerY, private field destroyerO, field shipHash, field targetX, field targetY) -> bool {
     assert(isShipWithinBoard(carrierX, carrierY, carrierO, 5));
     assert(isShipWithinBoard(battleshipX, battleshipY, battleshipO, 4));
     assert(isShipWithinBoard(cruiserX, cruiserY, cruiserO, 3));
@@ -29,7 +29,5 @@ def main(private field carrierX, private field carrierY, private field carrierO,
     bool isCruiserHit = isShipHit(cruiserX, cruiserY, cruiserO, 3, targetX, targetY);
     bool isSubmarineHit = isShipHit(submarineX, submarineY, submarineO, 3, targetX, targetY);
     bool isDestroyerHit = isShipHit(destroyerX, destroyerY, destroyerO, 2, targetX, targetY);
-    assert(hit == (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit));
-
-    return;
+    return (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit);
 }

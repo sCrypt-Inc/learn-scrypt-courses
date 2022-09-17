@@ -29,8 +29,7 @@
     * 公共输入：开火事件的所有信息
         * 舰队位置的已提交的哈希；
         * 目标坐标 `(pos_x, pos_y)`;
-        * 击中或未击中任何船只；
-- 输出：无。 （如果在证明或验证过程中输入有任何错误，它将抛出错误）
+- 输出：击中或未击中任何船只
 
 ## 在 Zokrates 中编写电路
 
@@ -76,10 +75,10 @@ def isShipHit(field x, field y, field o, field size, field targetX, field target
 }
 ```
 
-最后一件事是检查是否有任何船只按照公共输入中的声明被击中：
+最后电路输出是否有任意船只被击中：
 
 ```python
-assert(hit == (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit));
+return (isCarrierHit || isBattleshipHit || isCruiserHit || isSubmarineHit || isDestroyerHit);
 ```
 
 

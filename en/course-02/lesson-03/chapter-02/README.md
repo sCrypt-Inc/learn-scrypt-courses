@@ -76,7 +76,7 @@ function isMatch(guess, ship, len) {
 ```
 
 
-The last thing is to check whether any ship got hit as declared in public inputs:
+The final circuit outputs whether any ships were hit:
 
 ```
   // 3. check if it's a hit
