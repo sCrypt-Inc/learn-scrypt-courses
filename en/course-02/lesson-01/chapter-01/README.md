@@ -4,7 +4,7 @@
 In this course, we are going to build a zkSNARK-based [Battleship](https://en.wikipedia.org/wiki/Battleship_(game)) game on Bitcoin in three steps:
 
 
-1. Create a zero-knowledge-proof circuit by using the [Zokrates](https://zokrates.github.io) toolkit;
+1. Create a zero-knowledge-proof circuit by using the [Zokrates](https://zokrates.github.io) or [Circom](https://docs.circom.io/) toolkit;
 2. Create an sCrypt smart contract to run the game on chain;
 3. Add a user-friendly UI to interact with the contract.
 
