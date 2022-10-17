@@ -5,7 +5,7 @@
 ## Install
 
 
-### 1. Install circom compiler 
+### 1. Install Circom compiler 
 
 
 ```
@@ -31,7 +31,7 @@ The entire workflow is the same as the original snarkjs, except that the verific
 
 ### 1. Design a circuit 
 
-Implement circuits in circom language. For example, this simple circuit/program called `factor.circom` proves that people know to factor the integer `n` into two integers without revealing the integer. The circuit has two private inputs named `p` and `q` and one public input named `n`. For more information on how to use circom, you can refer to https://docs.circom.io.
+Implement a circuit in the Circom language. For example, this simple circuit/program called `factor.circom` proves that people know to factor the integer `n` into two integers without revealing the integers. The circuit has two private inputs named `p` and `q` and one public input named `n`. For more information on how to use Circom, you can refer to https://docs.circom.io.
 
 
 ```python
@@ -75,14 +75,14 @@ snarkjs powersoftau contribute pot12_0000.ptau pot12_0001.ptau --name="First con
 snarkjs powersoftau prepare phase2 pot12_0001.ptau pot12_final.ptau
 ```
 
-Finally get the output file `pot12_final.ptau`. Verify that the file is available:
+Finally we verify the protocol so far:
 
 ```js
 snarkjs powersoftau verify pot12_final.ptau
 ```
 
 
-### 3. Setup
+### 4. Setup
 
 This will generate a proving key for the circuit and verify that key.
 
@@ -93,7 +93,7 @@ snarkjs zkey verify circuit.r1cs pot12_final.ptau circuit_final.zkey
 ```
 
 
-### 4. Export verification key
+### 5. Export verification key
 
 We export the verification key from `circuit_final.zkey` into `verification_key.json`.
 
@@ -102,7 +102,7 @@ snarkjs zkey export verificationkey circuit_final.zkey verification_key.json
 ```
 
 
-### 5. Calculating a witness
+### 6. Calculating a witness
 
 First, we create a file `input.json` containing the circuit inputs with the following contents:
 
@@ -114,23 +114,23 @@ First, we create a file `input.json` containing the circuit inputs with the foll
 }
 ```
 
-Next, we use the `factor.wasm` obtained by compiling the circuit to calculate the witnesses:
+Next, we use the `factor.wasm` obtained from compiling the circuit to calculate the witnesses:
 
 
 ```bash
 node generate_witness.js circuit.wasm ../input.json ../witness.wtns
 ```
 
-### 6. Create a proof
+### 7. Create a proof
 
-It uses proving keys and witnesses to generate proofs.
+It uses the proving key and witnesses to generate a proof.
 
 
 ```bash
 snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json
 ```
 
-### 6. Export an sCrypt verifier
+### 8. Export an sCrypt verifier
 
 This outputs a smart contract file "verifier.scrypt" that contains all the code needed to verify the proof on-chain.
 
@@ -138,7 +138,7 @@ This outputs a smart contract file "verifier.scrypt" that contains all the code 
 snarkjs zkey export scryptverifier
 ```
 
-### 7. Proof of verification
+### 9. Verifying the proof
 
 You can verify it locally:
 
