@@ -17,7 +17,7 @@ curl -Ls https://scrypt.io/scripts/setup-circom.sh | sh
 然后使用以下命令从安装我们的 [扩展版本](https://github.com/sCrypt-Inc/snarkjs)：
 
 ```
-npm install https://github.com/sCrypt-Inc/snarkjs.git
+npm install -g snarkjs-scrypt
 ```
 
 

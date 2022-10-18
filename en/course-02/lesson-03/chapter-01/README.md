@@ -18,7 +18,7 @@ curl -Ls https://scrypt.io/scripts/setup-circom.sh | sh
 Then install our [extended version](https://github.com/sCrypt-Inc/snarkjs) using the following command:
 
 ```
-npm install https://github.com/sCrypt-Inc/snarkjs.git
+npm install -g snarkjs-scrypt
 ```
 
 
