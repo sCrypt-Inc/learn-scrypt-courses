@@ -84,7 +84,16 @@ snarkjs powersoftau verify pot12_final.ptau
 
 ### 4. Setup
 
-This will generate a proving key for the circuit and verify that key.
+Currently, snarkjs supports 2 proving systems: groth16 and PLONK.
+Groth16 requires a trusted ceremony for each circuit. PLONK does not require it, it's enough with the powers of tau ceremony which is universal.
+
+**Plonk**
+
+```bash
+snarkjs plonk setup circuit.r1cs pot12_final.ptau circuit_final.zkey
+```
+
+**Groth16**
 
 ```bash
 snarkjs groth16 setup factor.r1cs pot12_final.ptau factor_0000.zkey
@@ -125,6 +134,13 @@ node generate_witness.js circuit.wasm ../input.json ../witness.wtns
 
 It uses the proving key and witnesses to generate a proof.
 
+**PLONK**
+
+```bash
+snarkjs plonk prove circuit_final.zkey witness.wtns proof.json public.json
+```
+
+**Groth16**
 
 ```bash
 snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json
@@ -142,7 +158,15 @@ snarkjs zkey export scryptverifier
 
 You can verify it locally:
 
+**PLONK**
+
+```bash
+snarkjs plonk verify verification_key.json public.json proof.json
 ```
+
+**Groth16**
+
+```bash
 snarkjs groth16 verify verification_key.json public.json proof.json
 ```
 

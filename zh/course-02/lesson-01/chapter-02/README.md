@@ -64,4 +64,9 @@ C(x, w) = sha256(w) == x
 ## 实现
 在区块链中使用 zk-SNARK 时，密钥和证明的生成都是在链下执行的。只有通用验证算法在链上智能合约中运行。
 
-我们实现了使用最广泛的方案 [Groth16](https://eprint.iacr.org/2016/260.pdf)，因为它的[证明大小较小且可以快速验证](http://www.zeroknowledgeblog.com/index.php/groth16)。完整代码在 [这里](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt)。
+我们实现了使用最广泛的方案 [Groth16](https://eprint.iacr.org/2016/260.pdf)，因为它的[证明大小较小且可以快速验证](http://www.zeroknowledgeblog.com/index.php/groth16)。 我们还实现了 [PLONK](https://xiaohuiliu.medium.com/how-plonk-works-part-1-bc8050f4805e)，它不需要为每个电路进行新的可信设置。
+
+完整代码在这里：
+
+- [Groth16](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt)
+- [PLONK](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/plonk.scrypt)

@@ -35,6 +35,14 @@ static async init() {
 
 The API provided by `snarkjs` covers the entire ZKP workflow we mentioned in the previous chapter, including:
 
+
+**PLONK**
+
+- Generating proof `snarkjs.plonk.fullProve()`
+- Verifying proof `snarkjs.plonk.verify()`
+
+**Groth16**
+
 - Generating proof `snarkjs.groth16.fullProve()`
 - Verifying proof `snarkjs.groth16.verify()`
 

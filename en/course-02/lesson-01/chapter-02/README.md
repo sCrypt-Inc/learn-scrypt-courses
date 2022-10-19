@@ -65,5 +65,11 @@ The verifier `V` takes verification key `vk`, the proof, and the public input `x
 
 When zk-SNARKs are used in blockchains, both the key and proof generation are executed off-chain. Only the general verification algorithm is run inside a smart contract on chain.
 
-We implement the most widely used scheme [Groth16](https://eprint.iacr.org/2016/260.pdf) due to its [small proof size and fast verification](http://www.zeroknowledgeblog.com/index.php/groth16). The full code is [here](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt).
+We implement the most widely used scheme [Groth16](https://eprint.iacr.org/2016/260.pdf) due to its [small proof size and fast verification](http://www.zeroknowledgeblog.com/index.php/groth16). And we also implement [PLONK](https://xiaohuiliu.medium.com/how-plonk-works-part-1-bc8050f4805e), which does not requires a new trusted setup for each circuit. 
+
+The full code is here: 
+
+- [Groth16](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt)
+- [PLONK](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/plonk.scrypt)
+
 

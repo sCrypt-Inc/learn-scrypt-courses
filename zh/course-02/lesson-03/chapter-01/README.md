@@ -82,7 +82,19 @@ snarkjs powersoftau verify pot12_final.ptau
 
 ### 3. 设置
 
+
+目前，snarkjs 支持 2 个证明系统：groth16 和 PLONK。
+Groth16 要求每个电路都进行 **powers of tau** 的仪式。 PLONK 不需要它，只要有通用的 **powers of tau** 的仪式的就足够了。
+
 这将为该电路生成一个证明密钥并验证该密钥。
+
+**Plonk**
+
+```bash
+snarkjs plonk setup circuit.r1cs pot12_final.ptau circuit_final.zkey
+```
+
+**Groth16**
 
 ```bash
 snarkjs groth16 setup factor.r1cs pot12_final.ptau factor_0000.zkey
@@ -122,6 +134,15 @@ node generate_witness.js circuit.wasm ../input.json ../witness.wtns
 
 它使用证明密钥和见证人生成证明。
 
+
+**PLONK**
+
+```bash
+snarkjs plonk prove circuit_final.zkey witness.wtns proof.json public.json
+```
+
+**Groth16**
+
 ```bash
 snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json
 ```
@@ -138,7 +159,15 @@ snarkjs zkey export scryptverifier
 
 您可以在本地验证它：
 
+**PLONK**
+
+```bash
+snarkjs plonk verify verification_key.json public.json proof.json
 ```
+
+**Groth16**
+
+```bash
 snarkjs groth16 verify verification_key.json public.json proof.json
 ```
 

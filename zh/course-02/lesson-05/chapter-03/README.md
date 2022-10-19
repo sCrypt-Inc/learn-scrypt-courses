@@ -36,6 +36,13 @@ static async init() {
 `snarkjs` 提供的 API 涵盖了我们在上一章提到的整个ZKP工作流程，包括：
 
 
+**PLONK**
+
+- 生成证明 `snarkjs.plonk.fullProve()`
+- 验证证明 `snarkjs.plonk.verify()`
+
+**Groth16**
+
 - 生成证明 `snarkjs.groth16.fullProve()`
 - 验证证明 `snarkjs.groth16.verify()`
 
