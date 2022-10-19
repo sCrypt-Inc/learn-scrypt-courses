@@ -1,5 +1,6 @@
 {
     "title": "使用 sCrypt 构建井字游戏",
+    "enTitle": "Build a Tic-tac-toe Game with sCrypt",
     "desc": "这是学习sCrypt的第一门课程",
     "lessons": [
         {

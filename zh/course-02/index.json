@@ -1,5 +1,6 @@
 {
     "title": "在比特币上构建基于 zkSNARK 的战舰游戏",
+    "enTitle": "Build a zkSNARK-based Battleship Game on Bitcoin",
     "desc": "在比特币上创建你的第一个零知识证明程序",
     "lessons": [
         {
