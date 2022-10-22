@@ -34,10 +34,10 @@ In addition to the above four properties, the contract also contains three state
 When the game starts, you and the computer each secretly place the ships and calculate the hash commitment. The contract is initialized with the hashed commitments and public keys of both players.
 
 
-The contract contains a public function named `move()`. In the `move()` function, we use the `ZKNARK.verify()` function of the zkSNARK verifier to check the firing submitted by the other player.
+The contract contains a public function named `move()`. In the `move()` function, we use the `zkSNARK.verify()` function of the zkSNARK verifier to check the firing submitted by the other player.
 
 
-`ZKNARK.verify()` contains four inputs and a proof:
+`zkSNARK.verify()` contains four inputs and a proof:
 
 
 1. Your or computer’s hash commitment.
