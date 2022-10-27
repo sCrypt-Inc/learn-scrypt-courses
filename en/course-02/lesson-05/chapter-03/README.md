@@ -10,7 +10,7 @@ cp node_modules/snarkjs/build/snarkjs.min.js  ./public/zk/
 
 
 Let's look at the code for the `CircomProvider.init()` function, which should be called before any other API. Its job is to load these static resources into the browser to build the singleton instance.
-The resource files `/zk-battleship/zk/battleship.wasm` and `/zk/abi.json` are the output of the compilation process, `/zk-battleship/zk/circuit_final.zkey` and `/zk-battleship/zk/ verification_key.json` is the output of the setup process.
+The resource file `/zk-battleship/zk/battleship.wasm` is the output of the compilation process, `/zk-battleship/zk/circuit_final.zkey` and `/zk-battleship/zk/ verification_key.json` are the output of the setup process.
 
 ```js
 static async init() {

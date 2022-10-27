@@ -10,7 +10,7 @@ cp node_modules/snarkjs/build/snarkjs.min.js  ./public/zk/
 
 
 让我们看一下 `CircomProvider.init()` 函数的代码，它应该在任何其他 API 之前调用。 它的工作是将这些静态资源加载到浏览器以构建单例实例。
-资源文件 `/zk-battleship/zk/battleship.wasm` 和 `/zk/abi.json` 是编译过程的输出，`/zk-battleship/zk/circuit_final.zkey` 和 `/zk-battleship/zk/verification_key.json`是设置过程的输出。
+资源文件 `/zk-battleship/zk/battleship.wasm` 是编译过程的输出，`/zk-battleship/zk/circuit_final.zkey` 和 `/zk-battleship/zk/verification_key.json`是设置过程的输出。
 
 ```js
 static async init() {
