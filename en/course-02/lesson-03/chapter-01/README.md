@@ -90,7 +90,7 @@ Groth16 requires a trusted ceremony for each circuit. PLONK does not require it,
 **Plonk**
 
 ```bash
-snarkjs plonk setup circuit.r1cs pot12_final.ptau circuit_final.zkey
+snarkjs plonk setup factor.r1cs pot12_final.ptau circuit_final.zkey
 ```
 
 **Groth16**
@@ -98,7 +98,7 @@ snarkjs plonk setup circuit.r1cs pot12_final.ptau circuit_final.zkey
 ```bash
 snarkjs groth16 setup factor.r1cs pot12_final.ptau factor_0000.zkey
 snarkjs zkey contribute factor_0000.zkey circuit_final.zkey --name="Second contribution" -e="$(openssl rand -base64 20)"
-snarkjs zkey verify circuit.r1cs pot12_final.ptau circuit_final.zkey
+snarkjs zkey verify factor.r1cs pot12_final.ptau circuit_final.zkey
 ```
 
 
@@ -118,8 +118,7 @@ First, we create a file `input.json` containing the circuit inputs with the foll
 ```json
 {
     "p": 7,
-    "q": 13,
-    "n": 91
+    "q": 13
 }
 ```
 
@@ -127,7 +126,7 @@ Next, we use the `factor.wasm` obtained from compiling the circuit to calculate 
 
 
 ```bash
-node generate_witness.js circuit.wasm ../input.json ../witness.wtns
+node generate_witness.js factor.wasm ../input.json ../witness.wtns
 ```
 
 ### 7. Create a proof

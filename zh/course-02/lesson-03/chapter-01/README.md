@@ -91,7 +91,7 @@ Groth16 要求每个电路都进行 **powers of tau** 的仪式。 PLONK 不需�
 **Plonk**
 
 ```bash
-snarkjs plonk setup circuit.r1cs pot12_final.ptau circuit_final.zkey
+snarkjs plonk setup factor.r1cs pot12_final.ptau circuit_final.zkey
 ```
 
 **Groth16**
@@ -99,7 +99,7 @@ snarkjs plonk setup circuit.r1cs pot12_final.ptau circuit_final.zkey
 ```bash
 snarkjs groth16 setup factor.r1cs pot12_final.ptau factor_0000.zkey
 snarkjs zkey contribute factor_0000.zkey circuit_final.zkey --name="Second contribution" -e="$(openssl rand -base64 20)"
-snarkjs zkey verify circuit.r1cs pot12_final.ptau circuit_final.zkey
+snarkjs zkey verify factor.r1cs pot12_final.ptau circuit_final.zkey
 ```
 
 
@@ -119,15 +119,14 @@ snarkjs zkey export verificationkey circuit_final.zkey verification_key.json
 ```json
 {
     "p": 7,
-    "q": 13,
-    "n": 91
+    "q": 13
 }
 ```
 
 接下来，我们使用编译电路得到的 `factor.wasm` 来计算见证人：
 
 ```bash
-node generate_witness.js circuit.wasm ../input.json ../witness.wtns
+node generate_witness.js factor.wasm ../input.json ../witness.wtns
 ```
 
 ### 6. 生成证明
