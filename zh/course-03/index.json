@@ -1,0 +1,190 @@
+{
+    "title": "使用 sCrypt 构建井字游戏",
+    "enTitle": "Build a Tic-tac-toe Game with sCrypt",
+    "desc": "这是学习sCrypt的第一门课程",
+    "lessons": [
+        {
+            "title": "让我们开始学习基本的 sCrypt",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第一章: 课程概述"
+                },
+                {
+                    "num": 2,
+                    "title": "第二章: sCrypt 合约",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["添加空合约并将其命名为TicTacToe"]
+                        }
+                    ]
+                },
+                {
+                    "num": 3,
+                    "title": "第三章: 基本数据类型和属性",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt",
+                            "hints": ["定义两个属性 alice 和 bob"]
+                        }
+                    ]
+                },
+                {
+                    "num": 4,
+                    "title": "第四章: static 属性和 const 变量",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 5,
+                    "title": "第五章: 函数和 require 语句",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 6,
+                    "title": "第六章: 比特币脚本语言"
+                },
+                {
+                    "num": 7,
+                    "title": "第七章: 获取 Sighash 原像",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 8,
+                    "title": "第八章: 维护游戏状态",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 9,
+                    "title": "第九章: 签名验证",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 10,
+                    "title": "第十章: 数组",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 11,
+                    "title": "第十一章：循环",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.scrypt",
+                            "lang": "scrypt"
+                        }
+                    ]
+                },
+                {
+                    "num": 12,
+                    "title": "第十二章: 总结"
+                }
+            ]
+        },
+        {
+            "title": "了解如何与前端集成",
+            "desc": "学习如何使用官方的Javascript SDK scryptlib 将合约集成到前端",
+            "num": 2,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第一章: 编译合约"
+                },
+                {
+                    "num": 2,
+                    "title": "第二章: 集成 scryptlib",
+                    "scripts": [  
+                        {
+                            "name": "app.js",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 3,
+                    "title": "第三章: 数据类型和实例化合约",
+                    "scripts": [  
+                        {
+                            "name": "app.js",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 4,
+                    "title": "第四章: 集成钱包",
+                    "scripts": [  
+                        {
+                            "name": "app.js",
+                            "lang": "js"
+                        },
+                        {
+                            "name": "auth.js",
+                            "lang": "js"
+                        },
+                        {
+                            "name": "balance.js",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 5,
+                    "title": "第五章: 部署合约",
+                    "scripts": [  
+                        {
+                            "name": "app.js",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 6,
+                    "title": "第六章: 调用合约",
+                    "scripts": [  
+                        {
+                            "name": "game.js",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 7,
+                    "title": "第七章: 总结"
+                }
+            ]
+        }
+    ]
+}
