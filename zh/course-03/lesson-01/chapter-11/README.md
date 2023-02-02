@@ -5,15 +5,15 @@
 ```ts
 let a: FixedArray<bigint, 3> = [0n, 1n, 2n];
 const N = 3;
-let b: FixedArray<bigint,  typeof N> = [false, false && true, (1n > 2n)];
+let b: FixedArray<boolean,  typeof N> = [false, false && true, (1n > 2n)];
 let arr2D: FixedArray<FixedArray<bigint,  typeof N> , 2>  = [[11n, 12n, 13n], [21n, 22n, 23n]];
-let d: FixedArray<bigint,  typeof N> = a[2];
+let d: FixedArray<bigint,  typeof N> = arr2D[1];
 let idx = 2n;
 // read
-d = a[Number(idx)];
-d = arr2D[idx][1];
+d[1] = a[Number(idx)];
+d[2] = arr2D[Number(idx)][1];
 // write
-a[idx] = 2n;
+a[Number(idx)] = 2n;
 // assign to an array variable
 a = arr2D[1];
 ```
