@@ -17,7 +17,7 @@ class Demo extends SmartContract {
 
   @method()
   public unlock(x: bigint) {
-    assert(this.add(this.x, 1n) === x, "x is not the expected unlocking script");
+    assert(this.add(this.x, 1n) === x, "incorrect input x");
   }
 
   @method()
@@ -27,7 +27,7 @@ class Demo extends SmartContract {
 }
 ```
 
-用 `@prop()` 和 `@method()` 装饰的类成员将最终出现在区块链上，因此必须是 TypeScript 的严格子集。 既没有装饰的成员是常规的 TypeScript，不会在链上。 `scryptTS` 的显着优势在于链上和链下代码都使用相同的语言编写：TypeScript。
+用 `@prop()` 和 `@method()` 装饰的类成员将最终出现在区块链上，因此必须是 TypeScript 的严格子集。没有装饰的成员是常规的 TypeScript，不会在链上。 `scryptTS` 的显着优势在于链上和链下代码都使用相同的语言编写：TypeScript。
 
 ## 实战演习
 

@@ -41,7 +41,7 @@ class Test extends SmartContract {
   z: ByteString;
 
   @prop()
-  static readonly N: bigint = 3n;
+  static readonly N: bigint = 3n;  // suffix `n` means bigint literal.
 
   constructor(x: bigint, y: FixedArray<boolean, 2>, z: ByteString) {
     super(...arguments);
@@ -52,29 +52,8 @@ class Test extends SmartContract {
 
   @method()
   public unlock(x: bigint) {
-    assert(this.x === x, "x is not the expected unlocking script");
+    assert(this.x === x, "incorrect input x");
   }
-}
-```
-
-
-注意： 使用 `@prop` 装饰器修饰的有以下限制，即使这在 TypeScript 中时合法的:
-
-1. 无状态属性和有状态属性不能在声明时初始化，它们只能在构造函数中初始化
-2. 静态属性必须在声明时初始化
-3. 所有属性声明时必须显示地指定的类型。
-
-
-```ts
-class Test extends SmartContract {
-  @prop()
-  static readonly x: bigint;  // invalid, must be initialized at declaration time
-
-  @prop()
-  x: bigint = 3n;  // invalid, cannot be initialized at declaration time
-
-  @prop()
-  x;  // invalid, must show claim type
 }
 ```
 

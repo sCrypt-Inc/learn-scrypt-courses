@@ -60,7 +60,7 @@ export class Counter extends SmartContract {
         // Increment counter value
         this.count++
 
-        // construct outputs that contains latest contract state
+        // construct single output that contains latest contract state
         let outputs = this.buildStateOutput(this.ctx.utxo.value);
     }
 }
