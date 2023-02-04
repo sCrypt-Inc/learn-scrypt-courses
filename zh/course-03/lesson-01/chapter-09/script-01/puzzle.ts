@@ -11,7 +11,7 @@ export class TicTacToe extends SmartContract {
     is_alice_turn: boolean;
 
     @prop(true)
-    board: FixedArray<bigint, typeof TicTacToe.BOARDLEN>;
+    board: FixedArray<bigint, 9>;
 
     @prop()
     static readonly EMPTY: bigint = 0n;
@@ -19,8 +19,6 @@ export class TicTacToe extends SmartContract {
     static readonly ALICE: bigint = 1n;
     @prop()
     static readonly BOB: bigint = 2n;
-
-    static readonly BOARDLEN = 9;
 
     @method()
     public move(n: bigint, sig: Sig, amount: bigint): void {

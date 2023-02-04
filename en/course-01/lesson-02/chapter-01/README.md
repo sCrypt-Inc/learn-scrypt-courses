@@ -1,12 +1,12 @@
 # Chapter 1: scryptlib
 
-Congratulations! You've built your very first Bitcoin SV smart contract using sCrypt. Now, you will learn how to implement your contract into your Web3/dAPP application using Javascript. We are assuming that you have some basic knowledge of the front-end development.
+Congratulations! You've built your very first Bitcoin  smart contract using sCrypt. Now, you will learn how to implement your contract into your Web3/dAPP application using Javascript. We are assuming that you have some basic knowledge of the front-end development.
 
 The `webapp` branch of the React App project [tic-tac-toe](https://github.com/sCrypt-Inc/tic-tac-toe) contains a tic-tac-toe game with only front-end code. We will start from this branch and implement a contract version of tic-tac-toe game step by step.
 
 ## scryptlib
 
-[scryptlib](https://github.com/sCrypt-Inc/scryptlib) is sCrypt's official Javascript SDK for integrating Bitcoin SV Smart Contract in your application. It is designed to help you quickly build a high-quality Smart Contract applications. You will be able to compile, test, deploy and call contracts through this SDK.
+[scryptlib](https://github.com/sCrypt-Inc/scryptlib) is sCrypt's official Javascript SDK for integrating Bitcoin Smart Contract in your application. It is designed to help you quickly build a high-quality Smart Contract applications. You will be able to compile, test, deploy and call contracts through this SDK.
 
 ## Setup
 

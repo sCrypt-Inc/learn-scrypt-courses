@@ -13,7 +13,7 @@ git clone -b webapp https://github.com/sCrypt-Inc/tic-tac-toe
 ##  scryptlib
 dApp 需要在前端页面与合约进行交互。 要做到这一点，我们将使用 sCrypt 官方发布的 JavaScript 库 —— [scryptlib](https://github.com/sCrypt-Inc/scryptlib).
 
-scryptlib 用于集成以 sCrypt 语言编写的 Bitcoin SV 智能合约的 Javascript/TypeScript SDK。
+scryptlib 用于集成以 sCrypt 语言编写的 Bitcoin 智能合约的 Javascript/TypeScript SDK。
 
 通过 `scryptlib` ，你就能方便地编译，测试，部署，调用合约了。
 

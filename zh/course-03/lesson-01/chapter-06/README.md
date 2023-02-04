@@ -7,14 +7,32 @@
 
 2. `bigint`: 带符号的整数
 
-3. `FixedArray<bigint, 9>`: 大小为 `9` 的整数数组
+3. `PubKey`：公钥
 
-4. `PubKey`：公钥
-
-5. `Sig`：签名
+4. `Sig`：签名
 
 
 其中， `PubKey` 和 `Sig` 是 `ByteString` 类型的子类型。如果你想了解更多的基本类型，可以查看[语言参考文档](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#data-types) 
+
+
+## 数组
+
+数组是相同基本类型的固定大小的值列表。数组元素使用逗号分割。当你声明一个数组时，你必须这样声明它：
+
+```ts
+let a: FixedArray<bigint, 3> = [0n, 1n, 2n];
+let b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
+let arr2D: FixedArray<FixedArray<bigint,  3> , 2>  = [[11n, 12n, 13n], [21n, 22n, 23n]];
+let d: FixedArray<bigint,  3> = arr2D[1];
+let idx = 2n;
+// read
+d[1] = a[Number(idx)];
+d[2] = arr2D[Number(idx)][1];
+// write
+a[Number(idx)] = 2n;
+// assign to an array variable
+a = arr2D[1];
+```
 
 
 ## 属性
@@ -68,7 +86,7 @@ class Test extends SmartContract {
     - `bob`: 数据类型是 `PubKey`。它表示是玩家 `bob` 的公钥。
 2. 添加两个有状态属性:
     - `is_alice_turn`: 数据类型是 `boolean`。它表示是否轮到玩家 `alice` 下棋。
-    - `board`: 数据类型是长度为 9 的定长数组 `FixedArray<bigint, 9>`。它表示当前棋盘各个位置的落子情况。
+    - `board`: 数据类型是长度为 `9` 的定长数组 `FixedArray<bigint, 9>`。它表示当前棋盘各个位置的落子情况。
 
 3. 添加静态属性 `EMPTY`，类型为 `bigint`，值为 `0n`。它表示该棋盘位置还未落子
 4. 添加静态属性 `ALICE`，类型为 `bigint`，值为 `1n`。它表示该棋盘位置被玩家 `alice` 落子
