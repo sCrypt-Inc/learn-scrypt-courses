@@ -1,8 +1,8 @@
-# 第二章: scryptTS 概述
+# 第二章: sCrypt 概述
 
 ## TypeScript 嵌入式领域特定语言
 
-`scryptTS` 是一种基于 [Typescript](https://www.typescriptlang.org/) 的嵌入式领域特定语言 ([sDSL](https://en.wikipedia.org/wiki/Domain-specific_language#External_and_Embedded_Domain_Specific_Languages))，用于在比特币 SV 上编写智能合约。 嵌入式意味着它是另一种语言中的一种语言。 `scryptTS` 严格来说是 TypeScript 的子集，因此所有 `scryptTS` 代码都是有效的 TypeScript，但反之则不然。
+`sCrypt` 是一种基于 [Typescript](https://www.typescriptlang.org/) 的嵌入式领域特定语言 ([sDSL](https://en.wikipedia.org/wiki/Domain-specific_language#External_and_Embedded_Domain_Specific_Languages))，用于在比特币 SV 上编写智能合约。 嵌入式意味着它是另一种语言中的一种语言。 `sCrypt` 严格来说是 TypeScript 的子集，因此所有 `sCrypt` 代码都是有效的 TypeScript，但反之则不然。
 
 我们选择 TypeScript 作为宿主语言，因为它提供了一种简单、熟悉的语言 (JavaScript)，但具有类型安全性，可以轻松开始编写安全的智能合约。 如果您已经熟悉 TypeScript/JavaScript，则无需学习新的编程语言或工具。 如果您是 TypeScript 的新手，请观看这个有用的[介绍视频](https://www.youtube.com/watch?v=ahCwqrYpIuM)。
 
@@ -34,6 +34,6 @@
 
 在常规[比特币支付](https://wiki.bitcoinsv.io/index.php/Bitcoin_Transactions#Pay_to_Public_Key_Hash_.28P2PKH.29)中，包含[比特币地址](https://wiki.bitcoinsv.io/index.php/Bitcoin_address)的锁定脚本会检查支付者是否拥有正确的私钥，以便在解锁脚本中生成有效签名。
 
-## scryptTS 是如何工作的？
+## sCrypt 是如何工作的？
 
-`scryptTS` 是一种被编译成比特币脚本的高级语言。生成的类似程序集的脚本可以在构建交易时用作锁定脚本。
+`sCrypt` 是一种被编译成比特币脚本的高级语言。生成的类似程序集的脚本可以在构建交易时用作锁定脚本。

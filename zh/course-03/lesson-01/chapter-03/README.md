@@ -12,11 +12,11 @@
 
 ## `scrypt-cli` 命令行工具
 
-`scrypt-cli` 是使 `scryptTS` 的开发更快更容易的 CLI 工具。
+`scrypt-cli` 是使 `sCrypt` 的开发更快更容易的 CLI 工具。
 
 ## 创建工程
 
-使用 `scryptTS` 提供的命令行工具 `scrypt-cli` 来创建工程:
+使用 `sCrypt` 提供的命令行工具 `scrypt-cli` 来创建工程:
 
 ```bash
 npx scrypt-cli project tic-tac-toe

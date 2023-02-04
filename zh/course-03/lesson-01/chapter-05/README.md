@@ -1,7 +1,7 @@
-# 第五章: scryptTS 合约
+# 第五章: sCrypt 合约
 
 
-合约就是去中心化应用 (dapp) 的基本模块。每个 **scryptTS** 合约都是一个 `SmartContract` 的子类:
+合约就是去中心化应用 (dapp) 的基本模块。每个 **sCrypt** 合约都是一个 `SmartContract` 的子类:
 
 ```js
 import { SmartContract, method, prop, assert } from "scrypt-ts";
@@ -27,7 +27,7 @@ class Demo extends SmartContract {
 }
 ```
 
-用 `@prop()` 和 `@method()` 装饰的类成员将最终出现在区块链上，因此必须是 TypeScript 的严格子集。没有装饰的成员是常规的 TypeScript，不会在链上。 `scryptTS` 的显着优势在于链上和链下代码都使用相同的语言编写：TypeScript。
+用 `@prop()` 和 `@method()` 装饰的类成员将最终出现在区块链上，因此必须是 TypeScript 的严格子集。没有装饰的成员是常规的 TypeScript，不会在链上。 `sCrypt` 的显着优势在于链上和链下代码都使用相同的语言编写：TypeScript。
 
 ## 实战演习
 
