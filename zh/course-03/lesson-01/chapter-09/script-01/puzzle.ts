@@ -1,5 +1,5 @@
 
-import { prop, SmartContract, PubKey, FixedArray, assert, Sig} from "scrypt-ts";
+import { prop, method, SmartContract, PubKey, FixedArray, assert, Sig, Utils, toByteString, hash160} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
     @prop()
@@ -26,7 +26,35 @@ export class TicTacToe extends SmartContract {
         assert(n >= 0n && n < 9n);
         // check signature `sig`
         let player: PubKey = this.is_alice_turn ? this.alice : this.bob;
-        // TODO: add Check signature
+        assert(this.checkSig(sig, player), `checkSig failed, sig: ${sig}, pubkey: ${player}`);
+        // update stateful properties to make the move
+        assert(this.board[Number(n)] === TicTacToe.EMPTY, `board at position ${n} is not empty: ${this.board[Number(n)]}`);
+        let play = this.is_alice_turn ? TicTacToe.ALICE : TicTacToe.BOB;
+        //TODO: update state properties to make the move
+
+
+        // build the transation outputs
+        let outputs = toByteString('');
+        if (this.won(play)) {
+            let outputScript = Utils.buildPublicKeyHashScript(hash160(player));
+            let output = Utils.buildOutput(outputScript, amount);
+            outputs = output;
+        }
+        else if (this.full()) {
+            let aliceScript = Utils.buildPublicKeyHashScript(hash160(this.alice));
+            let aliceOutput = Utils.buildOutput(aliceScript, amount);
+
+            let bobScript = Utils.buildPublicKeyHashScript(hash160(this.bob));
+            let bobOutput = Utils.buildOutput(bobScript, amount);
+
+            outputs = aliceOutput + bobOutput;
+        }
+        else {
+            // build a output that contains latest contract state.
+            outputs = this.buildStateOutput(amount);
+        }
+
+        // TODO: make sure the transaction contains the expected outputs built above
 
     }
 

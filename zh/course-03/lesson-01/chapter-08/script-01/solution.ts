@@ -1,3 +1,4 @@
+
 import { prop, SmartContract, PubKey, FixedArray, assert, Sig} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
@@ -21,7 +22,12 @@ export class TicTacToe extends SmartContract {
 
     @method()
     public move(n: bigint, sig: Sig, amount: bigint): void {
+        // check position `n`
         assert(n >= 0n && n < 9n);
+        // check signature `sig`
+        let player: PubKey = this.is_alice_turn ? this.alice : this.bob;
+        assert(this.checkSig(sig, player), `checkSig failed, sig: ${sig}, pubkey: ${player}`);
+
     }
 
     @method()
