@@ -26,7 +26,7 @@ export class TicTacToe extends SmartContract {
         assert(n >= 0n && n < 9n);
         // check signature `sig`
         let player: PubKey = this.is_alice_turn ? this.alice : this.bob;
-        assert(this.checkSig(sig, player), `checkSig failed, sig: ${sig}, pubkey: ${player}`);
+        assert(this.checkSig(sig, player), `checkSig failed, pubkey: ${player}`);
 
     }
 
