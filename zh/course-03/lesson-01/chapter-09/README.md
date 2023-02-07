@@ -1,103 +1,74 @@
-# 第九章: 维护游戏状态
+# 第九章: 宣布获胜或平局
 
-## 链式保持状态
+## 循环
 
-在 UTXO 模型中，合约可以通过将其状态存储在锁定脚本中来实现链式保持状态。 在下面的例子中，合约从 `state0` 转换到 `state1`，然后到再转换到 `state2`。 交易 1（`tx1`）中的输入在 `tx0` 中花费了 UTXO，而 `tx2` 花费了 `tx1`。
-
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
-
-那么如何确保交易在构建时，锁定脚本包含正确的状态，以确保链式保持状态呢？这需要用到 `ScriptContext`。
-
-## ScriptContext
-
-在 UTXO 模型中，验证的上下文是正在花费的 UTXO 和花费交易，包括它的输入和输出。 在下面的示例中，当交易 `tx1` 的第二个输入花费 `tx0` 的第二个输出时，位于 `tx0` 第二个输出中的智能合约的上下文大致，即 [ScriptContext](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext)，是用红色圈出 UTXO 和用红色圈出的 `tx1`。
-
-![](https://scrypt.io/scrypt-ts/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
-
-
-您可以在任何公共方法中通过 `this.ctx` 直接访问 `ScriptContext`。 它可以被认为是公共方法在调用时获得的附加信息，除了它的函数参数。下面以一个简单的计数器合约，展示如何通过 `ScriptContext` 在合约中维护状态。
-
-## 第一步
-
-使用装饰器 `@prop(true)` 声明有状态属性 `counter`。 您可以将**有状态属性**当作普通属性：读取和更新它。
+出于安全原因，比特币不允许无限循环，以防止 DoS 攻击。所有循环都必须在编译时有界。所以如果你想在 `@method` 内部循环，你必须严格使用如下格式：
 
 ```ts
-export class Counter extends SmartContract {
-    // Stateful prop to store counters value.
-    @prop(true)
-    count: bigint
-
-    constructor(count: bigint) {
-        super(...arguments)
-        this.count = count
-    }
-
-    @method()
-    public increment() {
-        // Increment counter value
-        this.count++
-    }
+for(let $i = 0; $i < $maxLoopCount; $i++) {
+  ...
 }
 ```
 
-## 第二步
+注意：
 
-当您准备好将新状态保存到当前交易的 `output[s]` 输出中的锁定脚本时，只需调用为每个合约自动生成的内置函数 `this.buildStateOutput()`。
+- 初始值必须为 `0`，运算符 `<`（无 `<=`），并递增 `$i++`（无预递增 `++$i`）。
+- `$maxLoopCount` 必须是 [CTC](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#compile-time-constant)。
+- `$i` 可以是任意名称，例如 `i`、`j` 或 `k`。它可以是数字或 `bigint` 类型。
+- 目前不允许 `break` 和 `continue`，但可以像这样模拟。
 
 ```ts
-export class Counter extends SmartContract {
-    // Stateful prop to store counters value.
-    @prop(true)
-    count: bigint
-
-    constructor(count: bigint) {
-        super(...arguments)
-        this.count = count
-    }
-
-    @method()
-    public increment() {
-        // Increment counter value
-        this.count++
-
-        // construct single output that contains latest contract state
-        let outputs = this.buildStateOutput(this.ctx.utxo.value);
+// 模拟 break
+let done = false;
+for (let i = 0n; i < 3n; i++) {
+    if (!done) {
+        x = x * 2n
+        if (x >= 8n) {
+            done = true
+        }
     }
 }
 ```
 
 
+## 获胜与平局
 
-## 第三步
-确保当前交易的输出必须包含这个新状态。 如果 `ScriptContext` 中的 `hashOutputs` 哈希值与当前交易中所有输出的哈希值相同，我们可以确定当前交易的输出与我们在合约中构建的输出一致。 因此，包括更新的合约状态。
+对于井字棋游戏，是否有玩家赢得比赛的规则是棋盘上是否有三个棋子连成一条直线。
 
+我们把所有可能的连成一条线的情况全部列举出来：
+
+```
+0, 1, 2
+3, 4, 5
+6, 7, 8
+0, 3, 6
+1, 4, 7
+2, 5, 8
+0, 4, 8
+2, 4, 6
+```
+
+用一个二维数组 `FixedArray<FixedArray<bigint, 3>, 8>` 保存以上所有赢得比赛的状态。 在 `won` 函数中添加该数组。
 
 ```ts
-export class Counter extends SmartContract {
-    // Stateful prop to store counters value.
-    @prop(true)
-    count: bigint
-
-    constructor(count: bigint) {
-        super(...arguments)
-        this.count = count
-    }
-
-    @method()
-    public increment() {
-        // Increment counter value
-        this.count++
-
-        // construct outputs that contains latest contract state
-        let outputs = this.buildStateOutput(this.ctx.utxo.value);
-
-        // make sure the transaction contains the expected outputs built above
-        assert(this.ctx.hashOutputs === hash256(outputs), "check hashOutputs failed");
-    }
-}
+let lines: FixedArray<FixedArray<bigint, 3>, 8> = [
+    [0n, 1n, 2n],
+    [3n, 4n, 5n],
+    [6n, 7n, 8n],
+    [0n, 3n, 6n],
+    [1n, 4n, 7n],
+    [2n, 5n, 8n],
+    [0n, 4n, 8n],
+    [2n, 4n, 6n]
+];
 ```
+
+只要棋盘上出现了以上任意一种情况，就表示有玩家赢得比赛。如果没有人获胜，而且此时棋盘的 `9` 个格子都已经落子，则为平局。
+
+
 
 ## 实战演习
 
-1. 更新 `TicTacToe` 合约的状态属性 `board` 和 `isAliceTurn` 以确保玩家移动了棋子
-2. 使用 `this.ctx` 确保交易包含预期输出
+1. 在 `win()` 函数中遍历 `lines` 数组，检查玩家是否赢得比赛。
+2. 在 `full()` 函数中遍历棋盘所有格子，检查每个格子是否为空。
+

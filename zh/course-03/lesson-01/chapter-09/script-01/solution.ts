@@ -1,5 +1,4 @@
-
-import { prop, method, SmartContract, PubKey, FixedArray, assert, Sig, Utils, toByteString, hash160} from "scrypt-ts";
+import { prop, method, SmartContract, PubKey, FixedArray, assert, Sig, Utils, toByteString, hash160, hash256} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
     @prop()
@@ -19,6 +18,14 @@ export class TicTacToe extends SmartContract {
     static readonly ALICE: bigint = 1n;
     @prop()
     static readonly BOB: bigint = 2n;
+
+    constructor(alice: PubKey, bob: PubKey, is_alice_turn:boolean, board: FixedArray<bigint, 9>) {
+        super(...arguments);
+        this.alice = alice;
+        this.bob = bob;
+        this.is_alice_turn = is_alice_turn;
+        this.board = board;
+    }
 
     @method()
     public move(n: bigint, sig: Sig, amount: bigint): void {
@@ -60,12 +67,38 @@ export class TicTacToe extends SmartContract {
 
     @method()
     won(play: bigint) : boolean {
-        return true;
+        let lines: FixedArray<FixedArray<bigint, 3>, 8> = [
+            [0n, 1n, 2n],
+            [3n, 4n, 5n],
+            [6n, 7n, 8n],
+            [0n, 3n, 6n],
+            [1n, 4n, 7n],
+            [2n, 5n, 8n],
+            [0n, 4n, 8n],
+            [2n, 4n, 6n]
+        ];
+
+        let anyLine = false;
+
+        for (let i = 0; i < 8; i++) {
+            let line = true;
+            for (let j = 0; j < 3; j++) {
+                line = line && this.board[Number(lines[i][j])] === play;
+            }
+
+            anyLine = anyLine || line;
+        }
+
+        return anyLine;
     }
 
     @method()
     full() : boolean {
-        return true;
+        let full = true;
+        for (let i = 0; i < 9; i++) {
+            full = full && this.board[i] !== TicTacToe.EMPTY;
+        }
+        return full;
     }
 
 }

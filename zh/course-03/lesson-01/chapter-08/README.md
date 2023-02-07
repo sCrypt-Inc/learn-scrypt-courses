@@ -1,36 +1,103 @@
-# 第八章: 签名验证
+# 第八章: 维护游戏状态
 
-`move()` 函数的 `sig` 参数是玩家的签名。假如没有对签名进行验证，任何人都可以调用合约的 `move()` 方法来移动棋子。
+## 链式保持状态
 
-下面例子是比特币网络中最常见的合约：支付到公钥哈希。
+在 UTXO 模型中，合约可以通过将其状态存储在锁定脚本中来实现链式保持状态。 在下面的例子中，合约从 `state0` 转换到 `state1`，然后到再转换到 `state2`。 交易 1（`tx1`）中的输入在 `tx0` 中花费了 UTXO，而 `tx2` 花费了 `tx1`。
+
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
+
+那么如何确保交易在构建时，锁定脚本包含正确的状态，以确保链式保持状态呢？这需要用到 `ScriptContext`。
+
+## ScriptContext
+
+在 UTXO 模型中，验证的上下文是正在花费的 UTXO 和花费交易，包括它的输入和输出。 在下面的示例中，当交易 `tx1` 的第二个输入花费 `tx0` 的第二个输出时，位于 `tx0` 第二个输出中的智能合约的上下文大致，即 [ScriptContext](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext)，是用红色圈出 UTXO 和用红色圈出的 `tx1`。
+
+![](https://scrypt.io/scrypt-ts/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
+
+
+您可以在任何公共方法中通过 `this.ctx` 直接访问 `ScriptContext`。 它可以被认为是公共方法在调用时获得的附加信息，除了它的函数参数。下面以一个简单的计数器合约，展示如何通过 `ScriptContext` 在合约中维护状态。
+
+## 第一步
+
+使用装饰器 `@prop(true)` 声明有状态属性 `counter`。 您可以将**有状态属性**当作普通属性：读取和更新它。
 
 ```ts
-export class P2PKH extends SmartContract {
-    // Address of the recipient.
-    @prop()
-    readonly pubKeyHash: PubKeyHash
+export class Counter extends SmartContract {
+    // Stateful prop to store counters value.
+    @prop(true)
+    count: bigint
 
-    constructor(pubKeyHash: PubKeyHash) {
+    constructor(count: bigint) {
         super(...arguments)
-        this.pubKeyHash = pubKeyHash
+        this.count = count
     }
 
     @method()
-    public unlock(sig: Sig, pubkey: PubKey) {
-        // Check if the passed public key belongs to the specified address.
-        assert(
-            hash160(pubkey) == this.pubKeyHash,
-            'public key hashes are not equal'
-        )
-        // Check the signatures validity.
-        assert(this.checkSig(sig, pubkey), 'signature check failed')
+    public increment() {
+        // Increment counter value
+        this.count++
     }
-
+}
 ```
 
-支付到公钥哈希的签名和公钥都是从解锁参数传入。`TicTacToe` 合约只有签名是从解锁参数传入，因为玩家的公钥已经存储在合约的`PubKey alice` 和 `PubKey bob` 两个属性中。
+## 第二步
 
+当您准备好将新状态保存到当前交易的 `output[s]` 输出中的锁定脚本时，只需调用为每个合约自动生成的内置函数 `this.buildStateOutput()`。
+
+```ts
+export class Counter extends SmartContract {
+    // Stateful prop to store counters value.
+    @prop(true)
+    count: bigint
+
+    constructor(count: bigint) {
+        super(...arguments)
+        this.count = count
+    }
+
+    @method()
+    public increment() {
+        // Increment counter value
+        this.count++
+
+        // construct single output that contains latest contract state
+        let outputs = this.buildStateOutput(this.ctx.utxo.value);
+    }
+}
+```
+
+
+
+## 第三步
+确保当前交易的输出必须包含这个新状态。 如果 `ScriptContext` 中的 `hashOutputs` 哈希值与当前交易中所有输出的哈希值相同，我们可以确定当前交易的输出与我们在合约中构建的输出一致。 因此，包括更新的合约状态。
+
+
+```ts
+export class Counter extends SmartContract {
+    // Stateful prop to store counters value.
+    @prop(true)
+    count: bigint
+
+    constructor(count: bigint) {
+        super(...arguments)
+        this.count = count
+    }
+
+    @method()
+    public increment() {
+        // Increment counter value
+        this.count++
+
+        // construct outputs that contains latest contract state
+        let outputs = this.buildStateOutput(this.ctx.utxo.value);
+
+        // make sure the transaction contains the expected outputs built above
+        assert(this.ctx.hashOutputs === hash256(outputs), "check hashOutputs failed");
+    }
+}
+```
 
 ## 实战演习
 
-1. 验证 `move()`函数 的 `sig` 签名参数。
+1. 更新 `TicTacToe` 合约的状态属性 `board` 和 `isAliceTurn` 以确保玩家移动了棋子
+2. 使用 `this.ctx` 确保交易包含预期输出

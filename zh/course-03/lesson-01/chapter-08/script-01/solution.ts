@@ -1,5 +1,5 @@
 
-import { prop, SmartContract, PubKey, FixedArray, assert, Sig} from "scrypt-ts";
+import { prop, method, SmartContract, PubKey, FixedArray, assert, Sig, Utils, toByteString, hash160} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
     @prop()
@@ -20,6 +20,14 @@ export class TicTacToe extends SmartContract {
     @prop()
     static readonly BOB: bigint = 2n;
 
+    constructor(alice: PubKey, bob: PubKey, is_alice_turn:boolean, board: FixedArray<bigint, 9>) {
+        super(...arguments);
+        this.alice = alice;
+        this.bob = bob;
+        this.is_alice_turn = is_alice_turn;
+        this.board = board;
+    }
+
     @method()
     public move(n: bigint, sig: Sig, amount: bigint): void {
         // check position `n`
@@ -27,7 +35,35 @@ export class TicTacToe extends SmartContract {
         // check signature `sig`
         let player: PubKey = this.is_alice_turn ? this.alice : this.bob;
         assert(this.checkSig(sig, player), `checkSig failed, pubkey: ${player}`);
+        // update stateful properties to make the move
+        assert(this.board[Number(n)] === TicTacToe.EMPTY, `board at position ${n} is not empty: ${this.board[Number(n)]}`);
+        let play = this.is_alice_turn ? TicTacToe.ALICE : TicTacToe.BOB;
+        this.board[Number(n)] = play;
+        this.is_alice_turn = !this.is_alice_turn;
 
+        // build the transation outputs
+        let outputs = toByteString('');
+        if (this.won(play)) {
+            let outputScript = Utils.buildPublicKeyHashScript(hash160(player));
+            let output = Utils.buildOutput(outputScript, amount);
+            outputs = output;
+        }
+        else if (this.full()) {
+            let aliceScript = Utils.buildPublicKeyHashScript(hash160(this.alice));
+            let aliceOutput = Utils.buildOutput(aliceScript, amount);
+
+            let bobScript = Utils.buildPublicKeyHashScript(hash160(this.bob));
+            let bobOutput = Utils.buildOutput(bobScript, amount);
+
+            outputs = aliceOutput + bobOutput;
+        }
+        else {
+            // build a output that contains latest contract state.
+            outputs = this.buildStateOutput(amount);
+        }
+
+        // make sure the transaction contains the expected outputs built above
+        assert(this.ctx.hashOutputs === hash256(outputs), "check hashOutputs failed");
     }
 
     @method()

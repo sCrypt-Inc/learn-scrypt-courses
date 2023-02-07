@@ -1,95 +1,78 @@
-# 第六章: 基本数据类型和属性
-
-## 基本数据类型
-`TicTacToe` 合约使用的基本数据类型包括：
-
-1. `boolean`: 布尔值，取值 `true` 或者 `false`
-
-2. `bigint`: 带符号的整数
-
-3. `PubKey`：公钥
-
-4. `Sig`：签名
+# 第六章: `assert()` 函数 和 `@methed` 方法 
 
 
-其中， `PubKey` 和 `Sig` 是 `ByteString` 类型的子类型。如果你想了解更多的基本类型，可以查看[语言参考文档](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#data-types) 
+## `assert()` 函数
 
-
-## 数组
-
-数组是相同基本类型的固定大小的值列表。数组元素使用逗号分割。当你声明一个数组时，你必须这样声明它：
+最常用的内置函数是 `assert(condition: boolean, msg?: string)`。 如果条件 `condition` 为假，它会抛出错误。 当且仅当所有执行的 `assert()` 断言都为真时，合约调用才会成功。 
 
 ```ts
-let a: FixedArray<bigint, 3> = [0n, 1n, 2n];
-let b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
-let arr2D: FixedArray<FixedArray<bigint,  3> , 2>  = [[11n, 12n, 13n], [21n, 22n, 23n]];
-let d: FixedArray<bigint,  3> = arr2D[1];
-let idx = 2n;
-// read
-d[1] = a[Number(idx)];
-d[2] = arr2D[Number(idx)][1];
-// write
-a[Number(idx)] = 2n;
-// assign to an array variable
-a = arr2D[1];
+assert(a > 0n);
 ```
 
 
-## 属性
+## `@methed` 方法
 
-使用 `@prop(stateful: boolean = false)` 装饰器标记的成员变量称为属性。这个装饰器接受一个布尔参数。 默认情况下，它设置为 `false`，这意味着该属性在部署合约后无法更改。 如果该值为真，则该属性是所谓的有状态属性，其值可以在后续合约调用中更新。
+使用`@method` 装饰器来标记任何打算在链上运行的方法。
 
-没有 `@prop` 装饰器标记的成员变量是常规的 TypeScript 变量，其声明没有任何特殊要求。但是在使用 `@method` 装饰器装饰的方法中禁止访问这些成员变量。
+与属性一样，智能合约也可以有两种方法：
 
-属性对应的数据将被存储在区块链链上。一共有 `3` 中属性:
+1. 带有 `@method` 装饰器：这些方法只能调用同样由 `@method` 装饰器装饰的方法。此外，只能访问由 `@prop` 装饰的属性。
 
-1. 无状态属性， 使用 `@prop()` 标记
-2. 有状态属性， 使用 `@prop(true)` 标记
-3. 静态属性， 使用 `@prop()` 标记， 同时带有 TypeScript 的 `static` `readonly` 修饰符
+2. 没有 `@method` 装饰器：这些方法只是常规的 TypeScript 类方法。没有限制。
+
+`@methed` 方法分为两种:
+
+### 1. 公共 `@methed` 方法
+
+每个合约必须至少有一个公共 `@method` 方法。它用 `public` 修饰符表示并且不返回任何值。它在合约外可见，并充当合约中的主要方法（如 C 和 Java 中的 `main` 方法）。
+
+可以从外部事务调用公共 `@method` 方法。如果方法中所有 `assert()` 满足条件，则调用成功。一个例子如下所示。
 
 ```ts
-class Test extends SmartContract {
-  @prop()
-  x: bigint;
+@method()
+public unlock(x: bigint) {
+    // only succeeds if x is 1
+    assert(this.add(this.x, 1n) === x, "unequal");
+}
+```
 
-  @prop(true)
-  y: FixedArray<boolean, 2>;
+注意： 
 
-  @prop(false)
-  z: ByteString;
+公共 `@methed` 方法最后一个函数调用必须是一个 `assert()` 函数调用，除非他是一个 `console.log()` 调用。
 
-  @prop()
-  static readonly N: bigint = 3n;  // suffix `n` means bigint literal.
+### 非公共 `@methed` 方法
 
-  constructor(x: bigint, y: FixedArray<boolean, 2>, z: ByteString) {
-    super(...arguments);
-    this.x = x;
-    this.y = y;
-    this.z = z;
-  }
+如果没有 `public` 修饰符，则是一个非公共 `@methed` 方法。非公共 `@methed` 方法是一个合约内部方法，只能在合约类中调用。
 
-  @method()
-  public unlock(x: bigint) {
-    assert(this.x === x, "incorrect input x");
-  }
+非公共 `@methed` 方法必须显示地声明类型。例如:
+
+```js
+@method()
+add(x0: bigint, x1:bigint) : bigint {
+    return x0 + x1;
 }
 ```
 
 
 ## 实战演习
 
-井字棋游戏合约支持两个玩家，需要保存两个玩家的公钥地址。在合约运行结束后，如果游戏不是以平局结束，合约自动将锁定的比特币打给赢家。
+`TicTacToe` 合约中有 3 个 `@methed` 方法：
+
+1. 公共 `@methed` 方法 `move()` : Alice 和 Bob 各自将 X 个比特币锁定在包含上述合约的一个 UTXO 中。 接下来，他们通过调用公共 `@methed` 方法 `move()` 交替玩游戏。 有 `3` 个参数，分别表示：
+
+-  `n` : `bigint` 类型，表示在棋盘上哪个位置下棋
+-  `sig` : `Sig` 类型，表示玩家的签名
+-  `amount` : `bigint` 类型，表示减去交易手续费后的合约余额
 
 
-1. 添加两个无状态属性 `alice` 和 `bob`，数据类型都是 `PubKey`。
-    - `alice`: 数据类型是 `PubKey`。它表示是玩家 `alice` 的公钥。
-    - `bob`: 数据类型是 `PubKey`。它表示是玩家 `bob` 的公钥。
-2. 添加两个有状态属性:
-    - `is_alice_turn`: 数据类型是 `boolean`。它表示是否轮到玩家 `alice` 下棋。
-    - `board`: 数据类型是长度为 `9` 的定长数组 `FixedArray<bigint, 9>`。它表示当前棋盘各个位置的落子情况。
+2. 非公共 `@methed` 方法 `won()` : 检查是否有玩家已经赢得比赛，他将能取走所有合约锁定的赌注。返回 `boolean` 类型，有 `1` 个参数：
 
-3. 添加静态属性 `EMPTY`，类型为 `bigint`，值为 `0n`。它表示该棋盘位置还未落子
-4. 添加静态属性 `ALICE`，类型为 `bigint`，值为 `1n`。它表示该棋盘位置被玩家 `alice` 落子
-5. 添加静态属性 `BOB`，类型为 `bigint`，值为 `2n`。它表示该棋盘位置被玩家 `bob` 落子
+-  `play` : `bigint` 类型，表示玩家
 
+
+3. 非公共 `@methed` 方法 `full()` : 检查棋盘所有格子是否都有棋子了，如果没人赢得比赛，则两个人平分赌注。 返回 `boolean` 类型，无参数。
+
+1. 为 `TicTacToe` 合约 添加以方法
+
+2. 为 `move` 方法 添加 `assert()` 断言，要求函数参数 `n` 必须大于等于 `0n`， 且小于 `9n`
 
