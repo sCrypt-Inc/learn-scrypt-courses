@@ -28,7 +28,7 @@ export class TicTacToe extends SmartContract {
     }
 
     @method()
-    public move(n: bigint, sig: Sig, amount: bigint): void {
+    public move(n: bigint, sig: Sig): void {
         // check position `n`
         assert(n >= 0n && n < 9n);
         // check signature `sig`
@@ -43,22 +43,21 @@ export class TicTacToe extends SmartContract {
         // build the transation outputs
         let outputs = toByteString('');
         if (this.won(play)) {
-            let outputScript = Utils.buildPublicKeyHashScript(hash160(player));
-            let output = Utils.buildOutput(outputScript, amount);
-            outputs = output;
+            outputs = Utils.buildPublicKeyHashOutput(hash160(player), this.ctx.utxo.value);
         }
         else if (this.full()) {
-            let aliceScript = Utils.buildPublicKeyHashScript(hash160(this.alice));
-            let aliceOutput = Utils.buildOutput(aliceScript, amount);
-
-            let bobScript = Utils.buildPublicKeyHashScript(hash160(this.bob));
-            let bobOutput = Utils.buildOutput(bobScript, amount);
-
+            const halfAmount = this.ctx.utxo.value / 2n;
+            const aliceOutput = Utils.buildPublicKeyHashOutput(hash160(this.alice), halfAmount);
+            const bobOutput = Utils.buildPublicKeyHashOutput(hash160(this.bob), halfAmount);
             outputs = aliceOutput + bobOutput;
         }
         else {
             // build a output that contains latest contract state.
             outputs = this.buildStateOutput(amount);
+        }
+
+        if(this.changeAmount > 0n) {
+            outputs += Utils.buildPublicKeyHashOutput(hash160(player), this.changeAmount);
         }
 
         // make sure the transaction contains the expected outputs built above

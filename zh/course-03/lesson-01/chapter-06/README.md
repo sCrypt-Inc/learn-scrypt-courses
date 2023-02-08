@@ -58,11 +58,10 @@ add(x0: bigint, x1:bigint) : bigint {
 
 `TicTacToe` 合约中有 3 个 `@methed` 方法：
 
-1. 公共 `@methed` 方法 `move()` : Alice 和 Bob 各自将 X 个比特币锁定在包含上述合约的一个 UTXO 中。 接下来，他们通过调用公共 `@methed` 方法 `move()` 交替玩游戏。 有 `3` 个参数，分别表示：
+1. 公共 `@methed` 方法 `move()` : Alice 和 Bob 各自将 X 个比特币锁定在包含上述合约的一个 UTXO 中。 接下来，他们通过调用公共 `@methed` 方法 `move()` 交替玩游戏。 有 `2` 个参数，分别表示：
 
 -  `n` : `bigint` 类型，表示在棋盘上哪个位置下棋
 -  `sig` : `Sig` 类型，表示玩家的签名
--  `amount` : `bigint` 类型，表示减去交易手续费后的合约余额
 
 
 2. 非公共 `@methed` 方法 `won()` : 检查是否有玩家已经赢得比赛，他将能取走所有合约锁定的赌注。返回 `boolean` 类型，有 `1` 个参数：
