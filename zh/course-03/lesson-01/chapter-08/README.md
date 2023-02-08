@@ -100,4 +100,4 @@ export class Counter extends SmartContract {
 ## 实战演习
 
 1. 更新 `TicTacToe` 合约的状态属性 `board` 和 `isAliceTurn` 以确保玩家移动了棋子
-2. 使用 `this.ctx` 确保交易包含预期输出
+2. 使用 `this.ctx.hashOutputs` 确保交易包含预期输出

@@ -30,11 +30,7 @@ const signer = new SensiletSigner(provider);
 signerRef.current = signer;
 ```
 
-之后调用钱包的 `getConnectedTarget()` 接口请求连接钱包:
-```ts
-await signer.getConnectedTarget();
-setConnected(true);
-```
+## 显示余额
 
 连接成功后，调用 `getBalance()` 接口获取钱包余额:
 
@@ -62,6 +58,6 @@ signer.getBalance().then(balance =>
 
 ## 实战演习
 
-1. 在 `App` 组件使用 `getConnectedTarget()` 接口来登入钱包
+调用钱包的 `getConnectedTarget()` 接口请求连接钱包。
 
 参考这个 [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/d3503a097c1a6ac1b28183372cd90f31868098a6)

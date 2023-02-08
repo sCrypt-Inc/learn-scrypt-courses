@@ -1,5 +1,5 @@
 
-import { prop, method, SmartContract, PubKey, FixedArray, assert, Sig, Utils, toByteString, hash160} from "scrypt-ts";
+import { prop, SmartContract, PubKey, FixedArray, assert, Sig} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
     @prop()
@@ -26,16 +26,7 @@ export class TicTacToe extends SmartContract {
         assert(n >= 0n && n < 9n);
         // check signature `sig`
         let player: PubKey = this.is_alice_turn ? this.alice : this.bob;
-        assert(this.checkSig(sig, player), `checkSig failed, pubkey: ${player}`);
-        assert(this.board[Number(n)] === TicTacToe.EMPTY, `board at position ${n} is not empty: ${this.board[Number(n)]}`);
-        let play = this.is_alice_turn ? TicTacToe.ALICE : TicTacToe.BOB;
-        //TODO: update state properties to make the move
-
-        // build the transation outputs
-        let outputs = toByteString('');
-        outputs = this.buildStateOutput(this.ctx.utxo.value);
-
-        // TODO: make sure the transaction contains the expected outputs built above
+        // TODO: add Check signature
 
     }
 

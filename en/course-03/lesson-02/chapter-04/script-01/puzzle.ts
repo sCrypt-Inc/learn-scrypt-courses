@@ -55,12 +55,8 @@ async function move(i: number, latestGameData: GameData) {
         ]
       }) as Promise<BuildMethodCallTxResult<TicTacToe>>
     } else {
+      // TODO: add a output that contains the next instance
 
-      unsignedTx.addOutput(new bsv.Transaction.Output({
-        script: nextInstance.lockingScript,
-        satoshis: initBalance,
-      }))
-      .change(changeAddress)
 
       return Promise.resolve({
         unsignedTx,
@@ -79,8 +75,7 @@ async function move(i: number, latestGameData: GameData) {
   return current.methods().move(
     BigInt(i),
     (sigResponses: SignatureResponse[]) => {
-      const pubKey = current.is_alice_turn ? current.alice : current.bob;
-      return findSigFrom(sigResponses, pubKey)
+      return Sig(sigResponses[0].sig)
     }
   );
 }
