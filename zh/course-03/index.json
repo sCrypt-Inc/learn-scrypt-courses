@@ -86,7 +86,7 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第一章:  集成 sCrypt",
+                    "title": "第一章: 集成前端",
                     "scripts": [  
                         {
                             "name": "index.tsx",

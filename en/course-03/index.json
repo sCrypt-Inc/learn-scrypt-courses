@@ -93,7 +93,7 @@
             "chapters": [
                 {
                     "num": 1,
-                    "title": "Chapter 1: Integrating sCrypt",
+                    "title": "Chapter 1: Integrating frontend",
                     "scripts": [  
                         {
                             "name": "index.tsx",
