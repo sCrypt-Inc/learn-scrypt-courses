@@ -11,5 +11,3 @@
 本课程的代码 [Tic-Tac-Toe: Bitcoin onchain App Tutorial](https://github.com/sCrypt-Inc/tic-tac-toe)
 
 期待你构建出让人惊喜的dApp
-
-

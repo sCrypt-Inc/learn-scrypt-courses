@@ -15,7 +15,7 @@
 ![](https://scrypt.io/scrypt-ts/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
 
 
-您可以在任何公共方法中通过 `this.ctx` 直接访问 `ScriptContext`。 它可以被认为是公共方法在调用时获得的附加信息，除了它的函数参数。下面以一个简单的计数器合约，展示如何通过 `ScriptContext` 在合约中维护状态。
+您可以在任何公共方法中通过 `this.ctx` 直接访问 `ScriptContext`。 它可以被认为是公共方法在调用时获得的附加信息，除了它的函数参数。下面以一个[简单的计数器合约](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts)，展示如何通过 `ScriptContext` 在合约中维护状态。该合约实现维护一个单一状态：自部署以来它被调用了多少次。
 
 ## 第一步
 
@@ -60,8 +60,10 @@ export class Counter extends SmartContract {
         // Increment counter value
         this.count++
 
-        // construct single output that contains latest contract state
-        let outputs = this.buildStateOutput(this.ctx.utxo.value);
+        // make sure balance in the contract does not change
+        const amount: bigint = this.ctx.utxo.value
+        // output containing the latest state
+        const output: ByteString = this.buildStateOutput(amount)
     }
 }
 ```
@@ -88,11 +90,12 @@ export class Counter extends SmartContract {
         // Increment counter value
         this.count++
 
-        // construct outputs that contains latest contract state
-        let outputs = this.buildStateOutput(this.ctx.utxo.value);
-
-        // make sure the transaction contains the expected outputs built above
-        assert(this.ctx.hashOutputs === hash256(outputs), "check hashOutputs failed");
+        // make sure balance in the contract does not change
+        const amount: bigint = this.ctx.utxo.value
+        // output containing the latest state
+        const output: ByteString = this.buildStateOutput(amount)
+        // verify current tx has this single output
+        assert(this.ctx.hashOutputs == hash256(output), 'hashOutputs mismatch')
     }
 }
 ```

@@ -2,7 +2,7 @@
 
 `move()` 函数的 `sig` 参数是玩家的签名。假如没有对签名进行验证，任何人都可以调用合约的 `move()` 方法来移动棋子。
 
-下面例子是比特币网络中最常见的合约：支付到公钥哈希。
+下面例子是比特币网络中最常见的合约：[支付到公钥哈希](https://learnmeabitcoin.com/technical/p2pkh)(Pay to Public Key Hash: P2PKH)，即通常所说的比特币地址。
 
 ```ts
 export class P2PKH extends SmartContract {

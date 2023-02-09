@@ -8,12 +8,12 @@
 
 ## Signer 与 Provider
 
-- `Signer` 是一个以某种方式直接或间接访问私钥的类，私钥可以签署消息和交易，以授权用户执行某种操作。
+- `Signer` 是访问私钥的类。私钥可以签署交易，以授权用户执行某种操作。
 
-- `Provider` 是区块链上非基于账户的操作的抽象，比如广播已经签署的交易，通常不直接参与签署交易或数据。
+- `Provider` 是区块链上的操作的抽象，比如广播交易。通常不参与签署交易。
 
 
-通常钱包需要实现 `Signer` 的抽象接口。`Signer` 链接一个 `Provider` 来广播交易。
+通常钱包需要实现 `Signer` 的抽象接口。`Signer` 连接一个 `Provider` 来广播交易。
 
 ```ts
 signer.connect(provider);
@@ -22,12 +22,23 @@ signer.connect(provider);
 
 ## 连接 **sensilet** 钱包
 
-点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。
+点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。之后调用钱包的 `getConnectedTarget()` 接口请求连接钱包。
 
 ```ts
-const provider = new WhatsonchainProvider(bsv.Networks.testnet);
-const signer = new SensiletSigner(provider);
-signerRef.current = signer;
+const sensiletLogin = async () => {
+    try {
+      const provider = new WhatsonchainProvider(bsv.Networks.testnet);
+      const signer = new SensiletSigner(provider);
+
+      signerRef.current = signer;
+      await signer.getConnectedTarget();
+      setConnected(true);
+
+    } catch (error) {
+      console.error("sensiletLogin failed", error);
+      alert("sensiletLogin failed")
+    }
+  };
 ```
 
 ## 显示余额
@@ -59,5 +70,3 @@ signer.getBalance().then(balance =>
 ## 实战演习
 
 调用钱包的 `getConnectedTarget()` 接口请求连接钱包。
-
-参考这个 [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/d3503a097c1a6ac1b28183372cd90f31868098a6)

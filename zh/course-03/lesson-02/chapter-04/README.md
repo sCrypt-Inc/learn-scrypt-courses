@@ -42,6 +42,3 @@ props.setContract(next?.instance)
 
 1. 游戏未结束时，需要添加一个包含游戏最新状态的输出。
 2. 调用合约的公共方法，如果公共方法的某个参数是 `Sig` 类型，则需要通过回调函数来返回签名。
-
-参考这个 [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/eeb0a04d22e9d5f09155ea3dce41728dae8cb6bf)
-

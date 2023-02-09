@@ -38,7 +38,7 @@ public unlock(x: bigint) {
 
 注意： 
 
-公共 `@methed` 方法最后一个函数调用必须是一个 `assert()` 函数调用，除非他是一个 `console.log()` 调用。
+公共 `@methed` 方法最后一个函数调用必须是一个 `assert()` 函数调用，除非它是一个 `console.log()` 调用。
 
 ### 非公共 `@methed` 方法
 
@@ -48,7 +48,7 @@ public unlock(x: bigint) {
 
 ```js
 @method()
-add(x0: bigint, x1:bigint) : bigint {
+static add(x0: bigint, x1:bigint) : bigint {
     return x0 + x1;
 }
 ```

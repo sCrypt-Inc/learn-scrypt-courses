@@ -2,12 +2,12 @@
 
 ## 实例化合约
 
-我们已经通过加载合约制品文件得到了合约类 `Tictactoe`。 当用户点击开始按钮后，通过此合约类来实例化合约。
+我们已经通过加载合约 *artifact* 文件得到了合约类 `Tictactoe`。 当用户点击开始按钮后，通过此合约类来实例化合约。
 
 
 实例化合约类 `Tictactoe` 需要两个玩家 `alice` 和 `bob` 的公钥。可以通过 `Signer` 的 `getDefaultPubKey()` 接口来获取公钥。由只有一个钱包，我们假设 `alice` 和 `bob` 都使用同一个公钥。
 
-下面代码实例化合约并调用 `markAsGenesis()` 将合约标识为创世合约。
+下面代码实例化合约并调用 `markAsGenesis()` 将合约标识为初始合约。
 
 ```ts
 const startGame = async (amount: number) => {
@@ -45,6 +45,3 @@ deploy(amount?: number, options?: {
 ## 实战演习
 
 调用合约实例的 `deploy()` 方法来部署合约。在此之前需要先连接一个 `Signer` 或者 `Provider`。
-
-
-参考这个 [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/3fef24179933381c765cd7744f33ecdb302bdc36)
