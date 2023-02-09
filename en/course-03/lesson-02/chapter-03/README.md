@@ -46,5 +46,3 @@ deploy(amount?: number, options?: {
 ## Put it to the test
 
 Call the `deploy()` method of the contract instance to deploy the contract. Before that, you need to connect a `Signer` or `Provider` first.
-
-Refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/3fef24179933381c765cd7744f33ecdb302bdc36)

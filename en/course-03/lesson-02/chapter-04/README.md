@@ -43,7 +43,3 @@ So far, we have completed the interaction between the TicTacToe contract and the
 
 1. When the game is not over, you need to add an output that contains the latest state of the game.
 2. Call the public method of the contract. If a parameter of the public method is of `Sig` type, the callback function needs to be used to return the signature.
-
-
-Refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/eeb0a04d22e9d5f09155ea3dce41728dae8cb6bf)
-

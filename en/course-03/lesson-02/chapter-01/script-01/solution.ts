@@ -8,7 +8,7 @@ import { TicTacToe } from './contracts/tictactoe';
 import { MergedArtifact } from 'scrypt-ts';
 
 import artifact from './contracts/tictactoe.json';
-TicTacToe.init(artifact as unknown as MergedArtifact);
+TicTacToe.init(artifact as MergedArtifact);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

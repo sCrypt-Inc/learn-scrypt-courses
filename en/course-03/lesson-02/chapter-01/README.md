@@ -1,6 +1,6 @@
-# Chapter 1: Integrating sCrypt
+# Chapter 1: Integrating frontend
 
-After completing the previous lesson, the sCrypt contract portion of our Tic Tac Toe dApp is complete. Next we need to integrate sCrypt.
+After completing the previous lesson, the sCrypt contract portion of our Tic Tac Toe dApp is complete. Next we need to integrate the front end so that users can play the tic-tac-toe game on the web.
 
 
 ## Prepare
@@ -21,15 +21,25 @@ git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 
 ##  Install the sCrypt SDK
 
-dApp needs to interact with contracts on the front-end page. To do this, we will use the official sCrypt SDK released by sCrypt - [sCrypt SDK](https://scrypt.io/scrypt-ts). With sCrypt SDK, you can easily compile, test, deploy, and call contracts.
+dApp needs to interact with contracts on the front-end page. To do this, we will use the sCrypt SDK - [scryptTS](https://scrypt.io/scrypt-ts). With sCrypt SDK, you can easily compile, test, deploy, and call contracts.
 
 Use the `scrypt-cli` command line tool to install sCrypt SDK.
 
 ```base
-npx scrypt-cli install
+npx scrypt-cli init
 ```
 
-Or refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/42e25f3507a62231025c15b9926af5f0406a1ba4) for configuration modification.
+Or install via `npm` or `yarn`.
+
+```bash
+// use NPM
+npm install scrypt-ts
+// use Yarn
+yarn add scrypt-ts
+```
+
+
+Configuration changes are required after installation via `npm` or `yarn`. Refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/42e25f3507a62231025c15b9926af5f0406a1ba4).
 
 
 ## Compile the contract
@@ -49,12 +59,10 @@ Usually we need to use the contract artifact file to initialize the contract cla
 import { TicTacToe } from './contracts/tictactoe';
 import artifact from './contracts/tictactoe.json';
 import { MergedArtifact } from 'scrypt-ts';
-TicTacToe.init(artifact as unknown as MergedArtifact);
+TicTacToe.init(artifact as MergedArtifact);
 ```
 
 
 ## Put it to the test
 
-1. Import the contract product file `tictactoe.json` in `index.tsx`, and initialize the contract class `TicTacToe`
-
-You can refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/10e5263c78b3b74d38824d68f95e3041d53e07c7) for modification.
+Import the contract product file `tictactoe.json` in `index.tsx`, and initialize the contract class `TicTacToe`.

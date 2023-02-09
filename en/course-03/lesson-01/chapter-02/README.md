@@ -34,4 +34,4 @@ In [a regular Bitcoin payment](https://wiki.bitcoinsv.io/index.php/Bitcoin_Trans
 
 ## How does `sCrypt` work?
 
-`sCrypt` is a high-level language to be compiled into [Bitcoin Script](https://wiki.bitcoinsv.io/index.php/Script). The resulting assembly-like scripts could be used as locking scripts when building transactions.
+`sCrypt` compiles to Bitcoin Script and is used as a locking script when constructing transactions.

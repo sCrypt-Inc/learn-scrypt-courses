@@ -32,7 +32,7 @@ Public `@method` methods can be called from external transactions. If all `asser
 @method()
 public unlock(x: bigint) {
     // only succeeds if x is 1
-    assert(this.add(this.x, 1n) === x, "unequal");
+    assert(1n === x, "unequal");
 }
 ```
 
@@ -48,7 +48,7 @@ Non-public `@methed` methods must explicitly declare the return type. For exampl
 
 ```js
 @method()
-add(x0: bigint, x1:bigint) : bigint {
+static add(x0: bigint, x1:bigint) : bigint {
     return x0 + x1;
 }
 ```

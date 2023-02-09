@@ -3,7 +3,7 @@
 
 The `sig` parameter of the `move()` function is the player's signature. If the signature is not verified, anyone can call the contract's `move()` method to move the pawn.
 
-The following example is the most common contract in the Bitcoin network: pay to public key hash.
+The following example is the most common contract in the Bitcoin network: [Pay to Public Key Hash](https://learnmeabitcoin.com/technical/p2pkh)(Pay to Public Key Hash: P2PKH), which is commonly referred to as a Bitcoin address.
 
 ```ts
 export class P2PKH extends SmartContract {

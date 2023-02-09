@@ -32,7 +32,7 @@ assert(a > 0n);
 @method()
 public unlock(x: bigint) {
     // only succeeds if x is 1
-    assert(this.add(this.x, 1n) === x, "unequal");
+    assert(1n === x, "unequal");
 }
 ```
 

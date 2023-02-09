@@ -34,21 +34,7 @@ for (let i = 0n; i < 3n; i++) {
 
 ## A win or draw
 
-For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all the possible connections in a line:
-
-
-```
-0, 1, 2
-3, 4, 5
-6, 7, 8
-0, 3, 6
-1, 4, 7
-2, 5, 8
-0, 4, 8
-2, 4, 6
-```
-
-用一个二维数组 `FixedArray<FixedArray<bigint, 3>, 8>` 保存以上所有赢得比赛的状态。 在 `won` 函数中添加该数组。
+For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all possible cases of connecting lines. Use a two-dimensional array `FixedArray<FixedArray<bigint, 3>, 8>` to hold all the state of winning games. Add the array in the `won` function.
 
 ```ts
 let lines: FixedArray<FixedArray<bigint, 3>, 8> = [

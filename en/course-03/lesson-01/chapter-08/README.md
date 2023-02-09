@@ -16,7 +16,7 @@ In the UTXO model, the context of validation is the UTXO being spent and the spe
 ![](https://scrypt.io/scrypt-ts/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
 
 
-You can directly access [ScriptContext](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext) via `this.ctx` in any public method. It can be thought of as additional information that a public method gets when it is called, in addition to its function parameters. The following is a simple counter contract to show how to maintain state in the contract through `ScriptContext`.
+You can directly access [ScriptContext](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext) via `this.ctx` in any public method. It can be thought of as additional information that a public method gets when it is called, in addition to its function parameters. The following is a simple [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts) to show how to maintain state in the contract through `ScriptContext`. The contract implementation maintains a single state: how many times it has been called since it was deployed.
 
 ## Step 1
 
@@ -63,8 +63,10 @@ export class Counter extends SmartContract {
         // Increment counter value
         this.count++
 
-        // construct single output that contains latest contract state
-        let outputs = this.buildStateOutput(this.ctx.utxo.value);
+        // make sure balance in the contract does not change
+        const amount: bigint = this.ctx.utxo.value
+        // output containing the latest state
+        const output: ByteString = this.buildStateOutput(amount)
     }
 }
 ```
@@ -92,11 +94,12 @@ export class Counter extends SmartContract {
         // Increment counter value
         this.count++
 
-        // construct outputs that contains latest contract state
-        let outputs = this.buildStateOutput(this.ctx.utxo.value);
-
-        // make sure the transaction contains the expected outputs built above
-        assert(this.ctx.hashOutputs === hash256(outputs), "check hashOutputs failed");
+        // make sure balance in the contract does not change
+        const amount: bigint = this.ctx.utxo.value
+        // output containing the latest state
+        const output: ByteString = this.buildStateOutput(amount)
+        // verify current tx has this single output
+        assert(this.ctx.hashOutputs == hash256(output), 'hashOutputs mismatch')
     }
 }
 ```

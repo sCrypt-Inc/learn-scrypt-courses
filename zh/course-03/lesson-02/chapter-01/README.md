@@ -27,7 +27,7 @@ dApp 需要在前端页面与合约进行交互。 要做到这一点，我们�
 使用 `scrypt-cli` 命令行工具安装 sCrypt SDK。
 
 ```base
-npx scrypt-cli install
+npx scrypt-cli init
 ```
 
 
