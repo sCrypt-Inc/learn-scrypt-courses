@@ -5,10 +5,9 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { TicTacToe } from './contracts/tictactoe';
-import { MergedArtifact } from 'scrypt-ts';
 
 import artifact from './contracts/tictactoe.json';
-TicTacToe.init(artifact as MergedArtifact);
+TicTacToe.init(artifact);
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

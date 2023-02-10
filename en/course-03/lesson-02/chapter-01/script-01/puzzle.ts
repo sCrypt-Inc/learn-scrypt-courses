@@ -5,7 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { TicTacToe } from './contracts/tictactoe';
-import { MergedArtifact } from 'scrypt-ts';
 
 //TODO:  import `tictactoe.json` and init TicTacToe
 
