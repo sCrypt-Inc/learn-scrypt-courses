@@ -97,7 +97,7 @@
                     "scripts": [  
                         {
                             "name": "index.tsx",
-                            "lang": "js"
+                            "lang": "ts"
                         }
                     ]
                 },
@@ -107,7 +107,7 @@
                     "scripts": [  
                         {
                             "name": "app.tsx",
-                            "lang": "js"
+                            "lang": "ts"
                         }
                     ]
                 },
@@ -117,7 +117,7 @@
                     "scripts": [  
                         {
                             "name": "app.tsx",
-                            "lang": "js"
+                            "lang": "ts"
                         }
                     ]
                 },
@@ -127,7 +127,7 @@
                     "scripts": [  
                         {
                             "name": "game.tsx",
-                            "lang": "js"
+                            "lang": "ts"
                         }
                     ]
                 },
