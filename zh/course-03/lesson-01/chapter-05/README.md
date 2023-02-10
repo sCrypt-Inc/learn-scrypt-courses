@@ -17,21 +17,12 @@
 
 ## 数组
 
-数组是相同基本类型的固定大小的值列表。数组元素使用逗号分割。当你声明一个数组时，你必须这样声明它：
+数组是相同基本类型的固定大小的值列表。数组元素使用逗号分割。当你声明一个数组时，你必须使用 `FixedArray<T, N>`。`T` 是类型，`N` 是数组大小。
 
 ```ts
 let a: FixedArray<bigint, 3> = [0n, 1n, 2n];
 let b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
 let arr2D: FixedArray<FixedArray<bigint,  3> , 2>  = [[11n, 12n, 13n], [21n, 22n, 23n]];
-let d: FixedArray<bigint,  3> = arr2D[1];
-let idx = 2n;
-// read
-d[1] = a[Number(idx)];
-d[2] = arr2D[Number(idx)][1];
-// write
-a[Number(idx)] = 2n;
-// assign to an array variable
-a = arr2D[1];
 ```
 
 

@@ -4,31 +4,13 @@
 
 For security reasons, Bitcoin does not allow infinite loops to prevent DoS attacks. All loops must be bounded at compile time. So if you want to loop inside `@method`, you must strictly use the following format:
 
-
 ```ts
-for(let $i = 0; $i < $maxLoopCount; $i++) {
-  ...
+let sum: bigint = 0n;
+for(let i = 0; i < 9; i++) {
+    sum += BigInt(i);  // use `BigInt()` to convert `i` to `bigint` type
 }
-```
 
-Note：
-
-- the initial value must be `0`, the operator `<` (no `<=`), and increment `$i++` (no pre-increment `++$i`).
-- `$maxLoopCount` must be a [CTC](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#compile-time-constant).
-- `$i` can be arbitrary name, e.g., `i`, `j`, or `k`. It can be both a number or a `bigint` type.
-- `break` and `continue` are currently not allowed, but can be emulated like:
-
-```ts
-// 模拟 break
-let done = false;
-for (let i = 0n; i < 3n; i++) {
-    if (!done) {
-        x = x * 2n
-        if (x >= 8n) {
-            done = true
-        }
-    }
-}
+assert(sum === 36n);
 ```
 
 

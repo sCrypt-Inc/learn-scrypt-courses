@@ -72,10 +72,6 @@ async function move(i: number, latestGameData: GameData) {
     }
   });
 
-  return current.methods().move(
-    BigInt(i),
-    (sigResponses: SignatureResponse[]) => {
-      return Sig(sigResponses[0].sig)
-    }
-  );
+  // TODO: call the public method move()
+
 }

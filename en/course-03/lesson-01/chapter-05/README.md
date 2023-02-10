@@ -19,21 +19,12 @@ Among them, `PubKey` and `Sig` are subtypes of `ByteString`. If you want to know
 
 ## FixedArray
 
-`sCrypt` only allows fixed-size array. `FixedArray` is a fixed-size list of values of the same basic type. Array elements are separated by commas. When you declare an array, you must declare it like this:
+`sCrypt` only allows fixed-size array. `FixedArray` is a fixed-size list of values of the same basic type. Array elements are separated by commas. When you declare an array, you must use `FixedArray<T, N>`. `T` is the type and `N` is the array size.
 
 ```ts
 let a: FixedArray<bigint, 3> = [0n, 1n, 2n];
 let b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
-let arr2D: FixedArray<FixedArray<bigint,  3> , 2>  = [[11n, 12n, 13n], [21n, 22n, 23n]];
-let d: FixedArray<bigint,  3> = arr2D[1];
-let idx = 2n;
-// read
-d[1] = a[Number(idx)];
-d[2] = arr2D[Number(idx)][1];
-// write
-a[Number(idx)] = 2n;
-// assign to an array variable
-a = arr2D[1];
+let c: FixedArray<FixedArray<bigint,  3> , 2>  = [[11n, 12n, 13n], [21n, 22n, 23n]];
 ```
 
 

@@ -79,7 +79,8 @@ async function move(i: number, latestGameData: GameData) {
   return current.methods().move(
     BigInt(i),
     (sigResponses: SignatureResponse[]) => {
-      return Sig(sigResponses[0].sig)
+      const pubKey = current.is_alice_turn ? current.alice : current.bob;
+      return findSigFrom(sigResponses, pubKey)
     }
   );
 }
