@@ -1,0 +1,134 @@
+{
+    "title": "使用 sCrypt 构建井字游戏",
+    "enTitle": "Build a Tic-tac-toe Game with sCrypt",
+    "desc": "这是学习sCrypt的第一门课程",
+    "lessons": [
+        {
+            "title": "让我们开始学习基本的 sCrypt",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第一章: 课程概述"
+                },
+                {
+                    "num": 2,
+                    "title": "第二章: sCrypt 概述"
+                },
+                {
+                    "num": 3,
+                    "title": "第三章: 开发环境搭建"
+                },
+                {
+                    "num": 4,
+                    "title": "第四章: sCrypt 合约"
+                },
+                {
+                    "num": 5,
+                    "title": "第五章: 基本数据类型和属性",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 6,
+                    "title": "第六章: assert 函数 和 @methed 方法",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 7,
+                    "title": "第七章: 签名验证",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 8,
+                    "title": "第八章: 维护游戏状态",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 9,
+                    "title": "第九章: 宣布获胜或平局",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 10,
+                    "title": "第十章: 总结"
+                }
+            ]
+        },
+        {
+            "title": "了解如何与前端集成",
+            "desc": "学习如何使用官方的 sCrypt SDK 将合约集成到前端",
+            "num": 2,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "第一章: 集成前端",
+                    "scripts": [  
+                        {
+                            "name": "index.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 2,
+                    "title": "第二章: 集成钱包",
+                    "scripts": [  
+                        {
+                            "name": "app.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 3,
+                    "title": "第三章: 实例化合约与部署合约",
+                    "scripts": [  
+                        {
+                            "name": "app.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 4,
+                    "title": "第四章: 调用合约",
+                    "scripts": [  
+                        {
+                            "name": "game.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 5,
+                    "title": "第五章: 总结"
+                }
+            ]
+        }
+    ]
+}

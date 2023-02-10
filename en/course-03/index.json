@@ -1,0 +1,141 @@
+{
+    "title": "Build a Tic-tac-toe Game with sCrypt",
+    "enTitle": "Build a Tic-tac-toe Game with sCrypt",
+    "desc": "This is the first course for learning sCrypt",
+    "lessons": [
+        {
+            "title": "sCrypt Basics",
+            "desc": "Learn sCrypt basics and write the TicTacToe contract",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "Chapter 1: Course overview"
+                },
+                {
+                    "num": 2,
+                    "title": "Chapter 2: sCrypt overview",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 3,
+                    "title": "Chapter 3: Setup the development environment"
+                },
+                {
+                    "num": 4,
+                    "title": "Chapter 4: sCrypt contract"
+                },
+                {
+                    "num": 5,
+                    "title": "Chapter 5: Basic data types and property",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 6,
+                    "title": "Chapter 6: assert function and @methed decorator",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 7,
+                    "title": "Chapter 7: Signature verification",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 8,
+                    "title": "Chapter 8: Maintaining Game State",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 9,
+                    "title": "Chapter 9: Declare a win or draw",
+                    "scripts": [  
+                        {
+                            "name": "tictactoe.ts",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 10,
+                    "title": "Chapter 10: Summary"
+                }
+            ]
+        },
+        {
+            "title": "Interact with the contract via a frontend",
+            "desc": "Learn how to build an app frontend to interact with the contract using sCrypt SDK",
+            "num": 2,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "Chapter 1: Integrating frontend",
+                    "scripts": [  
+                        {
+                            "name": "index.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 2,
+                    "title": "Chapter 2: Integrated Wallet",
+                    "scripts": [  
+                        {
+                            "name": "app.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 3,
+                    "title": "Chapter 3: Instantiate Contract and Deploy Contract",
+                    "scripts": [  
+                        {
+                            "name": "app.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 4,
+                    "title": "Chapter 4: Calling Contracts",
+                    "scripts": [  
+                        {
+                            "name": "game.tsx",
+                            "lang": "js"
+                        }
+                    ]
+                },
+                {
+                    "num": 5,
+                    "title": "Chapter 5: Summary"
+                }
+            ]
+        }
+    ]
+}
