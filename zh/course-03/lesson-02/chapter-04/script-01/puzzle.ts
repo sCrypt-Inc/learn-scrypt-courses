@@ -72,7 +72,7 @@ async function move(i: number, latestGameData: GameData) {
     }
   });
 
-  return current.methods().move(
+  return current.methods.move(
     BigInt(i),
     (sigResponses: SignatureResponse[]) => {
       // TODO: Returns the current player's signature
