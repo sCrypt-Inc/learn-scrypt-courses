@@ -1,4 +1,4 @@
-import { prop, SmartContract, PubKey} from "scrypt-ts";
+import { prop, SmartContract, PubKey, FixedArray} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
     @prop()
@@ -18,5 +18,13 @@ export class TicTacToe extends SmartContract {
     static readonly ALICE: bigint = 1n;
     @prop()
     static readonly BOB: bigint = 2n;
+
+    constructor(alice: PubKey, bob: PubKey) {
+        super(...arguments);
+        this.alice = alice;
+        this.bob = bob;
+        this.is_alice_turn = true;
+        this.board = [0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n];
+    }
 
 }

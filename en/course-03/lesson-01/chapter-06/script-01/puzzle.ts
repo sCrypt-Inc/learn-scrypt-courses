@@ -19,6 +19,14 @@ export class TicTacToe extends SmartContract {
     @prop()
     static readonly BOB: bigint = 2n;
 
+    constructor(alice: PubKey, bob: PubKey) {
+        super(...arguments);
+        this.alice = alice;
+        this.bob = bob;
+        this.is_alice_turn = true;
+        this.board = [0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n];
+    }
+
     // TODO: add `@methed` function here
 
 }

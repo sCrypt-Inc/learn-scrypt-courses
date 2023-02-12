@@ -10,23 +10,23 @@
 
 3. 最后调用合约实例上的 `methods` 公共方法来发送交易以执行区块链上的合约。
 
-如果公共方法的某个参数是 `Sig` 类型，则需要通过回调函数来返回签名。合约连接的 `Signer` 会使用默认私钥进行签名，并将签名结果通过回调函数的参数 `sigResponses` 返回。使用 `findSigFrom()` 查找与公钥关联的签名。
+如果公共方法的某个参数是 `Sig` 类型，则需要通过回调函数来返回签名。合约连接的 `Signer` 会使用默认私钥进行签名，并将签名结果通过回调函数的参数 `sigResponses` 返回。使用 `findSig()` 查找与公钥关联的签名。
 
 ```ts
 const { tx: callTx } = await p2pkh.methods.unlock(
-    (sigResponses: SignatureResponse[]) => findSigFrom(sigResponses, $publickey),
+    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey),
     $publickey
 );
 ```
 
-通过 `MethodCallOptions` 中 `sigRequiredAddress` 可以指定 `Signer` 使用哪个私钥进行签名。
+通过 `MethodCallOptions` 中 `pubKeyOrAddrToSign` 可以指定 `Signer` 使用哪个私钥进行签名。
 
 ```ts
 const { tx: callTx } = await p2pkh.methods.unlock(
-    (sigResponses: SignatureResponse[]) => findSigFrom(sigResponses, $publickey),
+    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey),
     $publickey,
     {
-        sigRequiredAddress: $publickey.toAddress()
+        pubKeyOrAddrToSign: $publickey.toAddress()
     } as MethodCallOptions<P2PKH>
 );
 ```
@@ -51,7 +51,7 @@ TicTacToe.bindTxBuilder('move', async (options: BuildMethodCallTxOptions<SmartCo
 // 3. call contract.methods.move(...) to broadcast transaction
 const {tx, next} = await current.methods.move(
     BigInt(i),
-    (sigResponses: SignatureResponse[]) => findSigFrom(sigResponses, publickey)
+    (sigResponses: SignatureResponse[]) => findSig(sigResponses, publickey)
 );
 
 // 4. save latest contract instance

@@ -18,9 +18,7 @@ const startGame = async (amount: number) => {
 
     const instance = new TicTacToe(
       PubKey(toHex(pubkey)),
-      PubKey(toHex(pubkey)),
-      true,
-      [0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n]
+      PubKey(toHex(pubkey))
     ).markAsGenesis();
 
   } catch(e) {

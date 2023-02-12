@@ -80,7 +80,7 @@ async function move(i: number, latestGameData: GameData) {
     BigInt(i),
     (sigResponses: SignatureResponse[]) => {
       const pubKey = current.is_alice_turn ? current.alice : current.bob;
-      return findSigFrom(sigResponses, pubKey)
+      return findSig(sigResponses, bsv.PublicKey.fromString(pubKey))
     }
   );
 }
