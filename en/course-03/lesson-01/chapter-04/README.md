@@ -1,7 +1,6 @@
-# Chapter 4: sCrypt contract
+# Chapter 4: sCrypt Smart Contracts
 
-## Base class `SmartContract`
-Contracts are the basic building blocks of decentralized applications (dapps). Every `sCrypt` contract is a subclass of `SmartContract`:
+A smart contract is a class that extends the `SmartContract` base class. A simple example is shown below.
 
 ```js
 import { SmartContract, method, prop, assert } from "scrypt-ts";
@@ -33,7 +32,7 @@ Class members decorated with `@prop()` and `@method()` will end up on the blockc
 
 A smart contract must have an explicit constructor if it has at least one `@prop`.
 
-The `super()` method must be called in the constructor and all the arguments of the constructor should be passed to super in the same order as they are passed into the constructor. For example,
+The `super()` method must be called in the constructor and all the arguments of the constructor should be passed to `super` in the same order as they are passed into the constructor. For example,
 
 
 ```ts
@@ -55,4 +54,4 @@ class A extends SmartContract {
 }
 ```
 
-`arguments` is an array containing the values of the arguments passed to that function. `...` is the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).
+[arguments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) is an array containing the values of the arguments passed to that function. `...` is the [spread syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax).

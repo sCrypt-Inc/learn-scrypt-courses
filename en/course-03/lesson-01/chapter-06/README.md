@@ -1,32 +1,18 @@
-# Chapter 6: `assert()` function and `@methed` decorator
-
-
-## `assert()` function
-
-The most commonly used built-in function is `assert(condition: boolean, msg?: string)`. It throws an error if the condition `condition` is false. A contract invocation succeeds if and only if all executed `assert()` assertions are true.
-
-```ts
-assert(a > 0n);
-```
-
+# Chapter 6: `@methed` Decorator
 
 ## `@methed` decorator
 
-Use the `@method` decorator to mark any method that is intended to be run on the chain.
+Use `@method` to decorate any method that intends to run on chain.
 
-Like properties, smart contracts can also have two types of methods:
+Decorated methods can only call methods that are also decorated with `@method`. Additionally, only properties decorated with `@prop` can be accessed. Methods not decorated are just regular TypeScript class methods.
 
-1. With the `@method` decorator: These methods can only call methods that are also decorated with the `@method` decorator. Additionally, only properties decorated with `@prop` can be accessed.
+They are two types of `@methed`s.
 
-2. No `@method` decorator: these methods are just regular TypeScript class methods. no limit.
+### 1. Public
 
-methods with `@methed` decorator divided into two types:
+Each contract must have at least one public `@method`. It is denoted with the `public` modifier and does not return any value. It is visible outside the contract and acts as the main method into the contract (like `main` in C and Java).
 
-### 1. Public `@methed` methods
-
-Every contract must have at least one public `@method` method. It is denoted with the `public` modifier and returns `void`. It is visible outside the contract and acts as the main method in the contract (like the `main` method in C and Java).
-
-Public `@method` methods can be called from external transactions. If all `assert()` in the method meet the conditions, the call is successful. An example is shown below.
+A public @method can be called from an external transaction. The call succeeds if it runs to completion without violating any conditions in `assert()`. Function `assert(condition: boolean, errorMsg?: string)` throws an error if the `condition` is false; otherwise it does nothing. An example is shown below.
 
 ```ts
 @method()
@@ -36,15 +22,9 @@ public unlock(x: bigint) {
 }
 ```
 
-**Note**： 
+### 2. Non-public
 
-The last function call of a public `@methed` method must be an `assert()` function call, unless it is a `console.log()` call.
-
-### 2. Non-public `@methed` methods
-
-Without the `public` modifier, it is a non-public `@methed` method. A non-public `@methed` method is a contract internal method that can only be called within the contract class.
-
-Non-public `@methed` methods must explicitly declare the return type. For example:
+Without a `public` modifier, a `@method` is internal and cannot be directly called from an external transaction.
 
 ```js
 @method()
@@ -56,20 +36,19 @@ static add(x0: bigint, x1:bigint) : bigint {
 
 ## Put it to the test
 
-Add methods to `TicTacToe` contract:
+Add methods to contract `TicTacToe`:
 
-1. Public `@methed` method `move()` : Alice and Bob each lock X bitcoins in a UTXO containing the above contract. Next, they alternately play the game by calling the public `@methed` method `move()`. There are `2` parameters, which represent:
+1. Public `@methed` `move()` : Alice and Bob each locks X bitcoins in a UTXO containing contract `TicTacToe`. Next, they alternately play the game by calling `move()` with `2` parameters:
 
--  `n` : type is `bigint`, indicates which position on the chessboard to play
--  `sig` : type is `Sig`, indicates the player's signature
+   -  `n` : `bigint`, which square to place the symbol
+   -  `sig` : `Sig`, a player's signature
 
-2. Non-public `@methed` method `won()` : Checks if a player has won the game, he will be able to take away all contract-locked bets. Returns `boolean` type with `1` parameter:
+2. Non-public method `won()` : Check if a player has won the game. Returns `boolean` type with `1` parameter:
 
--  `play` : type is `bigint`, indicates the player
+   -  `play` :  `bigint`, which square to place the symbol
+
+3. Non-public method `full()` : Checks if all squares of the board have symbols. Returns `boolean` type, no parameter.
 
 
-3. Non-public `@methed` method `full()` : Checks if all squares of the board have pieces, and if no one wins the game, both players split the bet. Return `boolean` type, no parameters.
-
-
-Add `assert()` assertion for `move()` method, requiring function parameter `n` must be greater than or equal to `0n` and less than `9n`.
+Add `assert()` in `move()`, requiring function parameter `n` must be greater than or equal to `0n` and less than `9n`.
 

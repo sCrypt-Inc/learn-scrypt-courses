@@ -1,37 +1,53 @@
-# Chapter 8: Maintaining Game State
-
-## Keep state across chained
-
-In the UTXO model, a contract can keep state across chained transactions by storing it in the locking script. In the following example, a contract goes from `state0` to `state1`, and then to `state2`. Input in transaction 1 (`tx1`) is spending UTXO in `tx0`, and `tx2` spending `tx1`.
-
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
-
-So how do you make sure that the locking script contains the correct state when the transaction is constructed so that the chain maintains state? This requires the use of `ScriptContext`.
+# Chapter 8: Maintain Game State
 
 ## ScriptContext
 
-In the UTXO model, the context of validation is the UTXO being spent and the spending transaction, including its inputs and outputs. In the following example, when the second of input of transaction `tx1` is spending the second output of `tx0`, the context for the smart contract in the latter output is roughly the UTXO and `tx1` circled in red.
+In the UTXO model, the context of validating a smart contract is the UTXO containing it and the transaction spending it, including its inputs and outputs. In the following example, when the second of input of transaction `tx1` is spending the second output of `tx0`, the context for the smart contract in the latter output is roughly the UTXO and `tx1` circled in red.
 
 
 ![](https://scrypt.io/scrypt-ts/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
 
-
-You can directly access [ScriptContext](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext) via `this.ctx` in any public method. It can be thought of as additional information that a public method gets when it is called, in addition to its function parameters. The following is a simple [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts) to show how to maintain state in the contract through `ScriptContext`. The contract implementation maintains a single state: how many times it has been called since it was deployed.
-
-## Step 1
-
-
-State properties are declared using the [decorator `@prop(true)`](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#propstateful-boolean--false-decorator). You can treat the state property like a normal property: read and update it.
+You can directly access the context through `this.ctx` in any public `@method`.
+It can be considered additional information a public method gets when called, besides its function parameters.
+This context is expressed in the `ScriptContext` interface.
 
 ```ts
-export class Counter extends SmartContract {
-    // Stateful prop to store counters value.
+export interface ScriptContext {
+  /** the specific UTXO spent by this transaction input */
+  utxo: UTXO,
+  /** double-SHA256 hash of the serialization of some/all output amount with its locking script */
+  hashOutputs: ByteString,
+}
+```
+We only show the relevant fields here. You can find the complete definition [here](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext).
+
+
+## Stateful Contracts
+In Bitcoin's UTXO model, a smart contract is one-off and stateless by default, since the UTXO containing it is destroyed after being spent. Being stateless allows it to scale easily, the same as in [HTTP](https://stackoverflow.com/questions/5836881/stateless-protocol-and-stateful-protocol).
+A smart contract can simulate state by requiring the output of the spending transaction containing the same contract but with the updated state, enabled by `ScriptContext`.
+This is similar to making HTTP seem stateful by using cookies.
+
+We divide a smart contract in the locking script of an output into two parts: code and state as shown below. The code part contains the business logic of a contract that encodes rules for state transition and must **NOT** change. State transition occurs when a transaction spends the output containing the old state and creates a new output containing the new state, while keeping the contract code intact.
+Since the new output contains the same contract code, its spending transaction must also retain the same code, otherwise it will fail. This chain of transactions can go on and on and thus a state is maintained along the chain, recursively.
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
+
+## Counter Contract
+The following is a simple stateful [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts). The contract maintains a single state: how many times it has been called since deployment.
+
+### Step 1
+
+
+Declare a property stateful by using [decorator `@prop()`](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#properties) with a `true` argument. You can treat the state property like a regular property: read and update it.
+
+```ts
+class Counter extends SmartContract {
+    // Stateful prop to store counter value
     @prop(true)
     count: bigint
 
-    constructor(count: bigint) {
+    constructor() {
         super(...arguments)
-        this.count = count
+        this.count = 0
     }
 
     @method()
@@ -42,21 +58,12 @@ export class Counter extends SmartContract {
 }
 ```
 
-## Step 2
+### Step 2
 
-When you are ready to pass the new state onto the output[s] in the current spending transaction, simply call a built-in function `this.buildStateOutput()` to get the locking script containing the latest stateful properties. It is automatically generated for every stateful contract, i.e., a contract that has at least one property decorated with `@prop(true)`.
+When you are ready to pass the new state onto the output[s] in the current spending transaction, simply call a built-in function `this.buildStateOutput()` to create an output containing the new state. It takes an input: the number of satoshis in the output. We keep the satoshis unchanged in the example.
 
 
 ```ts
-export class Counter extends SmartContract {
-    // Stateful prop to store counters value.
-    @prop(true)
-    count: bigint
-
-    constructor(count: bigint) {
-        super(...arguments)
-        this.count = count
-    }
 
     @method()
     public increment() {
@@ -68,27 +75,13 @@ export class Counter extends SmartContract {
         // output containing the latest state
         const output: ByteString = this.buildStateOutput(amount)
     }
-}
 ```
 
+### Step 3
 
-
-## Step 3
-
-Make sure that the output of the current transaction must contain this new state. If the `hashOutputs` hash in `ScriptContext` is the same as the hash of all outputs in the current transaction, we can be sure that the outputs of the current transaction are consistent with the outputs we built in the contract. Therefore, the updated contract state is included.
-
+Make sure that the output of the current transaction must contain this incremented new state. If all outputs (only a single output here) we create in the contract hashes to `hashOutputs` in `ScriptContext`, we can be sure they are the outputs of the current transaction. Therefore, the updated state is propagated.
 
 ```ts
-export class Counter extends SmartContract {
-    // Stateful prop to store counters value.
-    @prop(true)
-    count: bigint
-
-    constructor(count: bigint) {
-        super(...arguments)
-        this.count = count
-    }
-
     @method()
     public increment() {
         // Increment counter value
@@ -101,10 +94,9 @@ export class Counter extends SmartContract {
         // verify current tx has this single output
         assert(this.ctx.hashOutputs == hash256(output), 'hashOutputs mismatch')
     }
-}
 ```
 
 ## Put it to the test
 
-1. Update the state properties board and isAliceTurn of the TicTacToe contract to ensure the player moves the piece
-2. Use `this.ctx.hashOutputs` to ensure the transaction contains the expected output
+1. Update state `board` and `is_alice_turn` after a player places the symbol.
+2. Use `this.ctx.hashOutputs` to ensure the calling transaction contains the expected state/output.
