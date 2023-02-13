@@ -14,13 +14,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "Chapter 2: sCrypt overview",
-                    "scripts": [  
-                        {
-                            "name": "tictactoe.ts",
-                            "lang": "ts"
-                        }
-                    ]
+                    "title": "Chapter 2: sCrypt overview"
                 },
                 {
                     "num": 3,
