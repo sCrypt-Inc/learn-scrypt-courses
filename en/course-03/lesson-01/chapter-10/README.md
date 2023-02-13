@@ -1,7 +1,7 @@
 # Chapter 10: Summary
 
-Congratulations, you have a basic understanding of `sCrypt` and wrote a `TicTacToe` contract.
+Congratulations, you have completed the `TicTacToe` contract!
 
-If you want to know more about `sCrypt`, please go to the [documentation](https://scrypt.io/scrypt-ts) of `sCrypt`
+But no DApp is complete if users cannot interact with it. We are going to add a basic font-end for your contract powered DApp next. Note that app front-ends are ALSO written in TypeScript.
 
-If you want to complete the development of the Tic Tac Toe dApp, please continue to the next lesson "Learn how to integrate with the front end".
+If you want to know more about `sCrypt`, please go to the [documentation](https://scrypt.io/scrypt-ts).

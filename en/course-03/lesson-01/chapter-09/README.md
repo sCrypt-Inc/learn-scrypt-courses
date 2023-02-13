@@ -16,7 +16,7 @@ assert(sum === 36n);
 
 ## A win or draw
 
-For the Tic-Tac-Toe game, the rule for whether a player wins the game is that there are three pieces connected in a straight line. We enumerate all possible cases of connecting lines. Use a two-dimensional array `FixedArray<FixedArray<bigint, 3>, 8>` to hold all the state of winning games. Add the array in the `won` function.
+For the Tic-Tac-Toe game, a player wins if three of his marks are in a straight line. We enumerate all possibilities in a two-dimensional array `FixedArray<FixedArray<bigint, 3>, 8>`.
 
 ```ts
 let lines: FixedArray<FixedArray<bigint, 3>, 8> = [
@@ -31,23 +31,23 @@ let lines: FixedArray<FixedArray<bigint, 3>, 8> = [
 ];
 ```
 
-As long as any of the above situations appear on the board, it means that a player wins the game. If no one wins, and all `9` squares of the board have been placed at this time, it is a tie.
+If no one wins after all `9` squares of the board have been occupied, it is a tie.
 
 ## Build outputs
 
 
-In the last chapter, we learned that the contract outputs can be constrained by the hash value of `hashOutputs` in `ScriptContext`. `TicTacToe` contains the following `3` types of output during execution:
+In the last chapter, we learn that the outputs of current spending transaction can be accessed via `ScriptContext`. `TicTacToe` can contain the following three types of output during execution:
 
 
-1. The game is not over: contains a stateful output and a change output
-2. The game ends and a player wins the game: includes a `P2PKH` output that pays the contract-locked bet to the winner, and a change output.
-3. Game over, no player wins: Contains two `P2PKH` outputs that split the contract-locked bets equally between the players and a change output.
+1. The game is not over: a output containing the new state and a change output
+2. A player wins the game: a `P2PKH` output that pays the winner, and a change output.
+3. A draw: two `P2PKH` outputs that split the contract-locked bets equally between the players and a change output.
 
 
-Among them, the [change output](https://wiki.bitcoinsv.io/index.php/Change) is also `P2PKH` output. The `P2PKH` output can be built using `Utils.buildPublicKeyHashOutput(pkh, amount)`.
+Among them, the [change output](https://wiki.bitcoinsv.io/index.php/Change) is also a `P2PKH` output. The `P2PKH` output can be built using `Utils.buildPublicKeyHashOutput(pkh: PubKeyHash, amount: bigint)`.
 
 ## Put it to the test
 
-1. In the `win()` function iterate over the `lines` array and check if the player won the game.
-2. In the `full()` function, traverse all the grids of the chessboard and check whether each grid is empty.
+1. In the `win()` function iterate over the `lines` array and check if a player wins the game.
+2. In the `full()` function, traverse all the squares of the board and check if it is full.
 3. Add a change output to the `move()` function.
