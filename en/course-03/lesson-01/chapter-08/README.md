@@ -29,7 +29,7 @@ This is similar to making HTTP seem stateful by using cookies.
 
 We divide a smart contract in the locking script of an output into two parts: code and state as shown below. The code part contains the business logic of a contract that encodes rules for state transition and must **NOT** change. State transition occurs when a transaction spends the output containing the old state and creates a new output containing the new state, while keeping the contract code intact.
 Since the new output contains the same contract code, its spending transaction must also retain the same code, otherwise it will fail. This chain of transactions can go on and on and thus a state is maintained along the chain, recursively.
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/06.png?raw=true)
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/07.png?raw=true)
 
 ## Counter Contract
 The following is a simple stateful [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts). The contract maintains a single state: how many times it has been called since deployment.
