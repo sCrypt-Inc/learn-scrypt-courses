@@ -16,9 +16,7 @@ assert(sum === 36n);
 
 ## 获胜与平局
 
-对于井字棋游戏，是否有玩家赢得比赛的规则是棋盘上是否有三个棋子连成一条直线。
-
-我们把所有可能的连成一条线的情况全部列举出来。用一个二维数组 `FixedArray<FixedArray<bigint, 3>, 8>` 保存所有赢得比赛的状态。 在 `won` 函数中添加该数组。
+对于 Tic-Tac-Toe 游戏，如果玩家的三个标记在一条直线上，则玩家获胜。我们在一个二维数组 `FixedArray<FixedArray<bigint, 3>, 8>` 中列举了所有的可能性。
 
 ```ts
 let lines: FixedArray<FixedArray<bigint, 3>, 8> = [
@@ -33,18 +31,18 @@ let lines: FixedArray<FixedArray<bigint, 3>, 8> = [
 ];
 ```
 
-只要棋盘上出现了以上任意一种情况，就表示有玩家赢得比赛。如果没有人获胜，而且此时棋盘的 `9` 个格子都已经落子，则为平局。
+如果在棋盘的所有“9” 个格子都被占据后，仍然没有人获胜，则为平局。
 
 ## 构建输出
 
-上一章我们知道了可以通过 `ScriptContext` 中的 `hashOutputs` 哈希值来约束合约输出。 `TicTacToe` 在执行的过程中包含以下 `3` 种类型的输出：
+在上一章中，我们了解到可以通过 `ScriptContext` 访问当前支出交易的输出。 `TicTacToe` 在执行过程中可以包含以下三种类型的输出：
 
-1. 游戏未结束: 包含一个有状态输出和一个找零输出
-2. 游戏结束，有玩家赢得比赛: 包一个将合约锁定赌注打给赢家的 `P2PKH` 输出和一个找零输出。
-3. 游戏结束，没有玩家赢得比赛: 包两个将合约锁定赌注平分给玩家的 `P2PKH` 输出和一个找零输出。
+1. 游戏未结束: 包含一个包含新状态的输出和一个找零输出
+2. 有玩家赢得比赛: 包一个将合约锁定赌注打给赢家的 `P2PKH` 输出和一个找零输出。
+3. 平局: 包两个将合约锁定赌注平分给玩家的 `P2PKH` 输出和一个找零输出。
 
 
-其中，找零输出输出也是 `P2PKH` 输出。可以使用 `Utils.buildPublicKeyHashOutput(pkh, amount)` 来构建 `P2PKH` 输出。
+使用 `Utils.buildPublicKeyHashOutput(pkh: PubKeyHash, amount: bigint)` 来构建 `P2PKH` 输出。使用 `this.buildChangeOutput()` 来构建找零输出。
 
 ## 实战演习
 

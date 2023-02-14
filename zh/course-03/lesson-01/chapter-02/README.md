@@ -2,7 +2,7 @@
 
 ## TypeScript 嵌入式领域特定语言
 
-`sCrypt` 是一种基于 [Typescript](https://www.typescriptlang.org/) 的嵌入式领域特定语言 ([sDSL](https://en.wikipedia.org/wiki/Domain-specific_language#External_and_Embedded_Domain_Specific_Languages))，用于在比特币上编写智能合约。 嵌入式意味着它是另一种语言中的一种语言。 `sCrypt` 严格来说是 TypeScript 的子集，因此所有 `sCrypt` 代码都是有效的 TypeScript，但反之则不然。
+`sCrypt` 是一种基于 [Typescript](https://www.typescriptlang.org/) 的嵌入式领域特定语言 ([eDSL](https://en.wikipedia.org/wiki/Domain-specific_language#External_and_Embedded_Domain_Specific_Languages))，用于在比特币上编写智能合约。 嵌入式意味着它是另一种语言中的一种语言。 `sCrypt` 严格来说是 TypeScript 的子集，因此所有 `sCrypt` 代码都是有效的 TypeScript，但反之则不然。
 
 我们选择 TypeScript 作为宿主语言，因为它提供了一种简单、熟悉的语言 (JavaScript)，但具有类型安全性，可以轻松开始编写安全的智能合约。 如果您已经熟悉 TypeScript/JavaScript，则无需学习新的编程语言或工具。 如果您是 TypeScript 的新手，请观看这个有用的[介绍视频](https://www.youtube.com/watch?v=ahCwqrYpIuM)。
 
@@ -32,8 +32,8 @@
 锁定脚本可以被视为一个布尔函数 `f`，它指定在 UTXO 中花费比特币的条件（因此名称为“锁定”），充当锁。解锁脚本依次提供使 `f` 计算结果为真的函数参数，即解锁所需的“密钥”（也称为见证）。只有当输入包含与先前输出的“锁”匹配的“密钥”时，它才能花费输出中包含的比特币。
 
 
-在常规[比特币支付](https://wiki.bitcoinsv.io/index.php/Bitcoin_Transactions#Pay_to_Public_Key_Hash_.28P2PKH.29)中，包含[比特币地址](https://wiki.bitcoinsv.io/index.php/Bitcoin_address)的锁定脚本会检查支付者是否拥有正确的私钥，以便在解锁脚本中生成有效签名。
+在向 [比特币地址](https://wiki.bitcoinsv.io/index.php/Bitcoin_address) 进行的常规比特币支付中，锁定脚本是 [Pay To Pubkey Hash (P2PKH)](https://learnmeabitcoin.com/technical/p2pkh)。 它会检查消费者是否拥有与地址对应的正确私钥，以便她可以在解锁脚本中生成有效签名。 富有表现力的脚本使锁定脚本能够指定比简单的 P2PKH（即比特币智能合约）任意更复杂的支出条件。
 
 ## sCrypt 是如何工作的？
 
-`sCrypt` 可编译成比特币脚本，在构建交易时被用作锁定脚本。
+`sCrypt` 是一种可编译成比特币脚本的高级语言，生成的类汇编脚本可以在构建交易时用作锁定脚本。。

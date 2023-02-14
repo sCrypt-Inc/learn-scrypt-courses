@@ -57,7 +57,7 @@ export class TicTacToe extends SmartContract {
         }
 
         if(this.changeAmount > 0n) {
-            outputs += Utils.buildPublicKeyHashOutput(hash160(player), this.changeAmount);
+            outputs += this.buildChangeOutput();
         }
 
         // make sure the transaction contains the expected outputs built above

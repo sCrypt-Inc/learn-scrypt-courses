@@ -44,7 +44,7 @@ In the last chapter, we learn that the outputs of current spending transaction c
 3. A draw: two `P2PKH` outputs that split the contract-locked bets equally between the players and a change output.
 
 
-Among them, the [change output](https://wiki.bitcoinsv.io/index.php/Change) is also a `P2PKH` output. The `P2PKH` output can be built using `Utils.buildPublicKeyHashOutput(pkh: PubKeyHash, amount: bigint)`.
+ The `P2PKH` output can be built using `Utils.buildPublicKeyHashOutput(pkh: PubKeyHash, amount: bigint)`. The [change output](https://wiki.bitcoinsv.io/index.php/Change) can be built using `this.buildChangeOutput()`.
 
 ## Put it to the test
 

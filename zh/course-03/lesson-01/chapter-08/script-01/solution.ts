@@ -38,7 +38,7 @@ export class TicTacToe extends SmartContract {
         assert(this.board[Number(n)] === TicTacToe.EMPTY, `board at position ${n} is not empty: ${this.board[Number(n)]}`);
         let play = this.is_alice_turn ? TicTacToe.ALICE : TicTacToe.BOB;
         // update stateful properties to make the move
-        this.board[Number(n)] = play;
+        this.board[Number(n)] = play; // Number() converts a bigint to a number
         this.is_alice_turn = !this.is_alice_turn;
 
         // build the transation outputs

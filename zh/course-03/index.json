@@ -21,11 +21,11 @@
                 },
                 {
                     "num": 4,
-                    "title": "第四章: sCrypt 合约"
+                    "title": "第四章: sCrypt 智能合约"
                 },
                 {
                     "num": 5,
-                    "title": "第五章: 基本数据类型和属性",
+                    "title": "第五章: 数据类型和 `@prop` 装饰器",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",
@@ -35,7 +35,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "第六章: assert 函数 和 @methed 方法",
+                    "title": "第六章: `@methed` 装饰器",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",

@@ -1,10 +1,10 @@
 # 第十章: 总结
 
-恭喜你，你已经对 `sCrypt` 有了初步的了解，并编写了一个 `TicTacToe` 合约。
+恭喜你，你已经完成了 `TicTacToe` 合约。
 
-如果你想进一步了解 `sCrypt` ，请前往 `sCrypt` 的 [文档](https://scrypt.io/scrypt-ts)
+但是，如果用户无法与之交互，那么任何 DApp 都是不完整的。接下来，我们将为您的合约驱动的 DApp 添加一个基本的前端。请注意，应用程序前端也是用 TypeScript 编写的。
 
-如果你想完成井字棋 dApp 的开发，请继续学习下一节课《了解如何与前端集成》。
+如果你想进一步了解 `sCrypt` ，请前往[文档](https://scrypt.io/scrypt-ts)
 
 
 

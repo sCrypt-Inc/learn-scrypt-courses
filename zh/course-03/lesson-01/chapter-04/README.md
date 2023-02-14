@@ -1,4 +1,4 @@
-# 第四章: sCrypt 合约
+# 第四章: sCrypt 智能合约
 
 ## 合约基类 `SmartContract`
 
@@ -55,4 +55,4 @@ class A extends SmartContract {
 }
 ```
 
-`arguments` 是一个数组，其中包含传递给该函数的参数值。 `...` 是 [spread 语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)。
+[arguments](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/arguments) 是一个数组，其中包含传递给该函数的参数值。 `...` 是 [spread 语法](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)。

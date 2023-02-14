@@ -11,7 +11,7 @@
 3. App前端集成合约
 
 
-## 实战演习
+## 最终的应用程序
 
 在开始这个课程之前，你可以先试玩一下该游戏 [Go to Play](https://scrypt.io/tic-tac-toe)
 

@@ -1,6 +1,6 @@
 # 第七章: 签名验证
 
-`move()` 函数的 `sig` 参数是玩家的签名。假如没有对签名进行验证，任何人都可以调用合约的 `move()` 方法来移动棋子。
+部署游戏合约后，任何人都可以查看并可能与之交互。我们需要一种身份验证机制，以确保只有所需的玩家才能在轮到他们时更新合约。这使用数字签名来实现的。
 
 下面例子是比特币网络中最常见的合约：[支付到公钥哈希](https://learnmeabitcoin.com/technical/p2pkh)(Pay to Public Key Hash: P2PKH)，即通常所说的比特币地址。
 
@@ -18,19 +18,15 @@ export class P2PKH extends SmartContract {
     @method()
     public unlock(sig: Sig, pubkey: PubKey) {
         // Check if the passed public key belongs to the specified address.
-        assert(
-            hash160(pubkey) == this.pubKeyHash,
-            'public key hashes are not equal'
-        )
+        assert(hash160(pubkey) == this.pubKeyHash, 'public key hashes are not equal')
         // Check the signatures validity.
         assert(this.checkSig(sig, pubkey), 'signature check failed')
     }
 
 ```
 
-支付到公钥哈希的签名和公钥都是从解锁参数传入。`TicTacToe` 合约只有签名是从解锁参数传入，因为玩家的公钥已经存储在合约的`PubKey alice` 和 `PubKey bob` 两个属性中。
-
+`this.checkSig()` 用于根据公钥验证签名。
 
 ## 实战演习
 
-1. 验证 `move()`函数 的 `sig` 签名参数。
+1. 验证 `move()` 的 `sig` 参数是否与当前玩家存储在合约属性中的公钥匹配。
