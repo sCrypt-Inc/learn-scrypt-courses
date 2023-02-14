@@ -2,22 +2,15 @@
 
 在开始部署合约之前，我们需要先连接钱包。这里以 [sensilet](https://sensilet.com) 为例，介绍如何连接钱包。
 
-安装完 **sensilet** 钱包后， 点击右上角的设置按钮，切换到测试网。然后复制你的钱包地址，去我们的 [水龙头](https://scrypt.io/#faucet) 领取测试网 BSV。
+安装完 **sensilet** 钱包后， 点击右上角的 **设置** 按钮，切换到测试网。然后复制你的钱包地址，去我们的 [水龙头](https://scrypt.io/#faucet) 领取测试网 BSV。
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
 
 ## Signer 与 Provider
 
-- `Signer` 是访问私钥的类。私钥可以签署交易，以授权用户执行某种操作。
+- `Signer` 当用户想要将交易发送到链上时，我们的 dApp 会提示用户使用他们的私钥签署交易并被授权以执行某些操作。 `Signer` 接口是控制私钥的实体的抽象。 一个简单的签名者是一个私钥，而一个复杂的签名者是一个钱包。
 
-- `Provider` 是区块链上的操作的抽象，比如广播交易。通常不参与签署交易。
-
-
-通常钱包需要实现 `Signer` 的抽象接口。`Signer` 连接一个 `Provider` 来广播交易。
-
-```ts
-signer.connect(provider);
-```
+- `Provider` 是需要与区块链交互时连接的比特币节点的抽象, 例如，广播交易。 Whatsonchain 就是一个例子，提供对区块链的访问。
 
 
 ## 连接 **sensilet** 钱包
@@ -27,8 +20,7 @@ signer.connect(provider);
 ```ts
 const sensiletLogin = async () => {
     try {
-      const provider = new WhatsonchainProvider(bsv.Networks.testnet);
-      const signer = new SensiletSigner(provider);
+      const signer = new SensiletSigner();
 
       signerRef.current = signer;
       await signer.getConnectedTarget();

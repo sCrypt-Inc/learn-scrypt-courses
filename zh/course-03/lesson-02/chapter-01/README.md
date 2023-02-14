@@ -22,7 +22,7 @@ git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 
 ##  安装 sCrypt 的 SDK
 
-dApp 需要在前端页面与合约进行交互。 要做到这一点，我们将使用 sCrypt SDK —— [scryptTS](https://scrypt.io/scrypt-ts). 通过 sCrypt SDK，你就能方便地编译，测试，部署，调用合约了。
+通过  sCrypt SDK —— [scryptTS](https://scrypt.io/scrypt-ts)，你就能方便地编译，测试，部署，调用合约了。
 
 使用 `scrypt-cli` 命令行工具安装 sCrypt SDK。
 
@@ -30,18 +30,8 @@ dApp 需要在前端页面与合约进行交互。 要做到这一点，我们�
 npx scrypt-cli init
 ```
 
+这将添加合约开发所需的所有脚手架。
 
-或者通过 `npm` 或 `yarn` 安装。
-
-```bash
-// use NPM
-npm install scrypt-ts
-
-// use Yarn
-yarn add scrypt-ts
-```
-
-通过 `npm` 或 `yarn` 安装后需要进行配置修改。参考这个[commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/42e25f3507a62231025c15b9926af5f0406a1ba4)。
 
 ## 编译合约
 
@@ -51,15 +41,13 @@ yarn add scrypt-ts
 npx scrypt-cli compile
 ```
 
-编译成功会在合约所在目录看到输出的合约 *artifact* 文件 `tictactoe.json` 。合约 *artifact* 文件可用于初始化合约类。
-
-通常我们需要在前端使用合约 *artifact* 文件初始化合约类。之后合约类才可用于实例化合约。
+你应该会在合约所在的目录中看到一个合约 *artifact* 文件 `tictactoe.json`。它可用于在前端初始化合约。
 
 
 ```ts
 import { TicTacToe } from './contracts/tictactoe';
 import artifact from './contracts/tictactoe.json';
-TicTacToe.init(artifact);
+TicTacToe.load(artifact);
 ```
 
 

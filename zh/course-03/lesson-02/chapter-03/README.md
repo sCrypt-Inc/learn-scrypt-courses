@@ -2,12 +2,9 @@
 
 ## 实例化合约
 
-我们已经通过加载合约 *artifact* 文件得到了合约类 `Tictactoe`。 当用户点击开始按钮后，通过此合约类来实例化合约。
+我们已经通过加载合约 *artifact* 文件得到了合约类 `Tictactoe`。 当用户点击开始按钮后，合约将使用两个玩家“alice”和“bob”的公钥进行初始化。 公钥可以通过 `Signer`的 `getDefaultPubKey()` 接口获取。
 
-
-实例化合约类 `Tictactoe` 需要两个玩家 `alice` 和 `bob` 的公钥。可以通过 `Signer` 的 `getDefaultPubKey()` 接口来获取公钥。由只有一个钱包，我们假设 `alice` 和 `bob` 都使用同一个公钥。
-
-下面代码实例化合约并调用 `markAsGenesis()` 将合约标识为初始合约。
+下面代码实例化合约并调用 `markAsGenesis()` 将合约标识为有状态合约，并准备好部署。
 
 ```ts
 const startGame = async (amount: number) => {
@@ -32,13 +29,13 @@ const startGame = async (amount: number) => {
 
 ```ts
 deploy(amount?: number, options?: {
-    changeAddress?: bsv.Address | string;
-    address?: bsv.Address | string;
+    changeAddress?: AddressOption;
+    pubKeyOrAddrToSign?: PublicKeysOrAddressesOption;
 }): Promise<TransactionResponse>;
 ```
 
 - `amount`: 表示部署时合约锁定的余额
-- `options`: 是可选参数，支持自定义找零地址，以及使用的 `address` 对应的私钥来签名交易。
+- `options`: 是可选参数，支持自定义找零地址，以及指定使用的公钥地址或公钥对应的私钥来签名交易。
 
 ## 实战演习
 
