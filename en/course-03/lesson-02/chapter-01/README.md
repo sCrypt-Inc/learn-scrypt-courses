@@ -1,11 +1,12 @@
-# Chapter 1: Integrating frontend
+# Chapter 1: Add a front-end
 
-After completing the previous lesson, the sCrypt contract portion of our Tic Tac Toe dApp is complete. Next we need to integrate the front end so that users can play the tic-tac-toe game on the web.
+After completing the previous lesson, the sCrypt contract portion of our TicTacToe dApp is ready. Next we need to add a front-end so that users can play the TicTacToe game in a browser.
 
+Since the focus of this course is on sCrypt, we assume you are already familiar with front-end development, and will not cover them.
 
 ## Prepare
 
-The front-end interface of the Tic Tac Toe dApp will be created using [Create React App](https://create-react-app.dev/).
+The front-end interface of the dApp will be created using [Create React App](https://create-react-app.dev/).
 
 ```ts
 npx create-react-app tic-tac-toe --template typescript
@@ -21,26 +22,15 @@ git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 
 ##  Install the sCrypt SDK
 
-dApp needs to interact with contracts on the front-end page. To do this, we will use the sCrypt SDK - [scryptTS](https://scrypt.io/scrypt-ts). With sCrypt SDK, you can easily compile, test, deploy, and call contracts.
+The sCrypt SDK - [scryptTS](https://scrypt.io/scrypt-ts) enables you to easily compile, test, deploy, and call contracts.
 
-Use the `scrypt-cli` command line tool to install sCrypt SDK.
+Use the `scrypt-cli` command line tool to install the SDK.
 
 ```base
 npx scrypt-cli init
 ```
 
-Or install via `npm` or `yarn`.
-
-```bash
-// use NPM
-npm install scrypt-ts
-// use Yarn
-yarn add scrypt-ts
-```
-
-
-Configuration changes are required after installation via `npm` or `yarn`. Refer to this [commit](https://github.com/sCrypt-Inc/tic-tac-toe/commit/42e25f3507a62231025c15b9926af5f0406a1ba4).
-
+This will also add all scaffolding needed for contract development.
 
 ## Compile the contract
 
@@ -50,9 +40,7 @@ First put the `TicTacToe` contract we wrote in the previous lesson into the `src
 npx scrypt-cli compile
 ```
 
-If the compilation is successful, you will see the output contract product file `tictactoe.json` in the directory where the contract is located. Contract artifact files can be used to initialize contract classes.
-
-Usually we need to use the contract artifact file to initialize the contract class at the front end. The contract class can then be used to instantiate contracts.
+You should see an artifact file `tictactoe.json` in the directory where the contract is located. It can be used to initialize a contract at the front end.
 
 
 ```ts
@@ -64,4 +52,4 @@ TicTacToe.init(artifact);
 
 ## Put it to the test
 
-Import the contract product file `tictactoe.json` in `index.tsx`, and initialize the contract class `TicTacToe`.
+Import the contract artifact file `tictactoe.json` in `index.tsx`, and initialize the contract class `TicTacToe`.

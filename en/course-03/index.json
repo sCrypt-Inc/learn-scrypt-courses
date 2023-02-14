@@ -107,7 +107,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "Chapter 3: Instantiate Contract and Deploy Contract",
+                    "title": "Chapter 3: Initialize Contract and Deploy Contract",
                     "scripts": [  
                         {
                             "name": "app.tsx",

@@ -1,29 +1,31 @@
 # Chapter 2: Integrated Wallet
 
-Before starting to deploy the contract, we need to connect the wallet first. Here we take [sensilet](https://sensilet.com) as an example to introduce how to connect to the wallet.
+Before deploying the contract, we need to connect a wallet first. We use [sensilet](https://sensilet.com), a MetaMask-like wallet.
 
-After installing the **sensilet** wallet, click the settings button in the upper right corner to switch to the test network. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to claim testnet BSV.
+After installing the **sensilet** wallet, click the `settings` button in the upper right corner to switch to testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to fund it.
 
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
 
 ## Signer and Provider
 
-- `Signer` is the class that accesses the private key. Private keys can sign transactions to authorize users to perform certain actions.
+When a user wants to sends a transaction onto the chain, our dApp would prompt the user to “sign” the transaction using their private key and be authorized to perform certain actions. The `Signer` interface is an abstraction of the entity controlling the private key. A simple signer would be a single private key, while a complex signer is a wallet.
 
-- `Provider` is an abstraction for operations on the blockchain, such as broadcasting transactions. Usually not involved in signing transactions.
+A `Provider` is an abstraction for a Bitcoin node that you connect with when you need to interact with the blockchain, e.g., to broadcast a transaction. Whatsonchain is an example, providing access to the blockchain.
 
-
-Usually wallets need to implement the abstract interface of `Signer`. `Signer` connects a `Provider` to broadcast transactions.
+Usually wallets need to implement the abstract interface of `Signer`. `Signer` connects a `Provider` to broadcast transactions, either in the constructor or afterwards.
 
 ```ts
+// 1) at construction
+const signer = new SensiletSigner(provider)
+// 2) after construction
 signer.connect(provider);
 ```
 
 
 ## Connect **sensilet** wallet
 
-After clicking the **Connect Sensilet** button, initialize a `SensiletSigner` and save the `signer`. Then call the `getConnectedTarget()` interface of the wallet to request to connect to the wallet.
+After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. We then call the `getConnectedTarget()` interface of the wallet to request to connect to the wallet.
 
 ```ts
 const sensiletLogin = async () => {
@@ -42,15 +44,16 @@ const sensiletLogin = async () => {
 
 ## Show balance
 
-After the connection is successful, call the `getBalance()` interface to get the wallet balance:
+After the connection is successful, we all the `getBalance()` interface to get the wallet balance:
 
 ```ts
 signer.getBalance().then(balance => 
+  // UTXOs belonging to transactions in the mempool are unconfirmed
   setBalance(balance.confirmed + balance.unconfirmed)
 );
 ```
 
-If a wallet is connected, the wallet balance is displayed. Otherwise show the connect button.
+If a wallet is connected, its balance is displayed. Otherwise we show the connect button.
 
 ```ts
 {
@@ -68,4 +71,4 @@ If a wallet is connected, the wallet balance is displayed. Otherwise show the co
 
 ## Put it to the test
 
-Then call the `getConnectedTarget()` interface of the wallet to request to connect to the wallet.
+Call the `getConnectedTarget()` interface of the wallet to request to connect to the wallet.

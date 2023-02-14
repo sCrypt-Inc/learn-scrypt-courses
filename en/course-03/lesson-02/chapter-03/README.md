@@ -1,13 +1,10 @@
-# Chapter 3: Instantiate Contract and Deploy Contract
+# Chapter 3: Initialize and Deploy Contract
 
-## Instantiate the contract
+## Initialize the contract
 
-We have obtained the contract class `Tictactoe` by loading the contract artifact file. When the user clicks the start button, the contract is instantiated through the `Tictactoe` contract class.
+We have obtained the contract class `Tictactoe` by loading the contract artifact file. When the user clicks the start button, the contract is initialized with the public keys of two players `alice` and `bob`. The public key can be obtained through the `getDefaultPubKey()` interface of `Signer`.
 
-
-Instantiating the contract class `Tictactoe` requires the public keys of two players `alice` and `bob`. The public key can be obtained through the `getDefaultPubKey()` interface of `Signer`. Since there is only one wallet, we assume that both `alice` and `bob` use the same public key.
-
-The following code instantiates the contract and calls `markAsGenesis()` to mark the contract as a genesis contract.
+The following code initializes the contract and calls `markAsGenesis()` to mark the the contract is stateful and is ready to be deployed.
 
 ```ts
 const startGame = async (amount: number) => {
@@ -28,6 +25,7 @@ const startGame = async (amount: number) => {
 };
 ```
 
+## Deploy it
 Each contract instance has a `deploy()` method:
 
 
@@ -38,8 +36,8 @@ deploy(amount?: number, options?: {
 }): Promise<TransactionResponse>;
 ```
 
-- `amount`: Indicates the balance locked by the contract at the time of deployment
-- `options`: It is an optional parameter, which supports custom change address, and the private key corresponding to `address` used to sign the transaction.
+- `amount`: how many satoshis would be locked in the contract when deployed
+- `options`: an optional parameter, `changeAddress` is customed change address, and  `address`'s corresponding private key will be used to sign the transaction.
 
 ## Put it to the test
 
