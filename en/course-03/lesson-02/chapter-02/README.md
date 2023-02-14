@@ -13,16 +13,6 @@ When a user wants to sends a transaction onto the chain, our dApp would prompt t
 
 A `Provider` is an abstraction for a Bitcoin node that you connect with when you need to interact with the blockchain, e.g., to broadcast a transaction. Whatsonchain is an example, providing access to the blockchain.
 
-Usually wallets need to implement the abstract interface of `Signer`. `Signer` connects a `Provider` to broadcast transactions, either in the constructor or afterwards.
-
-```ts
-// 1) at construction
-const signer = new SensiletSigner(provider)
-// 2) after construction
-signer.connect(provider);
-```
-
-
 ## Connect **sensilet** wallet
 
 After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. We then call the `getConnectedTarget()` interface of the wallet to request to connect to the wallet.
@@ -30,7 +20,7 @@ After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner`
 ```ts
 const sensiletLogin = async () => {
     try {
-        const provider = new WhatsonchainProvider(bsv.Networks.testnet);
+        const provider = new DefaultProvider();
         const signer = new SensiletSigner(provider);
         signerRef.current = signer;
         await signer.getConnectedTarget();

@@ -2,7 +2,7 @@ import "./App.css";
 import Game from "./Game";
 import React, { useState, useEffect, useRef } from "react";
 import TitleBar from "./TitleBar";
-import { WhatsonchainProvider, bsv, SensiletSigner } from "scrypt-ts";
+import { DefaultProvider, SensiletSigner } from "scrypt-ts";
 
 function App() {
 
@@ -15,7 +15,7 @@ function App() {
   const sensiletLogin = async () => {
     try {
       
-      const provider = new WhatsonchainProvider(bsv.Networks.testnet);
+      const provider = new DefaultProvider();
       const signer = new SensiletSigner(provider);
 
       signerRef.current = signer;

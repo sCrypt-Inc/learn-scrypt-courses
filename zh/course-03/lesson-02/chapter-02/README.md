@@ -20,7 +20,8 @@
 ```ts
 const sensiletLogin = async () => {
     try {
-      const signer = new SensiletSigner();
+      const provider = new DefaultProvider();
+      const signer = new SensiletSigner(provider);
 
       signerRef.current = signer;
       await signer.getConnectedTarget();
