@@ -47,7 +47,7 @@ npx scrypt-cli compile
 ```ts
 import { TicTacToe } from './contracts/tictactoe';
 import artifact from './contracts/tictactoe.json';
-TicTacToe.load(artifact);
+TicTacToe.loadArtifact(artifact);
 ```
 
 

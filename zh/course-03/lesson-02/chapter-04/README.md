@@ -44,7 +44,7 @@ TicTacToe.bindTxBuilder('move', async (options: BuildMethodCallTxOptions<SmartCo
 // 3. call contract.methods.move(...) to broadcast transaction
 const {tx, next} = await current.methods.move(
     BigInt(i),
-    (sigResponses: SignatureResponse[]) => findSig(sigResponses, publickey)
+    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey)
 );
 
 // 4. save latest contract instance

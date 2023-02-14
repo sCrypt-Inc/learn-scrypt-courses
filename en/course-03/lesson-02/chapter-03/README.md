@@ -7,16 +7,23 @@ We have obtained the contract class `Tictactoe` by loading the contract artifact
 The following code initializes the contract and calls `markAsGenesis()` to mark the the contract is stateful and is ready to be deployed.
 
 ```ts
+
+const [alicePubkey, setAlicePubkey] = useState("");
+const [bobPubkey, setBobPubkey] = useState("");
+
+  ...
+
 const startGame = async (amount: number) => {
   try {
     const signer = signerRef.current as SensiletSigner;
 
-    const pubkey = await signer.getDefaultPubKey()
-
     const instance = new TicTacToe(
-      PubKey(toHex(pubkey)),
-      PubKey(toHex(pubkey))
-    ).markAsGenesis();
+        PubKey(toHex(alicePubkey)),
+        PubKey(toHex(bobPubkey))
+      ).markAsGenesis();
+
+    await instance.connect(signer);
+
 
   } catch(e) {
     console.error('deploy TicTacToe failes', e)
@@ -31,8 +38,8 @@ Each contract instance has a `deploy()` method:
 
 ```ts
 deploy(amount?: number, options?: {
-    changeAddress?: bsv.Address | string;
-    address?: bsv.Address | string;
+    changeAddress?: AddressOption;
+    pubKeyOrAddrToSign?: PublicKeysOrAddressesOption;
 }): Promise<TransactionResponse>;
 ```
 

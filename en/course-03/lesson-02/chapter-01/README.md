@@ -46,7 +46,7 @@ You should see an artifact file `tictactoe.json` in the directory where the cont
 ```ts
 import { TicTacToe } from './contracts/tictactoe';
 import artifact from './contracts/tictactoe.json';
-TicTacToe.init(artifact);
+TicTacToe.loadArtifact(artifact);
 ```
 
 

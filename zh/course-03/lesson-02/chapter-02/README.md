@@ -15,7 +15,7 @@
 
 ## 连接 **sensilet** 钱包
 
-点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。之后调用钱包的 `getConnectedTarget()` 接口请求连接钱包。
+点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。之后调用钱包的 `getDefaultPubKey()` 接口来获取两个玩家的公钥。
 
 ```ts
 const sensiletLogin = async () => {
@@ -24,14 +24,20 @@ const sensiletLogin = async () => {
       const signer = new SensiletSigner(provider);
 
       signerRef.current = signer;
-      await signer.getConnectedTarget();
+      
+
       setConnected(true);
 
+      const alicPubkey = await signer.getDefaultPubKey();
+      setAlicePubkey(toHex(alicPubkey))
+
+      // Prompt user to switch accounts
+      ...
     } catch (error) {
       console.error("sensiletLogin failed", error);
       alert("sensiletLogin failed")
     }
-  };
+};
 ```
 
 ## 显示余额
@@ -40,7 +46,8 @@ const sensiletLogin = async () => {
 
 ```ts
 signer.getBalance().then(balance => 
-  setBalance(balance.confirmed + balance.unconfirmed)
+  // UTXOs belonging to transactions in the mempool are unconfirmed
+  setAliceBalance(balance.confirmed + balance.unconfirmed)
 );
 ```
 

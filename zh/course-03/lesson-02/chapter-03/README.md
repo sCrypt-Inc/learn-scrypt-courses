@@ -7,16 +7,23 @@
 下面代码实例化合约并调用 `markAsGenesis()` 将合约标识为有状态合约，并准备好部署。
 
 ```ts
+
+const [alicePubkey, setAlicePubkey] = useState("");
+const [bobPubkey, setBobPubkey] = useState("");
+
+  ...
+
 const startGame = async (amount: number) => {
   try {
     const signer = signerRef.current as SensiletSigner;
 
-    const pubkey = await signer.getDefaultPubKey()
-
     const instance = new TicTacToe(
-      PubKey(toHex(pubkey)),
-      PubKey(toHex(pubkey))
-    ).markAsGenesis();
+        PubKey(toHex(alicePubkey)),
+        PubKey(toHex(bobPubkey))
+      ).markAsGenesis();
+
+    await instance.connect(signer);
+
 
   } catch(e) {
     console.error('deploy TicTacToe failes', e)

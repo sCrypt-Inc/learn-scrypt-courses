@@ -8,8 +8,13 @@ function App() {
 
   const [gameData, setGameData] = useState(initialGameData);
   const [isConnected, setConnected] = useState(false);
-  const [balance, setBalance] = useState(0);
   const signerRef = useRef<SensiletSigner>();
+  const [contract, setContract] = useState<TicTacToe | undefined>(undefined)
+  const [deployedTxId, setDeployedTxId] = useState<string>("")
+  const [alicePubkey, setAlicePubkey] = useState("");
+  const [bobPubkey, setBobPubkey] = useState("");
+  const [alicebalance, setAliceBalance] = useState(0);
+  const [bobbalance, setBobBalance] = useState(0);
 
 
   const sensiletLogin = async () => {
@@ -23,9 +28,17 @@ function App() {
       
       setConnected(true);
 
+      const alicPubkey = await signer.getDefaultPubKey();
+      setAlicePubkey(toHex(alicPubkey))
+
       signer.getBalance().then(balance => {
-        setBalance(balance.confirmed + balance.unconfirmed)
+         // UTXOs belonging to transactions in the mempool are unconfirmed
+        setAliceBalance(balance.confirmed + balance.unconfirmed)
       })
+
+      // Prompt user to switch accounts
+      ...
+      
     } catch (error) {
       console.error("sensiletLogin failed", error);
       alert("sensiletLogin failed")

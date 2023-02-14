@@ -15,21 +15,28 @@ A `Provider` is an abstraction for a Bitcoin node that you connect with when you
 
 ## Connect **sensilet** wallet
 
-After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. We then call the `getConnectedTarget()` interface of the wallet to request to connect to the wallet.
+After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. We then call the `getDefaultPubKey()` interface of the wallet to request to connect to get the public keys of the two players.
 
 ```ts
 const sensiletLogin = async () => {
     try {
-        const provider = new DefaultProvider();
-        const signer = new SensiletSigner(provider);
-        signerRef.current = signer;
-        await signer.getConnectedTarget();
-        setConnected(true);
+      const provider = new DefaultProvider();
+      const signer = new SensiletSigner(provider);
+
+      signerRef.current = signer;
+      
+      setConnected(true);
+
+      const alicPubkey = await signer.getDefaultPubKey();
+      setAlicePubkey(toHex(alicPubkey))
+
+      // Prompt user to switch accounts
+
     } catch (error) {
-        console.error("sensiletLogin failed", error);
-        alert("sensiletLogin failed")
+      console.error("sensiletLogin failed", error);
+      alert("sensiletLogin failed")
     }
-}
+};
 ```
 
 ## Show balance
@@ -39,7 +46,7 @@ After the connection is successful, we all the `getBalance()` interface to get t
 ```ts
 signer.getBalance().then(balance => 
   // UTXOs belonging to transactions in the mempool are unconfirmed
-  setBalance(balance.confirmed + balance.unconfirmed)
+  setAliceBalance(balance.confirmed + balance.unconfirmed)
 );
 ```
 
