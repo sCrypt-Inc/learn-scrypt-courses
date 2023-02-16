@@ -17,7 +17,7 @@ function App() {
       const instance = new TicTacToe(
         PubKey(toHex(alicePubkey)),
         PubKey(toHex(bobPubkey))
-      ).markAsGenesis();
+      );
       
       // TODO: connect the signer and deploy the contract
 

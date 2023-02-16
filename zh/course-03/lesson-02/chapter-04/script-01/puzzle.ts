@@ -72,11 +72,16 @@ async function move(i: number, latestGameData: GameData) {
     }
   });
 
+  const pubKey = current.is_alice_turn ? current.alice : current.bob;
+
   return current.methods.move(
     BigInt(i),
     (sigResponses: SignatureResponse[]) => {
       // TODO: Returns the current player's signature
 
-    }
+    },
+    {
+      pubKeyOrAddrToSign: bsv.PublicKey.fromString(pubKey),
+    } as MethodCallOptions<TicTacToe>
   );
 }

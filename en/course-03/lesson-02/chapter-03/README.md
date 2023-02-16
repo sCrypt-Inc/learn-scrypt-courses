@@ -4,7 +4,7 @@
 
 We have obtained the contract class `Tictactoe` by loading the contract artifact file. When the user clicks the start button, the contract is initialized with the public keys of two players `alice` and `bob`. The public key can be obtained through the `getDefaultPubKey()` interface of `Signer`.
 
-The following code initializes the contract and calls `markAsGenesis()` to mark the the contract is stateful and is ready to be deployed.
+The following code initializes the contract.
 
 ```ts
 
@@ -20,7 +20,7 @@ const startGame = async (amount: number) => {
     const instance = new TicTacToe(
         PubKey(toHex(alicePubkey)),
         PubKey(toHex(bobPubkey))
-      ).markAsGenesis();
+      );
 
     await instance.connect(signer);
 

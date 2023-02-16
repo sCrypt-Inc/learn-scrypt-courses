@@ -4,7 +4,7 @@
 
 我们已经通过加载合约 *artifact* 文件得到了合约类 `Tictactoe`。 当用户点击开始按钮后，合约将使用两个玩家“alice”和“bob”的公钥进行初始化。 公钥可以通过 `Signer`的 `getDefaultPubKey()` 接口获取。
 
-下面代码实例化合约并调用 `markAsGenesis()` 将合约标识为有状态合约，并准备好部署。
+下面代码实例化合约。
 
 ```ts
 
@@ -20,7 +20,7 @@ const startGame = async (amount: number) => {
     const instance = new TicTacToe(
         PubKey(toHex(alicePubkey)),
         PubKey(toHex(bobPubkey))
-      ).markAsGenesis();
+      );
 
     await instance.connect(signer);
 

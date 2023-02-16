@@ -75,12 +75,15 @@ async function move(i: number, latestGameData: GameData) {
       }) as Promise<BuildMethodCallTxResult<TicTacToe>>
     }
   });
-
+  const pubKey = current.is_alice_turn ? current.alice : current.bob;
   return current.methods.move(
     BigInt(i),
     (sigResponses: SignatureResponse[]) => {
-      const pubKey = current.is_alice_turn ? current.alice : current.bob;
+      
       return findSig(sigResponses, bsv.PublicKey.fromString(pubKey))
-    }
+    },
+    {
+      pubKeyOrAddrToSign: bsv.PublicKey.fromString(pubKey),
+    } as MethodCallOptions<TicTacToe>
   );
 }

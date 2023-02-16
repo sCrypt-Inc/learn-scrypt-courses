@@ -19,7 +19,7 @@ const { tx: callTx } = await p2pkh.methods.unlock(
     (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey),
     $publickey,
     {
-        pubKeyOrAddrToSign: $publickey.toAddress()
+        pubKeyOrAddrToSign: $publickey
     } as MethodCallOptions<P2PKH>
 );
 ```
@@ -42,13 +42,13 @@ TicTacToe.bindTxBuilder('move', async (options: BuildMethodCallTxOptions<SmartCo
 }
 
 // 3. call contract.methods.move(...) to broadcast transaction
-const {tx, next} = await current.methods.move(
+const {tx, nexts} = await current.methods.move(
     BigInt(i),
-    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey)
+    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey),
 );
 
 // 4. save latest contract instance
-props.setContract(next?.instance)
+props.setContract(nexts?.instance)
 ```
 
 至此，我们就完成了TicTacToe合约与webapp的交互。玩家的每一次下棋动作都会在链上产生相应的交易。
