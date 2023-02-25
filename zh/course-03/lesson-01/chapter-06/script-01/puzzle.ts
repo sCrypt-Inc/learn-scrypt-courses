@@ -27,6 +27,6 @@ export class TicTacToe extends SmartContract {
         this.board = [0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n];
     }
 
-    // TODO: add `@methed` function here
+    // TODO: add `@method` function here
 
 }

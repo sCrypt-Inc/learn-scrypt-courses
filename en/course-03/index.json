@@ -36,7 +36,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "Chapter 6: @methed Decorator",
+                    "title": "Chapter 6: @method Decorator",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",

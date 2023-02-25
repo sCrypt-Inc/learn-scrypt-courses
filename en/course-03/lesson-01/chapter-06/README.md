@@ -1,12 +1,12 @@
-# Chapter 6: `@methed` Decorator
+# Chapter 6: `@method` Decorator
 
-## `@methed` decorator
+## `@method` decorator
 
 Use `@method` to decorate any method that intends to run on chain.
 
 Decorated methods can only call methods that are also decorated with `@method`. Additionally, only properties decorated with `@prop` can be accessed. Methods not decorated are just regular TypeScript class methods.
 
-They are two types of `@methed`s.
+They are two types of `@method`s.
 
 ### 1. Public
 
@@ -38,7 +38,7 @@ static add(x0: bigint, x1:bigint) : bigint {
 
 Add methods to contract `TicTacToe`:
 
-1. Public `@methed` `move()` : Alice and Bob each locks X bitcoins in a UTXO containing contract `TicTacToe`. Next, they alternately play the game by calling `move()` with `2` parameters:
+1. Public `@method` `move()` : Alice and Bob each locks X bitcoins in a UTXO containing contract `TicTacToe`. Next, they alternately play the game by calling `move()` with `2` parameters:
 
    -  `n` : `bigint`, which square to place the symbol
    -  `sig` : `Sig`, a player's signature
