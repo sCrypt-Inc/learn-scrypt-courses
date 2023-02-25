@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 
 import { TicTacToe } from './contracts/tictactoe';
 
-import artifact from './contracts/tictactoe.json';
+import artifact from '../artifact/src/contracts/tictactoe.json';
 TicTacToe.loadArtifact(artifact);
 
 const root = ReactDOM.createRoot(

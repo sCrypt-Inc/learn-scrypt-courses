@@ -41,16 +41,16 @@ npx scrypt-cli init
 npx scrypt-cli compile
 ```
 
-你应该会在合约所在的目录中看到一个合约 *artifact* 文件 `tictactoe.json`。它可用于在前端初始化合约。
+你应该会在 `artifacts` 目录中看到一个合约 *artifact* 文件 `tictactoe.json`。它可用于在前端初始化合约。
 
 
 ```ts
 import { TicTacToe } from './contracts/tictactoe';
-import artifact from './contracts/tictactoe.json';
+import artifact from '../artifact/src/contracts/tictactoe.json';
 TicTacToe.loadArtifact(artifact);
 ```
 
 
 ## 实战演习
 
-在 `index.tsx` 中导入合约 *artifact* 文件 `tictactoe.json`，并初始化合约类 `TicTacToe`。
+在 `index.tsx` 中导入合约 *artifact* 文件 `tictactoe.json`，并加载它。

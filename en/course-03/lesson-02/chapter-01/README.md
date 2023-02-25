@@ -40,16 +40,16 @@ First put the `TicTacToe` contract we wrote in the previous lesson into the `src
 npx scrypt-cli compile
 ```
 
-You should see an artifact file `tictactoe.json` in the directory where the contract is located. It can be used to initialize a contract at the front end.
+You should see an artifact file `tictactoe.json` in the `artifacts` directory. It can be used to initialize a contract at the front end.
 
 
 ```ts
 import { TicTacToe } from './contracts/tictactoe';
-import artifact from './contracts/tictactoe.json';
+import artifact from '../artifact/src/contracts/tictactoe.json';
 TicTacToe.loadArtifact(artifact);
 ```
 
 
 ## Put it to the test
 
-Import the contract artifact file `tictactoe.json` in `index.tsx`, and initialize the contract class `TicTacToe`.
+Import the contract artifact file `tictactoe.json` in `index.tsx`, and load it.
