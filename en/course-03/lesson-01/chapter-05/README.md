@@ -78,9 +78,9 @@ The tic-tac-toe game contract supports two players and their public keys need to
         * `is_alice_turn`: a `boolean`. It represents whether it is `alice`'s turn to play.
         * `board`: a fixed-size array `FixedArray<bigint, 9>` with a size of `9`. It represents the state of every square in the board.
    - Three constants:
-       * `EMPTY`, type `bigint`, value `0n`. It means that the a square in the board is empty
+       * `EMPTY`, type `bigint`, value `0n`. It means that a square in the board is empty
        * `ALICE`, type `bigint`, value `1n`. Alice places symbol `X` in a square.
-       * `Bob`, type `bigint`, value `2n`. Bob places symbol `O` in a square.
+       * `BOB`, type `bigint`, value `2n`. Bob places symbol `O` in a square.
 
 2. Initialize all non-static properties in the constructor. Specifically, the entire board is empty at first.
 
