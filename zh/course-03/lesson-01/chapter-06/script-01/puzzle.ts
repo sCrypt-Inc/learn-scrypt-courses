@@ -24,7 +24,7 @@ export class TicTacToe extends SmartContract {
         this.alice = alice;
         this.bob = bob;
         this.is_alice_turn = true;
-        this.board = [0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n, 0n];
+        this.board = fill(TicTacToe.EMPTY, 9);
     }
 
     // TODO: add `@method` function here
