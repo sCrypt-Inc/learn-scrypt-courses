@@ -140,26 +140,26 @@ import { Proof } from './contracts/verifier'
 
 // ...
 
-const proof = new Proof({
-  a: new G1Point({
+const proof: Proof = {
+  a: {
     x: BigInt(proof.proof.a[0]),
     y: BigInt(proof.proof.a[1]),
-  }),
-  b: new G2Point({
-    x: new FQ2({
+  },
+  b: {
+    x: {
       x: BigInt(proof.proof.b[0][0]),
       y: BigInt(proof.proof.b[0][1]),
-    }),
-    y: new FQ2({
+    },
+    y: {
       x: BigInt(proof.proof.b[1][0]),
       y: BigInt(proof.proof.b[1][1]),
-    })
-  }),
-  c: new G1Point({
+    }
+  },
+  c: {
     x: BigInt(proof.proof.c[0]),
     y: BigInt(proof.proof.c[1]),
-  })
-})
+  },
+}
 ```
 
 ## Put it to the test
