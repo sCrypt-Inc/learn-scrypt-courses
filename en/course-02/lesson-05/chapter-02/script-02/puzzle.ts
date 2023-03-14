@@ -3,6 +3,12 @@ import { initialize } from 'zokrates-js';
 export class ZKProvider {
   static instance;
 
+  provider: any;
+  program: any;
+  abi: any;
+  proving_key: any;
+  verification_key: any;
+
   constructor(provider, program, abi, proving_key, verification_key) {
     this.provider = provider;
     this.program = program;
@@ -12,14 +18,20 @@ export class ZKProvider {
   }
 
   static async init() {
-    // console.log('ZKP init...')
     if (ZKProvider.instance) return ZKProvider;
+
     try {
-      let zokratesProvider = await initialize();
-      let program = await fetch('/zk-battleship/zk/out').then(resp => resp.arrayBuffer()).then(data => new Uint8Array(data));
-      let abi = await fetch('/zk-battleship/zk/abi.json').then(resp => resp.json());
-      let proving_key = await fetch('/zk-battleship/zk/proving.key').then(resp => resp.arrayBuffer()).then(data => new Uint8Array(data));
-      let verification_key = await fetch('/zk-battleship/zk/verification.key').then(resp => resp.json());
+      const defaultProvider = await initialize();
+
+      let zokratesProvider = defaultProvider.withOptions({
+        backend: "bellman",
+        curve: "bn128",
+        scheme: "g16"
+      });
+      let program = await fetch('/zk/out').then(resp => resp.arrayBuffer()).then(data => new Uint8Array(data));
+      let abi = await fetch('/zk/abi.json').then(resp => resp.json());
+      // TODO: Also load proving and verification key (take a look at the public dir).
+
       ZKProvider.instance = new ZKProvider(
         zokratesProvider,
         program,
@@ -27,7 +39,7 @@ export class ZKProvider {
         proving_key,
         verification_key
       )
-      // console.log('ZKP initialized.')
+
       return ZKProvider;
     } catch (error) {
       console.log('init ZKProvider fail', error)

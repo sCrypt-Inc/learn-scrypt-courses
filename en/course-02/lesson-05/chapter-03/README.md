@@ -17,10 +17,10 @@ static async init() {
   // console.log('ZKP init...')
   if (CircomProvider.instance) return CircomProvider;
   try {
-    let verification_key = await fetch('/zk-battleship/zk/verification_key.json').then(resp => resp.json());
+    let verification_key = await fetch('/zk/verification_key.json').then(resp => resp.json());
     CircomProvider.instance = new CircomProvider(
-      "/zk-battleship/zk/battleship.wasm",
-      "/zk-battleship/zk/circuit_final.zkey",
+      "/zk/battleship.wasm",
+      "/zk/circuit_final.zkey",
       verification_key
     );
     console.log('ZKP initialized.')
@@ -105,9 +105,9 @@ const handleFire = (role, targetIdx, isHit, newStates) => {
 
 Next we have to find the firing event handlers in the game to apply this function. The game was originally designed to be a PvC (Player vs Computer) game, so there are two handlers should be modified:
 
-* Player firing event handler function `fireTorpedo` in `ComputerBoard.js`;
+* Player firing event handler function `fireTorpedo` in `ComputerBoard.tsx`;
 
-* Computer firing event handler function `computerFire` in `Game.js`;
+* Computer firing event handler function `computerFire` in `Game.tsx`;
 
 ## Use web worker to unblock UI
 

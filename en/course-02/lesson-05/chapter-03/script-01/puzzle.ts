@@ -12,10 +12,10 @@ export class CircomProvider {
       // console.log('ZKP init...')
       if (CircomProvider.instance) return CircomProvider;
       try {
-        let verification_key = await fetch('/zk-battleship/zk/verification_key.json').then(resp => resp.json());
+        let verification_key = await fetch('/zk/verification_key.json').then(resp => resp.json());
         CircomProvider.instance = new CircomProvider(
-          "/zk-battleship/zk/battleship.wasm",
-          "/zk-battleship/zk/circuit_final.zkey",
+          "/zk/battleship.wasm",
+          "/zk/circuit_final.zkey",
           verification_key
         );
         console.log('ZKP initialized.')
