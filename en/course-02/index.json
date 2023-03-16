@@ -114,7 +114,7 @@
                     "title": "Chapter 1: Implement the Battleship contract",
                     "scripts": [
                         {
-                            "name": "zkBattleship.zk",
+                            "name": "zkBattleship.ts",
                             "lang": "ts",
                             "hints": [
                                 "battleship contract"
