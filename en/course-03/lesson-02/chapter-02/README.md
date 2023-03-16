@@ -15,7 +15,7 @@ A `Provider` is an abstraction for a Bitcoin node that you connect with when you
 
 ## Connect **sensilet** wallet
 
-After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. Then call `requestAuth()` to connect the wallet, and call `getDefaultPubKey()` interface of the wallet to request to connect to get the public keys of the two players.
+After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. Then call `requestAuth()` to connect the wallet, and call `getDefaultPubKey()` interface of the wallet to get the public keys of the two players.
 
 ```ts
 const sensiletLogin = async () => {
