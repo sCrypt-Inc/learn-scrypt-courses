@@ -38,8 +38,8 @@ Each contract instance has a `deploy()` method:
 
 ```ts
 deploy(amount?: number, options?: {
-    changeAddress?: AddressOption;
-    pubKeyOrAddrToSign?: PublicKeysOrAddressesOption;
+    changeAddress?: AddressOption,
+    address?: AddressOption,
 }): Promise<TransactionResponse>;
 ```
 

@@ -36,13 +36,13 @@ const startGame = async (amount: number) => {
 
 ```ts
 deploy(amount?: number, options?: {
-    changeAddress?: AddressOption;
-    pubKeyOrAddrToSign?: PublicKeysOrAddressesOption;
+    changeAddress?: AddressOption,
+    address?: AddressOption,
 }): Promise<TransactionResponse>;
 ```
 
 - `amount`: 表示部署时合约锁定的余额
-- `options`: 是可选参数，支持自定义找零地址，以及指定使用的公钥地址或公钥对应的私钥来签名交易。
+- `options`: 是可选参数，支持自定义找零地址，以及使用指定地址对应的私钥来签名交易。
 
 ## 实战演习
 
