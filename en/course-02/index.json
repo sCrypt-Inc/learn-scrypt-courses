@@ -114,15 +114,15 @@
                     "title": "Chapter 1: Implement the Battleship contract",
                     "scripts": [
                         {
-                            "name": "battleship.scrypt",
-                            "lang": "scrypt",
+                            "name": "zkBattleship.zk",
+                            "lang": "ts",
                             "hints": [
                                 "battleship contract"
                             ]
                         },
                         {
-                            "name": "verifier.scrypt",
-                            "lang": "scrypt",
+                            "name": "verifier.ts",
+                            "lang": "ts",
                             "hints": [
                                 "ZKSNARK library"
                             ]
@@ -165,8 +165,8 @@
                     "title": "Chapter 3: Integrating the circom circuit with snarkjs",
                     "scripts": [
                         {
-                            "name": "circomProvider.js",
-                            "lang": "js",
+                            "name": "circomProvider.ts",
+                            "lang": "ts",
                             "hints": [
                                 ""
                             ]
@@ -178,15 +178,15 @@
                     "title": "Chapter 4: Integrating sCrypt contract",
                     "scripts": [
                         {
-                            "name": "WelcomeScreen.js",
-                            "lang": "js",
+                            "name": "WelcomeScreen.tsx",
+                            "lang": "ts",
                             "hints": [
-                                "Load description file "
+                                "Load contract artifact"
                             ]
                         },
                         {
-                            "name": "Game.js",
-                            "lang": "js",
+                            "name": "Game.tsx",
+                            "lang": "ts",
                             "hints": [
                                 "Deploy and call the contract"
                             ]
