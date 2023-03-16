@@ -77,9 +77,9 @@ const handleFire = (role, targetIdx, isHit) => {
 
 Next we have to find the firing event handlers in the game to apply this function. The game was originally designed to be a PvC (Player vs Computer) game, so there are two handlers should be modified:
 
-* Player firing event handler function `fireTorpedo` in `ComputerBoard.js`;
+* Player firing event handler function `fireTorpedo` in `ComputerBoard.tsx`;
 
-* Computer firing event handler function `computerFire` in `Game.js`;
+* Computer firing event handler function `computerFire` in `Game.tsx`;
 
 ## Use web worker to unblock UI
 
@@ -130,6 +130,6 @@ Initialize the worker as below:
 
 ## Put it to the test
 
-1. Load proving key and verification key in `zkProvider.js`
+1. Load proving key and verification key in `zkProvider.ts`
 
-2. Compute witnesses, generate proof, and verify proof in `zkp.worker.js`.
+2. Compute witnesses, generate proof, and verify proof in `zkp.worker.ts`.

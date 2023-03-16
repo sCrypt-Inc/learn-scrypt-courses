@@ -75,7 +75,7 @@ zokrates generate-proof
 
 ### 6. Export an sCrypt verifier
 
-This outputs a smart contract file `verifier.scrypt`, containing all the necessary code to verify a proof on chain.
+This outputs a smart contract verifier project under `verifier/`, containing all the necessary code to verify a proof on chain.
 
 ```
 zokrates export-verifier-scrypt
