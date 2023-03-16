@@ -15,7 +15,7 @@
 
 ## 连接 **sensilet** 钱包
 
-点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。之后调用钱包的 `getDefaultPubKey()` 接口来获取两个玩家的公钥。
+点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。之后调用`requestAuth()`连接钱包，并调用钱包的 `getDefaultPubKey()` 接口来获取两个玩家的公钥。
 
 ```ts
 const sensiletLogin = async () => {
@@ -25,6 +25,10 @@ const sensiletLogin = async () => {
 
       signerRef.current = signer;
       
+      const { isAuthenticated, error } = await signer.requestAuth()
+      if (!isAuthenticated) {
+        throw new Error(error)
+      }
 
       setConnected(true);
 
@@ -32,7 +36,7 @@ const sensiletLogin = async () => {
       setAlicePubkey(toHex(alicPubkey))
 
       // Prompt user to switch accounts
-      ...
+
     } catch (error) {
       console.error("sensiletLogin failed", error);
       alert("sensiletLogin failed")
@@ -56,7 +60,7 @@ signer.getBalance().then(balance =>
 ```ts
 {
   isConnected ?
-    <label>Balance: {balance} <span> (satoshis)</span></label>
+    <label>Balance: {alicebalance} <span> (satoshis)</span></label>
     :
     <button
       className="pure-button button-large sensilet"
@@ -69,4 +73,4 @@ signer.getBalance().then(balance =>
 
 ## 实战演习
 
-调用钱包的 `getConnectedTarget()` 接口请求连接钱包。
+调用钱包的 `requestAuth()` 接口请求连接钱包。
