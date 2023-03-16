@@ -69,7 +69,7 @@ We implement the most widely used scheme [Groth16](https://eprint.iacr.org/2016/
 
 The full code is here: 
 
-- [Groth16](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/zksnark.scrypt)
+- [Groth16](https://github.com/sCrypt-Inc/scrypt-ts-lib/blob/master/src/zk/g16bn256.ts)
 - [PLONK](https://github.com/sCrypt-Inc/boilerplate/blob/master/contracts/plonk.scrypt)
 
 

@@ -18,7 +18,8 @@ git clone https://github.com/sCrypt-Inc/zk-battleship
 You can run the following commands to setup and run the project quickly:
 
 ```
-npm install
+curl -Ls https://scrypt.io/scripts/setup-zokrates.sh | sh
+npm i && npm run setup
 npm start
 ```
 
@@ -30,8 +31,8 @@ npm run setup
 
 The setup script will:
 1. Compile the circuit and finish the Zokrates setup procedure;
-2. Export an sCrypt verifier contract using the outcome of the first step
-3. Compile the `battleship.scrypt` contract;
+2. Export an sCrypt verifier using the outcome of the first step
+3. Compile the `BattleShip` contract (generates an artifact JSON file);
 4. Copy all output files to `public` folder as assets;
 
 ## Prerequisites

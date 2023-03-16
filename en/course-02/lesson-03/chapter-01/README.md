@@ -147,7 +147,7 @@ snarkjs groth16 prove circuit_final.zkey witness.wtns proof.json public.json
 
 ### 8. Export an sCrypt verifier
 
-This outputs a smart contract file "verifier.scrypt" that contains all the code needed to verify the proof on-chain.
+This outputs a smart contract project under `verifier/`, that contains all the code needed to verify the proof on-chain.
 
 ```
 snarkjs zkey export scryptverifier
