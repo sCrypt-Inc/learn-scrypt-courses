@@ -1,8 +1,8 @@
 # Chapter 2: Integrated Wallet
 
-Before deploying the contract, we need to connect a wallet first. We use [sensilet](https://sensilet.com), a MetaMask-like wallet.
+Before deploying the contract, we need to connect a wallet first. We use [Sensilet](https://sensilet.com), a MetaMask-like wallet.
 
-After installing the **sensilet** wallet, click the `settings` button in the upper right corner to switch to testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to fund it.
+After installing the **Sensilet** wallet, click the `settings` button in the upper right corner to switch to testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to fund it.
 
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
@@ -13,9 +13,9 @@ When a user wants to sends a transaction onto the chain, our dApp would prompt t
 
 A `Provider` is an abstraction for a Bitcoin node that you connect with when you need to interact with the blockchain, e.g., to broadcast a transaction. Whatsonchain is an example, providing access to the blockchain.
 
-## Connect **sensilet** wallet
+## Connect to **Sensilet**
 
-After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. Then call `requestAuth()` to connect the wallet, and call `getDefaultPubKey()` interface of the wallet to get the public keys of the two players.
+After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. We call `requestAuth()` to request to connect to the wallet. If the request is approved by the user, we now have full access to the wallet. We can, for example, call `getDefaultPubKey()` to get its public key.
 
 ```ts
 const sensiletLogin = async () => {
@@ -44,9 +44,7 @@ const sensiletLogin = async () => {
 };
 ```
 
-## Show balance
-
-After the connection is successful, we all the `getBalance()` interface to get the wallet balance:
+We can also call `getBalance()` to get its balance:
 
 ```ts
 signer.getBalance().then(balance => 
@@ -55,7 +53,7 @@ signer.getBalance().then(balance =>
 );
 ```
 
-If a wallet is connected, its balance is displayed. Otherwise we show the connect button.
+If a wallet is connected, its balance is displayed. Otherwise we show the `connect` button.
 
 ```ts
 {
@@ -73,4 +71,4 @@ If a wallet is connected, its balance is displayed. Otherwise we show the connec
 
 ## Put it to the test
 
-Call the `requestAuth()` interface of the wallet to request to connect to the wallet.
+Call `requestAuth()` to request to connect to the wallet.
