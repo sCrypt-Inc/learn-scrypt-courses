@@ -22,7 +22,7 @@ git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 
 ##  安装 sCrypt 的 SDK
 
-通过  sCrypt SDK —— [scryptTS](https://scrypt.io/scrypt-ts)，你就能方便地编译，测试，部署，调用合约了。
+通过  sCrypt SDK —— [scryptTS](https://docs.scrypt.io)，你就能方便地编译，测试，部署，调用合约了。
 
 使用 `scrypt-cli` 命令行工具安装 sCrypt SDK。
 

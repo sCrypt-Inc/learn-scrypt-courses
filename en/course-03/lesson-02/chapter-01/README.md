@@ -22,7 +22,7 @@ git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 
 ##  Install the sCrypt SDK
 
-The sCrypt SDK - [scryptTS](https://scrypt.io/scrypt-ts) enables you to easily compile, test, deploy, and call contracts.
+The sCrypt SDK - [scryptTS](https://docs.scrypt.io) enables you to easily compile, test, deploy, and call contracts.
 
 Use the `scrypt-cli` command line tool to install the SDK.
 

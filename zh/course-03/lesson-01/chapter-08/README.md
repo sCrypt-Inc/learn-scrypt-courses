@@ -2,9 +2,9 @@
 
 ## ScriptContext
 
-在 UTXO 模型中，验证的上下文是正在花费的 UTXO 和花费交易，包括它的输入和输出。 在下面的示例中，当交易 `tx1` 的第二个输入花费 `tx0` 的第二个输出时，位于 `tx0` 第二个输出中的智能合约的上下文大致，即 [ScriptContext](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext)，是用红色圈出 UTXO 和用红色圈出的 `tx1`。
+在 UTXO 模型中，验证的上下文是正在花费的 UTXO 和花费交易，包括它的输入和输出。 在下面的示例中，当交易 `tx1` 的第二个输入花费 `tx0` 的第二个输出时，位于 `tx0` 第二个输出中的智能合约的上下文大致，即 [ScriptContext](https://docs.scrypt.io/how-to-write-a-contract/scriptcontext)，是用红色圈出 UTXO 和用红色圈出的 `tx1`。
 
-![](https://scrypt.io/scrypt-ts/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
+![](https://docs.scrypt.io/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
 
 
 您可以在任何公共 `@method` 中通过 `this.ctx` 直接访问上下文。它可以被认为是公共方法在调用时获得的附加信息，除了它的函数参数。此上下文在 ScriptContext 接口中表示。
@@ -20,7 +20,7 @@ export interface ScriptContext {
 }
 ```
 
-我们这里只显示相关字段。您可以在 [此处](https://scrypt.io/scrypt-ts/getting-started/what-is-scriptcontext) 找到完整的定义。
+我们这里只显示相关字段。您可以在 [此处](https://docs.scrypt.io/how-to-write-a-contract/scriptcontext) 找到完整的定义。
 
 ## 状态合约
 

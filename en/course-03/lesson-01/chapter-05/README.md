@@ -16,7 +16,7 @@ The data types used by the `TicTacToe` contract include:
 5. `ByteString`: bytes
 
 
-If you want to know more data types, you can reference [the documentation](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract#data-types).
+If you want to know more data types, you can reference [the documentation](https://docs.scrypt.io/how-to-write-a-contract/#data-types).
 
 
 ## FixedArray
@@ -31,7 +31,7 @@ const b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
 
 ## `@prop` decorator
 
-Use this decorator to mark any property that intends to be stored on chain. This decorator accepts a boolean parameter. By default, it is set to `false`, meaning the property cannot be changed after the contract is deployed. If it is `true`, the property is a so-called [stateful](https://scrypt.io/scrypt-ts/tutorials/stateful-contract) property and its value can be updated in subsequent contract calls. Only [specific types](https://scrypt.io/scrypt-ts/getting-started/how-to-write-a-contract/#data-types) can be used in `@prop`.
+Use this decorator to mark any property that intends to be stored on chain. This decorator accepts a boolean parameter. By default, it is set to `false`, meaning the property cannot be changed after the contract is deployed. If it is `true`, the property is a so-called [stateful](https://docs.scrypt.io/how-to-write-a-contract/stateful-contract) property and its value can be updated in subsequent contract calls. Only [specific types](https://docs.scrypt.io/how-to-write-a-contract/#data-types) can be used in `@prop`.
 
 
 Contract properties without the `@prop` decorator are regular TypeScript properties without any special requirement, meaning they can use any type. But accessing these member variables is prohibited in methods decorated with `@method`.
