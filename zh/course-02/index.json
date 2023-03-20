@@ -103,14 +103,18 @@
                     "title": "第一章：实现战舰合约",
                     "scripts": [  
                         {
-                            "name": "battleship.scrypt",
-                            "lang": "scrypt",
-                            "hints": ["battleship contract"]
+                            "name": "zkBattleship.ts",
+                            "lang": "ts",
+                            "hints": [
+                                "battleship contract"
+                            ]
                         },
                         {
-                            "name": "verifier.scrypt",
-                            "lang": "scrypt",
-                            "hints": ["ZKSNARK library"]
+                            "name": "verifier.ts",
+                            "lang": "ts",
+                            "hints": [
+                                "ZKSNARK library"
+                            ]
                         }
                     ]
                 }
@@ -146,8 +150,8 @@
                     "title": "第 3 章：将 circom 电路 与 snarkjs 集成",
                     "scripts": [  
                         {
-                            "name": "circomProvider.js",
-                            "lang": "js",
+                            "name": "circomProvider.ts",
+                            "lang": "ts",
                             "hints": [""]
                         }
                     ]
@@ -156,13 +160,13 @@
                     "num": 1,
                     "title": "第 4 章：将 sCrypt 合约与 scryptlib 集成",
                     "scripts": [{
-                            "name": "WelcomeScreen.js",
-                            "lang": "js",
+                            "name": "WelcomeScreen.tsx",
+                            "lang": "ts",
                             "hints": ["加载合约描述文件"]
                         },
                         {
-                            "name": "Game.js",
-                            "lang": "js",
+                            "name": "Game.tsx",
+                            "lang": "ts",
                             "hints": ["部署，调用合约"]
                     }]
                 },
