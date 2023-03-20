@@ -69,6 +69,12 @@ If a wallet is connected, its balance is displayed. Otherwise we show the `conne
 }
 ```
 
+
+
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/connectwallet.gif?raw=true)
+
+<center>connect wallet</center>
+
 ## Put it to the test
 
 Call `requestAuth()` to request to connect to the wallet.

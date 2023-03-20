@@ -71,6 +71,11 @@ signer.getBalance().then(balance =>
 }
 ```
 
+
+![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/connectwallet.gif?raw=true)
+
+<center>连接钱包</center>
+
 ## 实战演习
 
 调用钱包的 `requestAuth()` 接口请求连接钱包。
