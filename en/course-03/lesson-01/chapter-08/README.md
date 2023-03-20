@@ -32,7 +32,7 @@ Since the new output contains the same contract code, its spending transaction m
 ![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/07.png?raw=true)
 
 ## Counter Contract
-The following is a simple stateful [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts). The contract maintains a single state: how many times it has been called since deployment.
+The following is a simple stateful [counter contract](https://github.com/sCrypt-Inc/boilerplate/blob/master/src/contracts/counter.ts). The contract maintains a single state: how many times it has been called since deployment.
 
 ### Step 1
 

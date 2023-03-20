@@ -36,7 +36,7 @@ export interface ScriptContext {
 
 ## 计数器合约
 
-以下是一个简单的有状态 [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts)。合约维护一个单一的状态：自部署以来它被调用了多少次。
+以下是一个简单的有状态 [counter contract](https://github.com/sCrypt-Inc/boilerplate/blob/master/src/contracts/counter.ts)。合约维护一个单一的状态：自部署以来它被调用了多少次。
 
 ### 第一步
 
