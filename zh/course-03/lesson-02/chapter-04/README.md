@@ -37,7 +37,7 @@ const nextInstance = current.next();
 Object.assign(nextInstance, Utils.toContractState(latestGameData));
 
 // 2. bind a tx builder for move
-TicTacToe.bindTxBuilder('move', async (options: BuildMethodCallTxOptions<SmartContract>, n: bigint, sig: Sig) => {
+current.bindTxBuilder('move', async (current: TicTacToe, options: MethodCallOptions<TicTacToe>, n: bigint, sig: Sig) => {
     ...
 }
 

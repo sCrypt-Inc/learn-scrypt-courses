@@ -15,7 +15,7 @@ export const Game = ({ artifact, signer }) => {
     // Update contract state:
     Object.assign(nextInstance, newStates);
 
-    BattleShip.bindTxBuilder('move', async (options: BuildMethodCallTxOptions<BattleShip>, sig: Sig) => {
+    currentInstance.bindTxBuilder('move', async (currentInstance: BattleShip, options: MethodCallOptions<BattleShip>, sig: Sig) => {
 
       const unsignedTx: bsv.Transaction = new bsv.Transaction()
         .addInputFromPrevTx(currentInstance.from?.tx as bsv.Transaction, currentInstance.from?.outputIndex)
@@ -33,12 +33,12 @@ export const Game = ({ artifact, signer }) => {
           .change(changeAddress)
 
         return Promise.resolve({
-          unsignedTx,
+          tx: unsignedTx,
           atInputIndex: 0,
           nexts: [
 
           ]
-        }) as Promise<BuildMethodCallTxResult<BattleShip>>
+        });
 
       } else if (newStates.successfulComputerHits == 17n) {
 
@@ -49,12 +49,12 @@ export const Game = ({ artifact, signer }) => {
           .change(changeAddress)
 
         return Promise.resolve({
-          unsignedTx,
+          tx: unsignedTx,
           atInputIndex: 0,
           nexts: [
 
           ]
-        }) as Promise<BuildMethodCallTxResult<BattleShip>>
+        });
 
       } else {
         unsignedTx.addOutput(new bsv.Transaction.Output({
@@ -64,7 +64,7 @@ export const Game = ({ artifact, signer }) => {
           .change(changeAddress)
 
         return Promise.resolve({
-          unsignedTx,
+          tx: unsignedTx,
           atInputIndex: 0,
           nexts: [
             {
@@ -73,7 +73,7 @@ export const Game = ({ artifact, signer }) => {
               balance: initBalance
             }
           ]
-        }) as Promise<BuildMethodCallTxResult<BattleShip>>
+        });
       }
     })
 

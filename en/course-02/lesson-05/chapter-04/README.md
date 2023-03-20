@@ -75,12 +75,12 @@ if (nextInstance.successfulPlayerHits == 17n) {
     .change(changeAddress)
 
   return Promise.resolve({
-    unsignedTx,
+    tx: unsignedTx,
     atInputIndex: 0,
     nexts: [
 
     ]
-  }) as Promise<BuildMethodCallTxResult<BattleShip>>
+  })
 
 } else if (newStates.successfulComputerHits == 17n) {
 
@@ -91,12 +91,12 @@ if (nextInstance.successfulPlayerHits == 17n) {
     .change(changeAddress)
 
   return Promise.resolve({
-    unsignedTx,
+    tx: unsignedTx,
     atInputIndex: 0,
     nexts: [
 
     ]
-  }) as Promise<BuildMethodCallTxResult<BattleShip>>
+  })
 
 } else {
   unsignedTx.addOutput(new bsv.Transaction.Output({
@@ -106,7 +106,7 @@ if (nextInstance.successfulPlayerHits == 17n) {
     .change(changeAddress)
 
   return Promise.resolve({
-    unsignedTx,
+    tx: unsignedTx,
     atInputIndex: 0,
     nexts: [
       {
@@ -115,7 +115,7 @@ if (nextInstance.successfulPlayerHits == 17n) {
         balance: initBalance
       }
     ]
-  }) as Promise<BuildMethodCallTxResult<BattleShip>>
+  })
 }
 ```
 

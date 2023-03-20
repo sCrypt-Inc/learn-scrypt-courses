@@ -4,7 +4,7 @@ async function move(i: number, latestGameData: GameData) {
   // update nextInstance state
   Object.assign(nextInstance, Utils.toContractState(latestGameData));
 
-  TicTacToe.bindTxBuilder('move', async function (options: BuildMethodCallTxOptions<SmartContract>, n: bigint, sig: Sig): Promise<BuildMethodCallTxResult<SmartContract>> {
+  current.bindTxBuilder('move', async function (current: TicTacToe, options: MethodCallOptions<TicTacToe>, n: bigint, sig: Sig) {
   
     let play = current.is_alice_turn ? TicTacToe.ALICE : TicTacToe.BOB;
 
@@ -25,12 +25,12 @@ async function move(i: number, latestGameData: GameData) {
       .change(changeAddress)
 
       return Promise.resolve({
-        unsignedTx,
+        tx: unsignedTx,
         atInputIndex: 0,
         nexts: [
 
         ]
-      }) as Promise<BuildMethodCallTxResult<TicTacToe>>
+      });
 
     } else if (nextInstance.full()) {
 
@@ -48,12 +48,12 @@ async function move(i: number, latestGameData: GameData) {
 
 
       return Promise.resolve({
-        unsignedTx,
+        tx: unsignedTx,
         atInputIndex: 0,
         nexts: [
 
         ]
-      }) as Promise<BuildMethodCallTxResult<TicTacToe>>
+      });
     } else {
 
       unsignedTx.addOutput(new bsv.Transaction.Output({
@@ -63,7 +63,7 @@ async function move(i: number, latestGameData: GameData) {
       .change(changeAddress)
 
       return Promise.resolve({
-        unsignedTx,
+        tx: unsignedTx,
         atInputIndex: 0,
         nexts: [
           {
@@ -72,7 +72,7 @@ async function move(i: number, latestGameData: GameData) {
             balance: initBalance
           }
         ]
-      }) as Promise<BuildMethodCallTxResult<TicTacToe>>
+      });
     }
   });
   const pubKey = current.is_alice_turn ? current.alice : current.bob;
