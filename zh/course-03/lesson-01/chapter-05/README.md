@@ -14,7 +14,7 @@
 5. `ByteString`: 字节数组
 
 
-如果您想了解更多数据类型，可以参考[文档](https://docs.scrypt.io/how-to-write-a-contract/#data-types)。
+如果您想了解更多数据类型，可以参考[文档](https://scrypt.io/docs/how-to-write-a-contract/#data-types)。
 
 
 ## 数组
@@ -29,7 +29,7 @@ let b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
 
 ## `@prop` 装饰器
 
-使用这个装饰器来标记任何打算存储在链上的属性。 装饰器接受一个布尔参数。 默认情况下，它设置为 `false`，这意味着部署合约后无法更改该属性。 如果为 `true`，则该属性是所谓的 [stateful](https://docs.scrypt.io/how-to-write-a-contract/stateful-contract) 属性，其值可以在后续合约调用中更新。 `@prop` 中只能修饰[特定类型](https://docs.scrypt.io/how-to-write-a-contract/#data-types)。
+使用这个装饰器来标记任何打算存储在链上的属性。 装饰器接受一个布尔参数。 默认情况下，它设置为 `false`，这意味着部署合约后无法更改该属性。 如果为 `true`，则该属性是所谓的 [stateful](https://scrypt.io/docs/how-to-write-a-contract/stateful-contract) 属性，其值可以在后续合约调用中更新。 `@prop` 中只能修饰[特定类型](https://scrypt.io/docs/how-to-write-a-contract/#data-types)。
 
 没有 `@prop` 装饰器标记的成员变量是常规的 TypeScript 变量，其声明没有任何特殊要求。但是在使用 `@method` 装饰器装饰的方法中禁止访问这些成员变量。
 

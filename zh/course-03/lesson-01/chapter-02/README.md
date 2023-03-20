@@ -26,7 +26,7 @@
 
 未花费的交易输出 (UTXO) 是尚未在任何交易中使用的输出。底层计算机代码称为[比特币脚本](https://wiki.bitcoinsv.io/index.php/Script)。
 
-![](https://docs.scrypt.io/assets/images/utxo-a4cf31c29158072cdfbfae3366522ba5.jpg)
+![](https://scrypt.io/assets/images/utxo-a4cf31c29158072cdfbfae3366522ba5.jpg)
 
 
 锁定脚本可以被视为一个布尔函数 `f`，它指定在 UTXO 中花费比特币的条件（因此名称为“锁定”），充当锁。解锁脚本依次提供使 `f` 计算结果为真的函数参数，即解锁所需的“密钥”（也称为见证）。只有当输入包含与先前输出的“锁”匹配的“密钥”时，它才能花费输出中包含的比特币。
