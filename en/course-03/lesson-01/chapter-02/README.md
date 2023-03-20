@@ -24,7 +24,7 @@ while an input contains:
 
 An Unspent Transaction Output (UTXO) is an output not consumed in any transaction yet. The low-level bytecode/opcode is called [Bitcoin Script](https://wiki.bitcoinsv.io/index.php/Script), which is interpreted by the [Bitcoin Virtual Machine](https://xiaohuiliu.medium.com/introduction-to-bitcoin-smart-contracts-9c0ea37dc757) (BVM).
 
-![](https://docs.scrypt.io/assets/images/utxo-a4cf31c29158072cdfbfae3366522ba5.jpg)
+![](https://scrypt.io/assets/images/utxo-a4cf31c29158072cdfbfae3366522ba5.jpg)
 
 In the example above, we have two transactions, each having one input (in green) and one output (in red). And the transaction on the right spends the one on the left.
 The locking script can be regarded as a boolean function `f` that specifies conditions to spend the bitcoins in the UTXO, acting as a lock (thus the name "locking").

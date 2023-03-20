@@ -5,7 +5,7 @@
 In the UTXO model, the context of validating a smart contract is the UTXO containing it and the transaction spending it, including its inputs and outputs. In the following example, when the second of input of transaction `tx1` is spending the second output of `tx0`, the context for the smart contract in the latter output is roughly the UTXO and `tx1` circled in red.
 
 
-![](https://docs.scrypt.io/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
+![](https://scrypt.io/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
 
 You can directly access the context through `this.ctx` in any public `@method`.
 It can be considered additional information a public method gets when called, besides its function parameters.
@@ -19,7 +19,7 @@ export interface ScriptContext {
   hashOutputs: ByteString,
 }
 ```
-We only show the relevant fields here. You can find the complete definition [here](https://docs.scrypt.io/how-to-write-a-contract/scriptcontext).
+We only show the relevant fields here. You can find the complete definition [here](https://scrypt.io/docs/how-to-write-a-contract/scriptcontext).
 
 
 ## Stateful Contracts
@@ -32,12 +32,12 @@ Since the new output contains the same contract code, its spending transaction m
 ![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/07.png?raw=true)
 
 ## Counter Contract
-The following is a simple stateful [counter contract](https://github.com/sCrypt-Inc/scryptTS-examples/blob/master/src/contracts/counter.ts). The contract maintains a single state: how many times it has been called since deployment.
+The following is a simple stateful [counter contract](https://github.com/sCrypt-Inc/boilerplate/blob/master/src/contracts/counter.ts). The contract maintains a single state: how many times it has been called since deployment.
 
 ### Step 1
 
 
-Declare a property stateful by using [decorator `@prop()`](https://docs.scrypt.io/how-to-write-a-contract/#properties) with a `true` argument. You can treat the state property like a regular property: read and update it.
+Declare a property stateful by using [decorator `@prop()`](https://scrypt.io/docs/how-to-write-a-contract/#properties) with a `true` argument. You can treat the state property like a regular property: read and update it.
 
 ```ts
 class Counter extends SmartContract {
