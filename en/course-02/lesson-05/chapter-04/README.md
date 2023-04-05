@@ -31,10 +31,10 @@ const instance = new BattleShip(
 ```
 
 
-Before deploying the contract instance, we need to connect it to a [signer](https://scrypt.io/scrypt-ts/how-to-add-a-signer/). In our app we use the `SensiletSigner`, which is already built into `scrypt-ts` itself.
+Before deploying the contract instance, we need to connect it to a [signer](https://scrypt.io/docs/advanced/how-to-add-a-signer). In our app we use the `SensiletSigner`, which is already built into `scrypt-ts` itself.
 
 ```ts
-const provider = new WhatsonchainProvider(bsv.Networks.testnet)
+const provider = new DefaultProvider()
 const signer = new SensiletSigner(provider)
 
 await signer.getConnectedTarget() as any
