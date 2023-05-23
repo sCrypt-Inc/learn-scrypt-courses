@@ -1,5 +1,5 @@
-# Learn sCrypt Contents
-The contents of interactive [Learn sCrypt](https://learn.scrypt.io/).
+# sCrypt Academy Contents
+The contents of interactive [sCrypt Academy](https://academy.scrypt.io/).
 
 
 ## Structure
@@ -24,7 +24,7 @@ To create a new course, use the following format. Pull requests are welcome.
 
 ```json
 {
-    "title": "Learn sCrypt", // the course's title (required)
+    "title": "sCrypt Academy", // the course's title (required)
     "desc": "This is the first course for learning sCrypt", // the course's description (required)
     "lessons": [
         {
