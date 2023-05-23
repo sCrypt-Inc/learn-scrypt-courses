@@ -49,7 +49,7 @@ const contract = new BattleShip(new PubKey(PlayerPublicKey.get(Player.You)),
 setBattleShipContract(contract);
 ```
 
-在部署合约实例之前，我们应该先[集成钱包](https://learn.scrypt.io/en/courses/614c387bc0974f55df5af1e5/lessons/2/chapters/4)。 之后，使用一些初始资金，我们调用 `web3.deploy()` 来部署合约：
+在部署合约实例之前，我们应该先[集成钱包](https://academy.scrypt.io/en/courses/614c387bc0974f55df5af1e5/lessons/2/chapters/4)。 之后，使用一些初始资金，我们调用 `web3.deploy()` 来部署合约：
 
 ```js
 const rawTx = await web3.deploy(contract, 2000000);
