@@ -5,7 +5,7 @@
 In the UTXO model, the context of validating a smart contract is the UTXO containing it and the transaction spending it, including its inputs and outputs. In the following example, when the second of input of transaction `tx1` is spending the second output of `tx0`, the context for the smart contract in the latter output is roughly the UTXO and `tx1` circled in red.
 
 
-![](https://scrypt.io/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
+![](https://docs.scrypt.io/assets/images/scriptContext-a3ace5522bf62d82d20958735c13ddf4.jpg)
 
 You can directly access the context through `this.ctx` in any public `@method`.
 It can be considered additional information a public method gets when called, besides its function parameters.
