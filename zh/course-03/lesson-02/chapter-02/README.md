@@ -20,7 +20,9 @@
 ```ts
 const sensiletLogin = async () => {
     try {
-      const provider = new DefaultProvider();
+      const provider = new DefaultProvider({
+          network: bsv.Networks.testnet
+      });
       const signer = new SensiletSigner(provider);
 
       signerRef.current = signer;
