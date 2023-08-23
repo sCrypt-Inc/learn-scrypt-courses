@@ -1,5 +1,5 @@
 
-import { prop, SmartContract, PubKey, FixedArray, assert, Sig} from "scrypt-ts";
+import { prop, SmartContract, PubKey, FixedArray, assert, Sig, fill} from "scrypt-ts";
 
 export class TicTacToe extends SmartContract {
     @prop()
