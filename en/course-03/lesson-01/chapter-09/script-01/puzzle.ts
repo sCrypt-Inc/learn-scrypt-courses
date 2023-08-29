@@ -28,7 +28,7 @@ export class TicTacToe extends SmartContract {
     }
 
     @method()
-    public move(n: bigint, sig: Sig, amount: bigint): void {
+    public move(n: bigint, sig: Sig) {
         // check position `n`
         assert(n >= 0n && n < 9n);
         // check signature `sig`
@@ -53,7 +53,7 @@ export class TicTacToe extends SmartContract {
         }
         else {
             // build a output that contains latest contract state.
-            outputs = this.buildStateOutput(amount);
+            outputs = this.buildStateOutput(this.ctx.utxo.value);
         }
 
         if(this.changeAmount > 0n) {

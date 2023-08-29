@@ -28,7 +28,7 @@ export class TicTacToe extends SmartContract {
     }
 
     @method()
-    public move(n: bigint, sig: Sig): void {
+    public move(n: bigint, sig: Sig) {
         assert(n >= 0n && n < 9n);
     }
 
