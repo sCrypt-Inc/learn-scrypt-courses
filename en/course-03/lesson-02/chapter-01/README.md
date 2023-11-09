@@ -27,7 +27,7 @@ The sCrypt SDK - [sCrypt](https://scrypt.io) enables you to easily compile, test
 Use the `scrypt-cli` command line tool to install the SDK.
 
 ```base
-npx scrypt-cli init
+cd tic-tac-toe && npx scrypt-cli init
 ```
 
 This will also add all scaffolding needed for contract development.

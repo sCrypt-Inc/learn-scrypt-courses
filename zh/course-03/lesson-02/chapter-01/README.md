@@ -27,7 +27,7 @@ git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 使用 `scrypt-cli` 命令行工具安装 sCrypt SDK。
 
 ```base
-npx scrypt-cli init
+cd tic-tac-toe && npx scrypt-cli init
 ```
 
 这将添加合约开发所需的所有脚手架。
