@@ -1,12 +1,13 @@
 # Chapter 5: Text Inscription
 
-```ts
-import { useState, useRef } from "react";
-import { Container, Box, Typography, Button, TextField } from "@mui/material";
-import { OrdiNFTP2PKH } from "scrypt-ord";
-import { Addr, PandaSigner } from "scrypt-ts";
-import { Navigate } from "react-router-dom";
+## Introduction:
+The OrdinalText.tsx file contains a React component named OrdinalText. 
+This component is designed to facilitate the inscription of Text using the OrdiNFTP2PKH class from the scrypt-ord library. 
+Let's break down the key features of this component.
 
+So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/master/src/ordinalText.tsx)
+
+```ts
 function OrdinalText(props) {
   // Destructuring props to access _ordiAddress and _signer
   const { _ordiAddress, _signer } = props;
