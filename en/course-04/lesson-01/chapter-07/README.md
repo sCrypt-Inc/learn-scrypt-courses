@@ -5,6 +5,9 @@ This component is designed to facilitate the inscription of **BSV20 - V2** using
 Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/master/src/bsv20v2.tsx)
+
+![](../../5.png)
+
 ```ts
 
 function BSV20v2(props) {
