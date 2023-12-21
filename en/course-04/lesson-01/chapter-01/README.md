@@ -16,3 +16,5 @@ We will build in two steps:
 ## How it works
 
 Before starting this course, you can try and see how it works [Inscribe](https://inscribe.scrypt.io)
+
+![](../../1.png)
