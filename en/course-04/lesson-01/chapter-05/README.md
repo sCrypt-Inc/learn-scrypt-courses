@@ -7,6 +7,8 @@ Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/master/src/ordinalText.tsx)
 
+![](../../3.png)
+
 ```ts
 function OrdinalText(props) {
   // Destructuring props to access _ordiAddress and _signer
