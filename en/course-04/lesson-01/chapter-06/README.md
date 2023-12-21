@@ -5,6 +5,9 @@ This component is designed to facilitate the inscription of **BSV20 - V1** using
 Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/master/src/bsv20v1.tsx)
+
+![](../../4.png)
+
 ```ts
 function BSV20v1(props) {
   const { _ordiAddress, _signer, _payAddress, _network } = props;
