@@ -6,7 +6,7 @@ The course is very simple and you will developed a platform that will allow user
 
 We will build in two steps:
 
-1. Ordinla basics
+1. Ordinals basics
 2. Image inscription
 3. Text inscription
 4. bsv20-v1
