@@ -7,7 +7,8 @@ Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/learn/src/ordinalText.tsx)
 
-![](../../3.png)
+![Inscribe Text](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-04/3.png?raw=true)
+
 
 ```ts
 function OrdinalText(props) {

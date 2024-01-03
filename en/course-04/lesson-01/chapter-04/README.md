@@ -6,7 +6,8 @@ Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/learn/src/ordinalImage.tsx)
 
-![](../../2.png)
+![Inscribe Image](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-04/2.png?raw=true)
+
 
 ```ts
 

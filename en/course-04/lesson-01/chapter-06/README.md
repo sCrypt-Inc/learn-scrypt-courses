@@ -7,7 +7,8 @@ Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/learn/src/bsv20v1.tsx)
 
-![](../../4.png)
+![Inscribe BSV-20 v1](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-04/4.png?raw=true)
+
 
 ```ts
 

@@ -6,7 +6,7 @@ Let's break down the key features of this component.
 
 So, i will take through with step by step explaination and you can also get the complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/learn/src/bsv20v2.tsx)
 
-![](../../5.png)
+![Inscribe BSV-20 v2](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-04/5.png?raw=true)
 
 ## `BSV20Mint` Contract
 

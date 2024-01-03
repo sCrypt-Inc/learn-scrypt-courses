@@ -17,4 +17,4 @@ We will build in two steps:
 
 Before starting this course, you can try and see how it works [Inscribe](https://inscribe.scrypt.io)
 
-![](../../1.png)
+![Inscribe](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-04/1.png?raw=true)
