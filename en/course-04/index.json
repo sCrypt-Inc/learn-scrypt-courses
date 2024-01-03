@@ -1,0 +1,42 @@
+{
+    "title": "How to inscribe Ordinals",
+    "enTitle": "How to inscribe Ordinals",
+    "desc": "This is the first course for learning Ordinals",
+    "lessons": [
+        {
+            "title": "Learn Ordinals",
+            "desc": "Learn what are Ordinals, and even learn how to inscribe images, text and bsv-20 both version 1 and 2.",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "Chapter 1: Course Overview"
+                },
+                {
+                    "num": 2,
+                    "title": "Chapter 2: Understanding Ordinals and the Ordinals Protocol"
+                },
+                {
+                    "num": 3,
+                    "title": "Chapter 3: Panda Wallet"
+                },
+                {
+                    "num": 4,
+                    "title": "Chapter 4: Inscribe Image"
+                },
+                {
+                    "num": 5,
+                    "title": "Chapter 5: Inscribe Text"
+                },
+                {
+                    "num": 6,
+                    "title": "Chapter 6: Inscribe BSV20-V1"
+                },
+                {
+                    "num": 7,
+                    "title": "Chapter 7: Inscribe BSV20-V2"
+                }
+            ]
+        }
+    ]
+}
