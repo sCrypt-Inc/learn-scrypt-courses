@@ -1,5 +1,5 @@
 {
-  "course-03": ["en/course-04"],
   "course-01": ["zh/course-03", "en/course-03"],
-  "course-02": ["zh/course-02", "en/course-02"]
+  "course-02": ["en/course-04"],
+  "course-03": ["zh/course-02", "en/course-02"]
 }
