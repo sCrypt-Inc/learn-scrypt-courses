@@ -12,10 +12,10 @@ So, i will take through with step by step explaination and you can also get the 
 ```ts
 function OrdinalText(props) {
   // Destructuring props to access _ordiAddress and _signer
-  const { _ordiAddress, _signer } = props;
-
-  // Function to check if the user is connected
-  const connected = () => _ordiAddress !== undefined;
+  const { ordiAddress: _ordiAddress,
+    signer: _signer,
+    connected
+  } = useAppProvider();
 
   // State variable to store the result of the inscription operation
   const [result, setResult] = useState<string | undefined>(undefined);

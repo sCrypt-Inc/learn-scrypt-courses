@@ -1,4 +1,5 @@
 # Chapter 6: BSV20-V1 
+
 ## Introduction:
 The **BSV20 - V1** file contains a React component named BSV20v1. 
 This component is designed to facilitate the inscription of **BSV20 - V1** using the OrdiNFTP2PKH class from the scrypt-ord library. 
@@ -9,12 +10,13 @@ So, i will take through with step by step explaination and you can also get the 
 ![](../../4.png)
 
 ```ts
-function BSV20v1(props) {
-  const { _ordiAddress, _signer, _payAddress, _network } = props;
 
-  const connected = () => {
-    return _ordiAddress !== undefined;
-  };
+
+function BSV20v1(props) {
+  const { ordiAddress: _ordiAddress, 
+    network: _network,
+    signer: _signer,
+    connected } = useAppProvider();
 
   const MINT_TICK_TEXT_INVALID = "Invalid! Tick not found.";
   const MINT_TICK_TEXT_MINT_OUT = "Tick was already mint out!";
@@ -39,10 +41,7 @@ function BSV20v1(props) {
   const [_mintTick, setMintTick] = useState<string | undefined>(undefined);
 
   const [_isLoading, setLoading] = useState<boolean>(false);
-  const [_price, setPrice] = useState<number>(0);
-  const [_cost, setCost] = useState<number>(0);
-  const [_feePerKb, setFeePerKb] = useState<number>(1);
-  const [_utxos, setUTXOs] = useState<UTXO[]>([]);
+
   const mintTickOnChange = (e) => setMintTick(e.target.value);
   const mintTickOnBlur = async () => {
     try {
@@ -88,6 +87,7 @@ function BSV20v1(props) {
 
   const mint = async () => {
     try {
+      setLoading(true)
       const signer = _signer as PandaSigner;
       const instance = new BSV20V1P2PKH(
         toByteString(_mintTick!, true),
@@ -103,11 +103,10 @@ function BSV20v1(props) {
     } catch (e: any) {
       console.error("error", e);
       setResult(`${e.message ?? e}`);
+    } finally {
+      setLoading(false)
     }
 
-    if (window.gtag) {
-      window.gtag("event", "inscribe-bsv20v1-mint");
-    }
   };
 
   const [_max, setMax] = useState<bigint | undefined>(undefined);
@@ -124,118 +123,6 @@ function BSV20v1(props) {
     setDec(dec);
   };
 
-  const [_repeat, setRepeat] = useState<bigint | undefined>(1n);
-  const repeatOnChange = (e) => {
-    if (/^\d+$/.test(e.target.value)) {
-      setRepeat(BigInt(e.target.value));
-      setCost(calcCost(_utxos, Number(e.target.value)));
-    } else {
-      setRepeat(undefined);
-    }
-  };
-
-  function buildTx(
-    utxos: UTXO[],
-    changeAddress: bsv.Address,
-    feePerKb: number,
-    repeat: number
-  ) {
-    const fundAddress = "1Lv2HWPcaTKcrh8VHT1MChB6j1gK9xX8iN";
-
-    const fee = serviceFeePerRepeat * repeat;
-    const tx = new bsv.Transaction().from(utxos).addOutput(
-      new bsv.Transaction.Output({
-        script: bsv.Script.fromAddress(fundAddress),
-        satoshis: fee,
-      })
-    );
-
-    for (let i = 0; i < repeat; i++) {
-      tx.addOutput(
-        new bsv.Transaction.Output({
-          satoshis: 2,
-          script: bsv.Script.buildPublicKeyHashOut(
-            "12m2mGEMNSZGtKaxyQQ8VLaSstqvuSxZ3D"
-          ),
-        })
-      );
-    }
-
-    tx.change(changeAddress);
-    tx.feePerKb(feePerKb);
-
-    return tx;
-  }
-
-  function calcCost(utxos: UTXO[], repeat: number) {
-    const tx = buildTx(utxos, _ordiAddress, _feePerKb, repeat);
-    return tx.inputAmount - tx.getChangeAmount() + Number(repeat!);
-  }
-
-  const validFireInput = () =>
-    validMintTick() &&
-    _repeat !== undefined &&
-    _repeat > 0n &&
-    _repeat <= 20000n! &&
-    _ordiAddress !== undefined &&
-    _payAddress !== undefined;
-
-  const fire = async () => {
-    try {
-      setLoading(true);
-      const signer = _signer as PandaSigner;
-      const tx = buildTx(_utxos, _payAddress!, _feePerKb, Number(_repeat!));
-      const signedTx = await signer.signTransaction(tx);
-      const response = await axios
-        .post(`https://inscribe-api.scrypt.io/bsv20v1/batch_mint`, {
-          raw: signedTx.toString(),
-          tick: _mintTick,
-          lim: _lim!.toString(),
-          repeat: _repeat!.toString(),
-          addr: _ordiAddress.toString(),
-        })
-        .then((r) => r.data);
-
-      setUTXOs([
-        {
-          satoshis: tx.outputs[tx.outputs.length - 1].satoshis,
-          txId: tx.id,
-          outputIndex: tx.outputs.length - 1,
-          script: bsv.Script.buildPublicKeyHashOut(_payAddress).toHex(),
-        },
-      ]);
-
-      const historyTxs = JSON.parse(localStorage.getItem("history") || "[]");
-
-      historyTxs.push({
-        tx: tx.id,
-        time: new Date().getTime(),
-      });
-
-      localStorage.setItem("history", JSON.stringify(historyTxs));
-
-      setResult(
-        response?.code === 0
-          ? `Order Tx: ${tx.id}`
-          : `Error ${response.code}: ${response.message}`
-      );
-    } catch (e: any) {
-      console.error("error", e);
-      setResult(`${e.message ?? e}`);
-    } finally {
-      setLoading(false);
-    }
-
-    if (window.gtag) {
-      const fee = serviceFeePerRepeat * Number(_repeat!);
-      window.gtag("event", "inscribe-bsv20v1-batch-mint", {
-        tick: _mintTick,
-        amt: _lim!.toString(),
-        repeat: _repeat!.toString(),
-        fee: fee!.toString(),
-      });
-    }
-  };
 
   const [_result, setResult] = useState<string | undefined>(undefined);
 
@@ -332,66 +219,8 @@ function BSV20v1(props) {
       setResult(`${e.message ?? e}`);
     }
 
-    if (window.gtag) {
-      window.gtag("event", "inscribe-bsv20v1-deploy");
-    }
   };
 
-  useEffect(() => {
-    const signer = _signer as PandaSigner;
-
-    if (_payAddress) {
-      signer
-        .listUnspent(_payAddress)
-        .then((us) => {
-          setUTXOs(us || []);
-          setCost(calcCost(us, Number(_repeat || 1)));
-        })
-        .catch((e) => {
-          console.error("error", e);
-        });
-    }
-
-    signer
-      .provider!.getFeePerKb()
-      .then((fpkb) => {
-        setFeePerKb(fpkb);
-      })
-      .catch((e) => {
-        console.error("error", e);
-      });
-  }, []);
-
-  useEffect(() => {
-    fetch("https://api.whatsonchain.com/v1/bsv/main/exchangerate")
-      .then((res) => res.json())
-      .then((data) => {
-        setPrice(data?.rate || 0);
-      })
-      .catch((e) => {
-        console.error("error", e);
-      });
-  }, []);
-
-  useInterval(
-    () => {
-      const signer = _signer as PandaSigner;
-
-      if (_payAddress) {
-        signer
-          .listUnspent(_payAddress)
-          .then((us) => {
-            setUTXOs(us || []);
-            setCost(calcCost(us, Number(_repeat || 1)));
-          })
-          .catch((e) => {
-            console.error("error", e);
-          });
-      }
-    },
-    // Delay in milliseconds or null to stop it
-    3000
-  );
 
   return (
     <Container maxWidth="md">
@@ -456,7 +285,6 @@ function BSV20v1(props) {
                 </Typography>
               </Box>
             )}
-          {_network === bsv.Networks.testnet && (
             <Box sx={{ mt: 2 }}>
               <TextField
                 label="Amount"
@@ -476,47 +304,6 @@ function BSV20v1(props) {
                 Mint It!
               </Button>
             </Box>
-          )}
-          
-            {
-                _network === bsv.Networks.mainnet && (
-                    <Box sx={{ mt: 2 }}>
-                    <TextField
-                      label="Repeat (Max: 20000, Fee: 50 sats/mint)"
-                      defaultValue={1}
-                      variant="outlined"
-                      required
-                      fullWidth
-                      onChange={repeatOnChange}
-                      disabled={!validMintTick()}
-                    />
-        
-                    <Box sx={{ mt: 2, display: "flex", flexDirection: "row" }}>
-                      <Button
-                        variant="contained"
-                        color="primary"
-                        sx={{ mt: 2 }}
-                        disabled={!connected() || !validFireInput()}
-                        onClick={fire}
-                      >
-                        Fire!
-                      </Button>
-                      {_cost > 0 && validFireInput() ? (
-                        <Typography color="primary" sx={{ mt: 3, ml: 3 }}>
-                          {_price > 0
-                            ? `Total Cost: ${_cost} sats, $${(
-                                (_price * _cost) /
-                                100000000
-                              ).toFixed(5)}USD `
-                            : `Total Cost: ${_cost} sats`}
-                        </Typography>
-                      ) : (
-                        <></>
-                      )}
-                    </Box>
-                  </Box>
-                )
-            }
         </Box>
       )}
       {_mintOrDeploy === "deploy" && (
@@ -589,11 +376,14 @@ function BSV20v1(props) {
     </Container>
   );
 }
+
+export default BSV20v1;
+
 ```
 The component is defined as a function that takes props as its parameter. It returns JSX, rendering the UI of the BSV20v1 component within a Material-UI Container.
 
 **State and Hooks**
-The component uses React hooks to manage state variables. Notable ones include **_mintTick**, **_isLoading**, **_price**, **_cost**, **_utxos**, **_result**, **_mintOrDeploy**, and others. State is updated with functions like **useState**, and there are side effects using the **useEffect** and **useInterval** hooks.
+The component uses React hooks to manage state variables. Notable ones include **_mintTick**, **_isLoading**, **_result**, **_mintOrDeploy**, and others. State is updated with functions like **useState**, and there are side effects using the **useEffect** hooks.
 
 **Minting and Deployment Logic**
 The component handles both minting and deploying logic based on the value of **_mintOrDeploy**. It interacts with the BSV blockchain, retrieves information about ticks, and performs transactions such as minting and deploying.
@@ -606,3 +396,13 @@ The component uses Axios to make HTTP requests, such as fetching tick informatio
 
 **Event Handlers**
 Event handlers like **mintTickOnChange**, **mintTickOnBlur**, **amountOnChange**, **mint**, and others are defined to handle user interactions and trigger corresponding actions.
+
+**Deploying**
+The `deploy` function deploys a BSV20 ticker by calling `instance.deployToken()`.
+
+**Minting**
+
+The `mint` function implements minting BSV20 tokens by calling `instance.mint(amount: number)`.
+
+
+
