@@ -15,7 +15,7 @@ const [bobPubkey, setBobPubkey] = useState("");
 
 const startGame = async (amount: number) => {
   try {
-    const signer = signerRef.current as SensiletSigner;
+    const signer = signerRef.current as PandaSigner;
 
     const instance = new TicTacToe(
         PubKey(toHex(alicePubkey)),
