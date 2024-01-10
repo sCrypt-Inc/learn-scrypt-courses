@@ -1,8 +1,8 @@
 # Chapter 2: Integrated Wallet
 
-Before deploying the contract, we need to connect a wallet first. We use [Sensilet](https://sensilet.com), a MetaMask-like wallet.
+Before deploying the contract, we need to connect a wallet first. We use [Panda Wallet](https://chromewebstore.google.com/detail/panda-wallet/mlbnicldlpdimbjdcncnklfempedeipj), a MetaMask-like wallet.
 
-After installing the **Sensilet** wallet, click the `settings` button in the upper right corner to switch to testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to fund it.
+After installing the **Panda** wallet, click the `settings` button in the upper right corner to switch to testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to fund it.
 
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
@@ -13,17 +13,17 @@ When a user wants to sends a transaction onto the chain, our dApp would prompt t
 
 A `Provider` is an abstraction for a Bitcoin node that you connect with when you need to interact with the blockchain, e.g., to broadcast a transaction. Whatsonchain is an example, providing access to the blockchain.
 
-## Connect to **Sensilet**
+## Connect to **Panda**
 
-After clicking the **Connect Sensilet** button, we initialize a `SensiletSigner` and save it. We call `requestAuth()` to request to connect to the wallet. If the request is approved by the user, we now have full access to the wallet. We can, for example, call `getDefaultPubKey()` to get its public key.
+After clicking the **Connect Panda** button, we initialize a `PandaSigner` and save it. We call `requestAuth()` to request to connect to the wallet. If the request is approved by the user, we now have full access to the wallet. We can, for example, call `getDefaultPubKey()` to get its public key.
 
 ```ts
-const sensiletLogin = async () => {
+const pandaLogin = async () => {
     try {
       const provider = new DefaultProvider({
           network: bsv.Networks.testnet
       });
-      const signer = new SensiletSigner(provider);
+      const signer = new PandaSigner(provider);
 
       signerRef.current = signer;
       
@@ -40,8 +40,8 @@ const sensiletLogin = async () => {
       // Prompt user to switch accounts
 
     } catch (error) {
-      console.error("sensiletLogin failed", error);
-      alert("sensiletLogin failed")
+      console.error("pandaLogin failed", error);
+      alert("pandaLogin failed")
     }
 };
 ```
@@ -64,9 +64,9 @@ If a wallet is connected, its balance is displayed. Otherwise we show the `conne
     :
     <button
       className="pure-button button-large sensilet"
-      onClick={sensiletLogin}
+      onClick={pandaLogin}
     >
-      Connect Sensilet
+      Connect Panda
     </button>
 }
 ```

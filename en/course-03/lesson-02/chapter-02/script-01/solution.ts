@@ -2,7 +2,7 @@ import "./App.css";
 import Game from "./Game";
 import { useState, useRef } from "react";
 import TitleBar from "./TitleBar";
-import { DefaultProvider, SensiletSigner, toHex, PubKey, bsv } from "scrypt-ts";
+import { DefaultProvider, PandaSigner, toHex, PubKey, bsv } from "scrypt-ts";
 import { TicTacToe } from "./contracts/tictactoe";
 
 const initialGameData = {
@@ -23,7 +23,7 @@ function App() {
 
   const [gameData, setGameData] = useState(initialGameData);
   const [isConnected, setConnected] = useState(false);
-  const signerRef = useRef<SensiletSigner>();
+  const signerRef = useRef<PandaSigner>();
   const [contract, setContract] = useState<TicTacToe | undefined>(undefined)
   const [deployedTxId, setDeployedTxId] = useState<string>("")
   const [alicePubkey, setAlicePubkey] = useState("");
@@ -40,7 +40,7 @@ function App() {
     }
 
     try {
-      const signer = signerRef.current as SensiletSigner;
+      const signer = signerRef.current as PandaSigner;
 
 
       const instance = new TicTacToe(
@@ -76,7 +76,7 @@ function App() {
       const provider = new DefaultProvider({
         network: bsv.Networks.testnet
       });
-      const signer = new SensiletSigner(provider);
+      const signer = new PandaSigner(provider);
 
       signerRef.current = signer;
 
@@ -98,8 +98,8 @@ function App() {
       // Prompt user to switch accounts
 
     } catch (error) {
-      console.error("sensiletLogin failed", error);
-      alert("sensiletLogin failed")
+      console.error("pandaLogin failed", error);
+      alert("pandaLogin failed")
     }
   };
 

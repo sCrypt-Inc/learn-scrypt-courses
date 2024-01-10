@@ -2,7 +2,7 @@ function App() {
 
   const [gameData, setGameData] = useState(initialGameData);
   const [isConnected, setConnected] = useState(false);
-  const signerRef = useRef<SensiletSigner>();
+  const signerRef = useRef<PandaSigner>();
   const [contract, setContract] = useState<TicTacToe | undefined>(undefined)
   const [deployedTxId, setDeployedTxId] = useState<string>("")
   const [alicePubkey, setAlicePubkey] = useState("");
@@ -13,7 +13,7 @@ function App() {
   const startGame = async (amount: number) => {
 
     try {
-      const signer = signerRef.current as SensiletSigner;
+      const signer = signerRef.current as PandaSigner;
       const instance = new TicTacToe(
         PubKey(toHex(alicePubkey)),
         PubKey(toHex(bobPubkey))
