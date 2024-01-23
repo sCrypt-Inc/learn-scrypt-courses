@@ -2,10 +2,10 @@
 
 ## Chapter 1: Introduction to sCrypt Voting dApp
 
-### 1.1 Overview
+### Overview
 Welcome to the interactive course on building a full-stack voting decentralized application (dApp) on the Bitcoin blockchain using sCrypt. In this course, you'll learn how to create a smart contract for voting and build an interactive front-end to enable users to cast votes on a candidate list.
 
-### 1.2 Prerequisites
+### Prerequisites
 Before we dive into the tutorial, make sure you have the following:
 
 Basic understanding of TypeScript and React, learn more about [sCrypt](https://docs.scrypt.io)
