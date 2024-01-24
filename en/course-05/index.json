@@ -1,0 +1,35 @@
+
+{
+    "title": "Building a Full-Stack Voting dApp on Bitcoin with sCrypt",
+    "enTitle": "Building a Full-Stack Voting dApp on Bitcoin with sCrypt",
+    "desc": "This is course will guide you in developing a decentralized voting dApp on bitcoin",
+    "lessons": [
+        {
+            "title": "Learn how to develop a voting dApp",
+            "desc": "Learn how to write the contract, integrate front-end and wallet and even how to use sCrypt services.",
+            "num": 1,
+            "chapters": [
+                {
+                    "num": 1,
+                    "title": "Chapter 1: Introduction to sCrypt voting dApp"
+                },
+                {
+                    "num": 2,
+                    "title": "Chapter 2: Writing the Smart Contract"
+                },
+                {
+                    "num": 3,
+                    "title": "Chapter 3: Building the Frontend"
+                },
+                {
+                    "num": 4,
+                    "title": "Chapter 4: Integrate Wallet and sCrypt services",
+                },
+                {
+                    "num": 5,
+                    "title": "Chapter 5: Conclusion",
+                }
+            ]
+        }
+    ]
+}
