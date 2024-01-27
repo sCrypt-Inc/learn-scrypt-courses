@@ -1,7 +1,8 @@
 # Chapter 4: Integrating Wallet and sCrypt Service
 
-## Loading Contract Artifact
-Load the contract artifact in src\index.tsx.
+## 1. Loading Contract Artifact
+
+Upon the initialization of the app, we need to load the contract artifact file. We do this in `src/index.tsx`.
 
 ```ts
 import { Voting } from './contracts/voting';
@@ -9,7 +10,7 @@ import artifact from '../artifacts/voting.json';
 Voting.loadArtifact(artifact);
 ```
 
-## Integrating Wallet 
+## 2. Integrating Wallet 
 
 Use the requestAuth method of the signer to request access to the wallet.
 

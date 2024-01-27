@@ -15,11 +15,23 @@
                 },
                 {
                     "num": 2,
-                    "title": "Chapter 2: Writing the Smart Contract"
+                    "title": "Chapter 2: Writing the Smart Contract",
+                    "scripts": [  
+                        {
+                            "name": "voting.ts",
+                            "lang": "ts"
+                        }
+                    ]
                 },
                 {
                     "num": 3,
-                    "title": "Chapter 3: Building the Frontend"
+                    "title": "Chapter 3: Creating the React App",
+                    "scripts": [  
+                        {
+                            "name": "deploy.ts",
+                            "lang": "ts"
+                        }
+                    ]
                 },
                 {
                     "num": 4,
@@ -27,7 +39,17 @@
                 },
                 {
                     "num": 5,
-                    "title": "Chapter 5: Conclusion"
+                    "title": "Chapter 5: Building the front-end",
+                    "scripts": [  
+                        {
+                            "name": "App.tsx",
+                            "lang": "ts"
+                        }
+                    ]
+                },
+                {
+                    "num": 6,
+                    "title": "Chapter 6: Conclusion"
                 }
             ]
         }

@@ -4,7 +4,7 @@ In this course, you will learn what are Ordinals, and even learn how to inscribe
 
 The course is very simple and you will developed a platform that will allow user to simply inscribe Text, images and bsv-20 tokens on both main and testnet.
 
-We will build in two steps:
+We will build in the following steps:
 
 1. Ordinals basics
 2. Image inscription
