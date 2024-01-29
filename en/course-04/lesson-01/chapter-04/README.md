@@ -12,19 +12,19 @@ Let's break down the key features of this component.
 
 ## 2. Component Breakdown:
 
-**2.1. Initialization:**
+### 2.1. Initialization:
 The component starts by importing necessary dependencies and initializing state variables using the useState hook. It also defines a Ref for handling text input.
 
-**2.2. Connected Check:**
+### 2.2. Connected Check:
 The `connected()` function checks whether the user is connected by verifying the existence of the `_ordiAddress` variable.
 
-**2.3. Image Handling:**
-The component uses the ImageUploading component for handling image selection. It provides buttons for uploading, removing, and inscribing selected images.
+### 2.3. Image Handling:
+The component uses the `ImageUploading` component for handling image selection. It provides buttons for uploading, removing, and inscribing selected images.
 
-**2.4. UI Rendering:**
+### 2.4. UI Rendering:
 The component renders a user interface with a title, image selection buttons, and a button to inscribe the selected image. The result of the inscription is displayed below the UI.
 
-**2.5. Navigation:**
+### 2.5. Navigation:
 If the user is not connected (`!connected()`), the component redirects the user to the home page using the Navigate component from React Router.
 
 
@@ -39,6 +39,6 @@ If the user is not connected (`!connected()`), the component redirects the user 
 
 1. Call `inscribeImage` method of the instance to inscribe a image.
 
------
+---
 
 Complete code at [Github](https://github.com/sCrypt-Inc/inscribe/blob/learn/src/ordinalImage.tsx)
