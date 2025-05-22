@@ -1,15 +1,15 @@
-# 第五章: 总结
+# Chapter 5: Summary
 
-恭喜你，你已经成功完成前端页面与智能合约的交互。现在用户完全可以在比特币上玩井字棋游戏了！
+Congratulations, you have successfully completed the interaction between the front-end  and the smart contract, and now users can play TicTacToe entirely on Bitcoin!
 
+You can continue to improve this dApp, for example:
 
-你可以继续改进这个dApp，例如：
+- Build a back-end for it to support multiple pair of players
+- Move the UTXO management from front-end, as it is now, to back-end
+- Support more wallets
+- Increase the board size, such as 5 X 5
 
-1. 为其构建后端以支持多对玩家
-2. 将 UTXO 管理从前端转移到后端，就像现在一样
-3. 接入更多的钱包
-4. 增加宫格，比如 5X5
+The code of this course is at: [Bitcoin onchain App Tutorial](https://github.com/sCrypt-Inc/tic-tac-toe).
 
-本课程的代码在 [Tic-Tac-Toe: Bitcoin onchain App Tutorial](https://github.com/sCrypt-Inc/tic-tac-toe)。
+Look forward to the killer dApp you build on Bitcoin.
 
-期待您在比特币上构建的杀手级 dApp。

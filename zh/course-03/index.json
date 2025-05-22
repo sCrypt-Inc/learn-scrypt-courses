@@ -1,31 +1,32 @@
 {
-    "title": "使用 sCrypt 构建井字游戏",
+    "title": "Build a Tic-tac-toe Game with sCrypt",
     "enTitle": "Build a Tic-tac-toe Game with sCrypt",
-    "desc": "这是学习sCrypt的第一门课程",
+    "desc": "This is the first course for learning sCrypt",
     "lessons": [
         {
-            "title": "让我们开始学习基本的 sCrypt",
+            "title": "sCrypt Basics",
+            "desc": "Learn sCrypt basics and write the TicTacToe contract",
             "num": 1,
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第一章: 课程概述"
+                    "title": "Chapter 1: Course Overview"
                 },
                 {
                     "num": 2,
-                    "title": "第二章: sCrypt 概述"
+                    "title": "Chapter 2: sCrypt Overview"
                 },
                 {
                     "num": 3,
-                    "title": "第三章: 开发环境搭建"
+                    "title": "Chapter 3: Setup the Development Environment"
                 },
                 {
                     "num": 4,
-                    "title": "第四章: sCrypt 智能合约"
+                    "title": "Chapter 4: sCrypt Smart Contracts"
                 },
                 {
                     "num": 5,
-                    "title": "第五章: 数据类型和 `@prop` 装饰器",
+                    "title": "Chapter 5: Data Types and @prop Decorator",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",
@@ -35,7 +36,7 @@
                 },
                 {
                     "num": 6,
-                    "title": "第六章: `@method` 装饰器",
+                    "title": "Chapter 6: @method Decorator",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",
@@ -45,7 +46,7 @@
                 },
                 {
                     "num": 7,
-                    "title": "第七章: 签名验证",
+                    "title": "Chapter 7: Signature Verification",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",
@@ -55,7 +56,7 @@
                 },
                 {
                     "num": 8,
-                    "title": "第八章: 维护游戏状态",
+                    "title": "Chapter 8: Maintain Game State",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",
@@ -65,7 +66,7 @@
                 },
                 {
                     "num": 9,
-                    "title": "第九章: 宣布获胜或平局",
+                    "title": "Chapter 9: Declare a win or draw",
                     "scripts": [  
                         {
                             "name": "tictactoe.ts",
@@ -75,18 +76,18 @@
                 },
                 {
                     "num": 10,
-                    "title": "第十章: 总结"
+                    "title": "Chapter 10: Summary"
                 }
             ]
         },
         {
-            "title": "了解如何与前端集成",
-            "desc": "学习如何使用官方的 sCrypt SDK 将合约集成到前端",
+            "title": "Interact with the contract via a frontend",
+            "desc": "Learn how to build an app frontend to interact with the contract using sCrypt SDK",
             "num": 2,
             "chapters": [
                 {
                     "num": 1,
-                    "title": "第一章: 集成前端",
+                    "title": "Chapter 1: Integrating frontend",
                     "scripts": [  
                         {
                             "name": "index.tsx",
@@ -96,7 +97,7 @@
                 },
                 {
                     "num": 2,
-                    "title": "第二章: 集成钱包",
+                    "title": "Chapter 2: Integrated Wallet",
                     "scripts": [  
                         {
                             "name": "app.tsx",
@@ -106,7 +107,7 @@
                 },
                 {
                     "num": 3,
-                    "title": "第三章: 实例化合约与部署合约",
+                    "title": "Chapter 3: Initialize Contract and Deploy Contract",
                     "scripts": [  
                         {
                             "name": "app.tsx",
@@ -116,7 +117,7 @@
                 },
                 {
                     "num": 4,
-                    "title": "第四章: 调用合约",
+                    "title": "Chapter 4: Calling Contracts",
                     "scripts": [  
                         {
                             "name": "game.tsx",
@@ -126,7 +127,7 @@
                 },
                 {
                     "num": 5,
-                    "title": "第五章: 总结"
+                    "title": "Chapter 5: Summary"
                 }
             ]
         }

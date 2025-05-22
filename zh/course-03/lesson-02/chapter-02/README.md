@@ -1,29 +1,29 @@
-# 第二章: 集成钱包
+# Chapter 2: Integrated Wallet
 
-在开始部署合约之前，我们需要先连接钱包。这里以 [sensilet](https://sensilet.com) 为例，介绍如何连接钱包。
+Before deploying the contract, we need to connect a wallet first. We use [Panda Wallet](https://chromewebstore.google.com/detail/panda-wallet/mlbnicldlpdimbjdcncnklfempedeipj), a MetaMask-like wallet.
 
-安装完 **sensilet** 钱包后， 点击右上角的 **设置** 按钮，切换到测试网。然后复制你的钱包地址，去我们的 [水龙头](https://scrypt.io/#faucet) 领取测试网 BSV。
+After installing the **Panda** wallet, click the `settings` button in the upper right corner to switch to testnet. Then copy your wallet address and go to our [faucet](https://scrypt.io/#faucet) to fund it.
+
 
 <img src="https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/testcoin.gif?raw=true" width="600">
 
-## Signer 与 Provider
+## Signer and Provider
 
-- `Signer` 当用户想要将交易发送到链上时，我们的 dApp 会提示用户使用他们的私钥签署交易并被授权以执行某些操作。 `Signer` 接口是控制私钥的实体的抽象。 一个简单的签名者是一个私钥，而一个复杂的签名者是一个钱包。
+When a user wants to sends a transaction onto the chain, our dApp would prompt the user to “sign” the transaction using their private key and be authorized to perform certain actions. The `Signer` interface is an abstraction of the entity controlling the private key. A simple signer would be a single private key, while a complex signer is a wallet.
 
-- `Provider` 是需要与区块链交互时连接的比特币节点的抽象, 例如，广播交易。 Whatsonchain 就是一个例子，提供对区块链的访问。
+A `Provider` is an abstraction for a Bitcoin node that you connect with when you need to interact with the blockchain, e.g., to broadcast a transaction. Whatsonchain is an example, providing access to the blockchain.
 
+## Connect to **Panda**
 
-## 连接 **sensilet** 钱包
-
-点击 **Connect Sensilet** 按钮后，初始化一个 `SensiletSigner`，并将 `signer` 保存起来。之后调用`requestAuth()`连接钱包，并调用钱包的 `getDefaultPubKey()` 接口来获取两个玩家的公钥。
+After clicking the **Connect Panda** button, we initialize a `PandaSigner` and save it. We call `requestAuth()` to request to connect to the wallet. If the request is approved by the user, we now have full access to the wallet. We can, for example, call `getDefaultPubKey()` to get its public key.
 
 ```ts
-const sensiletLogin = async () => {
+const pandaLogin = async () => {
     try {
       const provider = new DefaultProvider({
           network: bsv.Networks.testnet
       });
-      const signer = new SensiletSigner(provider);
+      const signer = new PandaSigner(provider);
 
       signerRef.current = signer;
       
@@ -40,15 +40,13 @@ const sensiletLogin = async () => {
       // Prompt user to switch accounts
 
     } catch (error) {
-      console.error("sensiletLogin failed", error);
-      alert("sensiletLogin failed")
+      console.error("pandaLogin failed", error);
+      alert("pandaLogin failed")
     }
 };
 ```
 
-## 显示余额
-
-连接成功后，调用 `getBalance()` 接口获取钱包余额:
+We can also call `getBalance()` to get its balance:
 
 ```ts
 signer.getBalance().then(balance => 
@@ -57,7 +55,7 @@ signer.getBalance().then(balance =>
 );
 ```
 
-如果已连接钱包，显示钱包余额。否则显示连接按钮。
+If a wallet is connected, its balance is displayed. Otherwise we show the `connect` button.
 
 ```ts
 {
@@ -66,18 +64,19 @@ signer.getBalance().then(balance =>
     :
     <button
       className="pure-button button-large sensilet"
-      onClick={sensiletLogin}
+      onClick={pandaLogin}
     >
-      Connect Sensilet
+      Connect Panda
     </button>
 }
 ```
 
 
+
 ![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/course-02/connectwallet.gif?raw=true)
 
-<center>连接钱包</center>
+<center>connect wallet</center>
 
-## 实战演习
+## Put it to the test
 
-调用钱包的 `requestAuth()` 接口请求连接钱包。
+Call `requestAuth()` to request to connect to the wallet.

@@ -1,37 +1,41 @@
-# 第五章: 数据类型和 `@prop` 装饰器
-
-## 数据类型
-`TicTacToe` 合约使用的基本数据类型包括：
-
-1. `boolean`: `true` 或者 `false`
-
-2. `bigint`: 任意大的有符号整数
-
-3. `PubKey`：公钥
-
-4. `Sig`：签名
-
-5. `ByteString`: 字节数组
+# Chapter 5: Data Types and `@prop` Decorator
 
 
-如果您想了解更多数据类型，可以参考[文档](https://scrypt.io/docs/how-to-write-a-contract/#data-types)。
+## Data types
+
+The data types used by the `TicTacToe` contract include:
+
+1. `boolean`: `true` or `false`
+
+2. `bigint`: arbitrarily large signed integer
+
+3. `PubKey`：public key
+
+4. `Sig`：signature
+
+5. `ByteString`: bytes
 
 
-## 数组
+If you want to know more data types, you can reference [the documentation](https://scrypt.io/docs/how-to-write-a-contract/#data-types).
 
-`sCrypt` 只允许固定大小的数组。声明数组时，必须使用 `FixedArray<T, N>`。 `T` 是数组元素的类型，`N` 是数组大小。
+
+## FixedArray
+
+`sCrypt` only allows fixed-size array. When you declare an array, you must use `FixedArray<T, N>`. `T` is the type of array element and `N` is the array size.
 
 ```ts
 let a: FixedArray<bigint, 3> = [0n, 1n, 2n];
-let b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
+const b: FixedArray<boolean,  3> = [false, false && true, (1n > 2n)];
 ```
 
 
-## `@prop` 装饰器
+## `@prop` decorator
 
-使用这个装饰器来标记任何打算存储在链上的属性。 装饰器接受一个布尔参数。 默认情况下，它设置为 `false`，这意味着部署合约后无法更改该属性。 如果为 `true`，则该属性是所谓的 [stateful](https://scrypt.io/docs/how-to-write-a-contract/stateful-contract) 属性，其值可以在后续合约调用中更新。 `@prop` 中只能修饰[特定类型](https://scrypt.io/docs/how-to-write-a-contract/#data-types)。
+Use this decorator to mark any property that intends to be stored on chain. This decorator accepts a boolean parameter. By default, it is set to `false`, meaning the property cannot be changed after the contract is deployed. If it is `true`, the property is a so-called [stateful](https://scrypt.io/docs/how-to-write-a-contract/stateful-contract) property and its value can be updated in subsequent contract calls. Only [specific types](https://scrypt.io/docs/how-to-write-a-contract/#data-types) can be used in `@prop`.
 
-没有 `@prop` 装饰器标记的成员变量是常规的 TypeScript 变量，其声明没有任何特殊要求。但是在使用 `@method` 装饰器装饰的方法中禁止访问这些成员变量。
+
+Contract properties without the `@prop` decorator are regular TypeScript properties without any special requirement, meaning they can use any type. But accessing these member variables is prohibited in methods decorated with `@method`.
+
 
 ```ts
 class Test extends SmartContract {
@@ -63,24 +67,21 @@ class Test extends SmartContract {
 ```
 
 
-## 实战演习
+## Put it to the test
 
-井字棋游戏合约支持两个玩家，需要保存两个玩家的公钥地址。
+The tic-tac-toe game contract supports two players and their public keys need to be saved. 
 
-1. 添加以下合约属性：
+1. Add the following contract properties:
 
-- 添加两个无状态属性 `alice` 和 `bob`，数据类型都是 `PubKey`。
-- 添加两个有状态属性:
-  * `is_alice_turn`: 数据类型是 `boolean`。它表示是否轮到玩家 `alice` 下棋。
-  * `board`: 数据类型是长度为 `9` 的定长数组 `FixedArray<bigint, 9>`。它表示当前棋盘各个位置的落子情况。
-- 三个常量:
-  * `EMPTY`，类型为 `bigint`，值为 `0n`。它表示该棋盘位置还未落子
-  * `ALICE`，类型为 `bigint`，值为 `1n`。它表示该棋盘位置被玩家 `alice` 落子
-  * `BOB`，类型为 `bigint`，值为 `2n`。它表示该棋盘位置被玩家 `bob` 落子
+   - Two stateless properties `alice` and `bob`, both of which are `PubKey` type.
+   - Two stateful properties:
+        * `is_alice_turn`: a `boolean`. It represents whether it is `alice`'s turn to play.
+        * `board`: a fixed-size array `FixedArray<bigint, 9>` with a size of `9`. It represents the state of every square in the board.
+   - Three constants:
+       * `EMPTY`, type `bigint`, value `0n`. It means that a square in the board is empty
+       * `ALICE`, type `bigint`, value `1n`. Alice places symbol `X` in a square.
+       * `BOB`, type `bigint`, value `2n`. Bob places symbol `O` in a square.
 
-2. 在构造函数中初始化所有非静态属性。具体来说，整个棋盘一开始是空的。
-
-
-
+2. Initialize all non-static properties in the constructor. Specifically, the entire board is empty at first.
 
 

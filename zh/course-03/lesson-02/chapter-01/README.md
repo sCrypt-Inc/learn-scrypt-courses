@@ -1,47 +1,46 @@
-# 第一章: 集成前端
+# Chapter 1: Add a front-end
 
-完成上一节课以后，我们的井字棋 dApp 的 sCrypt 合约部分就完成了。接下来我们需要集成集成前端，这样用户可以在网页玩tic-tac-toe游戏。
+After completing the previous lesson, the sCrypt contract portion of our TicTacToe dApp is ready. Next we need to add a front-end so that users can play the TicTacToe game in a browser.
 
-## 准备
+Since the focus of this course is on sCrypt, we assume you are already familiar with front-end development, and will not cover them.
 
-井字棋 dApp 的前端界面将使用 [Create React App](https://create-react-app.dev/) 来创建。
+## Prepare
 
-你可以使用 
+The front-end interface of the dApp will be created using [Create React App](https://create-react-app.dev/).
 
 ```ts
 npx create-react-app tic-tac-toe --template typescript
 ```
 
-或者直接克隆我们已经创建好的[tic-tac-toe 仓库](https://github.com/sCrypt-Inc/tic-tac-toe)。该仓库的 `onlyweb` 分支包含一个未集成 `sCrypt`， 只有前端代码的井字棋游戏。我们假设你已经具备前端开发的基础知识，因此我们不会花时间来介绍这部分代码。
+Or directly clone the [tic-tac-toe repo](https://github.com/sCrypt-Inc/tic-tac-toe) that we have created. The `onlyweb` branch of this repository contains a tic-tac-toe game that does not integrate `sCrypt`, only the front-end code. We assume that you already have basic knowledge of front-end development, so we won't spend time introducing this part of the code.
 
-请克隆此项目并切换到 `onlyweb` 分支。
+Clone this project and switch to the `onlyweb` branch.
 
 ```
 git clone -b onlyweb https://github.com/sCrypt-Inc/tic-tac-toe
 ```
 
-##  安装 sCrypt 的 SDK
+##  Install the sCrypt SDK
 
-通过  sCrypt SDK —— [scryptTS](https://scrypt.io)，你就能方便地编译，测试，部署，调用合约了。
+The sCrypt SDK - [sCrypt](https://scrypt.io) enables you to easily compile, test, deploy, and call contracts.
 
-使用 `scrypt-cli` 命令行工具安装 sCrypt SDK。
+Use the `scrypt-cli` command line tool to install the SDK.
 
 ```base
 cd tic-tac-toe && npx scrypt-cli init
 ```
 
-这将添加合约开发所需的所有脚手架。
+This will also add all scaffolding needed for contract development.
 
+## Compile the contract
 
-## 编译合约
+First put the `TicTacToe` contract we wrote in the previous lesson into the `src/contracts` directory. Run the following command to compile the contract:
 
-首先将我们上一节课编写的 `TicTacToe` 合约放到 `src/contracts` 目录下。运行以下命令编译合约:
-
-```
+```bash
 npx scrypt-cli compile
 ```
 
-你应该会在 `artifacts` 目录中看到一个合约 *artifact* 文件 `tictactoe.json`。它可用于在前端初始化合约。
+You should see an artifact file `tictactoe.json` in the `artifacts` directory. It can be used to initialize a contract at the front end.
 
 
 ```ts
@@ -51,6 +50,6 @@ TicTacToe.loadArtifact(artifact);
 ```
 
 
-## 实战演习
+## Put it to the test
 
-在 `index.tsx` 中导入合约 *artifact* 文件 `tictactoe.json`，并加载它。
+Import the contract artifact file `tictactoe.json` in `index.tsx`, and load it.

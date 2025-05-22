@@ -1,21 +1,22 @@
-# 第三章: 开发环境搭建 
+# Chapter 3: Setup the Development Environment
 
-## 安装nodejs
+## Install NodeJs
 
-与 TypeScript 的开发环境相同， 只需按照[此处](https://nodejs.org/en/download)的说明在您的计算机上安装 `Node.js` (`version  >= 16`) 和 `npm`。
-
+Install `Node.js` (`version >= 16`) and `npm` on your machine by following the instructions over [here](https://nodejs.org/en/download). This also installs [npx](https://www.npmjs.com/package/npx), the package runner.
 
 ## IDE
 
-使用您最喜欢的 TypeScript IDE。我们推荐使用微软的 [Visual Studio Code](https://code.visualstudio.com/)。
+Use your favorite TypeScript IDE. We recommend using Microsoft's [Visual Studio Code](https://code.visualstudio.com/).
 
-## `scrypt-cli` 命令行工具
-[scrypt-cli](https://github.com/sCrypt-Inc/scrypt-cli) 是一个 CLI 工具，可以使 `sCrypt` 开发更快更容易。
 
-### 创建工程
+## `scrypt-cli` CLI
 
-让我们使用 `scrypt-cli` 创建一个项目：
+[scrypt-cli](https://github.com/sCrypt-Inc/scrypt-cli) is a CLI tool that makes `sCrypt` development faster and easier.
+
+Let us use `scrypt-cli` to create a project:
 
 ```bash
 npx scrypt-cli project tic-tac-toe
 ```
+
+

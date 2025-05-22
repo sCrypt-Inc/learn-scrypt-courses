@@ -1,13 +1,7 @@
-# 第十章: 总结
+# Chapter 10: Summary
 
-恭喜你，你已经完成了 `TicTacToe` 合约。
+Congratulations, you have completed the `TicTacToe` contract!
 
-但是，如果用户无法与之交互，那么任何 dApp 都是不完整的。接下来，我们将为您的合约驱动的 dApp 添加一个基本的前端。请注意，应用程序前端也是用 TypeScript 编写的。
+But no dApp is complete if users cannot interact with it. We are going to add a basic font-end for your contract powered dApp next. Note that app front-ends are ALSO written in TypeScript.
 
-如果你想进一步了解 `sCrypt` ，请前往[文档](https://scrypt.io)
-
-
-
-
-
-
+If you want to know more about `sCrypt`, please go to the [documentation](https://scrypt.io/docs/overview).

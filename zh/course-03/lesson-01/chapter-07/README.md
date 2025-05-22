@@ -1,8 +1,8 @@
-# 第七章: 签名验证
+# Chapter 7:  Signature Verification
 
-部署游戏合约后，任何人都可以查看并可能与之交互。我们需要一种身份验证机制，以确保只有所需的玩家才能在轮到他们时更新合约。这使用数字签名来实现的。
+Once the game contract is deployed, anyone can view and potentially interact with it. We need a authentication mechanism to ensure only the desired player can update the contract if it's their turn. This is achieved using ditigal signatures.
 
-下面例子是比特币网络中最常见的合约：[支付到公钥哈希](https://learnmeabitcoin.com/technical/p2pkh)(Pay to Public Key Hash: P2PKH)，即通常所说的比特币地址。
+The following example is the most common contract in the Bitcoin network: [Pay to Public Key Hash](https://learnmeabitcoin.com/technical/p2pkh) (P2PKH), which is commonly referred to as a Bitcoin address.
 
 ```ts
 export class P2PKH extends SmartContract {
@@ -24,9 +24,8 @@ export class P2PKH extends SmartContract {
     }
 
 ```
+`this.checkSig()` is used to verify a signature against a public key.
 
-`this.checkSig()` 用于根据公钥验证签名。
+## Put it to the test
 
-## 实战演习
-
-1. 验证 `move()` 的 `sig` 参数是否与当前玩家存储在合约属性中的公钥匹配。
+1. Verify the `sig` parameter against the desired player in `move()`, identified by their public key stored in the contract's properties.

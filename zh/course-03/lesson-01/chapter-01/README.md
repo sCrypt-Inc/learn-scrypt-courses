@@ -1,20 +1,18 @@
-# 第一章: 课程概述
+# Chapter 1: Course Overview
 
-通过此课程，你将学会如何使用 [sCrypt](https://scrypt.io) 构建一个比特币上的井字棋dApp.
+In this course, you will learn how to use sCrypt to build a Tic-Tac-Toe dApp on Bitcoin.
 
-该应用程序非常简单。它所做的就是使用两个玩家(分别是 Alice 和 Bob)的比特币地址初始化合约，各自下注相同的金额锁定到合约中。只有赢得那个人可以取走合约里面的钱。如果最后没有人赢，则两个玩家各自可以取走一半的钱。
+The application is very simple. It uses the Bitcoin addresses of two players (Alice and Bob respectively) to initialize the contract. They each bet the same amount and lock it into the contract. The winner takes all bitcoins locked in the contract. If no one wins and there is a draw, the two players can each withdraw half of the money.
 
-我们将逐步完成构建app，包括:
+We will build in three steps:
 
-1. 开发环境搭建
-2. 编写合约
-3. App前端集成合约
+1. Setup the development environment
+2. Write the contract
+3. Add a frontend integrating the contract
 
 
-## 最终的应用程序
+## The final app
 
-在开始这个课程之前，你可以先试玩一下该游戏 [Go to Play](https://scrypt.io/tic-tac-toe)
-
-井字棋游戏过程如下：
-
-![](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/dapp.gif?raw=true)
+After completing all lessons and deploying your app, you will have build your first Bitcoin-based on-chain game as shown below!
+![Tic-Tac-Toe](https://github.com/sCrypt-Inc/image-hosting/blob/master/learn-scrypt-courses/dapp.gif?raw=true)
+You can try the game [online here](https://scrypt.io/tic-tac-toe).

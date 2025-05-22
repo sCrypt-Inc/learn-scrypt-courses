@@ -1,33 +1,33 @@
-# 第四章: 调用合约
+# Chapter 4: Calling Contracts
 
-接下来就是开始下棋了。每下一步棋，就是对合约的一次调用，并触发合约状态的改变。Web 应用程序与合约的交互发生在这个阶段。
+Now we can start playing the game. Every move is a call to the contract and triggers a change in the state of the contract. The interaction between the web application and the contract occurs at this stage.
 
-调用合约需要完成以下步骤:
+Calling the contract requires the following steps:
 
-1. 通过当前实例的 `.next()` 方法创建一个新的合约实例。将新实例的状态更新到最新。
+1. Create a new contract instance via the `.next()` method of the current instance. Update the state of the new instance to the latest.
 
-2. 通过 `bindTxBuilder` 方法为 `TicTacToe` 合约的 `move()` 方法添加一个构建调用合约的交易 `Builder`。
+2. Add a transaction builder to the `move()` method of the `TicTacToe` contract through the `bindTxBuilder` method, which builds the calling transaction.
 
-3. 最后调用合约实例上的 `methods` 公共方法来发送交易以执行区块链上的合约。每个公共方法 `xxx` 在 `instance.methods.xxx` 下都有一个同名的函数。它采用相同的参数，外加一个 `MethodCallOptions` 参数。
+3. Finally call the `methods` public method on the contract instance to send the transaction to call the contract. Every public method `xxx` has a function of the same name under `contractInstance.methods.xxx`. It takes the same parameters, plus an `MethodCallOptions`.
 
-如果公共方法的某个参数是 `Sig` 类型，则需要通过回调函数来返回签名。合约连接的 `Signer` 会使用默认私钥进行签名，并将签名结果通过回调函数的参数 `sigResponses` 返回。使用 `findSig()` 查找与一个公钥关联的签名。
+If the public method has a signature parameter, a callback function is required to return the signature. The `Signer` connected to the contract will use the default private key to sign, and the signature will be returned through the parameter `sigResps` of the callback function. Use `findSig()` to find the signature associated with a public key.
 
-通过 `MethodCallOptions` 中 `pubKeyOrAddrToSign` 可以指定 `Signer` 使用哪个公钥地址或公钥进行签名。
+Through `pubKeyOrAddrToSign` in `MethodCallOptions`, you can specify which address/public key to sign against.
 
 ```ts
 const { tx: callTx } = await p2pkh.methods.unlock(
     (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey),
     $publickey,
     {
-        pubKeyOrAddrToSign: $publickey
+        pubKeyOrAddrToSign: $publickey.toAddress()
     } as MethodCallOptions<P2PKH>
 );
 ```
 
+4. After the call is completed, the new contract instance needs to be saved, to continue calling the contract later.
 
-4. 完成调用后，需要把新的合约实例保存起来，以便继续调用合约。
+The code implementation of the above steps:
 
-以上几个步骤的代码实现:
 
 ```ts
 // 1. create nextInstance
@@ -37,23 +37,35 @@ const nextInstance = current.next();
 Object.assign(nextInstance, Utils.toContractState(latestGameData));
 
 // 2. bind a tx builder for move
-current.bindTxBuilder('move', async (current: TicTacToe, options: MethodCallOptions<TicTacToe>, n: bigint, sig: Sig) => {
+current.bindTxBuilder('move', async (current: SmartContract, options: MethodCallOptions<SmartContract>, n: bigint, sig: Sig) => {
     ...
+
+    return Promise.resolve({
+        tx: unsignedTx,
+        atInputIndex: 0,
+        nexts: [
+          {
+            instance: nextInstance,
+            atOutputIndex: 0,
+            balance: initBalance
+          }
+        ]
+    }) 
 }
 
 // 3. call contract.methods.move(...) to broadcast transaction
-const {tx, nexts} = await current.methods.move(
+const {tx, next} = await current.methods.move(
     BigInt(i),
-    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey),
+    (sigResponses: SignatureResponse[]) => findSig(sigResponses, $publickey)
 );
 
 // 4. save latest contract instance
-props.setContract(nexts?.instance)
+props.setContract(next?.instance)
 ```
 
-至此，我们就完成了TicTacToe合约与webapp的交互。玩家的每一次下棋动作都会在链上产生相应的交易。
+So far, we have completed the interaction between the `TicTacToe` contract and the web frond-end. Every move will prompt the player to sign and submit a transaction on the blockchain.
 
-## 实战演习
+## Put it to the test
 
-1. 游戏未结束时，需要添加一个包含游戏最新状态的输出。
-2. 调用合约的公共方法来广播调用合约的交易。
+1. When the game is not over, you need to add an output that contains the latest state of the game.
+2. Call the public method of the contract to broadcast the transaction that calls the contract.
